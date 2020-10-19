@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:id="@+id/homeFragment"
+		android:icon="@drawable/selector_bottom_nav_home"
+		android:title="@string/home_title" />
+	<item
+		android:id="@+id/discoverFragment"
+		android:icon="@drawable/selector_bottom_nav_discover"
+		android:title="@string/discover_title" />
+	<item
+		android:id="@+id/mealPlannerFragment"
+		android:icon="@drawable/selector_bottom_nav_meal_planner"
+		android:title="@string/meal_planner_title" />
+	<item
+		android:id="@+id/profileFragment"
+		android:icon="@drawable/selector_bottom_nav_profile"
+		android:title="@string/profile_title" />
+</menu>

@@ -8,4 +8,16 @@
 	<string name="error_validation">Validation error. Please try again later.</string>
 	<string name="error_bad_email_or_password">Incorrect email or password</string>
 
+	<!--	Home	-->
+	<string name="home_title">Home</string>
+
+	<!--	Discover	-->
+	<string name="discover_title">Discover</string>
+
+	<!--	Meal planner	-->
+	<string name="meal_planner_title">Meal planner</string>
+
+	<!--	Profile		-->
+	<string name="profile_title">Profile</string>
+
 </resources>

@@ -3,8 +3,11 @@ package com.lonchi.andrej.lonchi_skeleton.ui.main
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.lonchi.andrej.lonchi_skeleton.R
 import com.lonchi.andrej.lonchi_skeleton.ui.base.BaseActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 /**
@@ -21,7 +24,11 @@ class MainActivity : BaseActivity<MainViewModel>() {
     override val layoutId: Int? = R.layout.activity_main
     override val vmClassToken: Class<MainViewModel> = MainViewModel::class.java
 
-    override fun initView() = Unit
+    override fun initView() {
+        val navController = findNavController(R.id.mainNavHostFragment)
+        mainBottomNavigationView?.setupWithNavController(navController)
+        mainBottomNavigationView?.itemIconTintList = null
+    }
 
     override fun bindViewModel() {
         //  TODO

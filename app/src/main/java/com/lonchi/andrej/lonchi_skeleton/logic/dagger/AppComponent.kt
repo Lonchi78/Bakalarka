@@ -3,6 +3,7 @@ package com.lonchi.andrej.lonchi_skeleton.logic.dagger
 import android.app.Application
 import com.lonchi.andrej.lonchi_skeleton.LonchiSkeletonApplication
 import com.lonchi.andrej.lonchi_skeleton.ui.main.MainActivity
+import com.lonchi.andrej.lonchi_skeleton.ui.profile.ProfileViewModel
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -24,6 +25,10 @@ import javax.inject.Singleton
             PersistenceModule::class,
             RestModule::class,
             MainModule::class,
+            HomeModule::class,
+            DiscoverModule::class,
+            MealPlannerModule::class,
+            ProfileModule::class,
             MainFragmentModule::class])
 interface AppComponent {
 
