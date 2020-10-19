@@ -1,5 +1,5 @@
 <resources>
-	<string name="app_name">LonchiSkeleton</string>
+	<string name="app_name">Bakalarka</string>
 	<string name="system_language">en</string>
 
 	<string name="error_authentication">You have been logged off from the server</string>
