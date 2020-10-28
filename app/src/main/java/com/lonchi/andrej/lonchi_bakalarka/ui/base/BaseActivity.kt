@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.snackbar.Snackbar
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import dagger.android.support.DaggerAppCompatActivity
@@ -161,5 +162,23 @@ abstract class BaseActivity<T> : DaggerAppCompatActivity() where T : BaseViewMod
             is ErrorIdentification.BadEmailOrPassword -> getString(R.string.error_bad_email_or_password)
             else -> getString(R.string.error_unknown_try_later)
         }
+    }
+
+    fun showSnackbar(text: String) {
+        Snackbar.make(
+            snackBarRoot ?: findViewById(android.R.id.content),
+            text,
+            Snackbar.LENGTH_LONG
+        )
+            .show()
+    }
+
+    fun showSnackbar(stringResource: Int) {
+        Snackbar.make(
+            snackBarRoot ?: findViewById(android.R.id.content),
+            getString(stringResource),
+            Snackbar.LENGTH_LONG
+        )
+            .show()
     }
 }

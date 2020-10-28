@@ -2,11 +2,14 @@
 	<string name="app_name">Bakalarka</string>
 	<string name="system_language">en</string>
 
+	<string name="global_permissions_are_needed">I can\'t do this without these permissions &#128549;</string>
+
 	<string name="error_authentication">You have been logged off from the server</string>
 	<string name="error_no_network_connection">Connection to server has failed. Please check your internet connection ad try again.</string>
 	<string name="error_unknown_try_later">The action could not be completed because an unknown error occurred. Please try again later.</string>
 	<string name="error_validation">Validation error. Please try again later.</string>
 	<string name="error_bad_email_or_password">Incorrect email or password</string>
+	<string name="error_unknown">Oops, something went wrong</string>
 
 	<!--	Home	-->
 	<string name="home_title">Home</string>

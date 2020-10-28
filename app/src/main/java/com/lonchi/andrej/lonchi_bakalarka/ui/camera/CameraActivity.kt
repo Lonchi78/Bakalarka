@@ -6,12 +6,10 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
-import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.*
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
-import androidx.camera.core.TorchState.OFF
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
@@ -43,9 +41,12 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
     override val layoutId: Int? = R.layout.activity_camera
     override val vmClassToken: Class<CameraViewModel> = CameraViewModel::class.java
 
-    private var flashMode: Int = ImageCapture.FLASH_MODE_AUTO
-    private var imageCapture: ImageCapture? = null
     private lateinit var cameraExecutor: ExecutorService
+    private val CAMERA_SELECTOR = CameraSelector.DEFAULT_BACK_CAMERA
+
+    private var flashMode: Int = ImageCapture.FLASH_MODE_AUTO
+    private var cameraProvider: ProcessCameraProvider? = null
+    private var imageCapture: ImageCapture? = null
 
     override fun initView() {
         cameraExecutor = Executors.newSingleThreadExecutor()
@@ -61,7 +62,7 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
         }
 
         if (allPermissionsGranted()) {
-            startCamera()
+            setupCamera()
         } else {
             disable(iconCapture, iconFlash)
             visible(labelPermissionsTitle, labelPermissionsSubtitle, buttonAllowPermissions)
@@ -82,10 +83,9 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
     ) {
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (allPermissionsGranted()) {
-                startCamera()
+                setupCamera()
             } else {
-                //  todo - snackbar
-                Toast.makeText(this, "Need this permissions", Toast.LENGTH_SHORT).show()
+                showSnackbar(R.string.global_permissions_are_needed)
                 finish()
             }
         }
@@ -110,35 +110,38 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
                 iconFlash.setImageResource(R.drawable.ic_flash_auto)
             }
         }
-        //  todo - start camera?
+        updateCameraConfig()
     }
 
-    private fun startCamera() {
+    private fun updateCameraConfig() {
+        if (imageCapture != null) cameraProvider?.unbind(imageCapture)
+        imageCapture = ImageCapture.Builder().setFlashMode(flashMode).build()
+        cameraProvider?.bindToLifecycle(this, CAMERA_SELECTOR, imageCapture)
+    }
+
+    private fun setupCamera() {
         enable(iconCapture, iconFlash)
         gone(labelPermissionsTitle, labelPermissionsSubtitle, buttonAllowPermissions)
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
         cameraProviderFuture.addListener({
-            //  Used to bind the lifecycle of cameras to the lifecycle owner
-            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
-            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-            val preview = Preview.Builder().build().also {
+            val cameraPreview = Preview.Builder().build().also {
                 it.setSurfaceProvider(viewFinder.surfaceProvider)
             }
 
-            imageCapture = ImageCapture.Builder()
-                .setFlashMode(flashMode)
-                .build()
+            //  Used to bind the lifecycle of cameras to the lifecycle owner
+            cameraProvider = cameraProviderFuture.get()
+            imageCapture = ImageCapture.Builder().setFlashMode(flashMode).build()
 
             try {
                 // Unbind use cases before rebinding
-                cameraProvider.unbindAll()
+                cameraProvider?.unbindAll()
 
                 // Bind use cases to camera
-                cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture)
+                cameraProvider?.bindToLifecycle(this, CAMERA_SELECTOR, cameraPreview, imageCapture)
             } catch (e: Exception) {
-                // todo - snackbar
                 Timber.e("Use case binding failed: $e")
+                showSnackbar(R.string.error_unknown)
             }
         }, ContextCompat.getMainExecutor(this))
     }
@@ -159,8 +162,8 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onError(exc: ImageCaptureException) {
-                    //  todo - snackbar
                     Timber.e("Photo capture failed: ${exc.message}")
+                    showSnackbar(R.string.error_unknown)
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
@@ -186,9 +189,9 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
                     target: Target<Drawable>?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    //  todo - snnackbar
-                    //  todo - hide progress
                     Timber.e("onLoadFailed: $e")
+                    showSnackbar(R.string.error_unknown)
+                    //  todo - hide progress
                     return false
                 }
 
@@ -199,8 +202,8 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
                     dataSource: com.bumptech.glide.load.DataSource?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    //  todo - hide progress
                     Timber.d("onResourceReady:")
+                    //  todo - hide progress
                     return false
                 }
             })
