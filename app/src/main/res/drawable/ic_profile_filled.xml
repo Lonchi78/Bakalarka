@@ -1,71 +1,9 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt"
     android:width="24dp"
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24">
   <path
-      android:pathData="M17,6C17,8.7614 14.7614,11 12,11C9.2386,11 7,8.7614 7,6C7,3.2386 9.2386,1 12,1C14.7614,1 17,3.2386 17,6Z">
-    <aapt:attr name="android:fillColor">
-      <gradient 
-          android:startY="1"
-          android:startX="2"
-          android:endY="20.9095"
-          android:endX="23.9005"
-          android:type="linear">
-        <item android:offset="0" android:color="#FF24A58F"/>
-        <item android:offset="1" android:color="#FF2DAACE"/>
-      </gradient>
-    </aapt:attr>
-  </path>
-  <path
-      android:pathData="M2,19.25C2,18 6,15 12,15C18,15 22,18 22,19.25C22,20.5 18,23 12,23C6,23 2,20.5 2,19.25Z">
-    <aapt:attr name="android:fillColor">
-      <gradient 
-          android:startY="1"
-          android:startX="2"
-          android:endY="20.9095"
-          android:endX="23.9005"
-          android:type="linear">
-        <item android:offset="0" android:color="#FF24A58F"/>
-        <item android:offset="1" android:color="#FF2DAACE"/>
-      </gradient>
-    </aapt:attr>
-  </path>
-  <path
-      android:pathData="M17,6C17,8.7614 14.7614,11 12,11C9.2386,11 7,8.7614 7,6C7,3.2386 9.2386,1 12,1C14.7614,1 17,3.2386 17,6Z"
-      android:strokeLineJoin="round"
-      android:strokeWidth="2"
-      android:fillColor="#00000000"
-      android:strokeLineCap="round">
-    <aapt:attr name="android:strokeColor">
-      <gradient 
-          android:startY="1"
-          android:startX="2"
-          android:endY="20.9095"
-          android:endX="23.9005"
-          android:type="linear">
-        <item android:offset="0" android:color="#FF24A58F"/>
-        <item android:offset="1" android:color="#FF2DAACE"/>
-      </gradient>
-    </aapt:attr>
-  </path>
-  <path
-      android:pathData="M2,19.25C2,18 6,15 12,15C18,15 22,18 22,19.25C22,20.5 18,23 12,23C6,23 2,20.5 2,19.25Z"
-      android:strokeLineJoin="round"
-      android:strokeWidth="2"
-      android:fillColor="#00000000"
-      android:strokeLineCap="round">
-    <aapt:attr name="android:strokeColor">
-      <gradient 
-          android:startY="1"
-          android:startX="2"
-          android:endY="20.9095"
-          android:endX="23.9005"
-          android:type="linear">
-        <item android:offset="0" android:color="#FF24A58F"/>
-        <item android:offset="1" android:color="#FF2DAACE"/>
-      </gradient>
-    </aapt:attr>
-  </path>
+      android:fillColor="@color/colorNavigationIconActive"
+      android:pathData="M12,2C6.48,2 2,6.48 2,12s4.48,10 10,10 10,-4.48 10,-10S17.52,2 12,2zM12,5c1.66,0 3,1.34 3,3s-1.34,3 -3,3 -3,-1.34 -3,-3 1.34,-3 3,-3zM12,19.2c-2.5,0 -4.71,-1.28 -6,-3.22 0.03,-1.99 4,-3.08 6,-3.08 1.99,0 5.97,1.09 6,3.08 -1.29,1.94 -3.5,3.22 -6,3.22z"/>
 </vector>

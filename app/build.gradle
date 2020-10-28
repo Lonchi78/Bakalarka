@@ -75,15 +75,15 @@ dependencies {
     implementation "androidx.core:core-ktx:$rootProject.ext.coreKtx"
 
     //  Tests
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     //  Material dialogs
     implementation "com.afollestad.material-dialogs:core:$rootProject.ext.materialDialogs"
 
     //  Navigation component
-    def navigation = "2.2.1"
+    def navigation = "2.3.1"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation"
 
@@ -113,27 +113,26 @@ dependencies {
 
     // RxJava
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
     implementation 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
     implementation 'com.jakewharton.rxbinding3:rxbinding:3.1.0'
 
     // Timber
     implementation "com.jakewharton.timber:timber:$rootProject.ext.timber"
 
-    // Firebase
-    /*implementation 'com.google.firebase:firebase-core:17.3.0'
-    implementation 'com.google.firebase:firebase-messaging:20.1.5'
-    implementation 'com.google.firebase:firebase-analytics:17.3.0'
-    implementation 'com.google.firebase:firebase-crashlytics:17.0.0-beta01'*/
+    //  Firebase
+    implementation platform('com.google.firebase:firebase-bom:26.0.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-crashlytics'
 
-    // Google Services
-    /*implementation 'com.google.android.libraries.places:places:2.2.0'
-    implementation 'com.google.android.gms:play-services-maps:17.0.0'
-    implementation 'com.google.android.gms:play-services-auth:18.0.0'
-    implementation 'com.google.android.gms:play-services-location:17.0.0'*/
+    //  For some reason with this BoM dependency build failed
+    //implementation 'com.google.firebase:firebase-ml-vision'
+    implementation 'com.google.android.gms:play-services-vision:20.1.2'
+    implementation 'com.google.firebase:firebase-ml-vision:24.1.0'
 
     //Lottie
     implementation 'com.airbnb.android:lottie:3.4.0'
+    implementation 'com.mindorks:paracamera:0.2.2'
 }
 
 static def versionCodeFromDate() {
@@ -142,4 +141,4 @@ static def versionCodeFromDate() {
     return Integer.valueOf(formattedDate)
 }
 
-//apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.gms.google-services'

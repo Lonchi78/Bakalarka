@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "564265833274",
+    "firebase_url": "https://bakalarka-482fd.firebaseio.com",
+    "project_id": "bakalarka-482fd",
+    "storage_bucket": "bakalarka-482fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:564265833274:android:7d42da216cc57e369df603",
+        "android_client_info": {
+          "package_name": "com.lonchi.andrej.lonchi_bakalarka"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "564265833274-ql461jvpdurirh75l0qt1ou3nqpqsdo1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lonchi.andrej.lonchi_bakalarka",
+            "certificate_hash": "7c754495fe5ad5f51bad42971880fc9765a4247f"
+          }
+        },
+        {
+          "client_id": "564265833274-krgp4485b35khk753qbhgc512jktmom4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnTVo7b-SEa8ud_WsEaW4yowRIsrc-R5k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "564265833274-krgp4485b35khk753qbhgc512jktmom4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
