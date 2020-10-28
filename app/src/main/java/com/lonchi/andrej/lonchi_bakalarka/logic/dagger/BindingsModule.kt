@@ -1,6 +1,7 @@
 package com.lonchi.andrej.lonchi_bakalarka.logic.dagger
 
 import androidx.lifecycle.ViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.fragment.FragmentViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeViewModel
@@ -22,6 +23,14 @@ abstract class MainModule {
     @IntoMap
     @ViewModelKey(MainViewModel::class)
     abstract fun bindsMainViewModel(viewModel: MainViewModel): ViewModel
+}
+
+@Module
+abstract class CameraModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(CameraViewModel::class)
+    abstract fun bindsCameraViewModel(viewModel: CameraViewModel): ViewModel
 }
 
 @Module

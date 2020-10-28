@@ -20,4 +20,8 @@
 	<!--	Profile		-->
 	<string name="profile_title">Profile</string>
 
+	<!--	Camera		-->
+	<string name="camera_emoji">Debilko &#128512;</string>
+
+
 </resources>
