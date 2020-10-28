@@ -20,6 +20,9 @@ import com.lonchi.andrej.lonchi_bakalarka.BuildConfig
 fun Context.checkCameraPermissions(): Boolean =
         ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
 
+fun Context.checkReadExternalStoragePermissions(): Boolean =
+        ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+
 fun Context.checkWriteExtStoragePermissions(): Boolean =
         ActivityCompat.checkSelfPermission(
                 this,
@@ -203,4 +206,8 @@ fun Activity.shouldShowBackgroundLocationRequest(): Boolean {
         )
     }
     return accessFineLocation && accessBackgroundLocation
+}
+
+fun Activity.requestAllPermissions(requestCode: Int, permissions: Array<String>) {
+    ActivityCompat.requestPermissions(this, permissions, requestCode)
 }
