@@ -24,6 +24,16 @@ import com.lonchi.andrej.lonchi_bakalarka.R
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
+/* * * * * * * * * * * * * * * ENABLE * * * * * * * * * * * * * * * * */
+
+fun enable(vararg views: View) {
+    views.forEach { it.isEnabled = true }
+}
+
+fun disable(vararg views: View) {
+    views.forEach { it.isEnabled = false }
+}
+
 /* * * * * * * * * * * * * * * VISIBILITY * * * * * * * * * * * * * * * * */
 
 fun gone(vararg views: View) {

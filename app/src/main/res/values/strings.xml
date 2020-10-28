@@ -22,6 +22,8 @@
 
 	<!--	Camera		-->
 	<string name="camera_emoji">Debilko &#128512;</string>
-
+	<string name="camera_permission_title">Permission title</string>
+	<string name="camera_permission_subtitle">Permission subtitle. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.</string>
+	<string name="camera_permission_button">Allow permissions</string>
 
 </resources>

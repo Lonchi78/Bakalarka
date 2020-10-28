@@ -16,4 +16,12 @@
 		<item name="android:windowTranslucentStatus">true</item>
 	</style>
 
+	<!--	Image Buttons	-->
+	<style name="BaseImageButton" parent="Widget.AppCompat.ImageButton">
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:contentDescription">@null</item>
+		<item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+	</style>
+
 </resources>

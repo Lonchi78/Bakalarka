@@ -20,23 +20,33 @@ fun getTemporaryFile(): File {
     return createTempFile(fileName, IMAGE_FORMAT_JPEG)
 }
 
-fun Context.compressedCachedImageFromUri(uri: Uri): Uri {
-    val fileName = "${UUID.randomUUID()}$IMAGE_FORMAT_JPEG"
-    val tempBitmapFile = File(cacheDir, fileName)
-    tempBitmapFile.createNewFile()
+fun Context.compressImageFromUri(originalImageUri: Uri): Uri? {
+    var bos: ByteArrayOutputStream? = null
+    var fos: FileOutputStream? = null
 
-    val bitmap = uriToBitmap(uri)
-    val bos = ByteArrayOutputStream()
-    bitmap?.compress(Bitmap.CompressFormat.JPEG, IMAGE_COMPRESSION_LEVEL, bos)
-    Timber.d("CompressedCachedImageFromUri: Compressed image size = ${bos.size()}")
+    return try {
+        val tempCompressedFile = getTemporaryFile()
+        tempCompressedFile.createNewFile()
 
-    val fos = FileOutputStream(tempBitmapFile)
-    fos.write(bos.toByteArray())
-    fos.flush()
-    fos.close()
+        val bitmap = uriToBitmap(originalImageUri)
+        bos = ByteArrayOutputStream()
+        bitmap?.compress(Bitmap.CompressFormat.JPEG, IMAGE_COMPRESSION_LEVEL, bos)
+        Timber.d("CompressedCachedImageFromUri: Compressed image size = ${bos.size()} bytes")
 
-    copyImageOrientation(uri, tempBitmapFile)
-    return Uri.fromFile(tempBitmapFile)
+        fos = FileOutputStream(tempCompressedFile)
+        fos.write(bos.toByteArray())
+
+        copyImageOrientation(originalImageUri, tempCompressedFile)
+        Uri.fromFile(tempCompressedFile)
+    } catch (e: Exception) {
+        Timber.e(e)
+        null
+    } finally {
+        bos?.flush()
+        bos?.close()
+        fos?.flush()
+        fos?.close()
+    }
 }
 
 fun Context.copyImageOrientation(inputUri: Uri, outputFile: File) {
@@ -52,7 +62,9 @@ fun Context.copyImageOrientation(inputUri: Uri, outputFile: File) {
             }
         }
     } catch (e: IOException) {
-        e.printStackTrace()
+        Timber.e(e)
+    } catch (e: Exception) {
+        Timber.e(e)
     }
 }
 
@@ -60,7 +72,7 @@ fun Context.uriToBitmap(uri: Uri): Bitmap? {
     try {
         val parcelFileDescriptor = this.contentResolver.openFileDescriptor(uri, "r")
         val fileDescriptor = parcelFileDescriptor?.fileDescriptor
-        Timber.d("UriToBitmap: Original file size = ${parcelFileDescriptor?.statSize}")
+        Timber.d("UriToBitmap: Original file size = ${parcelFileDescriptor?.statSize} bytes")
 
         return BitmapFactory.decodeFileDescriptor(fileDescriptor).also {
             parcelFileDescriptor?.close()
