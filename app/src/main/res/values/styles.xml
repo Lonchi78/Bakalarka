@@ -16,6 +16,14 @@
 		<item name="android:windowTranslucentStatus">true</item>
 	</style>
 
+	<style name="AppBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+		<item name="bottomSheetStyle">@style/AppModalStyle</item>
+	</style>
+
+	<style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+		<item name="android:background">@drawable/bottom_sheet_modal_background</item>
+	</style>
+
 	<!--	Image Buttons	-->
 	<style name="BaseImageButton" parent="Widget.AppCompat.ImageButton">
 		<item name="android:clickable">true</item>

@@ -1,5 +1,6 @@
 package com.lonchi.andrej.lonchi_bakalarka.logic.dagger
 
+import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsBottomSheet
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.fragment.MainFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeFragment
@@ -29,4 +30,6 @@ abstract class FragmentBuilderModule {
     @ContributesAndroidInjector(modules = [ProfileModule::class])
     abstract fun contributeProfileFragment(): ProfileFragment
 
+    @ContributesAndroidInjector(modules = [FoundIngredientsModule::class])
+    abstract fun contributeFoundIngredientsBottomSheet(): FoundIngredientsBottomSheet
 }

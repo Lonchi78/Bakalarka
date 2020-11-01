@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2020. Dactyl Group
+  ~ https://www.dactylgroup.com
+  ~ All rights Reserved.
+  -->
+
+<resources>
+
+	<dimen name="bottom_sheet_corner_radius_top">16dp</dimen>
+	<dimen name="bottom_sheet_corner_radius_bottom">0dp</dimen>
+
+</resources>

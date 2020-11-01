@@ -19,6 +19,7 @@ import com.bumptech.glide.request.target.Target
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.*
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseActivity
+import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsBottomSheet
 import kotlinx.android.synthetic.main.activity_camera.*
 import timber.log.Timber
 import java.util.concurrent.ExecutorService
@@ -41,9 +42,11 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
     override val layoutId: Int? = R.layout.activity_camera
     override val vmClassToken: Class<CameraViewModel> = CameraViewModel::class.java
 
-    private lateinit var cameraExecutor: ExecutorService
-    private val CAMERA_SELECTOR = CameraSelector.DEFAULT_BACK_CAMERA
+    private var ingredientsBottomSheet: FoundIngredientsBottomSheet? = null
 
+    private lateinit var cameraExecutor: ExecutorService
+
+    private val CAMERA_SELECTOR = CameraSelector.DEFAULT_BACK_CAMERA
     private var flashMode: Int = ImageCapture.FLASH_MODE_AUTO
     private var cameraProvider: ProcessCameraProvider? = null
     private var imageCapture: ImageCapture? = null
@@ -204,9 +207,19 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
                 ): Boolean {
                     Timber.d("onResourceReady:")
                     //  todo - hide progress
+                    showFoundIngredientsBottomSheet()
                     return false
                 }
             })
             .into(imageCaptured)
     }
+
+    private fun showFoundIngredientsBottomSheet() {
+        if (ingredientsBottomSheet?.isVisible != true) {
+            ingredientsBottomSheet = FoundIngredientsBottomSheet(::showSettings)
+            ingredientsBottomSheet?.show(supportFragmentManager, ingredientsBottomSheet?.tag)
+        }
+    }
+
+    private fun showSettings() = Unit
 }

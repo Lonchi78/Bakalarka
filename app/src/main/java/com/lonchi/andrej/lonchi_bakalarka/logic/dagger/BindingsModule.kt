@@ -2,6 +2,7 @@ package com.lonchi.andrej.lonchi_bakalarka.logic.dagger
 
 import androidx.lifecycle.ViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.fragment.FragmentViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeViewModel
@@ -71,4 +72,12 @@ abstract class ProfileModule {
     @IntoMap
     @ViewModelKey(ProfileViewModel::class)
     abstract fun bindsProfileViewModel(viewModel: ProfileViewModel): ViewModel
+}
+
+@Module
+abstract class FoundIngredientsModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(FoundIngredientsViewModel::class)
+    abstract fun bindsFoundIngredientsViewModel(viewModel: FoundIngredientsViewModel): ViewModel
 }
