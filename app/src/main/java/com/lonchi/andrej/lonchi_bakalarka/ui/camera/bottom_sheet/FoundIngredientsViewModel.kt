@@ -15,16 +15,17 @@ class FoundIngredientsViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     val foundIngredients: MutableLiveData<List<Ingredient>> = MutableLiveData<List<Ingredient>>().apply {
-        postValue(
-            listOf(
-                Ingredient("Chicken", false),
-                Ingredient("Avocado", false),
-                Ingredient("Tomato", false),
-                Ingredient("Apple", false),
-                Ingredient("Pork", false),
-                Ingredient("Chick", false)
-            )
-        )
+        postValue(mockData())
     }
 
+    private fun mockData(): List<Ingredient> {
+        //  TODO - found a bug, recycler ignores constraints
+        val tmp = mutableListOf<Ingredient>()
+        for (i in 0..40) {
+            tmp.add(
+                Ingredient(i.toLong(), "Ingredient $i")
+            )
+        }
+        return tmp
+    }
 }

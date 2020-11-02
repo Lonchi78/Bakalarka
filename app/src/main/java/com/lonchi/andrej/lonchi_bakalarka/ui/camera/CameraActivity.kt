@@ -17,6 +17,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.lonchi.andrej.lonchi_bakalarka.R
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.Ingredient
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.*
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsBottomSheet
@@ -216,10 +217,12 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
 
     private fun showFoundIngredientsBottomSheet() {
         if (ingredientsBottomSheet?.isVisible != true) {
-            ingredientsBottomSheet = FoundIngredientsBottomSheet(::showSettings)
+            ingredientsBottomSheet = FoundIngredientsBottomSheet(::selectedIngredients)
             ingredientsBottomSheet?.show(supportFragmentManager, ingredientsBottomSheet?.tag)
         }
     }
 
-    private fun showSettings() = Unit
+    private fun selectedIngredients(selectedIngredients: List<Ingredient>) {
+        viewModel.selectedIngredients(selectedIngredients)
+    }
 }
