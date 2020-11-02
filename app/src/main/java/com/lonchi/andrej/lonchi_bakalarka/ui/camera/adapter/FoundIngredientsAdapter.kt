@@ -18,7 +18,8 @@ import com.lonchi.andrej.lonchi_bakalarka.logic.util.setVisible
  *  @author Andrej Lončík <andrejloncik@gmail.com>
  * */
 class FoundIngredientsAdapter(
-    val context: Context
+    val context: Context,
+    val onSelectedIngredientsChange: (List<Ingredient>) -> Unit
 ) : ListAdapter<Ingredient, FoundIngredientsAdapter.ViewHolder>(object :
     DiffUtil.ItemCallback<Ingredient>() {
 
@@ -60,6 +61,7 @@ class FoundIngredientsAdapter(
 
         if (alreadySelected) selectedIngredients.remove(ingredient)
         else selectedIngredients.add(ingredient)
+        onSelectedIngredientsChange(selectedIngredients)
     }
 
     fun getSelectedIngredients(): List<Ingredient> = selectedIngredients

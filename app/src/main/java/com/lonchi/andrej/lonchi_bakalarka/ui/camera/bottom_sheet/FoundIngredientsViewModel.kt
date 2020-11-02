@@ -20,7 +20,7 @@ class FoundIngredientsViewModel @Inject constructor(
 
     private fun mockData(): List<Ingredient> {
         val tmp = mutableListOf<Ingredient>()
-        for (i in 0..2) {
+        for (i in 0..9) {
             tmp.add(
                 Ingredient(i.toLong(), "Ingredient $i")
             )

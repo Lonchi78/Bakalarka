@@ -31,7 +31,7 @@
 
 	<!--	Found ingredients bottom sheet		-->
 	<string name="found_ingredients_title">Found ingredients</string>
-	<string name="found_ingredients_button_single">Add ingredient</string>
-	<string name="found_ingredients_button_multi">Add ingredients</string>
+	<string name="found_ingredients_button_single">Add Ingredient</string>
+	<string name="found_ingredients_button_multi">Add Ingredients</string>
 
 </resources>

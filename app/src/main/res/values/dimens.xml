@@ -13,4 +13,50 @@
 	<!--	5 * 56dp = 560dp	-->
 	<dimen name="recycler_found_ingredient_max_height">280dp</dimen>
 
+	<!-- - - - - - - Card View - - - - - - -->
+	<dimen name="card_corner_radius">12dp</dimen>
+	<dimen name="card_elevation">4dp</dimen>
+	<dimen name="card_stroke_width">1dp</dimen>
+	<dimen name="card_explore_height">256dp</dimen>
+
+	<!-- - - - - - Text Input and Select - - - - - -->
+	<dimen name="corner_radius_text_input">8dp</dimen>
+	<dimen name="corner_radius_text_select">8dp</dimen>
+
+	<!-- - - - - - - Buttons - - - - - - -->
+	<dimen name="corner_radius_button_contained">18dp</dimen>
+	<dimen name="corner_radius_button_outlined">18dp</dimen>
+	<dimen name="corner_radius_button_text">18dp</dimen>
+	<dimen name="inset_button_contained">0dp</dimen>
+	<dimen name="inset_button_outlined">0dp</dimen>
+	<dimen name="inset_button_text">0dp</dimen>
+	<dimen name="icon_size_button_icon">24dp</dimen>
+
+	<!-- - - - - - - Bottom Navigation Menu - - - - - - -->
+	<dimen name="elevation_bottom_navigation_menu">4dp</dimen>
+	<dimen name="icon_size_bottom_navigation_menu">24dp</dimen>
+
+
+	<!-- - - - - - - - - Navigation Bar - - - - - - - - -->
+	<dimen name="elevation_navigation_bar">4dp</dimen>
+
+	<!-- - - - - - - - - - Snackbar - - - - - - - - - - -->
+	<dimen name="corner_radius_snackbar">8dp</dimen>
+	<dimen name="corne_radius_snackbar_button">8dp</dimen>
+
+	<!-- - - - - - - - - - Chip - - - - - - - - - - -->
+	<dimen name="corner_radius_chip_action">8dp</dimen>
+	<dimen name="corner_radius_chip_choice">8dp</dimen>
+	<dimen name="corner_radius_chip_filter">8dp</dimen>
+	<dimen name="stroke_width_chip_action">1dp</dimen>
+	<dimen name="stroke_width_chip_choice">1dp</dimen>
+	<dimen name="stroke_width_chip_filter">1dp</dimen>
+	<dimen name="icon_size_chip_action">20dp</dimen>
+	<dimen name="icon_size_chip_choice">20dp</dimen>
+	<dimen name="icon_size_chip_filter">20dp</dimen>
+
+	<!-- - - - - - - - - - Dialog - - - - - - - - - - -->
+	<dimen name="corner_radius_dialog_progress">8dp</dimen>
+	<dimen name="corner_radius_dialog">8dp</dimen>
+
 </resources>

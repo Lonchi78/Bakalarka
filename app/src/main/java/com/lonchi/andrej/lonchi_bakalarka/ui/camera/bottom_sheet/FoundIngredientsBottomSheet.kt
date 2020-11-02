@@ -29,7 +29,12 @@ class FoundIngredientsBottomSheet(
     private val vmClassToken: Class<FoundIngredientsViewModel> =
         FoundIngredientsViewModel::class.java
 
-    private val adapter by lazy { FoundIngredientsAdapter(requireContext()) }
+    private var rootView: View? = null
+    private val adapter by lazy {
+        FoundIngredientsAdapter(requireContext()) {
+            onSelectedIngredientsChange(it)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,27 +46,40 @@ class FoundIngredientsBottomSheet(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.bottom_sheet_found_ingredients, container, false)
+        rootView = inflater.inflate(R.layout.bottom_sheet_found_ingredients, container, false)
         (requireActivity().application as LonchiBakalarkaApplication).appComponent.inject(this)
         viewModel = createViewModel()
-        setUI(view)
-        return view
+        setUI()
+        return rootView
     }
 
     private fun createViewModel() =
         ViewModelProviders.of((activity as FragmentActivity), viewModelFactory)
             .get(this.vmClassToken)
 
-    private fun setUI(view: View) {
-        view.recyclerIngredients?.adapter = adapter
-        view.recyclerIngredients?.layoutManager = LinearLayoutManager(requireContext())
+    private fun setUI() {
+        rootView?.buttonAddIngredients?.isEnabled = false
+
+        rootView?.recyclerIngredients?.adapter = adapter
+        rootView?.recyclerIngredients?.layoutManager = LinearLayoutManager(requireContext())
         viewModel.foundIngredients.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
 
-        view.buttonAddIngredients.setOnClickListener {
+        rootView?.buttonAddIngredients?.setOnClickListener {
             onConfirmClick(adapter.getSelectedIngredients())
             dismiss()
+        }
+    }
+
+    private fun onSelectedIngredientsChange(selectedIngredients: List<Ingredient>) {
+        rootView?.buttonAddIngredients?.isEnabled = selectedIngredients.isNotEmpty()
+        if (selectedIngredients.size > 1) {
+            rootView?.buttonAddIngredients?.text =
+                getString(R.string.found_ingredients_button_multi)
+        } else {
+            rootView?.buttonAddIngredients?.text =
+                getString(R.string.found_ingredients_button_single)
         }
     }
 }

@@ -32,7 +32,8 @@
 		<item name="android:background">?attr/selectableItemBackgroundBorderless</item>
 	</style>
 
-	<!--	Text Styles   -->
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+	<!-- * * * * * * * * * * * * * Text Styles * * * * * * * * * * * * * * * * * -->
 	<style name="RootHeadlineLarge">
 		<item name="android:textSize">28sp</item>
 		<item name="fontFamily">@font/roboto_bold</item>
@@ -160,5 +161,238 @@
 		<item name="android:letterSpacing">-0.010999999940395355</item>
 		<item name="android:textColor">@color/textDark</item>
 	</style>
+
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+	<!-- * * * * * * * * * * * * * Contained Buttons * * * * * * * * * * * * * * -->
+
+	<style name="ContainedButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textAppearance">@style/RootButtonRegular</item>
+		<item name="android:textColor">@color/text_color_button_contained_states</item>
+		<item name="android:backgroundTint">@color/surface_button_contained_states</item>
+		<item name="rippleColor">@color/btnPrimaryPressedBackgroundColor</item>
+		<item name="android:paddingStart">16dp</item>
+		<item name="android:paddingEnd">16dp</item>
+		<item name="android:paddingTop">10dp</item>
+		<item name="android:paddingBottom">10dp</item>
+		<item name="android:insetLeft">0dp</item>
+		<item name="android:insetRight">0dp</item>
+		<item name="android:insetTop">@dimen/inset_button_contained</item>
+		<item name="android:insetBottom">@dimen/inset_button_contained</item>
+		<item name="cornerRadius">@dimen/corner_radius_button_contained</item>
+	</style>
+
+	<style name="ContainedMiniButton" parent="ContainedButton">
+		<item name="android:layout_height">40dp</item>
+		<item name="android:textAppearance">@style/RootButtonRegular</item>
+		<item name="android:paddingStart">16dp</item>
+		<item name="android:paddingEnd">16dp</item>
+		<item name="android:paddingTop">6dp</item>
+		<item name="android:paddingBottom">6dp</item>
+	</style>
+
+	<style name="ContainedTallButton" parent="ContainedButton">
+		<item name="android:paddingStart">16dp</item>
+		<item name="android:paddingEnd">16dp</item>
+		<item name="android:paddingTop">16dp</item>
+		<item name="android:paddingBottom">16dp</item>
+	</style>
+
+	<style name="ContainedButtonWithStartIcon" parent="ContainedButton">
+		<item name="android:paddingStart">12dp</item>
+		<item name="android:paddingEnd">16dp</item>
+		<item name="android:paddingTop">10dp</item>
+		<item name="android:paddingBottom">10dp</item>
+		<item name="iconPadding">12dp</item>
+		<item name="iconGravity">start</item>
+		<item name="iconTint">@color/icon_color_contained_button_states</item>
+	</style>
+
+	<style name="ContainedButtonWithEndIcon" parent="ContainedButton">
+		<item name="android:paddingStart">16dp</item>
+		<item name="android:paddingEnd">12dp</item>
+		<item name="android:paddingTop">10dp</item>
+		<item name="android:paddingBottom">10dp</item>
+		<item name="iconPadding">12dp</item>
+		<item name="iconGravity">end</item>
+		<item name="iconTint">@color/icon_color_contained_button_states</item>
+	</style>
+
+	<style name="ContainedTallButtonWithStartIcon" parent="ContainedTallButton">
+		<item name="android:paddingStart">14dp</item>
+		<item name="android:paddingEnd">16dp</item>
+		<item name="iconPadding">12dp</item>
+		<item name="iconGravity">start</item>
+		<item name="iconTint">@color/icon_color_contained_button_states</item>
+	</style>
+
+	<style name="ContainedTallButtonWithEndIcon" parent="ContainedTallButton">
+		<item name="android:paddingStart">16dp</item>
+		<item name="android:paddingEnd">14dp</item>
+		<item name="iconPadding">12dp</item>
+		<item name="iconGravity">end</item>
+		<item name="iconTint">@color/icon_color_contained_button_states</item>
+	</style>
+
+	<style name="ContainedIconButton" parent="ContainedButton">
+		<item name="android:layout_width">44dp</item>
+		<item name="android:layout_height">52dp</item>
+		<item name="android:padding">0dp</item>
+		<item name="iconPadding">0dp</item>
+		<item name="iconGravity">textStart</item>
+		<item name="iconSize">@dimen/icon_size_button_icon</item>
+		<item name="iconTint">@color/icon_color_contained_button_states</item>
+	</style>
+
+	<style name="ContainedTallIconButton" parent="ContainedIconButton">
+		<item name="android:layout_width">56dp</item>
+		<item name="android:layout_height">64dp</item>
+	</style>
+
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+	<!-- * * * * * * * * * * * * * Outlined Buttons * * * * * * * * * * * * * *  -->
+
+	<style name="OutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textAppearance">@style/RootButtonRegular</item>
+		<item name="android:textColor">@color/text_color_button_outlined_states</item>
+		<item name="strokeColor">@color/stroke_color_button_outlined_states</item>
+		<item name="rippleColor">@color/btnPrimaryRestingBackgroundColor</item>
+		<item name="android:paddingStart">16dp</item>
+		<item name="android:paddingEnd">16dp</item>
+		<item name="android:paddingTop">10dp</item>
+		<item name="android:paddingBottom">10dp</item>
+		<item name="android:insetLeft">0dp</item>
+		<item name="android:insetRight">0dp</item>
+		<item name="android:insetTop">@dimen/inset_button_outlined</item>
+		<item name="android:insetBottom">@dimen/inset_button_outlined</item>
+		<item name="cornerRadius">@dimen/corner_radius_button_outlined</item>
+	</style>
+
+	<style name="OutlinedMiniButton" parent="OutlinedButton">
+		<item name="android:layout_height">40dp</item>
+		<item name="android:textAppearance">@style/RootButtonRegular</item>
+		<item name="android:paddingStart">8dp</item>
+		<item name="android:paddingEnd">8dp</item>
+		<item name="android:paddingTop">6dp</item>
+		<item name="android:paddingBottom">6dp</item>
+	</style>
+
+	<style name="OutlinedTallButton" parent="OutlinedButton">
+		<item name="android:paddingStart">16dp</item>
+		<item name="android:paddingEnd">16dp</item>
+		<item name="android:paddingTop">16dp</item>
+		<item name="android:paddingBottom">16dp</item>
+	</style>
+
+	<style name="OutlinedButtonWithStartIcon" parent="OutlinedButton">
+		<item name="android:paddingStart">12dp</item>
+		<item name="android:paddingEnd">16dp</item>
+		<item name="android:paddingTop">10dp</item>
+		<item name="android:paddingBottom">10dp</item>
+		<item name="iconPadding">12dp</item>
+		<item name="iconGravity">start</item>
+		<item name="iconTint">@color/icon_color_outlined_button_states</item>
+	</style>
+
+	<style name="OutlinedButtonWithEndIcon" parent="OutlinedButton">
+		<item name="android:paddingStart">16dp</item>
+		<item name="android:paddingEnd">12dp</item>
+		<item name="android:paddingTop">10dp</item>
+		<item name="android:paddingBottom">10dp</item>
+		<item name="iconPadding">12dp</item>
+		<item name="iconGravity">end</item>
+		<item name="iconTint">@color/icon_color_outlined_button_states</item>
+	</style>
+
+	<style name="OutlinedTallButtonWithStartIcon" parent="OutlinedTallButton">
+		<item name="android:paddingStart">14dp</item>
+		<item name="android:paddingEnd">16dp</item>
+		<item name="iconPadding">12dp</item>
+		<item name="iconGravity">start</item>
+		<item name="iconTint">@color/icon_color_outlined_button_states</item>
+	</style>
+
+	<style name="OutlinedTallButtonWithEndIcon" parent="OutlinedTallButton">
+		<item name="android:paddingStart">16dp</item>
+		<item name="android:paddingEnd">14dp</item>
+		<item name="iconPadding">12dp</item>
+		<item name="iconGravity">end</item>
+		<item name="iconTint">@color/icon_color_outlined_button_states</item>
+	</style>
+
+	<style name="OutlinedIconButton" parent="OutlinedButton">
+		<item name="android:layout_width">44dp</item>
+		<item name="android:layout_height">52dp</item>
+		<item name="android:padding">0dp</item>
+		<item name="iconPadding">0dp</item>
+		<item name="iconGravity">textStart</item>
+		<item name="iconSize">@dimen/icon_size_button_icon</item>
+		<item name="iconTint">@color/icon_color_outlined_button_states</item>
+	</style>
+
+	<style name="OutlinedTallIconButton" parent="OutlinedIconButton">
+		<item name="android:layout_width">56dp</item>
+		<item name="android:layout_height">64dp</item>
+	</style>
+
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+	<!-- * * * * * * * * * * * * * * Text Buttons * * * * * * * * * * * * * * *  -->
+
+	<style name="TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textAppearance">@style/RootButtonRegular</item>
+		<item name="android:textColor">@color/text_color_button_text_states</item>
+		<item name="rippleColor">@color/rootGray200</item>
+		<item name="android:insetTop">@dimen/inset_button_text</item>
+		<item name="android:insetBottom">@dimen/inset_button_text</item>
+		<item name="android:paddingStart">8dp</item>
+		<item name="android:paddingEnd">8dp</item>
+		<item name="android:paddingTop">12dp</item>
+		<item name="android:paddingBottom">12dp</item>
+		<item name="cornerRadius">@dimen/corner_radius_button_text</item>
+	</style>
+
+	<style name="TextMiniButton" parent="TextButton">
+		<item name="android:layout_height">40dp</item>
+		<item name="android:textAppearance">@style/RootButtonRegular</item>
+		<item name="android:paddingStart">8dp</item>
+		<item name="android:paddingEnd">8dp</item>
+		<item name="android:paddingTop">6dp</item>
+		<item name="android:paddingBottom">6dp</item>
+	</style>
+
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+	<!-- * * * * * * * * * * * Floating Action Buttons * * * * * * * * * * * * * -->
+
+	<style name="FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="tint">@color/icon_color_floating_action_button_states</item>
+		<item name="backgroundTint">@color/rootPrimary500</item>
+		<item name="rippleColor">@color/rootPrimary700</item>
+		<item name="iconSize">20dp</item>
+		<item name="iconPadding">18dp</item>
+	</style>
+
+	<style name="FloatingActionMiniButton" parent="FloatingActionButton">
+		<item name="fabSize">mini</item>
+		<item name="iconPadding">10dp</item>
+	</style>
+
+	<style name="ExtendedFloatingActionMiniButton" parent="Widget.MaterialComponents.ExtendedFloatingActionButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textAppearance">@style/RootButtonRegular</item>
+		<item name="iconTint">@color/icon_color_floating_action_button_states</item>
+		<item name="backgroundTint">@color/rootPrimary500</item>
+		<item name="rippleColor">@color/rootPrimary700</item>
+		<item name="iconSize">20dp</item>
+		<item name="iconPadding">14dp</item>
+	</style>
+
 
 </resources>
