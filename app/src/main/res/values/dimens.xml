@@ -9,4 +9,8 @@
 	<dimen name="bottom_sheet_corner_radius_top">16dp</dimen>
 	<dimen name="bottom_sheet_corner_radius_bottom">0dp</dimen>
 
+	<dimen name="item_ingredient_expected_height">56dp</dimen>
+	<!--	5 * 56dp = 560dp	-->
+	<dimen name="recycler_found_ingredient_max_height">280dp</dimen>
+
 </resources>

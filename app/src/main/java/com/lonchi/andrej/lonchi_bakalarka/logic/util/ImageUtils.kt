@@ -13,7 +13,7 @@ import java.io.IOException
 import java.util.*
 
 const val IMAGE_FORMAT_JPEG = ".jpeg"
-const val IMAGE_COMPRESSION_LEVEL = 75
+const val IMAGE_COMPRESSION_LEVEL = 85
 
 fun getTemporaryFile(): File {
     val fileName = UUID.randomUUID().toString()

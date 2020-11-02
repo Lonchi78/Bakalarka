@@ -20,6 +20,7 @@
         android:gravity="start"
         android:maxLines="1"
         android:ellipsize="end"
+        android:lineSpacingExtra="8dp"
         app:layout_constraintEnd_toStartOf="@id/iconSelected"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

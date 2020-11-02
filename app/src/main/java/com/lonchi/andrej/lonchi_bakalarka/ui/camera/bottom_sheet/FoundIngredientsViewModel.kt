@@ -19,9 +19,8 @@ class FoundIngredientsViewModel @Inject constructor(
     }
 
     private fun mockData(): List<Ingredient> {
-        //  TODO - found a bug, recycler ignores constraints
         val tmp = mutableListOf<Ingredient>()
-        for (i in 0..40) {
+        for (i in 0..2) {
             tmp.add(
                 Ingredient(i.toLong(), "Ingredient $i")
             )
