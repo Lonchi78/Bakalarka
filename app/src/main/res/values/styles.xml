@@ -32,4 +32,133 @@
 		<item name="android:background">?attr/selectableItemBackgroundBorderless</item>
 	</style>
 
+	<!--	Text Styles   -->
+	<style name="RootHeadlineLarge">
+		<item name="android:textSize">28sp</item>
+		<item name="fontFamily">@font/roboto_bold</item>
+		<item name="android:fontFamily">@font/roboto_bold</item>
+		<item name="android:letterSpacing">0.012499999787126268</item>
+		<item name="android:textColor">@color/textDark</item>
+	</style>
+
+	<style name="RootHeadlineRegular">
+		<item name="android:textSize">23sp</item>
+		<item name="fontFamily">@font/roboto_bold</item>
+		<item name="android:fontFamily">@font/roboto_bold</item>
+		<item name="android:letterSpacing">0.017391304606976715</item>
+		<item name="android:textColor">@color/textDark</item>
+	</style>
+
+	<style name="RootHeadlineSmall">
+		<item name="android:textSize">20sp</item>
+		<item name="fontFamily">@font/roboto_bold</item>
+		<item name="android:fontFamily">@font/roboto_bold</item>
+		<item name="android:letterSpacing">0.020000000298023225</item>
+		<item name="android:textColor">@color/textDark</item>
+	</style>
+
+	<style name="RootBodyLargeLowEmphasis">
+		<item name="android:textSize">16sp</item>
+		<item name="fontFamily">@font/roboto_regular</item>
+		<item name="android:fontFamily">@font/roboto_regular</item>
+		<item name="android:letterSpacing">-0.02352941211532144</item>
+		<item name="android:textColor">@color/textDark</item>
+	</style>
+
+	<style name="RootBodyLargeMediumEmphasis">
+		<item name="android:textSize">16sp</item>
+		<item name="fontFamily">@font/roboto_medium</item>
+		<item name="android:fontFamily">@font/roboto_medium</item>
+		<item name="android:letterSpacing">-0.02352941211532144</item>
+		<item name="android:textColor">@color/textDark</item>
+	</style>
+
+	<style name="RootBodyLargeHighEmphasis">
+		<item name="android:textSize">16sp</item>
+		<item name="fontFamily">@font/roboto_bold</item>
+		<item name="android:fontFamily">@font/roboto_bold</item>
+		<item name="android:letterSpacing">-0.02352941211532144</item>
+		<item name="android:textColor">@color/textDark</item>
+	</style>
+
+	<style name="RootBodyRegularLowEmphasis">
+		<item name="android:textSize">14sp</item>
+		<item name="fontFamily">@font/roboto_regular</item>
+		<item name="android:fontFamily">@font/roboto_regular</item>
+		<item name="android:letterSpacing">-0.010999999940395355</item>
+		<item name="android:textColor">@color/textDark</item>
+	</style>
+
+	<style name="RootBodyRegularMediumEmphasis">
+		<item name="android:textSize">14sp</item>
+		<item name="fontFamily">@font/roboto_medium</item>
+		<item name="android:fontFamily">@font/roboto_medium</item>
+		<item name="android:letterSpacing">-0.010999999940395355</item>
+		<item name="android:textColor">@color/textDark</item>
+	</style>
+
+	<style name="RootBodyRegularHighEmphasis">
+		<item name="android:textSize">14sp</item>
+		<item name="fontFamily">@font/roboto_bold</item>
+		<item name="android:fontFamily">@font/roboto_bold</item>
+		<item name="android:letterSpacing">-0.010999999940395355</item>
+		<item name="android:textColor">@color/textDark</item>
+	</style>
+
+	<style name="RootBodySmallLowEmphasis">
+		<item name="android:textSize">11sp</item>
+		<item name="fontFamily">@font/roboto_regular</item>
+		<item name="android:fontFamily">@font/roboto_regular</item>
+		<item name="android:letterSpacing">0</item>
+		<item name="android:textColor">@color/textDark</item>
+	</style>
+
+	<style name="RootBodySmallMediumEmphasis">
+		<item name="android:textSize">11sp</item>
+		<item name="fontFamily">@font/roboto_medium</item>
+		<item name="android:fontFamily">@font/roboto_medium</item>
+		<item name="android:letterSpacing">0</item>
+		<item name="android:textColor">@color/textDark</item>
+	</style>
+
+	<style name="RootBodySmallHighEmphasis">
+		<item name="android:textSize">11sp</item>
+		<item name="fontFamily">@font/roboto_bold</item>
+		<item name="android:fontFamily">@font/roboto_bold</item>
+		<item name="android:letterSpacing">0</item>
+		<item name="android:textColor">@color/textDark</item>
+	</style>
+
+	<style name="RootOverlineRegularLowEmphasis">
+		<item name="android:textSize">11sp</item>
+		<item name="fontFamily">@font/roboto_regular</item>
+		<item name="android:fontFamily">@font/roboto_regular</item>
+		<item name="android:letterSpacing">0</item>
+		<item name="android:textColor">@color/textDark</item>
+	</style>
+
+	<style name="RootOverlineRegularMediumEmphasis">
+		<item name="android:textSize">11sp</item>
+		<item name="fontFamily">@font/roboto_medium</item>
+		<item name="android:fontFamily">@font/roboto_medium</item>
+		<item name="android:letterSpacing">0</item>
+		<item name="android:textColor">@color/textDark</item>
+	</style>
+
+	<style name="RootOverlineRegularHighEmphasis">
+		<item name="android:textSize">11sp</item>
+		<item name="fontFamily">@font/roboto_bold</item>
+		<item name="android:fontFamily">@font/roboto_bold</item>
+		<item name="android:letterSpacing">0</item>
+		<item name="android:textColor">@color/textDark</item>
+	</style>
+
+	<style name="RootButtonRegular">
+		<item name="android:textSize">14sp</item>
+		<item name="fontFamily">@font/roboto_medium</item>
+		<item name="android:fontFamily">@font/roboto_medium</item>
+		<item name="android:letterSpacing">-0.010999999940395355</item>
+		<item name="android:textColor">@color/textDark</item>
+	</style>
+
 </resources>
