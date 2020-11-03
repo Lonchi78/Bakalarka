@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Ingredient
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.ImageLabelingRepository
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.UserRepository
+import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.ImageLabelingResponse
+import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseViewModel
 import javax.inject.Inject
 
@@ -20,7 +22,8 @@ class FoundIngredientsViewModel @Inject constructor(
         postValue(mockData())
     }
 
-    val imageLabelingRepository.
+    val imageLabelingState: MutableLiveData<Resource<ImageLabelingResponse>> =
+        imageLabelingRepository.imageLabelingState
 
     private fun mockData(): List<Ingredient> {
         val tmp = mutableListOf<Ingredient>()

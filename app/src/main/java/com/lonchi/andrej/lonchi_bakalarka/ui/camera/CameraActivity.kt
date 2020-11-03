@@ -22,6 +22,7 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.label.FirebaseVisionCloudImageLabelerOptions
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Ingredient
+import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.ImageLabelingItem
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.*
@@ -88,7 +89,10 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
                     //  todo - error bottom sheet
                     showSnackbar(it.errorIdentification.message)
                 }
-                is SuccessStatus -> showFoundIngredientsBottomSheet()
+                is SuccessStatus -> {
+                    //  TODO show FAB?
+                    showFoundIngredientsBottomSheet()
+                }
                 else -> Unit
             }
         }
@@ -96,6 +100,7 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
 
     override fun onDestroy() {
         super.onDestroy()
+        viewModel.clearImageLabelingCache()
         cameraExecutor.shutdown()
     }
 
@@ -241,7 +246,7 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
         }
     }
 
-    private fun selectedIngredients(selectedIngredients: List<Ingredient>) {
+    private fun selectedIngredients(selectedIngredients: List<ImageLabelingItem>) {
         viewModel.selectedIngredients(selectedIngredients)
     }
 }

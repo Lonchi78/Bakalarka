@@ -13,13 +13,15 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.lonchi.andrej.lonchi_bakalarka.LonchiBakalarkaApplication
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Ingredient
+import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.ImageLabelingItem
+import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.adapter.FoundIngredientsAdapter
 import kotlinx.android.synthetic.main.bottom_sheet_found_ingredients.view.*
 import javax.inject.Inject
 
 
 class FoundIngredientsBottomSheet(
-    private val onConfirmClick: (List<Ingredient>) -> Unit
+    private val onConfirmClick: (List<ImageLabelingItem>) -> Unit
 ) : BottomSheetDialogFragment() {
 
     @Inject
@@ -62,8 +64,13 @@ class FoundIngredientsBottomSheet(
 
         rootView?.recyclerIngredients?.adapter = adapter
         rootView?.recyclerIngredients?.layoutManager = LinearLayoutManager(requireContext())
-        viewModel.foundIngredients.observe(viewLifecycleOwner) {
+        /*viewModel.foundIngredients.observe(viewLifecycleOwner) {
             adapter.submitList(it)
+        }       */
+        viewModel.imageLabelingState.observe(viewLifecycleOwner) {
+            if (it.status is SuccessStatus && it.data != null) {
+                adapter.submitList(it.data.items)
+            }
         }
 
         rootView?.buttonAddIngredients?.setOnClickListener {
@@ -72,7 +79,7 @@ class FoundIngredientsBottomSheet(
         }
     }
 
-    private fun onSelectedIngredientsChange(selectedIngredients: List<Ingredient>) {
+    private fun onSelectedIngredientsChange(selectedIngredients: List<ImageLabelingItem>) {
         rootView?.buttonAddIngredients?.isEnabled = selectedIngredients.isNotEmpty()
         if (selectedIngredients.size > 1) {
             rootView?.buttonAddIngredients?.text =

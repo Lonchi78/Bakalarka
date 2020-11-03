@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Ingredient
+import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.ImageLabelingItem
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.reverseVisibility
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.setVisible
 
@@ -19,20 +20,20 @@ import com.lonchi.andrej.lonchi_bakalarka.logic.util.setVisible
  * */
 class FoundIngredientsAdapter(
     val context: Context,
-    val onSelectedIngredientsChange: (List<Ingredient>) -> Unit
-) : ListAdapter<Ingredient, FoundIngredientsAdapter.ViewHolder>(object :
-    DiffUtil.ItemCallback<Ingredient>() {
+    val onSelectedIngredientsChange: (List<ImageLabelingItem>) -> Unit
+) : ListAdapter<ImageLabelingItem, FoundIngredientsAdapter.ViewHolder>(object :
+    DiffUtil.ItemCallback<ImageLabelingItem>() {
 
-    override fun areItemsTheSame(oldItem: Ingredient, newItem: Ingredient): Boolean {
-        return oldItem.name == newItem.name
+    override fun areItemsTheSame(oldItem: ImageLabelingItem, newItem: ImageLabelingItem): Boolean {
+        return oldItem.entityId == newItem.entityId
     }
 
-    override fun areContentsTheSame(oldItem: Ingredient, newItem: Ingredient): Boolean {
-        return oldItem.name == newItem.name
+    override fun areContentsTheSame(oldItem: ImageLabelingItem, newItem: ImageLabelingItem): Boolean {
+        return oldItem.entityId == newItem.entityId
     }
 
 }) {
-    private var selectedIngredients: MutableList<Ingredient> = mutableListOf()
+    private var selectedIngredients: MutableList<ImageLabelingItem> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
@@ -42,9 +43,9 @@ class FoundIngredientsAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val ingredient = getItem(position)
-        holder.name.text = ingredient.name
+        holder.name.text = ingredient.item
 
-        val isSelected = selectedIngredients.firstOrNull { it.id == ingredient.id } != null
+        val isSelected = selectedIngredients.firstOrNull { it.entityId == ingredient.entityId } != null
         if (isSelected) holder.isSelected.setVisible(true)
         else holder.isSelected.setVisible(false)
 
@@ -53,10 +54,10 @@ class FoundIngredientsAdapter(
         }
     }
 
-    private fun handleIngredientSelection(holder: ViewHolder, ingredient: Ingredient) {
+    private fun handleIngredientSelection(holder: ViewHolder, ingredient: ImageLabelingItem) {
         holder.isSelected.reverseVisibility()
         val alreadySelected = selectedIngredients.firstOrNull {
-            it.id == ingredient.id
+            it.entityId == ingredient.entityId
         } != null
 
         if (alreadySelected) selectedIngredients.remove(ingredient)
@@ -64,7 +65,7 @@ class FoundIngredientsAdapter(
         onSelectedIngredientsChange(selectedIngredients)
     }
 
-    fun getSelectedIngredients(): List<Ingredient> = selectedIngredients
+    fun getSelectedIngredients(): List<ImageLabelingItem> = selectedIngredients
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         internal val name = view.findViewById<TextView>(R.id.textIngredient)
