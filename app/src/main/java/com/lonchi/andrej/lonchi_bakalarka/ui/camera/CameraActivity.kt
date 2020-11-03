@@ -3,6 +3,7 @@ package com.lonchi.andrej.lonchi_bakalarka.ui.camera
 import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
@@ -16,8 +17,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.google.firebase.ml.vision.FirebaseVision
+import com.google.firebase.ml.vision.common.FirebaseVisionImage
+import com.google.firebase.ml.vision.label.FirebaseVisionCloudImageLabelerOptions
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Ingredient
+import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorStatus
+import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.*
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsBottomSheet
@@ -73,7 +79,20 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
         }
     }
 
-    override fun bindViewModel() = Unit
+    override fun bindViewModel() {
+        viewModel.imageLabelingState.observe(this) {
+            //  todo progress
+
+            when (it.status) {
+                is ErrorStatus -> {
+                    //  todo - error bottom sheet
+                    showSnackbar(it.errorIdentification.message)
+                }
+                is SuccessStatus -> showFoundIngredientsBottomSheet()
+                else -> Unit
+            }
+        }
+    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -181,6 +200,7 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
     private fun showPhotoPreview(imageUri: Uri?) {
         gone(iconCapture, iconFlash)
         imageCaptured.setVisible(true)
+        viewModel.imageLabelingProcess(imageUri)
 
         Glide.with(this)
             .load(imageUri)
@@ -208,7 +228,6 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
                 ): Boolean {
                     Timber.d("onResourceReady:")
                     //  todo - hide progress
-                    showFoundIngredientsBottomSheet()
                     return false
                 }
             })

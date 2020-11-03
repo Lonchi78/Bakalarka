@@ -15,6 +15,8 @@ import com.lonchi.andrej.lonchi_bakalarka.data.utils.DeviceTracker
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.LanguageStateTracker
 import com.lonchi.andrej.lonchi_bakalarka.BuildConfig
 import com.lonchi.andrej.lonchi_bakalarka.R
+import com.lonchi.andrej.lonchi_bakalarka.data.repository.ImageLabelingRepository
+import com.lonchi.andrej.lonchi_bakalarka.data.repository.ImageLabelingRepositoryImpl
 import com.lonchi.andrej.lonchi_bakalarka.logic.app_life.AppLifeTracker
 import com.lonchi.andrej.lonchi_bakalarka.logic.app_life.AppLifeTrackerImpl
 import com.lonchi.andrej.lonchi_bakalarka.logic.connection.ConnectionObserver
@@ -119,6 +121,12 @@ class AppModule(private val application: Application) {
     @Provides
     @Singleton
     internal fun provideUserRepository(impl: UserRepositoryImpl): UserRepository {
+        return impl
+    }
+
+    @Provides
+    @Singleton
+    internal fun provideImageLabelingRepository(impl: ImageLabelingRepositoryImpl): ImageLabelingRepository {
         return impl
     }
 }

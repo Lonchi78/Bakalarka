@@ -68,7 +68,8 @@ fun Context.copyImageOrientation(inputUri: Uri, outputFile: File) {
     }
 }
 
-fun Context.uriToBitmap(uri: Uri): Bitmap? {
+fun Context.uriToBitmap(uri: Uri?): Bitmap? {
+    if (uri == null) return null
     try {
         val parcelFileDescriptor = this.contentResolver.openFileDescriptor(uri, "r")
         val fileDescriptor = parcelFileDescriptor?.fileDescriptor
