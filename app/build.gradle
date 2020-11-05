@@ -49,6 +49,21 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    signingConfigs {
+        //debugConfig {
+        //    storeFile file("debug.keystore")
+        //    storePassword "android"
+        //    keyAlias "testreleasekey"
+        //    keyPassword "android"
+        //}
+        releaseConfig {
+            storeFile file("bakalarka.jks")
+            storePassword "bakalarka"
+            keyAlias "key0"
+            keyPassword "bakalarkakey"
+        }
+    }
+
     buildTypes {
         debug {
             debuggable true
@@ -61,21 +76,7 @@ android {
             minifyEnabled false
             buildConfigField "boolean", "DEBUG_MODE", "false"
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    signingConfigs {
-        //debugConfig {
-        //    storeFile file("debug.keystore")
-        //    storePassword "android"
-        //    keyAlias "testreleasekey"
-        //    keyPassword "android"
-        //}
-        releaseConfig {
-            storeFile file("bakalarka.jks")
-            storePassword "bakalarkakey"
-            keyAlias "key0"
-            keyPassword "bakalarkakey"
+            signingConfig signingConfigs.releaseConfig
         }
     }
 }
