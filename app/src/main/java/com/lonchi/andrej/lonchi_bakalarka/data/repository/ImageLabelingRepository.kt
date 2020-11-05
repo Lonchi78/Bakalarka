@@ -64,6 +64,7 @@ class ImageLabelingRepositoryImpl @Inject internal constructor(
             imageLabelingState.postValue(Resource.error(ErrorIdentification.BitmapIsNull()))
             return
         }
+        imageLabelingState.postValue(Resource.loading())
 
         val image = FirebaseVisionImage.fromBitmap(bitmap)
         val options = FirebaseVisionCloudImageLabelerOptions.Builder()

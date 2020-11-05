@@ -24,6 +24,7 @@ import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Ingredient
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.ImageLabelingItem
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorStatus
+import com.lonchi.andrej.lonchi_bakalarka.data.utils.LoadingStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.*
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseActivity
@@ -82,7 +83,8 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
 
     override fun bindViewModel() {
         viewModel.imageLabelingState.observe(this) {
-            //  todo progress
+            Timber.d("bindViewModel imageLabelingState: ${it.status}")
+            showProgressDialog(it.status is LoadingStatus)
 
             when (it.status) {
                 is ErrorStatus -> {
@@ -195,9 +197,10 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    // todo showProgressDialog
                     Timber.d("Photo capture succeeded: ${Uri.fromFile(photoFile)}")
-                    showPhotoPreview(compressImageFromUri(Uri.fromFile(photoFile)))
+                    val compressedImageUri = compressImageFromUri(Uri.fromFile(photoFile))
+                    viewModel.imageLabelingProcess(compressedImageUri)
+                    showPhotoPreview(compressedImageUri)
                 }
             })
     }
@@ -205,7 +208,6 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
     private fun showPhotoPreview(imageUri: Uri?) {
         gone(iconCapture, iconFlash)
         imageCaptured.setVisible(true)
-        viewModel.imageLabelingProcess(imageUri)
 
         Glide.with(this)
             .load(imageUri)
@@ -220,7 +222,6 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
                 ): Boolean {
                     Timber.e("onLoadFailed: $e")
                     showSnackbar(R.string.error_unknown)
-                    //  todo - hide progress
                     return false
                 }
 
@@ -232,7 +233,6 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
                     isFirstResource: Boolean
                 ): Boolean {
                     Timber.d("onResourceReady:")
-                    //  todo - hide progress
                     return false
                 }
             })

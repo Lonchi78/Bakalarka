@@ -1,17 +1,21 @@
 package com.lonchi.andrej.lonchi_bakalarka.ui.base
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.customview.customView
 import com.google.android.material.snackbar.Snackbar
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
+import com.lonchi.andrej.lonchi_bakalarka.logic.util.setVisible
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
@@ -180,5 +184,32 @@ abstract class BaseActivity<T> : DaggerAppCompatActivity() where T : BaseViewMod
             Snackbar.LENGTH_LONG
         )
             .show()
+    }
+
+    fun showProgressDialog(inProgress: Boolean, text: String? = null) {
+        if (inProgress) {
+            if (progressDialog == null) createProgressDialog(text)
+            progressDialog?.show()
+        } else {
+            progressDialog?.dismiss()
+        }
+    }
+
+    private fun createProgressDialog(message: String? = null) {
+        progressDialog =  MaterialDialog(this).show {
+            customView(R.layout.progress_dialog)
+            cornerRadius(res = R.dimen.corner_radius_dialog)
+            cancelOnTouchOutside(false)
+            cancelable(false)
+            view.setBackgroundColor(Color.TRANSPARENT)
+
+            val messageText = view.findViewById<TextView>(R.id.title)
+            if (message.isNullOrEmpty()) {
+                messageText.setVisible(false)
+            } else {
+                messageText.setVisible(true)
+                messageText.text = message
+            }
+        }
     }
 }

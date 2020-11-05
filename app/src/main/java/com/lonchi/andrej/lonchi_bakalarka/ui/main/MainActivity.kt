@@ -30,9 +30,7 @@ class MainActivity : BaseActivity<MainViewModel>() {
         mainBottomNavigationView?.itemIconTintList = null
     }
 
-    override fun bindViewModel() {
-        //  TODO
-    }
+    override fun bindViewModel() = Unit
 
     override fun onPause() {
         super.onPause()
