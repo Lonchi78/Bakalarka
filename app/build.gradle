@@ -63,6 +63,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    signingConfigs {
+        //debugConfig {
+        //    storeFile file("debug.keystore")
+        //    storePassword "android"
+        //    keyAlias "testreleasekey"
+        //    keyPassword "android"
+        //}
+        releaseConfig {
+            storeFile file("bakalarka.jks")
+            storePassword "bakalarkakey"
+            keyAlias "key0"
+            keyPassword "bakalarkakey"
+        }
+    }
 }
 
 dependencies {
