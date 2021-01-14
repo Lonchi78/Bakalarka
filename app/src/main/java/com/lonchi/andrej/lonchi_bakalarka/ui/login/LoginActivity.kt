@@ -16,6 +16,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseActivity
+import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import timber.log.Timber
 
@@ -40,16 +41,6 @@ class LoginActivity : BaseActivity<LoginViewModel>() {
     private lateinit var auth: FirebaseAuth
 
     override fun initView() {
-        btnSignOut.setOnClickListener {
-            Timber.d("signout click")
-            mGoogleSignInClient.revokeAccess()
-                .addOnCompleteListener(this) {
-                    Timber.d("signout complete")
-                }
-
-            Firebase.auth.signOut()
-        }
-
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
@@ -67,19 +58,8 @@ class LoginActivity : BaseActivity<LoginViewModel>() {
 
     override fun onStart() {
         super.onStart()
-
-        val account = GoogleSignIn.getLastSignedInAccount(this)
-        updateUI(account)
-
         val currentUser = auth.currentUser
         updateUIFirebase(currentUser)
-    }
-
-    private fun updateUI(account: GoogleSignInAccount?) {
-        Timber.d("updateUI displayName: ${account?.displayName}")
-        Timber.d("updateUI email: ${account?.email}")
-        Timber.d("updateUI id: ${account?.id}")
-        Timber.d("updateUI photoUrl: ${account?.photoUrl}")
     }
 
     private fun updateUIFirebase(account: FirebaseUser?) {
@@ -87,6 +67,11 @@ class LoginActivity : BaseActivity<LoginViewModel>() {
         Timber.d("updateUI email: ${account?.email}")
         Timber.d("updateUI id: ${account?.metadata}")
         Timber.d("updateUI photoUrl: ${account?.photoUrl}")
+
+        if (account != null) {
+            finishAffinity()
+            startActivity(MainActivity.getStartIntent(this, intent.extras))
+        }
     }
 
     private fun signIn() {
@@ -102,8 +87,6 @@ class LoginActivity : BaseActivity<LoginViewModel>() {
         Timber.d("onActivityResult: $requestCode, resultCode = $resultCode")
 
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
@@ -115,16 +98,12 @@ class LoginActivity : BaseActivity<LoginViewModel>() {
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-
-            // Signed in successfully, show authenticated UI.
-            updateUI(account)
-
             firebaseAuthWithGoogle(account?.idToken!!)
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Timber.e("handleSignInResult: $e")
-            updateUI(null)
+            updateUIFirebase(null)
         }
     }
 
@@ -141,7 +120,7 @@ class LoginActivity : BaseActivity<LoginViewModel>() {
                     // If sign in fails, display a message to the user.
                     Timber.d("firebaseAuthWithGoogle: ${task.exception}")
                     showSnackbar("Authentication Failed.")
-                    updateUI(null)
+                    updateUIFirebase(null)
                 }
 
                 // ...
