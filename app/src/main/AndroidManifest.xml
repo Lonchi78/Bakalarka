@@ -26,5 +26,7 @@
 
 		<activity android:name="com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity" />
 		<activity android:name="com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraActivity" />
+
+		<activity android:name="com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginActivity" />
 	</application>
 </manifest>

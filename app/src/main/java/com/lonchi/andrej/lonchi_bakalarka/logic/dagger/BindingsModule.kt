@@ -6,6 +6,7 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredient
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.fragment.FragmentViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.MealPlannerViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.profile.ProfileViewModel
@@ -32,6 +33,14 @@ abstract class CameraModule {
     @IntoMap
     @ViewModelKey(CameraViewModel::class)
     abstract fun bindsCameraViewModel(viewModel: CameraViewModel): ViewModel
+}
+
+@Module
+abstract class LoginModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel::class)
+    abstract fun bindsLoginViewModel(viewModel: LoginViewModel): ViewModel
 }
 
 @Module
