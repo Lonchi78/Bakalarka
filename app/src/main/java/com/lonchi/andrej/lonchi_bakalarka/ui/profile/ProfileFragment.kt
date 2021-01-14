@@ -1,5 +1,7 @@
 package com.lonchi.andrej.lonchi_bakalarka.ui.profile
 
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -72,6 +74,15 @@ class ProfileFragment : BaseFragment<ProfileViewModel>() {
             Timber.d("setupUser firebaseUser photoUrl: $photoUrl")
             Timber.d("setupUser firebaseUser emailVerified: $emailVerified")
             Timber.d("setupUser firebaseUser uid: $uid")
+
+            textUserName.text = name
+            textUserMail.text = email
+
+            imgUserAvatar.load(photoUrl) {
+                crossfade(true)
+                placeholder(R.drawable.ic_profile)
+                transformations(CircleCropTransformation())
+            }
         }
 
 
