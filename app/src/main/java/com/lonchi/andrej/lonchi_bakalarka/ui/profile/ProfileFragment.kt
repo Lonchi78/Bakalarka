@@ -9,12 +9,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.lonchi.andrej.lonchi_bakalarka.R
-import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentHomeBinding
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentProfileBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginActivity
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.fragment_profile.*
 import timber.log.Timber
 
 /**
@@ -34,7 +31,7 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>()
     override fun initView() {
         setupUser()
 
-        btnSignOut.setOnClickListener {
+        binding?.btnSignOut?.setOnClickListener {
             Firebase.auth.signOut()
 
             mGoogleSignInClient.revokeAccess()
@@ -78,10 +75,10 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>()
             Timber.d("setupUser firebaseUser emailVerified: $emailVerified")
             Timber.d("setupUser firebaseUser uid: $uid")
 
-            textUserName.text = name
-            textUserMail.text = email
+            binding?.textUserName?.text = name
+            binding?.textUserMail?.text = email
 
-            imgUserAvatar.load(photoUrl) {
+            binding?.imgUserAvatar?.load(photoUrl) {
                 crossfade(true)
                 placeholder(R.drawable.ic_profile)
                 transformations(CircleCropTransformation())

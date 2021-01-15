@@ -17,10 +17,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.ActivityLoginBinding
-import com.lonchi.andrej.lonchi_bakalarka.databinding.ActivityMainBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
-import kotlinx.android.synthetic.main.activity_login.*
 import timber.log.Timber
 
 
@@ -51,7 +49,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        signInButton.setOnClickListener {
+        binding.signInButton.setOnClickListener {
             Timber.d("initView: signin click")
             signIn()
         }

@@ -3,13 +3,12 @@ package com.lonchi.andrej.lonchi_bakalarka.ui.camera
 import android.Manifest
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.camera.core.CameraSelector
-import androidx.camera.core.*
+import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
@@ -18,21 +17,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com.google.firebase.ml.vision.FirebaseVision
-import com.google.firebase.ml.vision.common.FirebaseVisionImage
-import com.google.firebase.ml.vision.label.FirebaseVisionCloudImageLabelerOptions
 import com.lonchi.andrej.lonchi_bakalarka.R
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.Ingredient
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.ImageLabelingItem
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.LoadingStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.ActivityCameraBinding
-import com.lonchi.andrej.lonchi_bakalarka.databinding.ActivityMainBinding
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.*
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsBottomSheet
-import kotlinx.android.synthetic.main.activity_camera.*
 import timber.log.Timber
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -66,10 +59,10 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
     override fun initView() {
         cameraExecutor = Executors.newSingleThreadExecutor()
 
-        iconBack.setOnClickListener { onBackPressed() }
-        iconFlash.setOnClickListener { changeFlashMode() }
-        iconCapture.setOnClickListener { capturePhoto() }
-        buttonAllowPermissions.setOnClickListener {
+        binding.iconBack.setOnClickListener { onBackPressed() }
+        binding.iconFlash.setOnClickListener { changeFlashMode() }
+        binding.iconCapture.setOnClickListener { capturePhoto() }
+        binding.buttonAllowPermissions.setOnClickListener {
             requestAllPermissions(
                 REQUEST_CODE_PERMISSIONS,
                 arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -79,8 +72,8 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
         if (allPermissionsGranted()) {
             setupCamera()
         } else {
-            disable(iconCapture, iconFlash)
-            visible(labelPermissionsTitle, labelPermissionsSubtitle, buttonAllowPermissions)
+            disable(binding.iconCapture, binding.iconFlash)
+            visible(binding.labelPermissionsTitle, binding.labelPermissionsSubtitle, binding.buttonAllowPermissions)
         }
     }
 
@@ -132,15 +125,15 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
         when (flashMode) {
             ImageCapture.FLASH_MODE_AUTO -> {
                 flashMode = ImageCapture.FLASH_MODE_ON
-                iconFlash.setImageResource(R.drawable.ic_flash_on)
+                binding.iconFlash.setImageResource(R.drawable.ic_flash_on)
             }
             ImageCapture.FLASH_MODE_ON -> {
                 flashMode = ImageCapture.FLASH_MODE_OFF
-                iconFlash.setImageResource(R.drawable.ic_flash_off)
+                binding.iconFlash.setImageResource(R.drawable.ic_flash_off)
             }
             ImageCapture.FLASH_MODE_OFF -> {
                 flashMode = ImageCapture.FLASH_MODE_AUTO
-                iconFlash.setImageResource(R.drawable.ic_flash_auto)
+                binding.iconFlash.setImageResource(R.drawable.ic_flash_auto)
             }
         }
         updateCameraConfig()
@@ -153,13 +146,13 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
     }
 
     private fun setupCamera() {
-        enable(iconCapture, iconFlash)
-        gone(labelPermissionsTitle, labelPermissionsSubtitle, buttonAllowPermissions)
+        enable(binding.iconCapture, binding.iconFlash)
+        gone(binding.labelPermissionsTitle, binding.labelPermissionsSubtitle, binding.buttonAllowPermissions)
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
         cameraProviderFuture.addListener({
             val cameraPreview = Preview.Builder().build().also {
-                it.setSurfaceProvider(viewFinder.surfaceProvider)
+                it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
             }
 
             //  Used to bind the lifecycle of cameras to the lifecycle owner
@@ -209,8 +202,8 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
     }
 
     private fun showPhotoPreview(imageUri: Uri?) {
-        gone(iconCapture, iconFlash)
-        imageCaptured.setVisible(true)
+        gone(binding.iconCapture, binding.iconFlash)
+        binding.imageCaptured.setVisible(true)
 
         Glide.with(this)
             .load(imageUri)
@@ -239,7 +232,7 @@ class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
                     return false
                 }
             })
-            .into(imageCaptured)
+            .into(binding.imageCaptured)
     }
 
     private fun showFoundIngredientsBottomSheet() {

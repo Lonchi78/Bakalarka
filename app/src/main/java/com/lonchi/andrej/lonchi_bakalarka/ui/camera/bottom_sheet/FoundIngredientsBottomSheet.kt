@@ -12,11 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.lonchi.andrej.lonchi_bakalarka.LonchiBakalarkaApplication
 import com.lonchi.andrej.lonchi_bakalarka.R
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.Ingredient
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.ImageLabelingItem
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
+import com.lonchi.andrej.lonchi_bakalarka.databinding.BottomSheetFoundIngredientsBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.adapter.FoundIngredientsAdapter
-import kotlinx.android.synthetic.main.bottom_sheet_found_ingredients.view.*
 import javax.inject.Inject
 
 
@@ -31,7 +30,7 @@ class FoundIngredientsBottomSheet(
     private val vmClassToken: Class<FoundIngredientsViewModel> =
         FoundIngredientsViewModel::class.java
 
-    private var rootView: View? = null
+    private var binding: BottomSheetFoundIngredientsBinding? = null
     private val adapter by lazy {
         FoundIngredientsAdapter(requireContext()) {
             onSelectedIngredientsChange(it)
@@ -43,16 +42,21 @@ class FoundIngredientsBottomSheet(
         setStyle(DialogFragment.STYLE_NORMAL, R.style.AppBottomSheetDialogTheme)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        rootView = inflater.inflate(R.layout.bottom_sheet_found_ingredients, container, false)
+        binding = BottomSheetFoundIngredientsBinding.inflate(inflater, container, false)
         (requireActivity().application as LonchiBakalarkaApplication).appComponent.inject(this)
         viewModel = createViewModel()
         setUI()
-        return rootView
+        return binding?.root
     }
 
     private fun createViewModel() =
@@ -60,10 +64,10 @@ class FoundIngredientsBottomSheet(
             .get(this.vmClassToken)
 
     private fun setUI() {
-        rootView?.buttonAddIngredients?.isEnabled = false
+        binding?.buttonAddIngredients?.isEnabled = false
 
-        rootView?.recyclerIngredients?.adapter = adapter
-        rootView?.recyclerIngredients?.layoutManager = LinearLayoutManager(requireContext())
+        binding?.recyclerIngredients?.adapter = adapter
+        binding?.recyclerIngredients?.layoutManager = LinearLayoutManager(requireContext())
         /*viewModel.foundIngredients.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }       */
@@ -73,19 +77,19 @@ class FoundIngredientsBottomSheet(
             }
         }
 
-        rootView?.buttonAddIngredients?.setOnClickListener {
+        binding?.buttonAddIngredients?.setOnClickListener {
             onConfirmClick(adapter.getSelectedIngredients())
             dismiss()
         }
     }
 
     private fun onSelectedIngredientsChange(selectedIngredients: List<ImageLabelingItem>) {
-        rootView?.buttonAddIngredients?.isEnabled = selectedIngredients.isNotEmpty()
+        binding?.buttonAddIngredients?.isEnabled = selectedIngredients.isNotEmpty()
         if (selectedIngredients.size > 1) {
-            rootView?.buttonAddIngredients?.text =
+            binding?.buttonAddIngredients?.text =
                 getString(R.string.found_ingredients_button_multi)
         } else {
-            rootView?.buttonAddIngredients?.text =
+            binding?.buttonAddIngredients?.text =
                 getString(R.string.found_ingredients_button_single)
         }
     }

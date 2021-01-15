@@ -3,7 +3,6 @@ package com.lonchi.andrej.lonchi_bakalarka.ui.discover
 import android.view.View
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentDiscoverBinding
-import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentMainBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 
 /**

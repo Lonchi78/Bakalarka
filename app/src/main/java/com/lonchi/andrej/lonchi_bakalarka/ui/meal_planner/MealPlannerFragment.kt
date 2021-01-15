@@ -2,7 +2,6 @@ package com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner
 
 import android.view.View
 import com.lonchi.andrej.lonchi_bakalarka.R
-import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentHomeBinding
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentMealPlannerBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 

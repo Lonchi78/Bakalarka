@@ -2,12 +2,9 @@ package com.lonchi.andrej.lonchi_bakalarka.ui.home
 
 import android.view.View
 import com.lonchi.andrej.lonchi_bakalarka.R
-import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentDiscoverBinding
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentHomeBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraActivity
-import kotlinx.android.synthetic.main.fragment_home.*
-
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
@@ -22,7 +19,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     override val bindingInflater: (View) -> FragmentHomeBinding = { FragmentHomeBinding.bind(it) }
 
     override fun initView() {
-        btnPicture.setOnClickListener {
+        binding?.btnPicture?.setOnClickListener {
             startActivity(CameraActivity.getStartIntent(requireContext()))
         }
     }
