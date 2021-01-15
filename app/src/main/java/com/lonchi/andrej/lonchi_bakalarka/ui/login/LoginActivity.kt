@@ -98,12 +98,14 @@ class LoginActivity : BaseActivity<LoginViewModel>() {
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-            firebaseAuthWithGoogle(account?.idToken!!)
+            account?.idToken?.let {
+                firebaseAuthWithGoogle(it)
+            } ?: signInFailed()
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Timber.e("handleSignInResult: $e")
-            updateUIFirebase(null)
+            signInFailed()
         }
     }
 
@@ -114,16 +116,22 @@ class LoginActivity : BaseActivity<LoginViewModel>() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Timber.d("firebaseAuthWithGoogle: success")
-                    val user = auth.currentUser
-                    updateUIFirebase(user)
+                    auth.currentUser?.let{
+                        viewModel.login(it)
+                        updateUIFirebase(it)
+                    }
                 } else {
                     // If sign in fails, display a message to the user.
                     Timber.d("firebaseAuthWithGoogle: ${task.exception}")
-                    showSnackbar("Authentication Failed.")
-                    updateUIFirebase(null)
+                    signInFailed()
                 }
 
                 // ...
             }
+    }
+
+    private fun signInFailed() {
+        showSnackbar("Authentication Failed.")
+        updateUIFirebase(null)
     }
 }

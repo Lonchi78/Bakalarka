@@ -68,19 +68,19 @@ class SharedPreferencesImpl @Inject internal constructor(
 
     override fun getAccessTokenLiveData(): LiveData<SharedPreferenceLiveData.State<String>> = token
 
-    override fun getAccessTokenFromSharedPreferences(): String =
+    override fun getUserUidFromSharedPreferences(): String =
         getStringFromSharedPreferences(KEY_AUTH_TOKEN, "")
 
     override fun getFirebaseTokenFromSharedPreferences(): String =
         getStringFromSharedPreferences(KEY_FIREBASE_TOKEN, "")
 
-    override fun putAccessTokenToSharedPreferences(token: String?) =
+    override fun putUserUidToSharedPreferences(token: String?) =
         putStringToSharedPreferences(KEY_AUTH_TOKEN, token)
 
     override fun putFirebaseTokenToSharedPreferences(token: String?) =
         putStringToSharedPreferences(KEY_FIREBASE_TOKEN, token)
 
-    override fun removeAccessToken() = removePreference(KEY_AUTH_TOKEN)
+    override fun removeUserId() = removePreference(KEY_AUTH_TOKEN)
 
     override fun getLastKnownLanguage(): String =
         getStringFromSharedPreferences(KEY_LANG_KEY, "")

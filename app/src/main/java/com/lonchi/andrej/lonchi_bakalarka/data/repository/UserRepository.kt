@@ -2,6 +2,7 @@ package com.lonchi.andrej.lonchi_bakalarka.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
+import com.google.firebase.auth.FirebaseUser
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.database.LonchiDatabase
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.preferences.SharedPreferencesInterface
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RestApi
@@ -10,6 +11,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.entities.User
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.DeviceTracker
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
+import com.lonchi.andrej.lonchi_bakalarka.data.utils.mapToUser
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import retrofit2.Retrofit
@@ -31,8 +33,8 @@ interface UserRepository {
      */
     fun hasUserEverBeenLogged(): Boolean
 
-    fun login(email: String, password: String): Flowable<Resource<User>>
-    fun logout(): Completable
+    fun performUserLogin(firebaseUser: FirebaseUser)
+    fun performUserLogout()
 
     fun unauthorizedActionOcurred()
     fun getAuthToken(): String
@@ -60,37 +62,15 @@ class UserRepositoryImpl @Inject internal constructor(
     /**
      * Get user logged state based on stored access token in shared preferences
      */
-    override fun hasUserEverBeenLogged(): Boolean = basicSharedPreferences.getAccessTokenFromSharedPreferences().isNotEmpty()
+    override fun hasUserEverBeenLogged(): Boolean = basicSharedPreferences.getUserUidFromSharedPreferences().isNotEmpty()
 
-    override fun login(email: String, password: String): Flowable<Resource<User>> =
-            api.login(
-                    email,
-                    password,
-                    moshi.adapter(DeviceTracker.DeviceProperties::class.java).toJson(deviceTracker.getDeviceProperties()))
-                    .asSyncOperation()
-                    .map { it.mapData { it.data.user } }
-                    .performSuccessAction {
-                        if (it != null) performUserLogin(it) else performUserLogout()
-                    }
-                    .toFlowable()
-                    .startWith(Resource.loading(null))
-
-    override fun logout(): Completable =
-            api.logout(basicSharedPreferences.getAccessTokenFromSharedPreferences())
-                    .asSyncOperation()
-                    .performSuccessAction { performUserLogout() }
-                    .performUnauthorizedAction { unauthorizedActionOcurred() }
-                    .ignoreElement()
-
-    private fun performUserLogin(it: User) {
-        // todo handle saving user data
-        // basicPersistence.putAccessTokenToSharedPreferences(it.accessToken)
-        db.userDao().saveUser(it)
+    override fun performUserLogin(firebaseUser: FirebaseUser) {
+        prefs.putUserUidToSharedPreferences(firebaseUser.uid)
+        db.userDao().saveUser(firebaseUser.mapToUser())
     }
 
-    private fun performUserLogout() {
-        // todo handle removing user data
-        // basicPersistence.removeAccessToken()
+    override fun performUserLogout() {
+        prefs.removeUserId()
         db.userDao().deleteAll()
     }
 
@@ -106,6 +86,6 @@ class UserRepositoryImpl @Inject internal constructor(
      * Get access token from shared preferences
      * @return access token
      */
-    override fun getAuthToken(): String = basicSharedPreferences.getAccessTokenFromSharedPreferences()
+    override fun getAuthToken(): String = basicSharedPreferences.getUserUidFromSharedPreferences()
 
 }

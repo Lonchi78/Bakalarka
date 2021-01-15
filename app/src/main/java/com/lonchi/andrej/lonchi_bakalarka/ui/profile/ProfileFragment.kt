@@ -35,8 +35,7 @@ class ProfileFragment : BaseFragment<ProfileViewModel>() {
 
             mGoogleSignInClient.revokeAccess()
                 .addOnCompleteListener(requireActivity()) {
-                    Timber.d("signout complete")
-                    //  todo - delete user from database
+                    viewModel.logout()
                     requireActivity().finishAffinity()
                     startActivity(LoginActivity.getStartIntent(requireActivity(), null))
                 }
