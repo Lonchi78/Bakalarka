@@ -61,7 +61,4 @@ abstract class BaseViewOnlyActivity : AppCompatActivity() {
     protected abstract fun initView()
 
     protected open fun handleSavedInstanceState(savedInstanceState: Bundle?) {}
-
-    //todo uncomment if view loader is available:  protected fun showProgressBar(visible: Boolean) = loader?.setVisible(visible)
-    //todo uncomment if view loader is available:  protected fun setProgressLabel(text: String?) = loader?.setText(text)
 }

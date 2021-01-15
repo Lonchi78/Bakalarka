@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.lonchi.andrej.lonchi_bakalarka">
 
+	<uses-feature android:name="android.hardware.camera.any" />
+	<uses-permission android:name="android.permission.CAMERA" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
 	<application
 		android:name="com.lonchi.andrej.lonchi_bakalarka.LonchiBakalarkaApplication"
 		android:allowBackup="true"
@@ -21,5 +25,8 @@
 		</activity>
 
 		<activity android:name="com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity" />
+		<activity android:name="com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraActivity" />
+
+		<activity android:name="com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginActivity" />
 	</application>
 </manifest>

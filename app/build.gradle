@@ -14,7 +14,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode versionCodeFromDate()
-        versionName "1.0.0"
+        versionName "0.0.1"
         vectorDrawables.useSupportLibrary true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -44,6 +44,30 @@ android {
         outputDirectory = "$buildDir/kotlindoc"
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    signingConfigs {
+        //debugConfig {
+        //    storeFile file("debug.keystore")
+        //    storePassword "android"
+        //    keyAlias "testreleasekey"
+        //    keyPassword "android"
+        //}
+        releaseConfig {
+            storeFile file("bakalarka.jks")
+            storePassword "bakalarka"
+            keyAlias "key0"
+            keyPassword "bakalarkakey"
+        }
+    }
+
     buildTypes {
         debug {
             debuggable true
@@ -56,9 +80,9 @@ android {
             minifyEnabled false
             buildConfigField "boolean", "DEBUG_MODE", "false"
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
         }
     }
-
 }
 
 dependencies {
@@ -75,15 +99,15 @@ dependencies {
     implementation "androidx.core:core-ktx:$rootProject.ext.coreKtx"
 
     //  Tests
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     //  Material dialogs
     implementation "com.afollestad.material-dialogs:core:$rootProject.ext.materialDialogs"
 
     //  Navigation component
-    def navigation = "2.2.1"
+    def navigation = "2.3.1"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation"
 
@@ -113,27 +137,46 @@ dependencies {
 
     // RxJava
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
     implementation 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
     implementation 'com.jakewharton.rxbinding3:rxbinding:3.1.0'
 
     // Timber
     implementation "com.jakewharton.timber:timber:$rootProject.ext.timber"
 
-    // Firebase
-    /*implementation 'com.google.firebase:firebase-core:17.3.0'
-    implementation 'com.google.firebase:firebase-messaging:20.1.5'
-    implementation 'com.google.firebase:firebase-analytics:17.3.0'
-    implementation 'com.google.firebase:firebase-crashlytics:17.0.0-beta01'*/
+    //  Firebase
+    implementation platform('com.google.firebase:firebase-bom:26.0.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
 
-    // Google Services
-    /*implementation 'com.google.android.libraries.places:places:2.2.0'
-    implementation 'com.google.android.gms:play-services-maps:17.0.0'
-    implementation 'com.google.android.gms:play-services-auth:18.0.0'
-    implementation 'com.google.android.gms:play-services-location:17.0.0'*/
+    //  For some reason with this BoM dependency build failed
+    //implementation 'com.google.firebase:firebase-ml-vision'
+    implementation 'com.google.android.gms:play-services-vision:20.1.2'
+    implementation 'com.google.firebase:firebase-ml-vision:24.1.0'
+
+    //  Emojis
+    implementation "com.android.support:support-emoji:28.0.0"
+
+    //  Camera X
+    def camerax_version = "1.0.0-beta11"
+    implementation "androidx.camera:camera-camera2:$camerax_version"
+    implementation "androidx.camera:camera-lifecycle:$camerax_version"
+    implementation "androidx.camera:camera-view:1.0.0-alpha18"
 
     //Lottie
     implementation 'com.airbnb.android:lottie:3.4.0'
+
+    //  Paracamera
+    implementation 'com.mindorks:paracamera:0.2.2'
+
+    //  Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    //  Coil
+    implementation("io.coil-kt:coil:1.1.1")
 }
 
 static def versionCodeFromDate() {
@@ -142,4 +185,4 @@ static def versionCodeFromDate() {
     return Integer.valueOf(formattedDate)
 }
 
-//apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.gms.google-services'

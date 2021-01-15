@@ -10,15 +10,15 @@ import com.lonchi.andrej.lonchi_bakalarka.data.utils.SharedPreferenceLiveData
 interface SharedPreferencesInterface {
     fun getAccessTokenLiveData(): LiveData<SharedPreferenceLiveData.State<String>>
 
-    fun getAccessTokenFromSharedPreferences(): String
+    fun getUserUidFromSharedPreferences(): String
 
     fun getFirebaseTokenFromSharedPreferences(): String
 
-    fun putAccessTokenToSharedPreferences(token: String?)
+    fun putUserUidToSharedPreferences(token: String?)
 
     fun putFirebaseTokenToSharedPreferences(token: String?)
 
-    fun removeAccessToken()
+    fun removeUserId()
 
     fun getLastKnownLanguage(): String
 

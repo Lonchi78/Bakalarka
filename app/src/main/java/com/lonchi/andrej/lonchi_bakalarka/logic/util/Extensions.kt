@@ -24,6 +24,16 @@ import com.lonchi.andrej.lonchi_bakalarka.R
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
+/* * * * * * * * * * * * * * * ENABLE * * * * * * * * * * * * * * * * */
+
+fun enable(vararg views: View) {
+    views.forEach { it.isEnabled = true }
+}
+
+fun disable(vararg views: View) {
+    views.forEach { it.isEnabled = false }
+}
+
 /* * * * * * * * * * * * * * * VISIBILITY * * * * * * * * * * * * * * * * */
 
 fun gone(vararg views: View) {
@@ -41,9 +51,13 @@ fun invisible(vararg views: View) {
 fun View.isVisible(): Boolean = this.visibility == View.VISIBLE
 
 fun View.setVisible(visible: Boolean) {
-    if (visible) {
-        this.visibility = View.VISIBLE
-    } else this.visibility = View.GONE
+    if (visible) this.visibility = View.VISIBLE
+    else this.visibility = View.GONE
+}
+
+fun View.reverseVisibility() {
+    if (this.isVisible()) this.visibility = View.GONE
+    else this.visibility = View.VISIBLE
 }
 
 fun Array<View>.setVisible(visible: Boolean) {

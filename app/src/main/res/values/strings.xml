@@ -2,11 +2,14 @@
 	<string name="app_name">Bakalarka</string>
 	<string name="system_language">en</string>
 
+	<string name="global_permissions_are_needed">I can\'t do this without these permissions &#128549;</string>
+
 	<string name="error_authentication">You have been logged off from the server</string>
 	<string name="error_no_network_connection">Connection to server has failed. Please check your internet connection ad try again.</string>
 	<string name="error_unknown_try_later">The action could not be completed because an unknown error occurred. Please try again later.</string>
 	<string name="error_validation">Validation error. Please try again later.</string>
 	<string name="error_bad_email_or_password">Incorrect email or password</string>
+	<string name="error_unknown">Oops, something went wrong</string>
 
 	<!--	Home	-->
 	<string name="home_title">Home</string>
@@ -19,5 +22,16 @@
 
 	<!--	Profile		-->
 	<string name="profile_title">Profile</string>
+
+	<!--	Camera		-->
+	<string name="camera_emoji">Debilko &#128512;</string>
+	<string name="camera_permission_title">Permission title</string>
+	<string name="camera_permission_subtitle">Permission subtitle. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.</string>
+	<string name="camera_permission_button">Allow permissions</string>
+
+	<!--	Found ingredients bottom sheet		-->
+	<string name="found_ingredients_title">Found ingredients</string>
+	<string name="found_ingredients_button_single">Add Ingredient</string>
+	<string name="found_ingredients_button_multi">Add Ingredients</string>
 
 </resources>

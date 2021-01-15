@@ -26,14 +26,14 @@ class Resource<out T> constructor(
                         data
                 )
 
-        fun <T> error(errorIdentification: ErrorIdentification, data: T?): Resource<T> =
+        fun <T> error(errorIdentification: ErrorIdentification, data: T? = null): Resource<T> =
                 Resource(
                         ErrorStatus(),
                         data,
                         errorIdentification
                 )
 
-        fun <T> loading(data: T?): Resource<T> =
+        fun <T> loading(data: T? = null): Resource<T> =
                 Resource(
                         LoadingStatus(),
                         data
@@ -71,6 +71,8 @@ sealed class ErrorIdentification(val message: String, val serverCode: Int? = nul
     class UserDisabled : Authentication()
     class UserNotFoundOnDevice : Authentication()
     class BadEmailOrPassword(message: String?) : ErrorIdentification(message ?: "Incorrect email or password")
+
+    class BitmapIsNull(message: String? = null) : ErrorIdentification(message ?: "Cant't get bitmap of image")
 
     fun parseLog() = "${this.javaClass.simpleName}: $message"
 }

@@ -2,6 +2,9 @@ package com.lonchi.andrej.lonchi_bakalarka.logic.dagger
 
 import android.app.Application
 import com.lonchi.andrej.lonchi_bakalarka.LonchiBakalarkaApplication
+import com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraActivity
+import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsBottomSheet
+import com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
 import dagger.BindsInstance
 import dagger.Component
@@ -24,10 +27,13 @@ import javax.inject.Singleton
             PersistenceModule::class,
             RestModule::class,
             MainModule::class,
+            CameraModule::class,
             HomeModule::class,
             DiscoverModule::class,
             MealPlannerModule::class,
             ProfileModule::class,
+            FoundIngredientsModule::class,
+            LoginModule::class,
             MainFragmentModule::class])
 interface AppComponent {
 
@@ -42,4 +48,8 @@ interface AppComponent {
 
     fun inject(app: LonchiBakalarkaApplication)
     fun inject(mainActivity: MainActivity)
+    fun inject(cameraActivity: CameraActivity)
+    fun inject(loginActivity: LoginActivity)
+
+    fun inject(foundIngredientsBottomSheet: FoundIngredientsBottomSheet)
 }

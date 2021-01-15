@@ -61,3 +61,10 @@ class DataResponse<T>(
 ) : BaseResponse(StatusCode, Message)
 
 data class UserWrapper(val user: User)
+
+data class ImageLabelingItem(
+    val item: String,
+    val entityId: String?,
+    val confidence: Float
+)
+data class ImageLabelingResponse(val items: List<ImageLabelingItem>)
