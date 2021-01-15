@@ -3,6 +3,7 @@ package com.lonchi.andrej.lonchi_bakalarka.ui.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -15,6 +16,8 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.lonchi.andrej.lonchi_bakalarka.R
+import com.lonchi.andrej.lonchi_bakalarka.databinding.ActivityLoginBinding
+import com.lonchi.andrej.lonchi_bakalarka.databinding.ActivityMainBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -24,7 +27,7 @@ import timber.log.Timber
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
-class LoginActivity : BaseActivity<LoginViewModel>() {
+class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
     companion object {
         fun getStartIntent(context: Context, extras: Bundle? = null): Intent =
@@ -34,7 +37,7 @@ class LoginActivity : BaseActivity<LoginViewModel>() {
         private const val RC_SIGN_IN = 1
     }
 
-    override val layoutId: Int? = R.layout.activity_login
+    override val bindingInflater: (LayoutInflater) -> ActivityLoginBinding = { ActivityLoginBinding.inflate(it) }
     override val vmClassToken: Class<LoginViewModel> = LoginViewModel::class.java
 
     private lateinit var mGoogleSignInClient: GoogleSignInClient

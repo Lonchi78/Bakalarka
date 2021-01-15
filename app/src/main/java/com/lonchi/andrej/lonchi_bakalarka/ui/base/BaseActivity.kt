@@ -43,9 +43,6 @@ abstract class BaseActivity<T, V : ViewBinding> : DaggerAppCompatActivity() wher
     protected open fun handleSavedInstanceState(savedInstanceState: Bundle?) {}
     private fun createViewModel() = ViewModelProviders.of(this, viewModelFactory).get(this.vmClassToken)
 
-    @get:LayoutRes
-    protected abstract val layoutId: Int?
-
     val toolbar: Toolbar? by lazy { findViewById<Toolbar>(R.id.toolbar) }
 
     private val snackBarRoot: View? by lazy { findViewById<View>(R.id.snackbarRoot) ?: findViewById(android.R.id.content) }

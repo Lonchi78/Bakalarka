@@ -1,5 +1,6 @@
 package com.lonchi.andrej.lonchi_bakalarka.ui.profile
 
+import android.view.View
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -8,6 +9,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.lonchi.andrej.lonchi_bakalarka.R
+import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentHomeBinding
+import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentProfileBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -17,13 +20,14 @@ import timber.log.Timber
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
-class ProfileFragment : BaseFragment<ProfileViewModel>() {
+class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>() {
     companion object {
         fun newInstance() = ProfileFragment()
     }
 
     override val layoutId: Int = R.layout.fragment_profile
     override val vmClassToken: Class<ProfileViewModel> = ProfileViewModel::class.java
+    override val bindingInflater: (View) -> FragmentProfileBinding = { FragmentProfileBinding.bind(it) }
 
     private lateinit var mGoogleSignInClient: GoogleSignInClient
 

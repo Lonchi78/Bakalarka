@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.*
 import androidx.camera.core.ImageCaptureException
@@ -26,6 +27,8 @@ import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.ImageLabelingItem
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.LoadingStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
+import com.lonchi.andrej.lonchi_bakalarka.databinding.ActivityCameraBinding
+import com.lonchi.andrej.lonchi_bakalarka.databinding.ActivityMainBinding
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.*
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsBottomSheet
@@ -38,7 +41,7 @@ import java.util.concurrent.Executors
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
-class CameraActivity : BaseActivity<CameraViewModel>() {
+class CameraActivity : BaseActivity<CameraViewModel, ActivityCameraBinding>() {
 
     companion object {
         fun getStartIntent(context: Context, extras: Bundle? = null): Intent =
@@ -48,7 +51,7 @@ class CameraActivity : BaseActivity<CameraViewModel>() {
         private const val REQUEST_CODE_PERMISSIONS = 10
     }
 
-    override val layoutId: Int? = R.layout.activity_camera
+    override val bindingInflater: (LayoutInflater) -> ActivityCameraBinding = { ActivityCameraBinding.inflate(it) }
     override val vmClassToken: Class<CameraViewModel> = CameraViewModel::class.java
 
     private var ingredientsBottomSheet: FoundIngredientsBottomSheet? = null
