@@ -2,6 +2,7 @@ package com.lonchi.andrej.lonchi_bakalarka.ui.base
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
@@ -10,6 +11,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.viewbinding.ViewBinding
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.google.android.material.snackbar.Snackbar
@@ -23,7 +25,7 @@ import javax.inject.Inject
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
-abstract class BaseActivity<T> : DaggerAppCompatActivity() where T : BaseViewModel {
+abstract class BaseActivity<T, V : ViewBinding> : DaggerAppCompatActivity() where T : BaseViewModel {
 
     protected val TIMBER_TAG = "${this.javaClass.simpleName}: %s"
 
@@ -48,6 +50,13 @@ abstract class BaseActivity<T> : DaggerAppCompatActivity() where T : BaseViewMod
 
     private val snackBarRoot: View? by lazy { findViewById<View>(R.id.snackbarRoot) ?: findViewById(android.R.id.content) }
 
+    private var _binding: ViewBinding? = null
+    protected abstract val bindingInflater: (LayoutInflater) -> V
+
+    @Suppress("UNCHECKED_CAST")
+    protected val binding: V
+        get() = _binding as V
+
     /**
      * Init window flags, Set content view, Create viewModel
      * Init data binding, Handle saved instance state,
@@ -58,8 +67,9 @@ abstract class BaseActivity<T> : DaggerAppCompatActivity() where T : BaseViewMod
         super.onCreate(savedInstanceState)
 
         initWindowFlags()
+        _binding = bindingInflater.invoke(layoutInflater)
 
-        layoutId?.apply { setContentView(this) }
+        setContentView(requireNotNull(_binding).root)
 
         viewModel = createViewModel()
 
@@ -69,6 +79,14 @@ abstract class BaseActivity<T> : DaggerAppCompatActivity() where T : BaseViewMod
 
         initView()
         bindViewModel()
+    }
+
+    /**
+     * Clear bindings
+     */
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     /**

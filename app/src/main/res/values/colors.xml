@@ -13,7 +13,9 @@
 
 	<color name="textDark">#000000</color>
 
+	<color name="snackbarBackgroundColor">#2d3748</color>
 
+	<color name="snackbarTextColor">#ffffff</color>
 
 	<color name="rootWhite">#ffffff</color>
 

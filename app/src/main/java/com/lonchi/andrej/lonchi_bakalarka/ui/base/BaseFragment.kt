@@ -9,10 +9,14 @@ import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.viewbinding.ViewBinding
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
+import com.google.android.material.snackbar.Snackbar
 import com.lonchi.andrej.lonchi_bakalarka.R
+import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.setVisible
+import com.lonchi.andrej.lonchi_bakalarka.ui.utils.LonchiSnackbar
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -20,7 +24,7 @@ import javax.inject.Inject
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
-abstract class BaseFragment<T> : DaggerFragment() where T : BaseViewModel {
+abstract class BaseFragment<T, V : ViewBinding> : DaggerFragment() where T : BaseViewModel {
 
     protected val TIMBER_TAG = "${this.javaClass.simpleName}: %s"
 
@@ -38,6 +42,12 @@ abstract class BaseFragment<T> : DaggerFragment() where T : BaseViewModel {
 
     @get:LayoutRes
     protected abstract val layoutId: Int
+
+    private val snackBarRoot: View? by lazy { view?.findViewById<View>(R.id.snackbarRoot) }
+
+    protected var binding: V? = null
+    protected abstract val bindingInflater: (View) -> V
+
 
     /**
      * Create viewModel on onCreate
@@ -66,8 +76,19 @@ abstract class BaseFragment<T> : DaggerFragment() where T : BaseViewModel {
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = bindingInflater.invoke(view)
         initView()
         bindViewModel()
+    }
+
+    /**
+     * clear bindings
+     * @param view created view
+     * @param savedInstanceState bundle
+     */
+    override fun onDestroyView() {
+        binding = null
+        super.onDestroyView()
     }
 
     /**
@@ -103,5 +124,18 @@ abstract class BaseFragment<T> : DaggerFragment() where T : BaseViewModel {
                 messageText.text = message
             }
         }
+    }
+
+    /**
+     * Show error snackbar that is designed based on application styles
+     * @param errorMessage error message
+     * @param view represent parent layout
+     */
+    fun showErrorSnackbar(errorMessage: String, view: View? = null) {
+        LonchiSnackbar.make(context ?: return,
+            errorMessage,
+            view ?: activity?.findViewById(android.R.id.content) ?: return,
+            Snackbar.LENGTH_LONG
+        )?.show()
     }
 }

@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'org.jetbrains.dokka-android'
 apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -37,6 +38,10 @@ android {
 
     dataBinding {
         enabled = true
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 
     dokka {
