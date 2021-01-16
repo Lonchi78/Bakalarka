@@ -34,133 +34,159 @@
 
 	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 	<!-- * * * * * * * * * * * * * Text Styles * * * * * * * * * * * * * * * * * -->
-	<style name="RootHeadlineLarge">
-		<item name="android:textSize">28sp</item>
-		<item name="fontFamily">@font/roboto_bold</item>
-		<item name="android:fontFamily">@font/roboto_bold</item>
-		<item name="android:letterSpacing">0.012499999787126268</item>
-		<item name="android:textColor">@color/textDark</item>
+
+	<style name="TextHeadline1">
+		<item name="android:textSize">24sp</item>
+		<item name="fontFamily">@font/lato_extra_bold</item>
+		<item name="android:fontFamily">@font/lato_extra_bold</item>
+		<item name="android:letterSpacing">0.0125</item>
+		<item name="android:textColor">@color/gray900</item>
 	</style>
 
-	<style name="RootHeadlineRegular">
-		<item name="android:textSize">23sp</item>
-		<item name="fontFamily">@font/roboto_bold</item>
-		<item name="android:fontFamily">@font/roboto_bold</item>
-		<item name="android:letterSpacing">0.017391304606976715</item>
-		<item name="android:textColor">@color/textDark</item>
+	<style name="TextHeadline2">
+		<item name="android:textSize">18sp</item>
+		<item name="fontFamily">@font/lato_extra_bold</item>
+		<item name="android:fontFamily">@font/lato_extra_bold</item>
+		<item name="android:letterSpacing">0.0125</item>
+		<item name="android:textColor">@color/gray900</item>
 	</style>
 
-	<style name="RootHeadlineSmall">
-		<item name="android:textSize">20sp</item>
-		<item name="fontFamily">@font/roboto_bold</item>
-		<item name="android:fontFamily">@font/roboto_bold</item>
-		<item name="android:letterSpacing">0.020000000298023225</item>
-		<item name="android:textColor">@color/textDark</item>
+	<style name="TextHeadline3">
+		<item name="android:textSize">18sp</item>
+		<item name="fontFamily">@font/lato_bold</item>
+		<item name="android:fontFamily">@font/lato_bold</item>
+		<item name="android:letterSpacing">0.0125</item>
+		<item name="android:textColor">@color/gray900</item>
 	</style>
 
-	<style name="RootBodyLargeLowEmphasis">
+	<style name="TextHeadline4">
 		<item name="android:textSize">16sp</item>
-		<item name="fontFamily">@font/roboto_regular</item>
-		<item name="android:fontFamily">@font/roboto_regular</item>
-		<item name="android:letterSpacing">-0.02352941211532144</item>
-		<item name="android:textColor">@color/textDark</item>
+		<item name="fontFamily">@font/lato_bold</item>
+		<item name="android:fontFamily">@font/lato_bold</item>
+		<item name="android:letterSpacing">0.0125</item>
+		<item name="android:textColor">@color/gray900</item>
 	</style>
 
-	<style name="RootBodyLargeMediumEmphasis">
+	<style name="TextToolbar">
+		<item name="android:textSize">18sp</item>
+		<item name="fontFamily">@font/lato_bold</item>
+		<item name="android:fontFamily">@font/lato_bold</item>
+		<item name="android:letterSpacing">0.0125</item>
+		<item name="android:textColor">@color/gray900</item>
+	</style>
+
+	<style name="TextContainedButton">
+		<item name="android:textSize">14sp</item>
+		<item name="fontFamily">@font/lato_extra_bold</item>
+		<item name="android:fontFamily">@font/lato_extra_bold</item>
+		<item name="android:letterSpacing">0.0125</item>
+		<item name="android:textColor">@color/white</item>
+	</style>
+
+	<style name="TextBodySmallRegular">
+		<item name="android:textSize">14sp</item>
+		<item name="fontFamily">@font/lato_regular</item>
+		<item name="android:fontFamily">@font/lato_regular</item>
+		<item name="android:letterSpacing">0.0125</item>
+		<item name="android:textColor">@color/gray900</item>
+	</style>
+
+	<style name="TextBodySmallSemibold">
+		<item name="android:textSize">14sp</item>
+		<item name="fontFamily">@font/lato_semibold</item>
+		<item name="android:fontFamily">@font/lato_semibold</item>
+		<item name="android:letterSpacing">0.0125</item>
+		<item name="android:textColor">@color/gray900</item>
+	</style>
+
+	<style name="TextBodyLargeRegular">
 		<item name="android:textSize">16sp</item>
-		<item name="fontFamily">@font/roboto_medium</item>
-		<item name="android:fontFamily">@font/roboto_medium</item>
-		<item name="android:letterSpacing">-0.02352941211532144</item>
-		<item name="android:textColor">@color/textDark</item>
+		<item name="fontFamily">@font/lato_regular</item>
+		<item name="android:fontFamily">@font/lato_regular</item>
+		<item name="android:letterSpacing">0.0125</item>
+		<item name="android:textColor">@color/gray900</item>
 	</style>
 
-	<style name="RootBodyLargeHighEmphasis">
+	<style name="TextBodyLargeMedium">
 		<item name="android:textSize">16sp</item>
-		<item name="fontFamily">@font/roboto_bold</item>
-		<item name="android:fontFamily">@font/roboto_bold</item>
-		<item name="android:letterSpacing">-0.02352941211532144</item>
-		<item name="android:textColor">@color/textDark</item>
+		<item name="fontFamily">@font/lato_medium</item>
+		<item name="android:fontFamily">@font/lato_medium</item>
+		<item name="android:letterSpacing">0.0125</item>
+		<item name="android:textColor">@color/gray900</item>
 	</style>
 
-	<style name="RootBodyRegularLowEmphasis">
+	<style name="TextBodyLargeSemibold">
+		<item name="android:textSize">16sp</item>
+		<item name="fontFamily">@font/lato_semibold</item>
+		<item name="android:fontFamily">@font/lato_semibold</item>
+		<item name="android:letterSpacing">0.0125</item>
+		<item name="android:textColor">@color/gray900</item>
+	</style>
+
+	<style name="TextEditTextLabel">
 		<item name="android:textSize">14sp</item>
-		<item name="fontFamily">@font/roboto_regular</item>
-		<item name="android:fontFamily">@font/roboto_regular</item>
-		<item name="android:letterSpacing">-0.010999999940395355</item>
-		<item name="android:textColor">@color/textDark</item>
+		<item name="fontFamily">@font/lato_semibold</item>
+		<item name="android:fontFamily">@font/lato_semibold</item>
+		<item name="android:letterSpacing">0.0125</item>
+		<item name="android:textColor">@color/gray900</item>
 	</style>
 
-	<style name="RootBodyRegularMediumEmphasis">
+	<style name="TextEditTextValue">
 		<item name="android:textSize">14sp</item>
-		<item name="fontFamily">@font/roboto_medium</item>
-		<item name="android:fontFamily">@font/roboto_medium</item>
-		<item name="android:letterSpacing">-0.010999999940395355</item>
-		<item name="android:textColor">@color/textDark</item>
+		<item name="fontFamily">@font/lato_regular</item>
+		<item name="android:fontFamily">@font/lato_regular</item>
+		<item name="android:letterSpacing">0.0125</item>
+		<item name="android:textColor">@color/gray900</item>
 	</style>
 
-	<style name="RootBodyRegularHighEmphasis">
+	<style name="TextOverline">
+		<item name="android:textSize">12sp</item>
+		<item name="fontFamily">@font/lato_semibold</item>
+		<item name="android:fontFamily">@font/lato_semibold</item>
+		<item name="android:letterSpacing">0.0125</item>
+		<item name="android:textColor">@color/gray900</item>
+	</style>
+
+	<style name="TextNutritionName">
+		<item name="android:textSize">12sp</item>
+		<item name="fontFamily">@font/lato_bold</item>
+		<item name="android:fontFamily">@font/lato_bold</item>
+		<item name="android:letterSpacing">0.0125</item>
+		<item name="android:textColor">@color/gray900</item>
+	</style>
+
+	<style name="TextNutritionValue">
+		<item name="android:textSize">10sp</item>
+		<item name="fontFamily">@font/lato_medium</item>
+		<item name="android:fontFamily">@font/lato_medium</item>
+		<item name="android:letterSpacing">0.0125</item>
+		<item name="android:textColor">@color/gray900</item>
+	</style>
+
+	<style name="TextActionButton">
 		<item name="android:textSize">14sp</item>
-		<item name="fontFamily">@font/roboto_bold</item>
-		<item name="android:fontFamily">@font/roboto_bold</item>
-		<item name="android:letterSpacing">-0.010999999940395355</item>
-		<item name="android:textColor">@color/textDark</item>
+		<item name="fontFamily">@font/lato_semibold</item>
+		<item name="android:fontFamily">@font/lato_semibold</item>
+		<item name="android:letterSpacing">0.0125</item>
+		<item name="android:textColor">@color/gray900</item>
 	</style>
 
-	<style name="RootBodySmallLowEmphasis">
-		<item name="android:textSize">11sp</item>
-		<item name="fontFamily">@font/roboto_regular</item>
-		<item name="android:fontFamily">@font/roboto_regular</item>
-		<item name="android:letterSpacing">0</item>
-		<item name="android:textColor">@color/textDark</item>
-	</style>
-
-	<style name="RootBodySmallMediumEmphasis">
-		<item name="android:textSize">11sp</item>
-		<item name="fontFamily">@font/roboto_medium</item>
-		<item name="android:fontFamily">@font/roboto_medium</item>
-		<item name="android:letterSpacing">0</item>
-		<item name="android:textColor">@color/textDark</item>
-	</style>
-
-	<style name="RootBodySmallHighEmphasis">
-		<item name="android:textSize">11sp</item>
-		<item name="fontFamily">@font/roboto_bold</item>
-		<item name="android:fontFamily">@font/roboto_bold</item>
-		<item name="android:letterSpacing">0</item>
-		<item name="android:textColor">@color/textDark</item>
-	</style>
-
-	<style name="RootOverlineRegularLowEmphasis">
-		<item name="android:textSize">11sp</item>
-		<item name="fontFamily">@font/roboto_regular</item>
-		<item name="android:fontFamily">@font/roboto_regular</item>
-		<item name="android:letterSpacing">0</item>
-		<item name="android:textColor">@color/textDark</item>
-	</style>
-
-	<style name="RootOverlineRegularMediumEmphasis">
-		<item name="android:textSize">11sp</item>
-		<item name="fontFamily">@font/roboto_medium</item>
-		<item name="android:fontFamily">@font/roboto_medium</item>
-		<item name="android:letterSpacing">0</item>
-		<item name="android:textColor">@color/textDark</item>
-	</style>
-
-	<style name="RootOverlineRegularHighEmphasis">
-		<item name="android:textSize">11sp</item>
-		<item name="fontFamily">@font/roboto_bold</item>
-		<item name="android:fontFamily">@font/roboto_bold</item>
-		<item name="android:letterSpacing">0</item>
-		<item name="android:textColor">@color/textDark</item>
-	</style>
-
-	<style name="RootButtonRegular">
+	<style name="TextChip">
 		<item name="android:textSize">14sp</item>
-		<item name="fontFamily">@font/roboto_medium</item>
-		<item name="android:fontFamily">@font/roboto_medium</item>
-		<item name="android:letterSpacing">-0.010999999940395355</item>
-		<item name="android:textColor">@color/textDark</item>
+		<item name="fontFamily">@font/lato_regular</item>
+		<item name="android:fontFamily">@font/lato_regular</item>
+		<item name="android:letterSpacing">0.0125</item>
+		<item name="android:textColor">@color/gray900</item>
 	</style>
+
+	<style name="TextChipCounter">
+		<item name="android:textSize">11sp</item>
+		<item name="fontFamily">@font/lato_semibold</item>
+		<item name="android:fontFamily">@font/lato_semibold</item>
+		<item name="android:letterSpacing">0.0125</item>
+		<item name="android:textColor">@color/gray900</item>
+	</style>
+
 
 	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 	<!-- * * * * * * * * * * * * * Contained Buttons * * * * * * * * * * * * * * -->
@@ -168,7 +194,7 @@
 	<style name="ContainedButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:textAppearance">@style/RootButtonRegular</item>
+		<item name="android:textAppearance">@style/TextContainedButton</item>
 		<item name="android:textColor">@color/text_color_button_contained_states</item>
 		<item name="android:backgroundTint">@color/surface_button_contained_states</item>
 		<item name="rippleColor">@color/btnPrimaryPressedBackgroundColor</item>
@@ -185,7 +211,7 @@
 
 	<style name="ContainedMiniButton" parent="ContainedButton">
 		<item name="android:layout_height">40dp</item>
-		<item name="android:textAppearance">@style/RootButtonRegular</item>
+		<item name="android:textAppearance">@style/TextContainedButton</item>
 		<item name="android:paddingStart">16dp</item>
 		<item name="android:paddingEnd">16dp</item>
 		<item name="android:paddingTop">6dp</item>
@@ -256,7 +282,7 @@
 	<style name="OutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:textAppearance">@style/RootButtonRegular</item>
+		<item name="android:textAppearance">@style/TextContainedButton</item>
 		<item name="android:textColor">@color/text_color_button_outlined_states</item>
 		<item name="strokeColor">@color/stroke_color_button_outlined_states</item>
 		<item name="rippleColor">@color/btnPrimaryRestingBackgroundColor</item>
@@ -273,7 +299,7 @@
 
 	<style name="OutlinedMiniButton" parent="OutlinedButton">
 		<item name="android:layout_height">40dp</item>
-		<item name="android:textAppearance">@style/RootButtonRegular</item>
+		<item name="android:textAppearance">@style/TextContainedButton</item>
 		<item name="android:paddingStart">8dp</item>
 		<item name="android:paddingEnd">8dp</item>
 		<item name="android:paddingTop">6dp</item>
@@ -344,7 +370,7 @@
 	<style name="TextButton" parent="Widget.MaterialComponents.Button.TextButton">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:textAppearance">@style/RootButtonRegular</item>
+		<item name="android:textAppearance">@style/TextContainedButton</item>
 		<item name="android:textColor">@color/text_color_button_text_states</item>
 		<item name="rippleColor">@color/rootGray200</item>
 		<item name="android:insetTop">@dimen/inset_button_text</item>
@@ -358,7 +384,7 @@
 
 	<style name="TextMiniButton" parent="TextButton">
 		<item name="android:layout_height">40dp</item>
-		<item name="android:textAppearance">@style/RootButtonRegular</item>
+		<item name="android:textAppearance">@style/TextContainedButton</item>
 		<item name="android:paddingStart">8dp</item>
 		<item name="android:paddingEnd">8dp</item>
 		<item name="android:paddingTop">6dp</item>
@@ -386,7 +412,7 @@
 	<style name="ExtendedFloatingActionMiniButton" parent="Widget.MaterialComponents.ExtendedFloatingActionButton">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:textAppearance">@style/RootButtonRegular</item>
+		<item name="android:textAppearance">@style/TextContainedButton</item>
 		<item name="iconTint">@color/icon_color_floating_action_button_states</item>
 		<item name="backgroundTint">@color/rootPrimary500</item>
 		<item name="rippleColor">@color/rootPrimary700</item>
@@ -398,6 +424,8 @@
 	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 	<!-- * * * * * * * * * * * * * * *  Others * * * * * * * * * * * * * * * * * -->
 
-	<style name="TextStyleSnackbarLabel" parent="RootBodyRegularLowEmphasis" />
+	<style name="TextStyleSnackbarLabel" parent="TextBodySmallRegular" >
+		<item name="android:textColor">@color/white</item>
+	</style>
 
 </resources>
