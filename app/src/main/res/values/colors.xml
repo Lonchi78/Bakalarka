@@ -81,9 +81,6 @@
 
 	<color name="btnPrimaryDisabledBackgroundColor">#edf2f7</color>
 
-
-
-
 	<color name="white">#ffffff</color>
 
 	<color name="orange900">#FF5718</color>
@@ -116,7 +113,7 @@
 	<color name="yellow400">#FDD05D</color>
 	<color name="yellow300">#FFD87D</color>
 	<color name="yellow200">#FEE39D</color>
-	<color name="yellow100">#FDEEC5</color>
+	<color name="yellow100">#FDEEC5</color>s
 	<color name="yellow50">#FFF7EA</color>
 
 	<color name="red900">#FF3B33</color>
