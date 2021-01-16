@@ -1,6 +1,7 @@
 package com.lonchi.andrej.lonchi_bakalarka.ui.profile
 
 import android.view.View
+import android.widget.Toast
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -12,26 +13,51 @@ import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentProfileBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginActivity
-import timber.log.Timber
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
 class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>() {
+
     companion object {
         fun newInstance() = ProfileFragment()
     }
 
     override val layoutId: Int = R.layout.fragment_profile
     override val vmClassToken: Class<ProfileViewModel> = ProfileViewModel::class.java
-    override val bindingInflater: (View) -> FragmentProfileBinding = { FragmentProfileBinding.bind(it) }
+    override val bindingInflater: (View) -> FragmentProfileBinding =
+        { FragmentProfileBinding.bind(it) }
 
     private lateinit var mGoogleSignInClient: GoogleSignInClient
 
     override fun initView() {
-        setupUser()
+        handleLoggedUser()
 
-        binding?.btnSignOut?.setOnClickListener {
+        binding?.viewFavourites?.setOnClickListener {
+            Toast.makeText(requireActivity(), "Favourites", Toast.LENGTH_SHORT).show()
+        }
+
+        binding?.viewOwnRecipes?.setOnClickListener {
+            Toast.makeText(requireActivity(), "Own recipes", Toast.LENGTH_SHORT).show()
+        }
+
+        binding?.viewAllergens?.setOnClickListener {
+            Toast.makeText(requireActivity(), "Alergens", Toast.LENGTH_SHORT).show()
+        }
+
+        binding?.viewDiets?.setOnClickListener {
+            Toast.makeText(requireActivity(), "Diets", Toast.LENGTH_SHORT).show()
+        }
+
+        binding?.viewSettings?.setOnClickListener {
+            Toast.makeText(requireActivity(), "Settings", Toast.LENGTH_SHORT).show()
+        }
+
+        binding?.viewAbout?.setOnClickListener {
+            Toast.makeText(requireActivity(), "About", Toast.LENGTH_SHORT).show()
+        }
+
+        binding?.viewLogOut?.setOnClickListener {
             Firebase.auth.signOut()
 
             mGoogleSignInClient.revokeAccess()
@@ -45,7 +71,7 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>()
 
     override fun bindViewModel() = Unit
 
-    private fun setupUser() {
+    private fun handleLoggedUser() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
@@ -53,38 +79,16 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>()
 
         mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
 
-        val firebaseUser = Firebase.auth.currentUser
-        Timber.d("setupUser firebaseUser: $firebaseUser")
-        firebaseUser?.let {
-            // Name, email address, and profile photo Url
-            val name = it.displayName
-            val email = it.email
-            val photoUrl = it.photoUrl
+        Firebase.auth.currentUser?.let {
+            binding?.textUserName?.text = it.displayName
+            binding?.textUserMail?.text = it.email
 
-            // Check if user's email is verified
-            val emailVerified = it.isEmailVerified
-
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getToken() instead.
-            val uid = it.uid
-
-            Timber.d("setupUser firebaseUser name: $name")
-            Timber.d("setupUser firebaseUser email: $email")
-            Timber.d("setupUser firebaseUser photoUrl: $photoUrl")
-            Timber.d("setupUser firebaseUser emailVerified: $emailVerified")
-            Timber.d("setupUser firebaseUser uid: $uid")
-
-            binding?.textUserName?.text = name
-            binding?.textUserMail?.text = email
-
-            binding?.imgUserAvatar?.load(photoUrl) {
+            //  TODO - nefunguje
+            binding?.imgUserAvatar?.load(it.photoUrl) {
                 crossfade(true)
-                placeholder(R.drawable.ic_profile)
-                transformations(CircleCropTransformation())
+                //placeholder(R.drawable.ic_profile_24)
+                error(R.drawable.ic_profile_24)
             }
         }
-
-
     }
 }
