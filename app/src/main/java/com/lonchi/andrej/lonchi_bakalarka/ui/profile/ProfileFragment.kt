@@ -2,6 +2,7 @@ package com.lonchi.andrej.lonchi_bakalarka.ui.profile
 
 import android.view.View
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -34,7 +35,7 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>()
         handleLoggedUser()
 
         binding?.viewFavourites?.setOnClickListener {
-            Toast.makeText(requireActivity(), "Favourites", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToFavouritesFragment())
         }
 
         binding?.viewOwnRecipes?.setOnClickListener {

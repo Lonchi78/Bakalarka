@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.favourites.FavouritesViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.fragment.FragmentViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginViewModel
@@ -81,6 +82,14 @@ abstract class ProfileModule {
     @IntoMap
     @ViewModelKey(ProfileViewModel::class)
     abstract fun bindsProfileViewModel(viewModel: ProfileViewModel): ViewModel
+}
+
+@Module
+abstract class FavouritesModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(FavouritesViewModel::class)
+    abstract fun bindsFavouritesViewModel(viewModel: FavouritesViewModel): ViewModel
 }
 
 @Module

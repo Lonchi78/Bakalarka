@@ -43,4 +43,25 @@
 	<string name="found_ingredients_button_single">Add Ingredient</string>
 	<string name="found_ingredients_button_multi">Add Ingredients</string>
 
+	<!--	Favourites		-->
+	<string name="favourites_title">Favourites</string>
+
+	<!--	Own recipes		-->
+	<string name="own_recipes_title">Own recipes</string>
+
+	<!--	Allergens		-->
+	<string name="allergens_title">Allergens</string>
+
+	<!--	Diets		-->
+	<string name="diets_title">Diets</string>
+
+	<!--	Settings	-->
+	<string name="settings_title">Settings</string>
+
+	<!--	About		-->
+	<string name="about_title">About</string>
+
+	<!--	Privacy policy		-->
+	<string name="privacy_policy_title">Privacy policy</string>
+
 </resources>

@@ -180,11 +180,11 @@
 	</style>
 
 	<style name="TextChipCounter">
-		<item name="android:textSize">11sp</item>
-		<item name="fontFamily">@font/lato_semibold</item>
-		<item name="android:fontFamily">@font/lato_semibold</item>
+		<item name="android:textSize">12sp</item>
+		<item name="fontFamily">@font/lato_bold</item>
+		<item name="android:fontFamily">@font/lato_bold</item>
 		<item name="android:letterSpacing">0.0125</item>
-		<item name="android:textColor">@color/gray900</item>
+		<item name="android:textColor">@color/orange500</item>
 	</style>
 
 
@@ -420,6 +420,44 @@
 		<item name="iconPadding">14dp</item>
 	</style>
 
+
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+	<!-- * * * * * * * * * * * * * * * Toolbar * * * * * * * * * * * * * * * * * -->
+
+	<style name="BaseAppToolbar">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">?attr/actionBarSize</item>
+		<item name="android:layout_marginTop">16dp</item>
+		<item name="android:contentInsetLeft">0dp</item>
+		<item name="android:contentInsetStart">0dp</item>
+		<item name="contentInsetLeft">0dp</item>
+		<item name="contentInsetStart">0dp</item>
+		<item name="android:contentInsetRight">0dp</item>
+		<item name="android:contentInsetEnd">0dp</item>
+		<item name="contentInsetRight">0dp</item>
+		<item name="contentInsetEnd">0dp</item>
+	</style>
+
+
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+	<!-- * * * * * * * * * * * * * * * * Chip  * * * * * * * * * * * * * * * * * -->
+
+	<style name="ChipCounter">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:minHeight">24dp</item>
+		<item name="android:background">@color/orange50</item>
+		<item name="android:paddingTop">4dp</item>
+		<item name="android:paddingBottom">4dp</item>
+		<item name="android:checkable">false</item>
+		<item name="android:clickable">false</item>
+		<item name="android:focusable">false</item>
+		<item name="android:textAppearance">@style/TextChipCounter</item>
+		<item name="android:textColor">@color/orange500</item>
+		<item name="chipBackgroundColor">@color/orange50</item>
+		<item name="chipStartPadding">12dp</item>
+		<item name="chipEndPadding">12dp</item>
+	</style>
 
 	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 	<!-- * * * * * * * * * * * * * * *  Others * * * * * * * * * * * * * * * * * -->

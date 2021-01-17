@@ -32,6 +32,7 @@ import javax.inject.Singleton
             DiscoverModule::class,
             MealPlannerModule::class,
             ProfileModule::class,
+            FavouritesModule::class,
             FoundIngredientsModule::class,
             LoginModule::class,
             MainFragmentModule::class])
