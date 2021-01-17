@@ -33,6 +33,9 @@ import javax.inject.Singleton
             MealPlannerModule::class,
             ProfileModule::class,
             FavouritesModule::class,
+            OwnRecipesModule::class,
+            AllergensModule::class,
+            DietsModule::class,
             FoundIngredientsModule::class,
             LoginModule::class,
             MainFragmentModule::class])

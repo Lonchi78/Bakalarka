@@ -1,8 +1,10 @@
 package com.lonchi.andrej.lonchi_bakalarka.logic.dagger
 
 import androidx.lifecycle.ViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.allergens.AllergensViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.diets.DietsViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.favourites.FavouritesViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.fragment.FragmentViewModel
@@ -10,6 +12,7 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.MealPlannerViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.ownRecipes.OwnRecipesViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.profile.ProfileViewModel
 import dagger.Binds
 import dagger.Module
@@ -90,6 +93,30 @@ abstract class FavouritesModule {
     @IntoMap
     @ViewModelKey(FavouritesViewModel::class)
     abstract fun bindsFavouritesViewModel(viewModel: FavouritesViewModel): ViewModel
+}
+
+@Module
+abstract class OwnRecipesModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(OwnRecipesViewModel::class)
+    abstract fun bindsOwnRecipesViewModel(viewModel: OwnRecipesViewModel): ViewModel
+}
+
+@Module
+abstract class AllergensModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(AllergensViewModel::class)
+    abstract fun bindsAllergensViewModel(viewModel: AllergensViewModel): ViewModel
+}
+
+@Module
+abstract class DietsModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(DietsViewModel::class)
+    abstract fun bindsDietsViewModel(viewModel: DietsViewModel): ViewModel
 }
 
 @Module

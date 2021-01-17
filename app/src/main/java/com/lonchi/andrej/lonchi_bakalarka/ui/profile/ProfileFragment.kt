@@ -39,15 +39,15 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>()
         }
 
         binding?.viewOwnRecipes?.setOnClickListener {
-            Toast.makeText(requireActivity(), "Own recipes", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToOwnRecipesFragment())
         }
 
         binding?.viewAllergens?.setOnClickListener {
-            Toast.makeText(requireActivity(), "Alergens", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToAllergnesFragment())
         }
 
         binding?.viewDiets?.setOnClickListener {
-            Toast.makeText(requireActivity(), "Diets", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToDietsFragment())
         }
 
         binding?.viewSettings?.setOnClickListener {

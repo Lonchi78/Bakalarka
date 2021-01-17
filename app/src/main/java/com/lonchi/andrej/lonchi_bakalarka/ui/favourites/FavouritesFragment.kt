@@ -21,7 +21,7 @@ class FavouritesFragment : BaseFragment<FavouritesViewModel, FragmentFavouritesB
 
     override fun initView() {
         binding?.iconBack?.setOnClickListener { requireActivity().onBackPressed() }
-        binding?.chipCounter?.text = "5"
+        binding?.chipCounter?.text = (0..10).random().toString()
     }
 
     override fun bindViewModel() = Unit

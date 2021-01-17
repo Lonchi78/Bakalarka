@@ -11,8 +11,15 @@
 		android:label="fragment_home"
 		tools:layout="@layout/fragment_home" >
 		<action
-			android:id="@+id/action_profileFragment_to_favouritesFragment"
+			android:id="@+id/action_homeFragment_to_favouritesFragment"
 			app:destination="@id/favouritesFragment"
+			app:enterAnim="@anim/slide_from_right"
+			app:exitAnim="@anim/slide_to_left"
+			app:popEnterAnim="@anim/slide_from_left"
+			app:popExitAnim="@anim/slide_to_right" />
+		<action
+			android:id="@+id/action_homeFragment_to_ownRecipesFragment"
+			app:destination="@id/ownRecipesFragment"
 			app:enterAnim="@anim/slide_from_right"
 			app:exitAnim="@anim/slide_to_left"
 			app:popEnterAnim="@anim/slide_from_left"
@@ -43,6 +50,27 @@
 			app:exitAnim="@anim/slide_to_left"
 			app:popEnterAnim="@anim/slide_from_left"
 			app:popExitAnim="@anim/slide_to_right" />
+		<action
+			android:id="@+id/action_profileFragment_to_ownRecipesFragment"
+			app:destination="@id/ownRecipesFragment"
+			app:enterAnim="@anim/slide_from_right"
+			app:exitAnim="@anim/slide_to_left"
+			app:popEnterAnim="@anim/slide_from_left"
+			app:popExitAnim="@anim/slide_to_right" />
+		<action
+			android:id="@+id/action_profileFragment_to_dietsFragment"
+			app:destination="@id/dietsFragment"
+			app:enterAnim="@anim/slide_from_right"
+			app:exitAnim="@anim/slide_to_left"
+			app:popEnterAnim="@anim/slide_from_left"
+			app:popExitAnim="@anim/slide_to_right" />
+		<action
+			android:id="@+id/action_profileFragment_to_allergnesFragment"
+			app:destination="@id/allergensFragment"
+			app:enterAnim="@anim/slide_from_right"
+			app:exitAnim="@anim/slide_to_left"
+			app:popEnterAnim="@anim/slide_from_left"
+			app:popExitAnim="@anim/slide_to_right" />
 	</fragment>
 
 	<fragment
@@ -50,4 +78,22 @@
 		android:name="com.lonchi.andrej.lonchi_bakalarka.ui.favourites.FavouritesFragment"
 		android:label="fragment_favourites"
 		tools:layout="@layout/fragment_favourites" />
+
+	<fragment
+		android:id="@+id/ownRecipesFragment"
+		android:name="com.lonchi.andrej.lonchi_bakalarka.ui.ownRecipes.OwnRecipesFragment"
+		android:label="fragment_own_recipes"
+		tools:layout="@layout/fragment_own_recipes" />
+
+	<fragment
+		android:id="@+id/allergensFragment"
+		android:name="com.lonchi.andrej.lonchi_bakalarka.ui.allergens.AllergensFragment"
+		android:label="fragment_allergens"
+		tools:layout="@layout/fragment_allergens" />
+
+	<fragment
+		android:id="@+id/dietsFragment"
+		android:name="com.lonchi.andrej.lonchi_bakalarka.ui.diets.DietsFragment"
+		android:label="fragment_diets"
+		tools:layout="@layout/fragment_diets" />
 </navigation>

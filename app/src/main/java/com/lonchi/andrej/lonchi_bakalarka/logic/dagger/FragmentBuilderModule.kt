@@ -1,11 +1,14 @@
 package com.lonchi.andrej.lonchi_bakalarka.logic.dagger
 
+import com.lonchi.andrej.lonchi_bakalarka.ui.allergens.AllergensFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsBottomSheet
+import com.lonchi.andrej.lonchi_bakalarka.ui.diets.DietsFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.favourites.FavouritesFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.fragment.MainFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.MealPlannerFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.ownRecipes.OwnRecipesFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.profile.ProfileFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -33,6 +36,15 @@ abstract class FragmentBuilderModule {
 
     @ContributesAndroidInjector(modules = [FavouritesModule::class])
     abstract fun contributeFavouritesFragment(): FavouritesFragment
+
+    @ContributesAndroidInjector(modules = [OwnRecipesModule::class])
+    abstract fun contributeOwnRecipesFragment(): OwnRecipesFragment
+
+    @ContributesAndroidInjector(modules = [AllergensModule::class])
+    abstract fun contributeAllergensFragment(): AllergensFragment
+
+    @ContributesAndroidInjector(modules = [DietsModule::class])
+    abstract fun contributeDietsFragment(): DietsFragment
 
     @ContributesAndroidInjector(modules = [FoundIngredientsModule::class])
     abstract fun contributeFoundIngredientsBottomSheet(): FoundIngredientsBottomSheet
