@@ -51,11 +51,11 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>()
         }
 
         binding?.viewSettings?.setOnClickListener {
-            Toast.makeText(requireActivity(), "Settings", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToSettingsFragment())
         }
 
         binding?.viewAbout?.setOnClickListener {
-            Toast.makeText(requireActivity(), "About", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToAboutFragment())
         }
 
         binding?.viewLogOut?.setOnClickListener {

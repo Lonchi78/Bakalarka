@@ -1,6 +1,7 @@
 package com.lonchi.andrej.lonchi_bakalarka.logic.dagger
 
 import androidx.lifecycle.ViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.about.AboutViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.allergens.AllergensViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsViewModel
@@ -14,6 +15,7 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.MealPlannerViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.ownRecipes.OwnRecipesViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.profile.ProfileViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.settings.SettingsViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -117,6 +119,22 @@ abstract class DietsModule {
     @IntoMap
     @ViewModelKey(DietsViewModel::class)
     abstract fun bindsDietsViewModel(viewModel: DietsViewModel): ViewModel
+}
+
+@Module
+abstract class SettingsModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(SettingsViewModel::class)
+    abstract fun bindsSettingsViewModel(viewModel: SettingsViewModel): ViewModel
+}
+
+@Module
+abstract class AboutModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(AboutViewModel::class)
+    abstract fun bindsAboutViewModel(viewModel: AboutViewModel): ViewModel
 }
 
 @Module
