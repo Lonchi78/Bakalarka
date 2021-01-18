@@ -64,9 +64,10 @@ abstract class BaseRepository(
             this.timeout(SYNC_TIMEOUT_SECONDS, TimeUnit.SECONDS)
                     .retry(retries)
                     .map {
+                        Timber.d(it.toString())
+                        Timber.d(it.body().toString())
                         if (it.isSuccessful) {
-                            Timber.d(it.toString())
-                            Timber.d(it.body().toString())
+                            Timber.d("it.body() is BaseResponse = ${it.body() is BaseResponse}")
                             if (it.body() is BaseResponse) {
                                 if ((it.body()!! as BaseResponse).isSuccessful()) Resource.success(it.body()!!)
                                 else Resource.error((it.body() as BaseResponse).mapToError(), null)

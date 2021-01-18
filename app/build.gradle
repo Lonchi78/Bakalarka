@@ -18,7 +18,8 @@ android {
         vectorDrawables.useSupportLibrary true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "API_URL", "\"https://domain.com/api/\""
+        buildConfigField "String", "API_URL", "\"https://api.spoonacular.com/\""
+        buildConfigField "String", "API_KEY", "\"7eca2523511b412aa80916d59280caed\""
 
         kapt {
             arguments {

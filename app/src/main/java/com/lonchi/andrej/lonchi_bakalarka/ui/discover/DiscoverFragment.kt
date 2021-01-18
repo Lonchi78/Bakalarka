@@ -17,7 +17,11 @@ class DiscoverFragment : BaseFragment<DiscoverViewModel, FragmentDiscoverBinding
     override val vmClassToken: Class<DiscoverViewModel> = DiscoverViewModel::class.java
     override val bindingInflater: (View) -> FragmentDiscoverBinding = { FragmentDiscoverBinding.bind(it) }
 
-    override fun initView() = Unit
+    override fun initView() {
+        binding?.labelDiscover?.setOnClickListener {
+            viewModel.getRandomRecipes()
+        }
+    }
 
     override fun bindViewModel() = Unit
 }

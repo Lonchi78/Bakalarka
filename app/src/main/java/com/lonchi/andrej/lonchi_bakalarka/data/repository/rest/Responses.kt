@@ -1,5 +1,6 @@
 package com.lonchi.andrej.lonchi_bakalarka.data.repository.rest
 
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.Recipe
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.User
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.squareup.moshi.Json
@@ -9,8 +10,9 @@ import com.squareup.moshi.Json
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
 abstract class BaseResponse(
-    @Json(name = "StatusCode") val status: Int,
-    @Json(name = "Message") val error: String?
+    @Json(name = "code") val code: Int = 0,
+    @Json(name = "status") val status: String? = null,
+    @Json(name = "message") val message: String? = null
 ) {
     companion object {
         const val CODE_SUCCESS = 200
@@ -27,17 +29,17 @@ abstract class BaseResponse(
         const val CODE_PHP_ERROR_502 = 502
     }
 
-    open fun isSuccessful(): Boolean = status == CODE_SUCCESS || status == CODE_SUCCESS_CREATE
+    open fun isSuccessful(): Boolean = code == CODE_SUCCESS || code == CODE_SUCCESS_CREATE
 
     fun mapToError(): ErrorIdentification = when {
         isSuccessful() -> ErrorIdentification.None()
-        status == CODE_UNAUTHORIZED -> ErrorIdentification.Authentication()
-        status == CODE_VALIDATION_ERROR -> ErrorIdentification.Validation(error)
-        status == CODE_BAD_EMAIL_OR_PASSWORD -> ErrorIdentification.BadEmailOrPassword(error)
-        status == CODE_NOT_FOUND -> ErrorIdentification.NotFound(error)
-        status == CODE_PHP_ERROR_500 -> ErrorIdentification.ServerError(status, error.orEmpty())
-        status == CODE_BAD_EMAIL_OR_PASSWORD -> ErrorIdentification.BadEmailOrPassword(error)
-        error.orEmpty().isNotEmpty() -> ErrorIdentification.ErrorWithMessage(error.orEmpty())
+        code == CODE_UNAUTHORIZED -> ErrorIdentification.Authentication()
+        code == CODE_VALIDATION_ERROR -> ErrorIdentification.Validation(message)
+        code == CODE_BAD_EMAIL_OR_PASSWORD -> ErrorIdentification.BadEmailOrPassword(message)
+        code == CODE_NOT_FOUND -> ErrorIdentification.NotFound(message)
+        code == CODE_PHP_ERROR_500 -> ErrorIdentification.ServerError(code, message.orEmpty())
+        code == CODE_BAD_EMAIL_OR_PASSWORD -> ErrorIdentification.BadEmailOrPassword(message)
+        message.orEmpty().isNotEmpty() -> ErrorIdentification.ErrorWithMessage(message.orEmpty())
         else -> ErrorIdentification.Unknown()
     }
 
@@ -68,3 +70,7 @@ data class ImageLabelingItem(
     val confidence: Float
 )
 data class ImageLabelingResponse(val items: List<ImageLabelingItem>)
+
+data class RecipesResponse(
+    @Json(name = "recipes") val recipes: List<Recipe>
+): BaseResponse()

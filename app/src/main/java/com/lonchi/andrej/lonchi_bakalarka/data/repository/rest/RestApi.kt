@@ -50,4 +50,10 @@ interface RestApi {
     fun syncUser(@Header(HEADER_AUTHORIZATION) accessToken: String,
                  @Path(value = "id", encoded = true) userId: String): Single<Response<DataResponse<UserWrapper>>>
 
+    @GET("recipes/random")
+    fun getRandomRecipes(
+        @Query("apiKey") apiKey: String,
+        @Query("number") numberOfResults: Int
+    ): Single<Response<RecipesResponse>>
+
 }
