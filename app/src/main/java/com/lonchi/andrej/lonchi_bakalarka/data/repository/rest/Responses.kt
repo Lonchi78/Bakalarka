@@ -17,29 +17,29 @@ abstract class BaseResponse(
     companion object {
         const val CODE_SUCCESS = 200
         const val CODE_SUCCESS_CREATE = 201
-        const val CODE_WRONG_ACCESS_TOKEN = 300
-        const val CODE_LOGIN_ERROR = 301
         const val CODE_VALIDATION_ERROR = 400
         const val CODE_UNAUTHORIZED = 401
-        const val CODE_BAD_EMAIL_OR_PASSWORD = 403
         const val CODE_NOT_FOUND = 404
         const val CODE_METHOD_NOT_ALLOWED = 405
-        const val CODE_PHP_ERROR_500 = 500
-        const val CODE_PHP_ERROR_501 = 501
-        const val CODE_PHP_ERROR_502 = 502
+        const val CODE_INTERNAL_SERVER_ERROR = 500
+        const val CODE_NOT_IMPLEMENTED = 501
+        const val CODE_BAD_GATEWAY = 502
     }
 
     open fun isSuccessful(): Boolean = code == CODE_SUCCESS || code == CODE_SUCCESS_CREATE
 
     fun mapToError(): ErrorIdentification = when {
         isSuccessful() -> ErrorIdentification.None()
-        code == CODE_UNAUTHORIZED -> ErrorIdentification.Authentication()
+        code == CODE_UNAUTHORIZED -> ErrorIdentification.Authentication(message)
         code == CODE_VALIDATION_ERROR -> ErrorIdentification.Validation(message)
-        code == CODE_BAD_EMAIL_OR_PASSWORD -> ErrorIdentification.BadEmailOrPassword(message)
         code == CODE_NOT_FOUND -> ErrorIdentification.NotFound(message)
-        code == CODE_PHP_ERROR_500 -> ErrorIdentification.ServerError(code, message.orEmpty())
-        code == CODE_BAD_EMAIL_OR_PASSWORD -> ErrorIdentification.BadEmailOrPassword(message)
-        message.orEmpty().isNotEmpty() -> ErrorIdentification.ErrorWithMessage(message.orEmpty())
+        code == CODE_NOT_FOUND -> ErrorIdentification.NotFound(message)
+        code == CODE_VALIDATION_ERROR -> ErrorIdentification.Validation(message)
+        code == CODE_METHOD_NOT_ALLOWED -> ErrorIdentification.MethodNotAllowed(message)
+        code == CODE_INTERNAL_SERVER_ERROR -> ErrorIdentification.InternalServerError(message)
+        code == CODE_NOT_IMPLEMENTED -> ErrorIdentification.NotImplemented(message)
+        code == CODE_BAD_GATEWAY -> ErrorIdentification.BadGateway(message)
+        message.orEmpty().isNotEmpty() -> ErrorIdentification.ErrorWithMessage(message.orEmpty(), code)
         else -> ErrorIdentification.Unknown()
     }
 

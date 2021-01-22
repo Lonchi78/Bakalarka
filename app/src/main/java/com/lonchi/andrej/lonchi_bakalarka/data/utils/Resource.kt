@@ -1,5 +1,9 @@
 package com.lonchi.andrej.lonchi_bakalarka.data.utils
 
+import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.BaseResponse
+import com.squareup.moshi.Moshi
+import retrofit2.Response
+
 
 /**
  * A generic class that contains data and status description loading this data.
@@ -42,6 +46,26 @@ class Resource<out T> constructor(
         fun <T> voidDataError(origin: Resource<*>): Resource<T> =
                 error(origin.errorIdentification, null)
 
+        fun <T> parseResult(moshi: Moshi, item: Response<T>): Resource<T> {
+            val errorBodyJson = item.errorBody()?.string()
+            val errorMessage = if (errorBodyJson != null) {
+                moshi.adapter(BaseResponse::class.java).fromJson(errorBodyJson).message
+            } else {
+                null
+            }
+
+            return when (item.code()) {
+                BaseResponse.CODE_SUCCESS,
+                BaseResponse.CODE_UNAUTHORIZED -> error(ErrorIdentification.Authentication(errorMessage), item.body())
+                BaseResponse.CODE_NOT_FOUND -> error(ErrorIdentification.NotFound(errorMessage), item.body())
+                BaseResponse.CODE_VALIDATION_ERROR -> error(ErrorIdentification.Validation(errorMessage), item.body())
+                BaseResponse.CODE_METHOD_NOT_ALLOWED -> error(ErrorIdentification.MethodNotAllowed(errorMessage), item.body())
+                BaseResponse.CODE_INTERNAL_SERVER_ERROR -> error(ErrorIdentification.InternalServerError(errorMessage), item.body())
+                BaseResponse.CODE_NOT_IMPLEMENTED -> error(ErrorIdentification.NotImplemented(errorMessage), item.body())
+                BaseResponse.CODE_BAD_GATEWAY -> error(ErrorIdentification.BadGateway(errorMessage), item.body())
+                else -> error(ErrorIdentification.Unknown(), item.body())
+            }
+        }
     }
 
     fun <B> mapData(mapper: (T) -> B): Resource<B> = Resource(
@@ -58,19 +82,19 @@ class LoadingStatus : Status(3)
 
 sealed class ErrorIdentification(val message: String, val serverCode: Int? = null) {
     class Unknown(message: String? = null) : ErrorIdentification(message ?: "Unknown error")
-    open class Authentication : ErrorIdentification("User authentication failed")
+    open class Authentication(message: String? = null) : ErrorIdentification("User authentication failed")
     class Validation(message: String?) : ErrorIdentification(message ?: "Validation error")
     class NotFound(message: String?) : ErrorIdentification(message ?: "404 Not Found")
     class None : ErrorIdentification("")
     class Connection : ErrorIdentification("Connection failed")
     class DataError : ErrorIdentification("Data error")
     class Timeout : ErrorIdentification("Timeout")
-    class ServerError(code: Int?, message: String) : ErrorIdentification(message, code)
-    class ErrorWithMessage(message: String) : ErrorIdentification(message)
-    class AuthenticationExpired : Authentication()
-    class UserDisabled : Authentication()
-    class UserNotFoundOnDevice : Authentication()
-    class BadEmailOrPassword(message: String?) : ErrorIdentification(message ?: "Incorrect email or password")
+    class InternalServerError(message: String?) : ErrorIdentification(message ?: "Internal server error")
+    class BadEmailOrPassword(message: String?) : ErrorIdentification(message ?: "Bad email or password")
+    class BadGateway(message: String?) : ErrorIdentification(message ?: "Bad gateway")
+    class NotImplemented(message: String?) : ErrorIdentification(message ?: "Not implemented")
+    class MethodNotAllowed(message: String?) : ErrorIdentification(message ?: "Method not allowed")
+    class ErrorWithMessage(message: String, code: Int) : ErrorIdentification(message, code)
 
     class BitmapIsNull(message: String? = null) : ErrorIdentification(message ?: "Cant't get bitmap of image")
 

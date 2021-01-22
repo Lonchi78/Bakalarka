@@ -41,39 +41,13 @@ abstract class BaseRepository(
     protected val moshi by lazy { Moshi.Builder().build() }
 
     /**
-     * Extension handling server calls to endpoints where return types do not matter - only if the call succeeded or not
-     * @param retries amount of retries before error is returned
-     */
-    protected fun <U, T : Response<U>> Single<T>.asVoidSyncOperation(retries: Long = SYNC_RETRY_ATTEMPTS): Single<Resource<Any?>> =
-            this.timeout(SYNC_TIMEOUT_SECONDS, TimeUnit.SECONDS)
-                    .retry(retries)
-                    .map {
-                        if (it.isSuccessful) {
-                            Resource.success(Any())
-                        } else parseFailedResponse(it)
-                    }
-                    .onErrorReturn { parseErrorReturn(it) }
-                    .subscribeOn(Schedulers.io())
-                    .doOnDispose { Timber.d(TIMBER_TAG, "Call with void data disposed") }
-
-    /**
      * Extension handling server calls where return types do matter
      * @param retries amount of retries before error is returned
      */
     protected fun <U, T : Response<U>> Single<T>.asSyncOperation(retries: Long = SYNC_RETRY_ATTEMPTS): Single<Resource<U>> =
             this.timeout(SYNC_TIMEOUT_SECONDS, TimeUnit.SECONDS)
                     .retry(retries)
-                    .map {
-                        Timber.d(it.toString())
-                        Timber.d(it.body().toString())
-                        if (it.isSuccessful) {
-                            Timber.d("it.body() is BaseResponse = ${it.body() is BaseResponse}")
-                            if (it.body() is BaseResponse) {
-                                if ((it.body()!! as BaseResponse).isSuccessful()) Resource.success(it.body()!!)
-                                else Resource.error((it.body() as BaseResponse).mapToError(), null)
-                            } else Resource.success(it.body()!!)
-                        } else parseFailedResponse(it)
-                    }
+                    .map { Resource.parseResult(moshi, it) }
                     .onErrorReturn { parseErrorReturn(it) }
                     .subscribeOn(Schedulers.io())
                     .doOnDispose { Timber.d(TIMBER_TAG, "Call disposed") }
@@ -130,20 +104,6 @@ abstract class BaseRepository(
     }
 
     /**
-     * Adds action to flow of successful request
-     * @param action action to invoke
-     */
-    protected fun <T> Single<Resource<T>>.performSuccessAction(action: (T?) -> Unit) =
-            this.flatMap {
-                return@flatMap if (it.status is SuccessStatus)
-                    Single.fromCallable {
-                        action(it.data)
-                        return@fromCallable it
-                    }
-                else Single.just(it)
-            }
-
-    /**
      * Adds action to flow of request that failed on authorization
      * @param action action to invoke
      */
@@ -152,21 +112,6 @@ abstract class BaseRepository(
                 return@flatMap if (it.status is ErrorStatus && it.errorIdentification is ErrorIdentification.Authentication)
                     Single.fromCallable {
                         action(it.data)
-                        return@fromCallable it
-                    }
-                else Single.just(it)
-            }
-
-
-    /**
-     * Adds action to flow of failed request
-     * @param action action to invoke
-     */
-    protected fun <T> Single<Resource<T>>.performErrorAction(action: (identification: ErrorIdentification) -> Unit) =
-            this.flatMap {
-                return@flatMap if (it.status is ErrorStatus)
-                    Single.fromCallable {
-                        action(it.errorIdentification)
                         return@fromCallable it
                     }
                 else Single.just(it)

@@ -47,7 +47,7 @@ class RecipesRepositoryImpl @Inject internal constructor(
      */
     override val loggedUser: LiveData<Resource<User>> = Transformations.map(db.userDao().listAll()) {
         it.firstOrNull()?.let { Resource.success(it) }
-                ?: Resource.error(ErrorIdentification.UserNotFoundOnDevice(), null)
+                ?: Resource.error(ErrorIdentification.Authentication(), null)
     }
 
     override fun getRandomRecipes(number: Int): Single<Resource<RecipesResponse>> =

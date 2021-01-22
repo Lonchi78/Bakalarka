@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -161,7 +160,7 @@ abstract class BaseActivity<T, V : ViewBinding> : DaggerAppCompatActivity() wher
                     true
                 }
                 is ErrorIdentification.NotFound,
-                is ErrorIdentification.ServerError -> {
+                is ErrorIdentification.InternalServerError -> {
                     //showErrorSnackbar(error)
                     true
                 }
