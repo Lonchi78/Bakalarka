@@ -13,9 +13,7 @@ class NutrientTypeConverters {
 
     @TypeConverter
     fun nutrientFromString(data: String?): List<Nutrient>? {
-        if (data == null) {
-            return null
-        }
+        if (data == null) return null
         val type = Types.newParameterizedType(List::class.java, Nutrient::class.java)
         val adapter = moshi.adapter<List<Nutrient>>(type)
         return adapter.fromJson(data)

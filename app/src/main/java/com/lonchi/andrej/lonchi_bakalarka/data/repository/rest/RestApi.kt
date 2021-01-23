@@ -1,5 +1,6 @@
 package com.lonchi.andrej.lonchi_bakalarka.data.repository.rest
 
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.Recipe
 import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.*
@@ -55,5 +56,12 @@ interface RestApi {
         @Query("apiKey") apiKey: String,
         @Query("number") numberOfResults: Int
     ): Single<Response<RecipesResponse>>
+
+    @GET("recipes/{id}/information")
+    fun getRecipeDetail(
+        @Path(value = "id", encoded = true) recipeId: String,
+        @Query("apiKey") apiKey: String,
+        @Query("includeNutrition") includeNutrition: Boolean? = true
+    ): Single<Response<Recipe>>
 
 }

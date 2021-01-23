@@ -6,8 +6,9 @@ import com.lonchi.andrej.lonchi_bakalarka.data.converters.InstructionTypeConvert
 import com.squareup.moshi.Json
 
 data class InstructionsWrapper (
-    @Json(name = "name") var name: String? = null,
-    @Json(name = "steps") @TypeConverters(InstructionTypeConverters::class) var steps: List<Instruction>? = listOf()
+    @TypeConverters(InstructionTypeConverters::class)
+    @Json(name = "steps")  var steps: List<Instruction>? = listOf(),
+    @Json(name = "name") var name: String? = null
 )
 
 data class Instruction (

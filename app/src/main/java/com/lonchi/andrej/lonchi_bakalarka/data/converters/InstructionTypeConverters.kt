@@ -13,9 +13,7 @@ class InstructionTypeConverters {
 
     @TypeConverter
     fun instructionFromString(data: String?): List<Instruction>? {
-        if (data == null) {
-            return null
-        }
+        if (data == null) return null
         val type = Types.newParameterizedType(List::class.java, Instruction::class.java)
         val adapter = moshi.adapter<List<Instruction>>(type)
         return adapter.fromJson(data)

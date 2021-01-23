@@ -20,6 +20,7 @@ class DiscoverFragment : BaseFragment<DiscoverViewModel, FragmentDiscoverBinding
     override fun initView() {
         binding?.labelDiscover?.setOnClickListener {
             viewModel.getRandomRecipes()
+            //viewModel.getRecipeDetail()
         }
     }
 

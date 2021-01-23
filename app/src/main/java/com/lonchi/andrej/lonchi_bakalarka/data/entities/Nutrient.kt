@@ -5,7 +5,8 @@ import com.lonchi.andrej.lonchi_bakalarka.data.converters.NutrientTypeConverters
 import com.squareup.moshi.Json
 
 data class NutritionWrapper (
-    @Json(name = "nutrients") @TypeConverters(NutrientTypeConverters::class) var nutrients: List<Nutrient>? = listOf()
+    @TypeConverters(NutrientTypeConverters::class)
+    @Json(name = "nutrients") var nutrients: List<Nutrient>? = listOf()
 )
 
 data class Nutrient (

@@ -13,9 +13,7 @@ class IngredientTypeConverters {
 
     @TypeConverter
     fun ingredientsFromString(data: String?): List<Ingredient>? {
-        if (data == null) {
-            return null
-        }
+        if (data == null) return null
         val type = Types.newParameterizedType(List::class.java, Ingredient::class.java)
         val adapter = moshi.adapter<List<Ingredient>>(type)
         return adapter.fromJson(data)

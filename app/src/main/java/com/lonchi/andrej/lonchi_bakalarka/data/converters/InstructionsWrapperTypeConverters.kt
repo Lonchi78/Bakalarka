@@ -13,9 +13,7 @@ class InstructionsWrapperTypeConverters {
 
     @TypeConverter
     fun instructionsWrapperFromString(data: String?): List<InstructionsWrapper>? {
-        if (data == null) {
-            return null
-        }
+        if (data == null) return null
         val type = Types.newParameterizedType(List::class.java, InstructionsWrapper::class.java)
         val adapter = moshi.adapter<List<InstructionsWrapper>>(type)
         return adapter.fromJson(data)
