@@ -4,12 +4,14 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-class FavouriteRecipe : Recipe() {
+class FavouriteRecipe : RecipeItem, Recipe() {
 
     @PrimaryKey
     var uid: String = ""
 
     var isFavourite: Boolean = true
+
+    override fun getRecipeId(): String = this.uid
 
     override fun toString(): String {
         //  TODO

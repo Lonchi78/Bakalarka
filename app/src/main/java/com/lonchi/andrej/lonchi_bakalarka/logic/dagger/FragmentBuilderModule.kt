@@ -11,6 +11,7 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.MealPlannerFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.ownRecipes.OwnRecipesFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.profile.ProfileFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeDetailFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.settings.SettingsFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -53,6 +54,9 @@ abstract class FragmentBuilderModule {
 
     @ContributesAndroidInjector(modules = [AboutModule::class])
     abstract fun contributeAboutFragment(): AboutFragment
+
+    @ContributesAndroidInjector(modules = [RecipeDetailModule::class])
+    abstract fun contributeRecipeDetailFragment(): RecipeDetailFragment
 
     @ContributesAndroidInjector(modules = [FoundIngredientsModule::class])
     abstract fun contributeFoundIngredientsBottomSheet(): FoundIngredientsBottomSheet

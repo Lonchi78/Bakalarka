@@ -38,6 +38,7 @@ import javax.inject.Singleton
             DietsModule::class,
             SettingsModule::class,
             AboutModule::class,
+            RecipeDetailModule::class,
             FoundIngredientsModule::class,
             LoginModule::class,
             MainFragmentModule::class])

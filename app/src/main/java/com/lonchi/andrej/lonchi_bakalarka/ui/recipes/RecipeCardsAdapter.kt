@@ -41,6 +41,7 @@ class RecipeCardsAdapter(
         val recipe = getItem(position)
         holder.textName.text = recipe.title
 
+        //  TODO - parse time - e.g. 75 mins -> 1 hr 15 mins
         holder.textTime.text = context.resources.getQuantityString(
                 R.plurals.recipe_time_minutes,
             recipe.readyInMinutes ?: 0,
@@ -53,12 +54,6 @@ class RecipeCardsAdapter(
             recipe.ingredients?.size ?: 0
         )
 
-        /*holder.image?.load1(recipe.image) {
-            crossfade(true)
-            crossfade(R.integer.image_cross_fade_duration)
-            placeholder(R.color.gray50)
-            error(R.color.gray50)
-        }*/
         holder.image?.load1(recipe.image) {
             placeholder(R.color.gray50)
             error(R.color.gray50)

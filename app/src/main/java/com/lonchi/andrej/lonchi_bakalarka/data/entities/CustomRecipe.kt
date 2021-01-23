@@ -4,10 +4,12 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-class CustomRecipe : Recipe() {
+class CustomRecipe : RecipeItem, Recipe() {
 
     @PrimaryKey
-    var id: String = this.idRestApi.toString()
+    var uid: String = this.idRestApi.toString()
+
+    override fun getRecipeId(): String = this.uid
 
     override fun toString(): String {
         return "Custom recipe: ${super.toString()}"

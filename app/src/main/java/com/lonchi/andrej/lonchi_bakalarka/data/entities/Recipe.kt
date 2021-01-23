@@ -11,7 +11,7 @@ import com.squareup.moshi.Json
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
-open class Recipe {
+open class Recipe : RecipeItem {
     @Json(name = "id") var idRestApi: Long = -1
     @Json(name = "title") var title: String? = null
     @Json(name = "readyInMinutes") var readyInMinutes: Int? = null
@@ -39,4 +39,6 @@ open class Recipe {
 
     @TypeConverters(InstructionsWrapperTypeConverters::class)
     @Json(name = "analyzedInstructions") var instructions: List<InstructionsWrapper>? = listOf()
+
+    override fun getRecipeId(): String = this.idRestApi.toString()
 }
