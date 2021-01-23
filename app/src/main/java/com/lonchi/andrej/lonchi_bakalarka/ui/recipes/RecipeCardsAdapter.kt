@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.lonchi.andrej.lonchi_bakalarka.R
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.Recipe
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeItem
 import coil.load as load1
 
 /**
@@ -19,17 +19,20 @@ import coil.load as load1
  * */
 class RecipeCardsAdapter(
         val context: Context,
-        val onItemClick: (Recipe) -> Unit
-) : ListAdapter<Recipe, RecipeCardsAdapter.ViewHolder>(object : DiffUtil.ItemCallback<Recipe>() {
+        val onItemClick: (RecipeItem) -> Unit
+) : ListAdapter<RecipeItem, RecipeCardsAdapter.ViewHolder>(object : DiffUtil.ItemCallback<RecipeItem>() {
 
-    //  TODO - add recipe interface, common id and params
-    override fun areItemsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
-        return oldItem.idRestApi == newItem.idRestApi
+    override fun areItemsTheSame(oldItem: RecipeItem, newItem: RecipeItem): Boolean {
+        return oldItem.getId() == newItem.getId()
     }
 
-    //  TODO - add recipe interface, common id and params
-    override fun areContentsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
-        return oldItem.title == newItem.title
+    override fun areContentsTheSame(oldItem: RecipeItem, newItem: RecipeItem): Boolean {
+        return oldItem.getId() == newItem.getId()
+                && oldItem.getCookingTime() == newItem.getCookingTime()
+                && oldItem.getIdType() == newItem.getIdType()
+                && oldItem.getImageUrl() == newItem.getImageUrl()
+                && oldItem.getName() == newItem.getName()
+                && oldItem.getNumberOfIngredients() == newItem.getNumberOfIngredients()
     }
 
 }) {
@@ -39,22 +42,22 @@ class RecipeCardsAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val recipe = getItem(position)
-        holder.textName.text = recipe.title
+        holder.textName.text = recipe.getName()
 
         //  TODO - parse time - e.g. 75 mins -> 1 hr 15 mins
         holder.textTime.text = context.resources.getQuantityString(
                 R.plurals.recipe_time_minutes,
-            recipe.readyInMinutes ?: 0,
-            recipe.readyInMinutes
+            recipe.getCookingTime(),
+            recipe.getCookingTime()
         )
 
         holder.textIngredients.text = context.resources.getQuantityString(
                 R.plurals.recipe_ingredients_pieces,
-            recipe.ingredients?.size ?: 0,
-            recipe.ingredients?.size ?: 0
+            recipe.getNumberOfIngredients(),
+            recipe.getNumberOfIngredients()
         )
 
-        holder.image?.load1(recipe.image) {
+        holder.image?.load1(recipe.getImageUrl()) {
             placeholder(R.color.gray50)
             error(R.color.gray50)
         }

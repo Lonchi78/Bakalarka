@@ -6,14 +6,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.lonchi.andrej.lonchi_bakalarka.R
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.Recipe
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeItem
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.LoadingStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentHomeBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraActivity
-import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipes.RecipeCardsAdapter
 
 /**
@@ -32,7 +31,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     private val adapterRandomRecipes by lazy {
         RecipeCardsAdapter(
             context = requireContext(),
-            onItemClick = { onRestRecipeClick(it) }
+            onItemClick = { onRecipeItemClick(it) }
         )
     }
 
@@ -64,32 +63,12 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         }
     }
 
-    private fun onRestRecipeClick(recipe: Recipe) {
-        Toast.makeText(requireContext(), "onItemClick ${recipe.title}", Toast.LENGTH_SHORT).show()
+    private fun onRecipeItemClick(recipe: RecipeItem) {
+        Toast.makeText(requireContext(), "onRecipeItemClick ${recipe.getName()}", Toast.LENGTH_SHORT).show()
         findNavController().navigate(
             HomeFragmentDirections.actionGlobalRecipeDetailFragment(
-                recipeId = recipe.getRecipeId(),
-                idType = RecipeIdTypeEnum.REST
-            )
-        )
-    }
-
-    private fun onFavouriteRecipeClick(recipe: Recipe) {
-        Toast.makeText(requireContext(), "onItemClick ${recipe.title}", Toast.LENGTH_SHORT).show()
-        findNavController().navigate(
-            HomeFragmentDirections.actionGlobalRecipeDetailFragment(
-                recipeId = recipe.getRecipeId(),
-                idType = RecipeIdTypeEnum.FAVOURITE_RECIPE
-            )
-        )
-    }
-
-    private fun onOwnRecipeClick(recipe: Recipe) {
-        Toast.makeText(requireContext(), "onItemClick ${recipe.title}", Toast.LENGTH_SHORT).show()
-        findNavController().navigate(
-            HomeFragmentDirections.actionGlobalRecipeDetailFragment(
-                recipeId = recipe.getRecipeId(),
-                idType = RecipeIdTypeEnum.OWN_RECIPE
+                recipeId = recipe.getId(),
+                idType = recipe.getIdType()
             )
         )
     }

@@ -5,6 +5,7 @@ import androidx.room.TypeConverters
 import com.lonchi.andrej.lonchi_bakalarka.data.converters.IngredientTypeConverters
 import com.lonchi.andrej.lonchi_bakalarka.data.converters.InstructionsWrapperTypeConverters
 import com.lonchi.andrej.lonchi_bakalarka.data.converters.ListOfStringsTypeConverters
+import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
 import com.squareup.moshi.Json
 
 
@@ -40,5 +41,15 @@ open class Recipe : RecipeItem {
     @TypeConverters(InstructionsWrapperTypeConverters::class)
     @Json(name = "analyzedInstructions") var instructions: List<InstructionsWrapper>? = listOf()
 
-    override fun getRecipeId(): String = this.idRestApi.toString()
+    override fun getId(): String = this.idRestApi.toString()
+
+    override fun getIdType(): RecipeIdTypeEnum = RecipeIdTypeEnum.REST
+
+    override fun getName(): String = this.title ?: ""
+
+    override fun getImageUrl(): String = this.image ?: ""
+
+    override fun getCookingTime(): Int = this.readyInMinutes ?: 0
+
+    override fun getNumberOfIngredients(): Int =this.ingredients?.size ?: 0
 }
