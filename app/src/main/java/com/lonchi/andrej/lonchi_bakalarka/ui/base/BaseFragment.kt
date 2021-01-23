@@ -116,7 +116,7 @@ abstract class BaseFragment<T, V : ViewBinding> : DaggerFragment() where T : Bas
             cancelable(false)
             view.setBackgroundColor(Color.TRANSPARENT)
 
-            val messageText = view.findViewById<TextView>(R.id.message)
+            val messageText = view.findViewById<TextView>(R.id.title)
             if (message.isNullOrEmpty()) {
                 messageText.setVisible(false)
             } else {
@@ -134,6 +134,19 @@ abstract class BaseFragment<T, V : ViewBinding> : DaggerFragment() where T : Bas
     fun showErrorSnackbar(errorMessage: String, view: View? = null) {
         LonchiSnackbar.make(context ?: return,
             errorMessage,
+            view ?: activity?.findViewById(android.R.id.content) ?: return,
+            Snackbar.LENGTH_LONG
+        )?.show()
+    }
+
+    /**
+     * Show error snackbar that is designed based on application styles
+     * @param errorMessage error message
+     * @param view represent parent layout
+     */
+    fun showErrorSnackbar(errorIdentification: ErrorIdentification, view: View? = null) {
+        LonchiSnackbar.make(context ?: return,
+            errorIdentification.message,
             view ?: activity?.findViewById(android.R.id.content) ?: return,
             Snackbar.LENGTH_LONG
         )?.show()

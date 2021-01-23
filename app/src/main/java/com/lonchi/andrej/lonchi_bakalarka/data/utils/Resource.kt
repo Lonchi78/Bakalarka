@@ -55,7 +55,7 @@ class Resource<out T> constructor(
             }
 
             return when (item.code()) {
-                BaseResponse.CODE_SUCCESS,
+                BaseResponse.CODE_SUCCESS -> success(item.body())
                 BaseResponse.CODE_UNAUTHORIZED -> error(ErrorIdentification.Authentication(errorMessage), item.body())
                 BaseResponse.CODE_NOT_FOUND -> error(ErrorIdentification.NotFound(errorMessage), item.body())
                 BaseResponse.CODE_VALIDATION_ERROR -> error(ErrorIdentification.Validation(errorMessage), item.body())

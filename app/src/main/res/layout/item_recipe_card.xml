@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/rootWhite"
+        android:clickable="true"
+        android:elevation="4dp"
+        android:focusable="true"
+        app:cardCornerRadius="@dimen/card_corner_radius">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="16dp"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:background="@color/rootGray300"
+                android:contentDescription="@null"
+                android:scaleType="fitXY"
+                android:src="@color/gray50"
+                app:layout_constraintDimensionRatio="280:160"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textName"
+                style="@style/TextHeadline4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/rootGray900"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image"
+                tools:text="British pork with naan" />
+
+            <ImageView
+                android:id="@+id/iconTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_time_16"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:contentDescription="@null"
+                app:layout_constraintTop_toBottomOf="@id/textName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:tint="@color/green500" />
+
+            <TextView
+                android:id="@+id/textTime"
+                style="@style/TextBodySmallRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/rootGray900"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@id/iconTime"
+                app:layout_constraintTop_toTopOf="@id/iconTime"
+                app:layout_constraintBottom_toBottomOf="@id/iconTime"
+                tools:text="20 mins" />
+
+            <ImageView
+                android:id="@+id/iconIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_book_16"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:contentDescription="@null"
+                app:layout_constraintTop_toBottomOf="@id/iconTime"
+                app:layout_constraintStart_toStartOf="parent"
+                app:tint="@color/green500" />
+
+            <TextView
+                android:id="@+id/textIngredients"
+                style="@style/TextBodySmallRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/rootGray900"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@id/iconIngredients"
+                app:layout_constraintTop_toTopOf="@id/iconIngredients"
+                app:layout_constraintBottom_toBottomOf="@id/iconIngredients"
+                tools:text="8 ingredients" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>
