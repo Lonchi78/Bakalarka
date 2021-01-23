@@ -16,12 +16,29 @@ class DiscoverViewModel @Inject constructor(
         Timber.d("getRandomRecipes:")
         compositeDisposable.add(
             recipesRepository.getRandomRecipes(5)
-                .subscribe({
-                    Timber.d("getRandomRecipes status: ${it.status}")
-                    Timber.d("getRandomRecipes errId: ${it.errorIdentification}")
-                    Timber.d("getRandomRecipes recipes size: ${it.data?.recipes?.size}")
-                    it.data?.recipes?.forEachIndexed { index, recipe ->
-                        Timber.d("getRandomRecipes recipe $index: $recipe")
+                .subscribe({ response ->
+                    Timber.d("getRandomRecipes status: ${response.status}")
+                    Timber.d("getRandomRecipes errId: ${response.errorIdentification}")
+                    Timber.d("getRandomRecipes recipes size: ${response.data?.recipes?.size}")
+                    response.data?.recipes?.firstOrNull()?.let {
+                        Timber.d("Random recipe: $it")
+                        Timber.d("Random recipe: ${it.title}")
+                        Timber.d("Random recipe: ${it.image}")
+                        Timber.d("- - -")
+                        Timber.d("Random recipe nutrition: ${it.nutrition?.nutrients?.size}")
+                        Timber.d("Random recipe nutrition: ${it.nutrition?.nutrients?.firstOrNull()?.name}")
+                        Timber.d("Random recipe nutrition: ${it.nutrition?.nutrients?.firstOrNull()?.amount}")
+                        Timber.d("- - -")
+                        Timber.d("Random recipe instructions: ${it.instructions?.size}")
+                        Timber.d("Random recipe instructions: ${it.instructions?.firstOrNull()?.name}")
+                        Timber.d("Random recipe instructions: ${it.instructions?.firstOrNull()?.steps?.firstOrNull()?.step}")
+                        Timber.d("Random recipe instructions: ${it.instructions?.firstOrNull()?.steps?.firstOrNull()?.number}")
+                        Timber.d("- - -")
+                        Timber.d("Random recipe ingredients: ${it.ingredients?.size}")
+                        Timber.d("Random recipe ingredients: ${it.ingredients?.firstOrNull()?.id}")
+                        Timber.d("Random recipe ingredients: ${it.ingredients?.firstOrNull()?.image}")
+                        Timber.d("Random recipe ingredients: ${it.ingredients?.firstOrNull()?.name}")
+                        Timber.d("- - -")
                     }
                 }, {
                     Timber.e("getRandomRecipes: $it")
