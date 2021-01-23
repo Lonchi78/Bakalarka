@@ -70,8 +70,8 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         Timber.d("updateUI photoUrl: ${account?.photoUrl}")
 
         if (account != null) {
-            finishAffinity()
             startActivity(MainActivity.getStartIntent(this, intent.extras))
+            finishAffinity()
         }
     }
 
