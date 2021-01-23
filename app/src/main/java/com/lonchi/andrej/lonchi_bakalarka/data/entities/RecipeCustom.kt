@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
 
 @Entity
-class CustomRecipe : RecipeItem, Recipe() {
+class RecipeCustom : RecipeItem, Recipe() {
 
     @PrimaryKey
     var uid: String = this.idRestApi.toString()

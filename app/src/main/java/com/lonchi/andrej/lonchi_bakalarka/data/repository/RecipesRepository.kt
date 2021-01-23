@@ -7,7 +7,9 @@ import com.lonchi.andrej.lonchi_bakalarka.data.repository.database.LonchiDatabas
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.preferences.SharedPreferencesInterface
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RestApi
 import com.lonchi.andrej.lonchi_bakalarka.data.base.BaseRepository
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeFavourite
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Recipe
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeCustom
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.User
 import com.lonchi.andrej.lonchi_bakalarka.data.mappers.ObjectMappers.Companion.mapToFavouriteRecipe
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RecipesResponse
@@ -27,6 +29,9 @@ import javax.inject.Inject
 interface RecipesRepository {
     val loggedUser: LiveData<Resource<User>>
 
+    fun getFavouriteRecipe(uid: String): Single<List<RecipeFavourite>>
+    fun getOwnRecipe(uid: String): Single<List<RecipeCustom>>
+
     fun addRecipeToFavourites(recipe: Recipe)
     fun deleteRecipeToFavourites(uid: String)
 
@@ -41,6 +46,14 @@ class RecipesRepositoryImpl @Inject internal constructor(
     retrofit: Retrofit,
     private val deviceTracker: DeviceTracker
 ) : BaseRepository(db, api, prefs, retrofit), RecipesRepository {
+
+    override fun getFavouriteRecipe(uid: String): Single<List<RecipeFavourite>> {
+        return db.favouriteRecipesDao().getRecipe(uid)
+    }
+
+    override fun getOwnRecipe(uid: String): Single<List<RecipeCustom>> {
+        return db.customRecipesDao().getRecipe(uid)
+    }
 
     override fun addRecipeToFavourites(recipe: Recipe) {
         db.favouriteRecipesDao().saveRecipe(recipe.mapToFavouriteRecipe(moshi))

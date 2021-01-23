@@ -3,6 +3,11 @@ package com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail
 import android.view.View
 import android.widget.Toast
 import com.lonchi.andrej.lonchi_bakalarka.R
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeItem
+import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
+import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorStatus
+import com.lonchi.andrej.lonchi_bakalarka.data.utils.LoadingStatus
+import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentRecipeDetailBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 
@@ -19,10 +24,34 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
     override val bindingInflater: (View) -> FragmentRecipeDetailBinding = { FragmentRecipeDetailBinding.bind(it) }
 
     override fun initView() {
-        arguments?.let { viewModel.recipeId = RecipeDetailFragmentArgs.fromBundle(it).recipeId }
-        arguments?.let { viewModel.recipeIdType = RecipeDetailFragmentArgs.fromBundle(it).idType }
-        Toast.makeText(requireContext(), "ID = ${viewModel.recipeId}, type = ${viewModel.recipeIdType}", Toast.LENGTH_SHORT).show()
+        handleArguments()
     }
 
-    override fun bindViewModel() = Unit
+    override fun bindViewModel() {
+        viewModel.stateRecipeDetail.observe(viewLifecycleOwner) {
+            showProgressDialog(it.status is LoadingStatus)
+
+            when (it.status) {
+                is ErrorStatus -> {
+                    //  TODO - show error status
+                    showErrorSnackbar(it.errorIdentification)
+                }
+                is SuccessStatus -> handleRecipeDetail(it.data)
+                else -> Unit
+            }
+        }
+    }
+
+    private fun handleArguments() {
+        arguments?.let {
+            viewModel.handleInputArguments(
+                recipeId = RecipeDetailFragmentArgs.fromBundle(it).recipeId,
+                recipeIdType = RecipeDetailFragmentArgs.fromBundle(it).idType
+            )
+        }
+    }
+
+    private fun handleRecipeDetail(recipe: RecipeItem?) {
+        binding?.labelToolbar?.text = recipe?.getName()
+    }
 }

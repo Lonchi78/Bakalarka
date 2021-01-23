@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
 
 @Entity
-class FavouriteRecipe : RecipeItem, Recipe() {
+class RecipeFavourite : RecipeItem, Recipe() {
 
     @PrimaryKey
     var uid: String = ""

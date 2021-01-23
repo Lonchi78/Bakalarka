@@ -34,16 +34,9 @@ class HomeViewModel @Inject constructor(
             recipesRepository.getRandomRecipes(DEFAULT_RANDOM_RECIPES)
                 .doOnSubscribe { stateRandomRecipes.postValue(Resource.loading()) }
                 .subscribe({
-                    Timber.d("getRandomRecipes status: ${it.status}")
-                    Timber.d("getRandomRecipes status: ${it.status is SuccessStatus}")
-                    Timber.d("getRandomRecipes data: ${it.data?.recipes}")
-                    Timber.d("getRandomRecipes data: ${it.data?.recipes.isNullOrEmpty()}")
-                    Timber.d("getRandomRecipes data: ${!it.data?.recipes.isNullOrEmpty()}")
                     if (it.status is SuccessStatus && !it.data?.recipes.isNullOrEmpty()) {
-                        Timber.d("getRandomRecipes: ok")
                         stateRandomRecipes.postValue(Resource.success(it.data?.recipes))
                     } else {
-                        Timber.d("getRandomRecipes: err")
                         stateRandomRecipes.postValue(Resource.error(it.errorIdentification))
                     }
                 }, {
