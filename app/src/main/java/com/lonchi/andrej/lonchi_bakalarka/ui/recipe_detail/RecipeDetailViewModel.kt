@@ -37,6 +37,8 @@ class RecipeDetailViewModel @Inject constructor(
         this.recipeIdType = recipeIdType
     }
 
+    fun addToFavourites(recipe: Recipe) = recipesRepository.addRecipeToFavourites(recipe)
+
     private fun getFavouriteRecipeDetail(uid: String) {
         compositeDisposable.add(
             recipesRepository.getFavouriteRecipe(uid)

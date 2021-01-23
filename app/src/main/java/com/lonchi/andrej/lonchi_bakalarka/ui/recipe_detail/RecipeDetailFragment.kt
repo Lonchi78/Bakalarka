@@ -3,6 +3,7 @@ package com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail
 import android.view.View
 import android.widget.Toast
 import com.lonchi.andrej.lonchi_bakalarka.R
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.Recipe
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeItem
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorStatus
@@ -10,6 +11,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.utils.LoadingStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentRecipeDetailBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
+import timber.log.Timber
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
@@ -53,5 +55,8 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
 
     private fun handleRecipeDetail(recipe: RecipeItem?) {
         binding?.labelToolbar?.text = recipe?.getName()
+        binding?.labelToolbar?.setOnClickListener {
+            viewModel.addToFavourites(recipe as? Recipe ?: return@setOnClickListener)
+        }
     }
 }
