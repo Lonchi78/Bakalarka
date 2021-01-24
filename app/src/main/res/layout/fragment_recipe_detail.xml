@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
@@ -13,68 +13,70 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="24dp">
 
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintDimensionRatio="1:1"
                 android:contentDescription="@null"
-                android:src="@color/gray500"/>
+                android:src="@color/gray200"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="3:2"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <View
                 android:id="@+id/viewBottomSheetTop"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:background="@drawable/bg_bottom_sheet_top"
-                app:layout_constraintBottom_toBottomOf="@id/image"/>
+                app:layout_constraintBottom_toBottomOf="@id/image" />
 
             <View
                 android:id="@+id/handler"
                 android:layout_width="32dp"
                 android:layout_height="4dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintTop_toTopOf="@id/viewBottomSheetTop"
-                app:layout_constraintStart_toStartOf="parent"
+                android:background="@drawable/ic_handler"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:background="@drawable/ic_handler"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/viewBottomSheetTop" />
 
             <TextView
                 android:id="@+id/textName"
                 style="@style/TextHeadline2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
                 android:lineSpacingExtra="6sp"
                 android:paddingStart="24dp"
                 android:paddingEnd="24dp"
-                android:gravity="center"
-                app:layout_constraintTop_toTopOf="@id/viewBottomSheetTop"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:text="Hard-Cooked Steak with Crisp Anchovy Crumbs"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/viewBottomSheetTop"
+                tools:text="Hard-Cooked Steak with Crisp Anchovy Crumbs" />
 
             <RelativeLayout
                 android:id="@+id/wrapperCookingTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textName"
                 android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textName"
                 tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:id="@+id/iconCookingTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_time_16"
-                    android:contentDescription="@null"
                     android:layout_alignTop="@id/textCookingTime"
                     android:layout_alignBottom="@id/textCookingTime"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_time_16"
                     app:tint="@color/gray700" />
 
                 <TextView
@@ -83,71 +85,67 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:textColor="@color/gray700"
                     android:layout_toEndOf="@id/iconCookingTime"
-                    tools:text="45 mins"/>
+                    android:textColor="@color/gray700"
+                    tools:text="45 mins" />
 
             </RelativeLayout>
 
-            <com.google.android.material.progressindicator.CircularProgressIndicator
+            <com.mikhaellopez.circularprogressbar.CircularProgressBar
                 android:id="@+id/progressBarCalories"
                 style="@style/ProgressBarCircular"
-                android:layout_marginTop="32dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="6dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintDimensionRatio="h,1:1"
-                app:layout_constraintHorizontal_chainStyle="spread"
-                app:layout_constraintTop_toBottomOf="@id/wrapperCookingTime"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toStartOf="@id/progressBarProtein"
-                tools:progress="75"/>
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/wrapperCookingTime" />
 
-            <com.google.android.material.progressindicator.CircularProgressIndicator
+            <com.mikhaellopez.circularprogressbar.CircularProgressBar
                 android:id="@+id/progressBarProtein"
                 style="@style/ProgressBarCircular"
-                android:layout_marginTop="32dp"
-                android:layout_marginStart="6dp"
-                android:layout_marginEnd="6dp"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintDimensionRatio="h,1:1"
-                app:layout_constraintHorizontal_chainStyle="spread"
-                app:layout_constraintTop_toBottomOf="@id/wrapperCookingTime"
-                app:layout_constraintStart_toEndOf="@id/progressBarCalories"
+                android:layout_height="0dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="6dp"
+                app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toStartOf="@id/progressBarCarbs"
-                tools:progress="75"/>
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toEndOf="@id/progressBarCalories"
+                app:layout_constraintTop_toBottomOf="@id/wrapperCookingTime" />
 
-            <com.google.android.material.progressindicator.CircularProgressIndicator
+            <com.mikhaellopez.circularprogressbar.CircularProgressBar
                 android:id="@+id/progressBarCarbs"
                 style="@style/ProgressBarCircular"
-                android:layout_marginTop="32dp"
-                android:layout_marginStart="6dp"
-                android:layout_marginEnd="6dp"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintDimensionRatio="h,1:1"
-                app:layout_constraintHorizontal_chainStyle="spread"
-                app:layout_constraintTop_toBottomOf="@id/wrapperCookingTime"
-                app:layout_constraintStart_toEndOf="@id/progressBarProtein"
+                android:layout_height="0dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="6dp"
+                app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toStartOf="@id/progressBarFat"
-                tools:progress="75"/>
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toEndOf="@id/progressBarProtein"
+                app:layout_constraintTop_toBottomOf="@id/wrapperCookingTime" />
 
-            <com.google.android.material.progressindicator.CircularProgressIndicator
+            <com.mikhaellopez.circularprogressbar.CircularProgressBar
                 android:id="@+id/progressBarFat"
                 style="@style/ProgressBarCircular"
-                android:layout_marginTop="32dp"
-                android:layout_marginStart="6dp"
-                android:layout_marginEnd="16dp"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintDimensionRatio="h,1:1"
-                app:layout_constraintHorizontal_chainStyle="spread"
-                app:layout_constraintTop_toBottomOf="@id/wrapperCookingTime"
-                app:layout_constraintStart_toEndOf="@id/progressBarCarbs"
+                android:layout_height="0dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:progress="75"/>
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toEndOf="@id/progressBarCarbs"
+                app:layout_constraintTop_toBottomOf="@id/wrapperCookingTime" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -170,9 +168,9 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
                 android:background="@drawable/bg_toolbar_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/iconBack"
@@ -182,10 +180,10 @@
                 android:contentDescription="@null"
                 android:src="@drawable/ic_back_24"
                 android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/iconBackBackground"
                 app:layout_constraintEnd_toEndOf="@id/iconBackBackground"
                 app:layout_constraintStart_toStartOf="@id/iconBackBackground"
-                app:layout_constraintBottom_toBottomOf="@id/iconBackBackground"
-                app:layout_constraintTop_toTopOf="@id/iconBackBackground"/>
+                app:layout_constraintTop_toTopOf="@id/iconBackBackground" />
 
             <View
                 android:id="@+id/iconMoreBackground"
@@ -193,9 +191,9 @@
                 android:layout_height="40dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/bg_toolbar_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/iconMore"
@@ -203,13 +201,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@null"
+                android:rotation="90"
                 android:src="@drawable/ic_more_24"
                 android:tint="@color/white"
-                android:rotation="90"
+                app:layout_constraintBottom_toBottomOf="@id/iconMoreBackground"
                 app:layout_constraintEnd_toEndOf="@id/iconMoreBackground"
                 app:layout_constraintStart_toStartOf="@id/iconMoreBackground"
-                app:layout_constraintBottom_toBottomOf="@id/iconMoreBackground"
-                app:layout_constraintTop_toTopOf="@id/iconMoreBackground"/>
+                app:layout_constraintTop_toTopOf="@id/iconMoreBackground" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

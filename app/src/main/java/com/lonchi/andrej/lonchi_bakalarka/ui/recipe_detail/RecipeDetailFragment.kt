@@ -2,6 +2,7 @@ package com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail
 
 import android.view.View
 import android.widget.Toast
+import coil.load
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Recipe
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeItem
@@ -58,7 +59,16 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
     }
 
     private fun handleRecipeDetail(recipe: RecipeItem?) {
+        binding?.image?.load(recipe?.getImageUrl()) {
+            placeholder(R.color.gray200)
+            error(R.color.gray200)
+        }
         binding?.textName?.text = recipe?.getName()
+
+        binding?.progressBarCalories?.progress = (0..100).random().toFloat()
+        binding?.progressBarProtein?.progress = (0..100).random().toFloat()
+        binding?.progressBarCarbs?.progress = (0..100).random().toFloat()
+        binding?.progressBarFat?.progress = (0..100).random().toFloat()
 
         /*binding?.labelToolbar?.setOnClickListener {
             viewModel.addToFavourites(recipe as? Recipe ?: return@setOnClickListener)

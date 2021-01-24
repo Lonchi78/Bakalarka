@@ -185,6 +185,9 @@ dependencies {
 
     //  Circle image view
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //  Circular progress bar
+    implementation 'com.mikhaellopez:circularprogressbar:3.0.3'
 }
 
 static def versionCodeFromDate() {
