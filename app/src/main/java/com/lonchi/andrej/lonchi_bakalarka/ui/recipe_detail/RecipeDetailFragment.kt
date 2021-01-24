@@ -13,7 +13,6 @@ import com.lonchi.andrej.lonchi_bakalarka.data.utils.LoadingStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentRecipeDetailBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
-import com.lonchi.andrej.lonchi_bakalarka.ui.recipes.RecipeCardsAdapter
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
@@ -30,6 +29,11 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
 
     private val adapterIngredients by lazy {
         IngredientRowsAdapter(
+            context = requireContext()
+        )
+    }
+    private val adapterInstructions by lazy {
+        InstructionRowsAdapter(
             context = requireContext()
         )
     }
@@ -67,7 +71,18 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
     }
 
     private fun handleRecipeDetail(recipe: RecipeItem?) {
-        //  Header
+        setupRecipeHeader(recipe)
+        setupRecipeNutritions(recipe)
+        setupRecipeActionButton(recipe)
+        setupRecipeIngredients(recipe)
+        setupRecipeInstructions(recipe)
+        setupRecipeCuisines(recipe)
+        setupRecipeAllergens(recipe)
+        setupRecipeDiets(recipe)
+        setupRecipeSource(recipe)
+    }
+
+    private fun setupRecipeHeader(recipe: RecipeItem?) {
         binding?.image?.load(recipe?.getImageUrl()) {
             placeholder(R.color.gray200)
             error(R.color.gray200)
@@ -78,8 +93,9 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
             recipe?.getCookingTime() ?: 0,
             recipe?.getCookingTime()
         )
+    }
 
-        //  Progress bars
+    private fun setupRecipeNutritions(recipe: RecipeItem?) {
         binding?.textValueCalories?.text = getString(
             R.string.nutrition_value_calories,
             recipe?.getAllNutritions()?.getCalories()?.amount?.toInt() ?: 0
@@ -105,8 +121,9 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
             recipe?.getAllNutritions()?.getCarbohydrates()?.percentOfDailyNeeds ?: 0f
         binding?.progressBarFat?.progress =
             recipe?.getAllNutritions()?.getFat()?.percentOfDailyNeeds ?: 0f
+    }
 
-        //  Action buttons
+    private fun setupRecipeActionButton(recipe: RecipeItem?) {
         binding?.buttonLike?.setOnClickListener {
             //  TODO - detect if is liked or not, handle icon
             binding?.buttonLike?.icon =
@@ -116,12 +133,37 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
         binding?.buttonShare?.setOnClickListener {
             Toast.makeText(requireContext(), "TODO - share", Toast.LENGTH_SHORT).show()
         }
+    }
 
-        //  Ingredients
+    private fun setupRecipeIngredients(recipe: RecipeItem?) {
         binding?.chipCounterIngredients?.text = recipe?.getNumberOfIngredients().toString()
         binding?.recyclerIngredients?.adapter = adapterIngredients
         binding?.recyclerIngredients?.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         adapterIngredients.submitList(recipe?.getAllIngredients())
+    }
+
+    private fun setupRecipeInstructions(recipe: RecipeItem?) {
+        binding?.chipCounterInstructions?.text = recipe?.getNumberOfInstructions().toString()
+        binding?.recyclerInstructions?.adapter = adapterInstructions
+        binding?.recyclerInstructions?.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        adapterInstructions.submitList(recipe?.getAllInstructions()?.sortedBy { it.step })
+    }
+
+    private fun setupRecipeCuisines(recipe: RecipeItem?) {
+        //  TODO
+    }
+
+    private fun setupRecipeAllergens(recipe: RecipeItem?) {
+        //  TODO
+    }
+
+    private fun setupRecipeDiets(recipe: RecipeItem?) {
+        //  TODO
+    }
+
+    private fun setupRecipeSource(recipe: RecipeItem?) {
+        //  TODO
     }
 }

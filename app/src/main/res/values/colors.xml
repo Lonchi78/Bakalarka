@@ -133,6 +133,8 @@
 	<color name="gray200">#E5E6EA</color>
 	<color name="gray50">#F5F5F5</color>
 
+	<color name="transparent">#00000000</color>
+
 	<color name="editTextBorder">#BCBDB7</color>
 	<color name="editTextText">#868687</color>
 

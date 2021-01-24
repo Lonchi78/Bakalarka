@@ -9,7 +9,9 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:overScrollMode="never">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -295,45 +297,45 @@
                 style="@style/ContainedButtonWithStartIcon"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="40dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="8dp"
-                android:text="@string/button_like_recipe"
-                app:rippleColor="@color/red100"
                 android:backgroundTint="@color/red50"
+                android:text="@string/button_like_recipe"
                 app:icon="@drawable/ic_like_empty_20"
                 app:iconTint="@color/red500"
-                app:layout_constraintTop_toBottomOf="@id/wrapperProgressBars"
+                app:layout_constraintEnd_toStartOf="@id/buttonShare"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/buttonShare"/>
+                app:layout_constraintTop_toBottomOf="@id/wrapperProgressBars"
+                app:rippleColor="@color/red100" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonShare"
                 style="@style/ContainedButtonWithStartIcon"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginStart="8dp"
-                android:text="@string/button_share_recipe"
-                app:rippleColor="@color/gray200"
                 android:backgroundTint="@color/gray50"
+                android:text="@string/button_share_recipe"
                 app:icon="@drawable/ic_share_20"
                 app:iconTint="@color/gray900"
-                app:layout_constraintTop_toBottomOf="@id/wrapperProgressBars"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/buttonLike"/>
+                app:layout_constraintStart_toEndOf="@id/buttonLike"
+                app:layout_constraintTop_toBottomOf="@id/wrapperProgressBars"
+                app:rippleColor="@color/gray200" />
 
             <TextView
                 android:id="@+id/labelIngredients"
                 style="@style/TextHeadline3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_ingredients"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="40dp"
+                android:text="@string/label_ingredients"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/buttonLike"/>
+                app:layout_constraintTop_toBottomOf="@id/buttonLike" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipCounterIngredients"
@@ -350,15 +352,51 @@
                 android:id="@+id/recyclerIngredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipToPadding="false"
-                android:overScrollMode="never"
                 android:layout_marginTop="16dp"
+                android:clipToPadding="false"
                 android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@id/labelIngredients"
-                app:layout_constraintStart_toStartOf="parent"
+                android:overScrollMode="never"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:listitem="@layout/item_ingredient_row"
-                tools:itemCount="4"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelIngredients"
+                tools:itemCount="4"
+                tools:listitem="@layout/item_ingredient_row" />
+
+            <TextView
+                android:id="@+id/labelInstructions"
+                style="@style/TextHeadline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="36dp"
+                android:text="@string/label_instructions"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recyclerIngredients" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCounterInstructions"
+                style="@style/ChipCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/labelInstructions"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/labelInstructions"
+                tools:text="4" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerInstructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:overScrollMode="never"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelInstructions"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_instruction_row" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
