@@ -27,6 +27,10 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
 
     override fun initView() {
         handleArguments()
+
+        binding?.iconBack?.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 
     override fun bindViewModel() {
@@ -54,9 +58,10 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
     }
 
     private fun handleRecipeDetail(recipe: RecipeItem?) {
-        binding?.labelToolbar?.text = recipe?.getName()
-        binding?.labelToolbar?.setOnClickListener {
+        binding?.textName?.text = recipe?.getName()
+
+        /*binding?.labelToolbar?.setOnClickListener {
             viewModel.addToFavourites(recipe as? Recipe ?: return@setOnClickListener)
-        }
+        }*/
     }
 }
