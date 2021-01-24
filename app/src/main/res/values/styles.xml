@@ -463,9 +463,14 @@
 	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 	<!-- * * * * * * * * * * * Circular progress bar * * * * * * * * * * * * * * -->
 
-	<style name="ProgressBarCircular">
+	<style name="ProgressBarCircular" parent="Widget.MaterialComponents.CircularProgressIndicator">
 		<item name="android:indeterminateOnly">false</item>
-		<item name="android:progressDrawable">@drawable/progress_bar_circle</item>
+		<item name="trackThickness">4dp</item>
+		<item name="trackCornerRadius">8dp</item>
+		<item name="trackColor">@color/gray50</item>
+		<item name="indicatorColor">@color/green500</item>
+		<item name="android:max">100</item>
+		<item name="indicatorDirectionCircular">clockwise</item>
 	</style>
 
 	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->

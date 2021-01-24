@@ -90,20 +90,64 @@
             </RelativeLayout>
 
             <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/circularProgressBar"
-                android:layout_marginTop="24dp"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:trackThickness="4dp"
-                app:trackCornerRadius="8dp"
-                app:trackColor="@color/gray50"
-                app:indicatorColor="@color/green500"
-                android:max="100"
-                android:progress="70"
-                app:indicatorDirectionCircular="clockwise"
+                android:id="@+id/progressBarCalories"
+                style="@style/ProgressBarCircular"
+                android:layout_marginTop="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintDimensionRatio="h,1:1"
+                app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintTop_toBottomOf="@id/wrapperCookingTime"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toStartOf="@id/progressBarProtein"
+                tools:progress="75"/>
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progressBarProtein"
+                style="@style/ProgressBarCircular"
+                android:layout_marginTop="32dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintDimensionRatio="h,1:1"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintTop_toBottomOf="@id/wrapperCookingTime"
+                app:layout_constraintStart_toEndOf="@id/progressBarCalories"
+                app:layout_constraintEnd_toStartOf="@id/progressBarCarbs"
+                tools:progress="75"/>
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progressBarCarbs"
+                style="@style/ProgressBarCircular"
+                android:layout_marginTop="32dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintDimensionRatio="h,1:1"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintTop_toBottomOf="@id/wrapperCookingTime"
+                app:layout_constraintStart_toEndOf="@id/progressBarProtein"
+                app:layout_constraintEnd_toStartOf="@id/progressBarFat"
+                tools:progress="75"/>
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progressBarFat"
+                style="@style/ProgressBarCircular"
+                android:layout_marginTop="32dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="16dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintDimensionRatio="h,1:1"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintTop_toBottomOf="@id/wrapperCookingTime"
+                app:layout_constraintStart_toEndOf="@id/progressBarCarbs"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:progress="75"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
