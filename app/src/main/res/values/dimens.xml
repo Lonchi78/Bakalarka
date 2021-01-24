@@ -63,4 +63,7 @@
 	<dimen name="corner_radius_dialog_progress">8dp</dimen>
 	<dimen name="corner_radius_dialog">8dp</dimen>
 
+	<!-- - - - - - - - - - Dialog - - - - - - - - - - -->
+	<dimen name="ingredient_image_card_corner_radius">4dp</dimen>
+
 </resources>
