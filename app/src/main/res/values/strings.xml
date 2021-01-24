@@ -14,6 +14,17 @@
 	<!--	Home	-->
 	<string name="home_title">Home</string>
 
+	<plurals name="recipe_time_minutes">
+		<item quantity="one">%d min</item>
+		<item quantity="other">%d mins</item>
+	</plurals>
+
+	<plurals name="recipe_ingredients_pieces">
+		<item quantity="one">%d ingredient</item>
+		<item quantity="other">%d ingredients</item>
+	</plurals>
+
+
 	<!--	Discover	-->
 	<string name="discover_title">Discover</string>
 
@@ -64,16 +75,14 @@
 	<!--	Privacy policy		-->
 	<string name="privacy_policy_title">Privacy policy</string>
 
-	<!--	Privacy policy		-->
-	<plurals name="recipe_time_minutes">
-		<item quantity="one">%d min</item>
-		<item quantity="other">%d mins</item>
-	</plurals>
-
-	<plurals name="recipe_ingredients_pieces">
-		<item quantity="one">%d ingredient</item>
-		<item quantity="other">%d ingredients</item>
-	</plurals>
-
+	<!--	Recipe detail		-->
+	<string name="nutrition_name_calories">Calories</string>
+	<string name="nutrition_name_fat">Fat</string>
+	<string name="nutrition_name_carbs">Carbs</string>
+	<string name="nutrition_name_protein">Protein</string>
+	<string name="nutrition_value_calories">%d cal</string>
+	<string name="nutrition_value_fat">%d g</string>
+	<string name="nutrition_value_carbs">%d g</string>
+	<string name="nutrition_value_protein">%d g</string>
 
 </resources>

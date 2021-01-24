@@ -21,9 +21,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:contentDescription="@null"
-                android:src="@color/gray200"
                 android:scaleType="centerCrop"
-                app:layout_constraintDimensionRatio="3:2"
+                android:src="@color/gray200"
+                app:layout_constraintDimensionRatio="4:3"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <View
@@ -91,61 +91,205 @@
 
             </RelativeLayout>
 
-            <com.mikhaellopez.circularprogressbar.CircularProgressBar
-                android:id="@+id/progressBarCalories"
-                style="@style/ProgressBarCircular"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+            <LinearLayout
+                android:id="@+id/wrapperProgressBars"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="6dp"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toStartOf="@id/progressBarProtein"
-                app:layout_constraintHorizontal_chainStyle="spread"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/wrapperCookingTime" />
-
-            <com.mikhaellopez.circularprogressbar.CircularProgressBar
-                android:id="@+id/progressBarProtein"
-                style="@style/ProgressBarCircular"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="6dp"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toStartOf="@id/progressBarCarbs"
-                app:layout_constraintHorizontal_chainStyle="spread"
-                app:layout_constraintStart_toEndOf="@id/progressBarCalories"
-                app:layout_constraintTop_toBottomOf="@id/wrapperCookingTime" />
-
-            <com.mikhaellopez.circularprogressbar.CircularProgressBar
-                android:id="@+id/progressBarCarbs"
-                style="@style/ProgressBarCircular"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="6dp"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toStartOf="@id/progressBarFat"
-                app:layout_constraintHorizontal_chainStyle="spread"
-                app:layout_constraintStart_toEndOf="@id/progressBarProtein"
-                app:layout_constraintTop_toBottomOf="@id/wrapperCookingTime" />
-
-            <com.mikhaellopez.circularprogressbar.CircularProgressBar
-                android:id="@+id/progressBarFat"
-                style="@style/ProgressBarCircular"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_chainStyle="spread"
-                app:layout_constraintStart_toEndOf="@id/progressBarCarbs"
-                app:layout_constraintTop_toBottomOf="@id/wrapperCookingTime" />
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:weightSum="4"
+                app:layout_constraintTop_toBottomOf="@id/wrapperCookingTime">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1">
+
+                    <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                        android:id="@+id/progressBarCalories"
+                        style="@style/ProgressBarCircular"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textValueCalories"
+                        style="@style/TextNutritionValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:paddingBottom="2dp"
+                        app:layout_constraintBottom_toTopOf="@id/labelNameCalories"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        tools:text="1230 cal" />
+
+                    <TextView
+                        android:id="@+id/labelNameCalories"
+                        style="@style/TextNutritionName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/nutrition_name_calories"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textValueCalories"
+                        app:layout_constraintVertical_chainStyle="packed" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1">
+
+                    <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                        android:id="@+id/progressBarProtein"
+                        style="@style/ProgressBarCircular"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textValueProtein"
+                        style="@style/TextNutritionValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:paddingBottom="2dp"
+                        app:layout_constraintBottom_toTopOf="@id/labelNameProtein"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        tools:text="23 g" />
+
+                    <TextView
+                        android:id="@+id/labelNameProtein"
+                        style="@style/TextNutritionName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/nutrition_name_protein"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textValueProtein"
+                        app:layout_constraintVertical_chainStyle="packed" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1">
+
+                    <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                        android:id="@+id/progressBarCarbs"
+                        style="@style/ProgressBarCircular"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textValueCarbs"
+                        style="@style/TextNutritionValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:paddingBottom="2dp"
+                        app:layout_constraintBottom_toTopOf="@id/labelNameCarbs"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        tools:text="107 g" />
+
+                    <TextView
+                        android:id="@+id/labelNameCarbs"
+                        style="@style/TextNutritionName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/nutrition_name_carbs"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textValueCarbs"
+                        app:layout_constraintVertical_chainStyle="packed" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1">
+
+                    <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                        android:id="@+id/progressBarFat"
+                        style="@style/ProgressBarCircular"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textValueFat"
+                        style="@style/TextNutritionValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:paddingBottom="2dp"
+                        app:layout_constraintBottom_toTopOf="@id/labelNameFat"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        tools:text="12 g" />
+
+                    <TextView
+                        android:id="@+id/labelNameFat"
+                        style="@style/TextNutritionName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/nutrition_name_fat"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textValueFat"
+                        app:layout_constraintVertical_chainStyle="packed" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

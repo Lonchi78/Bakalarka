@@ -64,11 +64,21 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
             error(R.color.gray200)
         }
         binding?.textName?.text = recipe?.getName()
+        binding?.textCookingTime?.text = resources.getQuantityString(
+            R.plurals.recipe_time_minutes,
+            recipe?.getCookingTime() ?: 0,
+            recipe?.getCookingTime()
+        )
 
-        binding?.progressBarCalories?.progress = (0..100).random().toFloat()
-        binding?.progressBarProtein?.progress = (0..100).random().toFloat()
-        binding?.progressBarCarbs?.progress = (0..100).random().toFloat()
-        binding?.progressBarFat?.progress = (0..100).random().toFloat()
+        binding?.textValueCalories?.text = getString(R.string.nutrition_value_calories, recipe?.getNutritions()?.getCalories()?.amount?.toInt() ?: 0)
+        binding?.textValueProtein?.text = getString(R.string.nutrition_value_protein, recipe?.getNutritions()?.getProtein()?.amount?.toInt() ?: 0)
+        binding?.textValueCarbs?.text = getString(R.string.nutrition_value_carbs, recipe?.getNutritions()?.getCarbohydrates()?.amount?.toInt() ?: 0)
+        binding?.textValueFat?.text = getString(R.string.nutrition_value_fat, recipe?.getNutritions()?.getFat()?.amount?.toInt() ?: 0)
+
+        binding?.progressBarCalories?.progress = recipe?.getNutritions()?.getCalories()?.percentOfDailyNeeds ?: 0f
+        binding?.progressBarProtein?.progress = recipe?.getNutritions()?.getProtein()?.percentOfDailyNeeds ?: 0f
+        binding?.progressBarCarbs?.progress = recipe?.getNutritions()?.getCarbohydrates()?.percentOfDailyNeeds ?: 0f
+        binding?.progressBarFat?.progress = recipe?.getNutritions()?.getFat()?.percentOfDailyNeeds ?: 0f
 
         /*binding?.labelToolbar?.setOnClickListener {
             viewModel.addToFavourites(recipe as? Recipe ?: return@setOnClickListener)

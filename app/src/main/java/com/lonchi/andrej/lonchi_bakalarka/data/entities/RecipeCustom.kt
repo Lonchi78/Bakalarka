@@ -25,4 +25,6 @@ class RecipeCustom : RecipeItem, Recipe() {
     override fun getCookingTime(): Int = this.readyInMinutes ?: 0
 
     override fun getNumberOfIngredients(): Int =this.ingredients?.size ?: 0
+
+    override fun getNutritions(): NutritionWrapper? = this.nutrition
 }

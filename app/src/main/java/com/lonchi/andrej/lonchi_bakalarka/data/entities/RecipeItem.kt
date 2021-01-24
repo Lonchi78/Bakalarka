@@ -26,4 +26,6 @@ interface RecipeItem {
 
     fun getNumberOfIngredients(): Int
 
+    fun getNutritions(): NutritionWrapper?
+
 }
