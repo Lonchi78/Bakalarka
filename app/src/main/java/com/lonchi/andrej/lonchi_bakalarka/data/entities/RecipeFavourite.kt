@@ -29,5 +29,11 @@ class RecipeFavourite : RecipeItem, Recipe() {
 
     override fun getNumberOfIngredients(): Int =this.ingredients?.size ?: 0
 
-    override fun getNutritions(): NutritionWrapper? = this.nutrition
+    override fun getNumberOfInstructions(): Int = this.instructions?.firstOrNull()?.steps?.size ?: 0
+
+    override fun getAllNutritions(): NutritionWrapper? = this.nutrition
+
+    override fun getAllIngredients(): List<Ingredient>? = this.ingredients
+
+    override fun getAllInstructions(): List<Instruction>? = this.instructions?.firstOrNull()?.steps
 }

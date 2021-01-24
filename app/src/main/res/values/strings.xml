@@ -84,5 +84,13 @@
 	<string name="nutrition_value_fat">%d g</string>
 	<string name="nutrition_value_carbs">%d g</string>
 	<string name="nutrition_value_protein">%d g</string>
+	<string name="button_like_recipe">Like it</string>
+	<string name="button_dislike_recipe">Don\'t like it</string>
+	<string name="button_share_recipe">Share it</string>
+	<string name="label_ingredients">Ingredients</string>
+	<string name="label_instructions">Instructions</string>
+	<string name="label_allergens">Allergens</string>
+	<string name="label_diets">Diets</string>
+	<string name="label_source">Source</string>
 
 </resources>

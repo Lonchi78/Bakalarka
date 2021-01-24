@@ -196,7 +196,7 @@
 	<style name="ContainedButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:textAppearance">@style/TextContainedButton</item>
+		<item name="android:textAppearance">@style/TextActionButton</item>
 		<item name="android:textColor">@color/text_color_button_contained_states</item>
 		<item name="android:backgroundTint">@color/surface_button_contained_states</item>
 		<item name="rippleColor">@color/btnPrimaryPressedBackgroundColor</item>
@@ -228,12 +228,14 @@
 	</style>
 
 	<style name="ContainedButtonWithStartIcon" parent="ContainedButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">40dp</item>
 		<item name="android:paddingStart">12dp</item>
 		<item name="android:paddingEnd">16dp</item>
 		<item name="android:paddingTop">10dp</item>
 		<item name="android:paddingBottom">10dp</item>
 		<item name="iconPadding">12dp</item>
-		<item name="iconGravity">start</item>
+		<item name="iconGravity">textStart</item>
 		<item name="iconTint">@color/icon_color_contained_button_states</item>
 	</style>
 

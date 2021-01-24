@@ -290,6 +290,61 @@
 
             </LinearLayout>
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonLike"
+                style="@style/ContainedButtonWithStartIcon"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/button_like_recipe"
+                app:rippleColor="@color/red100"
+                android:backgroundTint="@color/red50"
+                app:icon="@drawable/ic_like_empty_20"
+                app:iconTint="@color/red500"
+                app:layout_constraintTop_toBottomOf="@id/wrapperProgressBars"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/buttonShare"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonShare"
+                style="@style/ContainedButtonWithStartIcon"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/button_share_recipe"
+                app:rippleColor="@color/gray200"
+                android:backgroundTint="@color/gray50"
+                app:icon="@drawable/ic_share_20"
+                app:iconTint="@color/gray900"
+                app:layout_constraintTop_toBottomOf="@id/wrapperProgressBars"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/buttonLike"/>
+
+            <TextView
+                android:id="@+id/labelIngredients"
+                style="@style/TextHeadline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_ingredients"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/buttonLike"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCounterIngredients"
+                style="@style/ChipCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/labelIngredients"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/labelIngredients"
+                tools:text="4" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

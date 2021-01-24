@@ -28,9 +28,9 @@
 	<dimen name="corner_radius_text_select">8dp</dimen>
 
 	<!-- - - - - - - Buttons - - - - - - -->
-	<dimen name="corner_radius_button_contained">18dp</dimen>
-	<dimen name="corner_radius_button_outlined">18dp</dimen>
-	<dimen name="corner_radius_button_text">18dp</dimen>
+	<dimen name="corner_radius_button_contained">12dp</dimen>
+	<dimen name="corner_radius_button_outlined">12dp</dimen>
+	<dimen name="corner_radius_button_text">12dp</dimen>
 	<dimen name="inset_button_contained">0dp</dimen>
 	<dimen name="inset_button_outlined">0dp</dimen>
 	<dimen name="inset_button_text">0dp</dimen>

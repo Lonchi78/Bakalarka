@@ -56,7 +56,7 @@ class RecipesRepositoryImpl @Inject internal constructor(
     }
 
     override fun addRecipeToFavourites(recipe: Recipe) {
-        db.favouriteRecipesDao().saveRecipe(recipe.mapToFavouriteRecipe(moshi))
+        db.favouriteRecipesDao().insert(recipe.mapToFavouriteRecipe(moshi))
         //  TODO - add to firebase db
     }
 
