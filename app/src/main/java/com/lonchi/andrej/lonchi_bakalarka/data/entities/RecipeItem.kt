@@ -1,12 +1,6 @@
 package com.lonchi.andrej.lonchi_bakalarka.data.entities
 
-import androidx.room.Embedded
-import androidx.room.TypeConverters
-import com.lonchi.andrej.lonchi_bakalarka.data.converters.IngredientTypeConverters
-import com.lonchi.andrej.lonchi_bakalarka.data.converters.InstructionsWrapperTypeConverters
-import com.lonchi.andrej.lonchi_bakalarka.data.converters.ListOfStringsTypeConverters
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
-import com.squareup.moshi.Json
 
 
 /**
@@ -33,5 +27,11 @@ interface RecipeItem {
     fun getAllIngredients(): List<Ingredient>?
 
     fun getAllInstructions(): List<Instruction>?
+
+    fun getAllDiets(): List<String?>?
+
+    fun getAllCuisines(): List<String?>?
+
+    fun getRecipeSourceUrl(): String?
 
 }

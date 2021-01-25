@@ -33,4 +33,10 @@ class RecipeCustom : RecipeItem, Recipe() {
     override fun getAllIngredients(): List<Ingredient>? = this.ingredients
 
     override fun getAllInstructions(): List<Instruction>? = this.instructions?.firstOrNull()?.steps
+
+    override fun getAllDiets(): List<String?>? = this.diets
+
+    override fun getAllCuisines(): List<String?>? = this.cuisines
+
+    override fun getRecipeSourceUrl(): String? = this.sourceUrl
 }

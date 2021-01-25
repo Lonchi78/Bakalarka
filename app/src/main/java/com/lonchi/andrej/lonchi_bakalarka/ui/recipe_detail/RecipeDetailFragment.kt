@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
+import com.google.android.material.chip.Chip
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Recipe
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeItem
@@ -12,6 +13,8 @@ import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.LoadingStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentRecipeDetailBinding
+import com.lonchi.andrej.lonchi_bakalarka.logic.util.openWebUrl
+import com.lonchi.andrej.lonchi_bakalarka.logic.util.setVisible
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 
 /**
@@ -152,7 +155,26 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
     }
 
     private fun setupRecipeCuisines(recipe: RecipeItem?) {
-        //  TODO
+        if (recipe?.getAllCuisines()?.isNullOrEmpty() == null ||
+            recipe.getAllCuisines()?.isNullOrEmpty() == true ) {
+            binding?.labelCuisines?.setVisible(false)
+            binding?.chipGroupCuisines?.setVisible(false)
+        } else {
+            binding?.labelCuisines?.setVisible(true)
+            binding?.chipGroupCuisines?.setVisible(true)
+
+            recipe.getAllCuisines()?.forEach {
+                binding?.chipGroupCuisines?.addView(
+                    (layoutInflater.inflate(
+                        R.layout.chip_single_choice,
+                        binding?.chipGroupCuisines,
+                        false
+                    ) as Chip).apply {
+                        text = it
+                    }
+                )
+            }
+        }
     }
 
     private fun setupRecipeAllergens(recipe: RecipeItem?) {
@@ -160,10 +182,34 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
     }
 
     private fun setupRecipeDiets(recipe: RecipeItem?) {
-        //  TODO
+        if (recipe?.getAllDiets()?.isNullOrEmpty() == null ||
+            recipe.getAllDiets()?.isNullOrEmpty() == true ) {
+            binding?.labelDiets?.setVisible(false)
+            binding?.chipGroupDiets?.setVisible(false)
+        } else {
+            binding?.labelDiets?.setVisible(true)
+            binding?.chipGroupDiets?.setVisible(true)
+
+            recipe.getAllDiets()?.forEach {
+                binding?.chipGroupDiets?.addView(
+                    (layoutInflater.inflate(
+                        R.layout.chip_single_choice,
+                        binding?.chipGroupDiets,
+                        false
+                    ) as Chip).apply {
+                        text = it
+                    }
+                )
+            }
+        }
     }
 
     private fun setupRecipeSource(recipe: RecipeItem?) {
-        //  TODO
+        binding?.labelSource?.setVisible(recipe?.getRecipeSourceUrl() != null)
+        binding?.textSource?.setVisible(recipe?.getRecipeSourceUrl() != null)
+        binding?.textSource?.text = recipe?.getRecipeSourceUrl()
+        binding?.textSource?.setOnClickListener {
+            requireContext().openWebUrl(recipe?.getRecipeSourceUrl() ?: return@setOnClickListener)
+        }
     }
 }
