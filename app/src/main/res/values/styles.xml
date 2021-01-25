@@ -465,6 +465,31 @@
 		<item name="chipEndPadding">12dp</item>
 	</style>
 
+	<style name="ChipChoiceClickable" parent="@style/Widget.MaterialComponents.Chip.Choice">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:minHeight">32dp</item>
+		<item name="android:background">@color/white</item>
+		<item name="android:checked">false</item>
+		<item name="android:paddingTop">8dp</item>
+		<item name="android:paddingBottom">8dp</item>
+		<item name="android:checkable">false</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:textAppearance">@style/TextChip</item>
+		<item name="android:textColor">@color/gray900</item>
+		<item name="chipBackgroundColor">@color/surface_chip_choice_states</item>
+		<item name="rippleColor">@color/green100</item>
+		<item name="chipStrokeWidth">1.5dp</item>
+		<item name="chipStrokeColor">@color/green500</item>
+		<item name="chipStartPadding">16dp</item>
+		<item name="chipEndPadding">16dp</item>
+	</style>
+
+	<style name="ChipChoiceNotClickable" parent="@style/ChipChoiceClickable">
+		<item name="android:clickable">false</item>
+		<item name="android:focusable">false</item>
+	</style>
 
 	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 	<!-- * * * * * * * * * * * Circular progress bar * * * * * * * * * * * * * * -->

@@ -1,6 +1,7 @@
 package com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner
 
 import android.view.View
+import com.google.android.material.chip.Chip
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentMealPlannerBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
@@ -17,7 +18,17 @@ class MealPlannerFragment : BaseFragment<MealPlannerViewModel, FragmentMealPlann
     override val vmClassToken: Class<MealPlannerViewModel> = MealPlannerViewModel::class.java
     override val bindingInflater: (View) -> FragmentMealPlannerBinding = { FragmentMealPlannerBinding.bind(it) }
 
-    override fun initView() = Unit
+    override fun initView() {
+        binding?.labelMealPlanner?.setOnClickListener {
+            val chip = layoutInflater.inflate(
+                R.layout.chip_single_choice,
+                binding?.chipGroup,
+                false
+            ) as Chip
+            chip.text = (0..100).random().toString()
+            binding?.chipGroup?.addView(chip)
+        }
+    }
 
     override fun bindViewModel() = Unit
 }
