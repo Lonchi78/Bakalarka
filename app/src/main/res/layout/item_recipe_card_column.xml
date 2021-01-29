@@ -28,7 +28,16 @@
             app:cardElevation="4dp"
             android:clipToPadding="false"
             android:clipChildren="false"
-            app:cardCornerRadius="@dimen/card_mini_corner_radius"/>
+            app:cardCornerRadius="@dimen/card_mini_corner_radius">
+
+            <View
+                android:id="@+id/backgroundClickable"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"/>
+        </com.google.android.material.card.MaterialCardView>
 
         <View
             android:id="@+id/halfOfwrapperImage"
@@ -51,6 +60,8 @@
             app:strokeColor="@color/gray200"
             app:strokeWidth="1dp"
             app:cardElevation="4dp"
+            android:clickable="false"
+            android:focusable="false"
             app:cardCornerRadius="@dimen/card_mini_corner_radius_ring">
 
             <ImageView
@@ -58,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@null"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:src="@color/orange500"/>
 
         </com.google.android.material.card.MaterialCardView>
@@ -74,9 +85,12 @@
             android:layout_marginTop="12dp"
             android:elevation="4dp"
             android:text="Cream soup"
+            android:maxLines="3"
+            android:ellipsize="end"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/wrapperImage"
+            app:layout_constraintBottom_toTopOf="@id/textIngredients"
             tools:text="Cream soup"/>
 
         <TextView
@@ -94,6 +108,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textName"
+            app:layout_constraintBottom_toTopOf="@id/textTime"
             tools:text="8 ingredients"/>
 
         <TextView
@@ -112,6 +127,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textIngredients"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:text="60 mins"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -64,10 +64,12 @@ class RecipeCardsColumnAdapter(
         }
 
         holder.root.setOnClickListener { onItemClick(recipe) }
+        holder.backgroundClickable.setOnClickListener { onItemClick(recipe) }
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         internal val root = view.findViewById<ConstraintLayout>(R.id.root)
+        internal val backgroundClickable = view.findViewById<View>(R.id.backgroundClickable)
         internal val image = view.findViewById<ImageView>(R.id.image)
         internal val textName = view.findViewById<TextView>(R.id.textName)
         internal val textTime = view.findViewById<TextView>(R.id.textTime)
