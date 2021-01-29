@@ -23,6 +23,13 @@
 	<dimen name="card_stroke_width">1dp</dimen>
 	<dimen name="card_explore_height">256dp</dimen>
 
+	<!-- - - - - - Card View Mini - - - - - -->
+	<dimen name="card_mini_corner_radius_ring">360dp</dimen>
+	<dimen name="card_mini_corner_radius">8dp</dimen>
+	<dimen name="card_mini_elevation">4dp</dimen>
+	<dimen name="card_mini_stroke_width">1dp</dimen>
+	<dimen name="card_mini_explore_height">256dp</dimen>
+
 	<!-- - - - - - Text Input and Select - - - - - -->
 	<dimen name="corner_radius_text_input">8dp</dimen>
 	<dimen name="corner_radius_text_select">8dp</dimen>

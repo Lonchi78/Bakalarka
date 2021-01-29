@@ -14,6 +14,7 @@ import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentHomeBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipes.RecipeCardsAdapter
+import com.lonchi.andrej.lonchi_bakalarka.ui.recipes.RecipeCardsColumnAdapter
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
@@ -35,10 +36,20 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         )
     }
 
+    private val adapterFavouriteRecipes by lazy {
+        RecipeCardsColumnAdapter(
+            context = requireContext(),
+            onItemClick = { onRecipeItemClick(it) }
+        )
+    }
+
     override fun initView() {
         binding?.recyclerRandomRecipes?.adapter = adapterRandomRecipes
         binding?.recyclerRandomRecipes?.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         LinearSnapHelper().attachToRecyclerView(binding?.recyclerRandomRecipes)
+
+        binding?.recyclerFavouriteRecipes?.adapter = adapterFavouriteRecipes
+        binding?.recyclerFavouriteRecipes?.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         binding?.buttonCreateRecipe?.setOnClickListener {
             startActivity(CameraActivity.getStartIntent(requireContext()))
@@ -50,7 +61,10 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
             showProgressDialog(it.status is LoadingStatus)
 
             when (it.status) {
-                is SuccessStatus -> adapterRandomRecipes.submitList(it.data)
+                is SuccessStatus -> {
+                    adapterRandomRecipes.submitList(it.data)
+                    adapterFavouriteRecipes.submitList(it.data)
+                }
                 is ErrorStatus -> {
                     //  TODO - add error state or hide section, show connectivity problem
                     showErrorSnackbar(it.errorIdentification)
