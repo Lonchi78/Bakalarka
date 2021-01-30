@@ -13,6 +13,10 @@
 
 	<!--	Home	-->
 	<string name="home_title">Home</string>
+	<string name="home_label_favourites">Favourites</string>
+	<string name="home_label_try_cuisine">Try any of these cuisines</string>
+	<string name="home_label_recently_viewed">Recently viewed</string>
+	<string name="home_label_own_recipes">Your own recipes</string>
 
 	<plurals name="recipe_time_minutes">
 		<item quantity="one">%d min</item>

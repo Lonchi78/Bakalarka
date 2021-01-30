@@ -465,6 +465,29 @@
 		<item name="chipEndPadding">12dp</item>
 	</style>
 
+	<style name="ChipCounterWithCloseIcon">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:minHeight">24dp</item>
+		<item name="android:background">@color/orange50</item>
+		<item name="android:paddingTop">4dp</item>
+		<item name="android:paddingBottom">4dp</item>
+		<item name="android:checkable">false</item>
+		<item name="android:clickable">false</item>
+		<item name="android:focusable">false</item>
+		<item name="android:textAppearance">@style/TextChipCounter</item>
+		<item name="android:textColor">@color/orange500</item>
+		<item name="closeIconEnabled">true</item>
+		<item name="closeIconEndPadding">4dp</item>
+		<item name="closeIconSize">16dp</item>
+		<item name="closeIcon">@drawable/ic_next_16</item>
+		<item name="closeIconVisible">true</item>
+		<item name="closeIconTint">@color/orange500</item>
+		<item name="chipBackgroundColor">@color/orange50</item>
+		<item name="chipStartPadding">8dp</item>
+		<item name="chipEndPadding">4dp</item>
+	</style>
+
 	<style name="ChipChoiceClickable" parent="@style/Widget.MaterialComponents.Chip.Choice">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
