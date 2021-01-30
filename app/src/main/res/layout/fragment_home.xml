@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
-	android:id="@+id/rootLayout"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	android:background="@color/white"
+	android:fitsSystemWindows="true">
 
-	<androidx.core.widget.NestedScrollView
+	<com.google.android.material.appbar.AppBarLayout
+		android:id="@+id/appBarLayout"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="wrap_content"
+		android:background="@color/white"
+		app:layout_scrollFlags="scroll|enterAlways"
+		android:elevation="4dp"
+		app:liftOnScroll="true">
 
-		<androidx.constraintlayout.widget.ConstraintLayout
+		<RelativeLayout
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content">
+			android:layout_height="match_parent"
+			android:paddingBottom="8dp">
 
 			<TextView
 				android:id="@+id/textGreetings"
@@ -22,8 +29,7 @@
 				android:layout_marginStart="16dp"
 				android:layout_marginTop="32dp"
 				android:text="Good afternoon"
-				app:layout_constraintTop_toTopOf="parent"
-				app:layout_constraintStart_toStartOf="parent"/>
+				android:layout_alignParentStart="true"/>
 
 			<ImageButton
 				android:id="@+id/buttonCreateRecipe"
@@ -33,21 +39,37 @@
 				android:layout_marginEnd="16dp"
 				android:src="@drawable/ic_add_24"
 				android:contentDescription="@null"
-				app:layout_constraintTop_toTopOf="@id/textGreetings"
-				app:layout_constraintBottom_toBottomOf="@id/textGreetings"
-				app:layout_constraintEnd_toEndOf="parent"/>
+				android:layout_alignParentEnd="true"
+				android:layout_alignBottom="@id/textGreetings"
+				android:layout_alignTop="@id/textGreetings"/>
+
+		</RelativeLayout>
+
+	</com.google.android.material.appbar.AppBarLayout>
+
+	<androidx.core.widget.NestedScrollView
+		android:id="@+id/scrollable"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:overScrollMode="never"
+		android:layout_below="@+id/appBarLayout"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
 
 			<androidx.recyclerview.widget.RecyclerView
 				android:id="@+id/recyclerRandomRecipes"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:clipToPadding="false"
-				android:overScrollMode="never"
-				android:layout_marginTop="24dp"
+				android:layout_marginTop="16dp"
 				android:paddingStart="12dp"
 				android:paddingEnd="12dp"
 				android:orientation="horizontal"
-				app:layout_constraintTop_toBottomOf="@id/textGreetings"
+				android:clipToPadding="false"
+				android:overScrollMode="never"
+				app:layout_constraintTop_toTopOf="parent"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintEnd_toEndOf="parent"
 				tools:itemCount="1"
@@ -79,15 +101,32 @@
 				android:id="@+id/recyclerFavouriteRecipes"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:overScrollMode="never"
 				android:layout_marginTop="16dp"
 				android:paddingStart="12dp"
 				android:paddingEnd="12dp"
 				android:orientation="horizontal"
 				tools:itemCount="1"
-				android:clipToPadding="false"
 				android:clipChildren="false"
+				android:clipToPadding="false"
+				android:overScrollMode="never"
 				app:layout_constraintTop_toBottomOf="@id/labelFavourites"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				tools:listitem="@layout/item_recipe_card_column" />
+
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/recyclerOwnRecipes"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:paddingStart="12dp"
+				android:paddingEnd="12dp"
+				android:orientation="horizontal"
+				tools:itemCount="1"
+				android:clipChildren="false"
+				android:clipToPadding="false"
+				android:overScrollMode="never"
+				app:layout_constraintTop_toBottomOf="@id/recyclerFavouriteRecipes"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintEnd_toEndOf="parent"
 				tools:listitem="@layout/item_recipe_card_column" />
@@ -96,11 +135,4 @@
 
 	</androidx.core.widget.NestedScrollView>
 
-	<androidx.coordinatorlayout.widget.CoordinatorLayout
-		android:id="@+id/snackbarRoot"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginBottom="16dp"
-		android:layout_alignParentBottom="true"/>
-
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

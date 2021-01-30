@@ -46,6 +46,13 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         )
     }
 
+    private val adapterOwnRecipes by lazy {
+        RecipeCardsColumnAdapter(
+            context = requireContext(),
+            onItemClick = { onRecipeItemClick(it) }
+        )
+    }
+
     override fun initView() {
         binding?.recyclerRandomRecipes?.adapter = adapterRandomRecipes
         binding?.recyclerRandomRecipes?.layoutManager = LinearLayoutManager(
@@ -57,6 +64,15 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
         binding?.recyclerFavouriteRecipes?.adapter = adapterFavouriteRecipes
         binding?.recyclerFavouriteRecipes?.layoutManager = LinearLayoutManager(
+            requireContext(),
+            LinearLayoutManager.HORIZONTAL,
+            false
+        ).apply {
+            isMeasurementCacheEnabled = false
+        }
+
+        binding?.recyclerOwnRecipes?.adapter = adapterOwnRecipes
+        binding?.recyclerOwnRecipes?.layoutManager = LinearLayoutManager(
             requireContext(),
             LinearLayoutManager.HORIZONTAL,
             false
@@ -77,6 +93,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
                 is SuccessStatus -> {
                     adapterRandomRecipes.submitList(it.data)
                     adapterFavouriteRecipes.submitList(it.data)
+                    adapterOwnRecipes.submitList(it.data)
                     binding?.chipCounterFavourites?.text = (0..10).random().toString()
                 }
                 is ErrorStatus -> {
