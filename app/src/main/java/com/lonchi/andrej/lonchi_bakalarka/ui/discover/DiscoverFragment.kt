@@ -44,15 +44,28 @@ class DiscoverFragment : BaseFragment<DiscoverViewModel, FragmentDiscoverBinding
             placeholder(R.color.gray50)
             error(R.color.gray50)
         }
-        binding?.ingredient7?.imageIngredient?.load(ContextCompat.getDrawable(requireContext(), R.drawable.img_avocado)) {
+
+        binding?.quickSearch1?.imageIngredient?.load(ContextCompat.getDrawable(requireContext(), R.drawable.img_avocado)) {
             placeholder(R.color.gray50)
             error(R.color.gray50)
         }
-        binding?.ingredient8?.imageIngredient?.load(ContextCompat.getDrawable(requireContext(), R.drawable.img_cheese)) {
+        binding?.quickSearch2?.imageIngredient?.load(ContextCompat.getDrawable(requireContext(), R.drawable.img_cheese)) {
             placeholder(R.color.gray50)
             error(R.color.gray50)
         }
-        binding?.ingredient9?.imageIngredient?.load(ContextCompat.getDrawable(requireContext(), R.drawable.img_red_onion)) {
+        binding?.quickSearch3?.imageIngredient?.load(ContextCompat.getDrawable(requireContext(), R.drawable.img_red_onion)) {
+            placeholder(R.color.gray50)
+            error(R.color.gray50)
+        }
+        binding?.quickSearch4?.imageIngredient?.load(ContextCompat.getDrawable(requireContext(), R.drawable.img_avocado)) {
+            placeholder(R.color.gray50)
+            error(R.color.gray50)
+        }
+        binding?.quickSearch5?.imageIngredient?.load(ContextCompat.getDrawable(requireContext(), R.drawable.img_cheese)) {
+            placeholder(R.color.gray50)
+            error(R.color.gray50)
+        }
+        binding?.quickSearch6?.imageIngredient?.load(ContextCompat.getDrawable(requireContext(), R.drawable.img_red_onion)) {
             placeholder(R.color.gray50)
             error(R.color.gray50)
         }
