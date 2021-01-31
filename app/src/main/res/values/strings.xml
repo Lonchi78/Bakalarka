@@ -28,9 +28,11 @@
 		<item quantity="other">%d ingredients</item>
 	</plurals>
 
-
 	<!--	Discover	-->
 	<string name="discover_title">Discover</string>
+	<string name="discover_search_by_ingredients">Search by ingredients?</string>
+	<string name="discover_search_by_ingredients_chip">Try</string>
+	<string name="discover_quick_search">Quick search</string>
 
 	<!--	Meal planner	-->
 	<string name="meal_planner_title">Meal planner</string>
