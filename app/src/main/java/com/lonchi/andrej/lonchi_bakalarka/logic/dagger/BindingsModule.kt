@@ -11,6 +11,7 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.favourites.FavouritesViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.fragment.FragmentViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.DiscoverByIngredientViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.MealPlannerViewModel
@@ -49,6 +50,14 @@ abstract class LoginModule {
     @IntoMap
     @ViewModelKey(LoginViewModel::class)
     abstract fun bindsLoginViewModel(viewModel: LoginViewModel): ViewModel
+}
+
+@Module
+abstract class DiscoverByIngredientModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(DiscoverByIngredientViewModel::class)
+    abstract fun bindsDiscoverByIngredientViewModel(viewModel: DiscoverByIngredientViewModel): ViewModel
 }
 
 @Module

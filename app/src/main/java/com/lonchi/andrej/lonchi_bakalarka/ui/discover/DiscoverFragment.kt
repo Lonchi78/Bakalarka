@@ -8,6 +8,8 @@ import coil.load
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentDiscoverBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.DiscoverByIngredientActivity
+import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.profile.ProfileFragmentDirections
 import timber.log.Timber
 
@@ -51,6 +53,10 @@ class DiscoverFragment : BaseFragment<DiscoverViewModel, FragmentDiscoverBinding
 
         binding?.searchBar?.setOnClickListener {
             findNavController().navigate(DiscoverFragmentDirections.actionDiscoverFragmentToDiscoverListFragment())
+        }
+
+        binding?.chipSearchByIngredients?.setOnClickListener {
+            startActivity(DiscoverByIngredientActivity.getStartIntent(requireContext()))
         }
     }
 
