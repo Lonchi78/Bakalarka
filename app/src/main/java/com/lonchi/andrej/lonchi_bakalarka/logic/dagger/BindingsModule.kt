@@ -6,6 +6,7 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.allergens.AllergensViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.diets.DietsViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverListViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.favourites.FavouritesViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.fragment.FragmentViewModel
@@ -72,6 +73,14 @@ abstract class DiscoverModule {
     @IntoMap
     @ViewModelKey(DiscoverViewModel::class)
     abstract fun bindsDiscoverViewModel(viewModel: DiscoverViewModel): ViewModel
+}
+
+@Module
+abstract class DiscoverListModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(DiscoverListViewModel::class)
+    abstract fun bindsDiscoverListViewModel(viewModel: DiscoverListViewModel): ViewModel
 }
 
 @Module

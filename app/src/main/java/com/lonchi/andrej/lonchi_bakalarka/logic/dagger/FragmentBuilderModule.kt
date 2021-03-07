@@ -5,6 +5,7 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.allergens.AllergensFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsBottomSheet
 import com.lonchi.andrej.lonchi_bakalarka.ui.diets.DietsFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverListFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.favourites.FavouritesFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.fragment.MainFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeFragment
@@ -30,6 +31,9 @@ abstract class FragmentBuilderModule {
 
     @ContributesAndroidInjector(modules = [DiscoverModule::class])
     abstract fun contributeDiscoverFragment(): DiscoverFragment
+
+    @ContributesAndroidInjector(modules = [DiscoverListModule::class])
+    abstract fun contributeDiscoverListFragment(): DiscoverListFragment
 
     @ContributesAndroidInjector(modules = [MealPlannerModule::class])
     abstract fun contributeMealPlannerFragment(): MealPlannerFragment

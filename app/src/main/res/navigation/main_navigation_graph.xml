@@ -38,7 +38,21 @@
         android:id="@+id/discoverFragment"
         android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverFragment"
         android:label="fragment_discover"
-        tools:layout="@layout/fragment_discover" />
+        tools:layout="@layout/fragment_discover">
+        <action
+            android:id="@+id/action_discoverFragment_to_discoverListFragment"
+            app:destination="@id/discoverListFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/discoverListFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverListFragment"
+        android:label="fragment_discover_list"
+        tools:layout="@layout/fragment_discover_list"/>
 
     <fragment
         android:id="@+id/mealPlannerFragment"

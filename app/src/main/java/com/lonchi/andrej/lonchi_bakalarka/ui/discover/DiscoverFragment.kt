@@ -3,10 +3,12 @@ package com.lonchi.andrej.lonchi_bakalarka.ui.discover
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import coil.load
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentDiscoverBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.profile.ProfileFragmentDirections
 import timber.log.Timber
 
 /**
@@ -48,8 +50,7 @@ class DiscoverFragment : BaseFragment<DiscoverViewModel, FragmentDiscoverBinding
         }
 
         binding?.searchBar?.setOnClickListener {
-            Timber.d("initView: search bar click setOnClickListener")
-            Toast.makeText(requireContext(), "serach bar", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(DiscoverFragmentDirections.actionDiscoverFragmentToDiscoverListFragment())
         }
     }
 
