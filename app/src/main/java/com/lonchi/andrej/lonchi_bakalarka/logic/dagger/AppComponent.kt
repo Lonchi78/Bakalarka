@@ -4,6 +4,7 @@ import android.app.Application
 import com.lonchi.andrej.lonchi_bakalarka.LonchiBakalarkaApplication
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsBottomSheet
+import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.CreateRecipeActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.DiscoverByIngredientActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
@@ -44,6 +45,7 @@ import javax.inject.Singleton
             FoundIngredientsModule::class,
             LoginModule::class,
             DiscoverByIngredientModule::class,
+            CreateRecipeModule::class,
             MainFragmentModule::class])
 interface AppComponent {
 
@@ -60,7 +62,8 @@ interface AppComponent {
     fun inject(mainActivity: MainActivity)
     fun inject(cameraActivity: CameraActivity)
     fun inject(loginActivity: LoginActivity)
-    fun inject(loginActivity: DiscoverByIngredientActivity)
+    fun inject(discoverByIngredientActivity: DiscoverByIngredientActivity)
+    fun inject(createRecipeActivity: CreateRecipeActivity)
 
     fun inject(foundIngredientsBottomSheet: FoundIngredientsBottomSheet)
 }

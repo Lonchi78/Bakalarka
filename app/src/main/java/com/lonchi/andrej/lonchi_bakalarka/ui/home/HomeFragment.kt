@@ -15,6 +15,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentHomeBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraActivity
+import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.CreateRecipeActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipes.RecipeCardsAdapter
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipes.RecipeCardsColumnAdapter
 
@@ -81,7 +82,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         }
 
         binding?.buttonCreateRecipe?.setOnClickListener {
-            startActivity(CameraActivity.getStartIntent(requireContext()))
+            startActivity(CreateRecipeActivity.getStartIntent(requireContext()))
         }
     }
 

@@ -5,6 +5,7 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.about.AboutViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.allergens.AllergensViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.CreateRecipeViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.diets.DietsViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverListViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverViewModel
@@ -58,6 +59,14 @@ abstract class DiscoverByIngredientModule {
     @IntoMap
     @ViewModelKey(DiscoverByIngredientViewModel::class)
     abstract fun bindsDiscoverByIngredientViewModel(viewModel: DiscoverByIngredientViewModel): ViewModel
+}
+
+@Module
+abstract class CreateRecipeModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(CreateRecipeViewModel::class)
+    abstract fun bindsCreateRecipeViewModel(viewModel: CreateRecipeViewModel): ViewModel
 }
 
 @Module
