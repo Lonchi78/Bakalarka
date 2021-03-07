@@ -47,9 +47,11 @@
 	<dimen name="elevation_bottom_navigation_menu">4dp</dimen>
 	<dimen name="icon_size_bottom_navigation_menu">24dp</dimen>
 
-
 	<!-- - - - - - - - - Navigation Bar - - - - - - - - -->
 	<dimen name="elevation_navigation_bar">4dp</dimen>
+
+	<!-- - - - - - - - - Search bar - - - - - - - - -->
+	<dimen name="corner_radius_search_bar">12dp</dimen>
 
 	<!-- - - - - - - - - - Snackbar - - - - - - - - - - -->
 	<dimen name="corner_radius_snackbar">8dp</dimen>

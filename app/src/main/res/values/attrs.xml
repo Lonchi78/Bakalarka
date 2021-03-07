@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<declare-styleable name="SearchInput">
+		<attr name="startIconDrawable" />
+		<attr name="endIconDrawable" />
+	</declare-styleable>
+
+	<declare-styleable name="SearchBar">
+		<attr name="placeholderText" />
+		<attr name="startIconDrawable" />
+	</declare-styleable>
+</resources>
