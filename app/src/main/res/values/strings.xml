@@ -130,6 +130,9 @@
 	<string name="create_recipe_finalize_add_nutrition">Add nutrition</string>
 	<string name="create_recipe_finalize_add_allergens">Add allergens</string>
 	<string name="create_recipe_finalize_add_diets">Add diets</string>
+	<string name="create_recipe_finalize_nutrition">Nutrition</string>
+	<string name="create_recipe_finalize_allergens">Allergens</string>
+	<string name="create_recipe_finalize_diets">Diets</string>
 
 	<string name="create_recipe_success_title">Recipe successfully created</string>
 
