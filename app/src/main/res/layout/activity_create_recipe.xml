@@ -5,6 +5,19 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
+	<androidx.constraintlayout.widget.Group
+		android:id="@+id/groupProgressIndicator"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:visibility="visible"
+		app:constraint_referenced_ids="
+		progressIndicator1,
+		progressIndicator2,
+		progressIndicator3,
+		progressIndicator4,
+		progressIndicator5,
+		progressIndicator6"/>
+
 	<View
 		android:id="@+id/progressIndicator1"
 		android:layout_width="8dp"
