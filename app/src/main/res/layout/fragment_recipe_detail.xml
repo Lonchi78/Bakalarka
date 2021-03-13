@@ -294,7 +294,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonLike"
-                style="@style/ContainedButtonWithStartIcon"
+                style="@style/ContainedActionButtonWithStartIcon"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
@@ -311,7 +311,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonShare"
-                style="@style/ContainedButtonWithStartIcon"
+                style="@style/ContainedActionButtonWithStartIcon"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="8dp"

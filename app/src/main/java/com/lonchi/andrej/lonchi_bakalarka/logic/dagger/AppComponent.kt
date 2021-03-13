@@ -43,6 +43,7 @@ import javax.inject.Singleton
             AboutModule::class,
             RecipeDetailModule::class,
             FoundIngredientsModule::class,
+            CreateRecipeNameModule::class,
             LoginModule::class,
             DiscoverByIngredientModule::class,
             CreateRecipeModule::class,

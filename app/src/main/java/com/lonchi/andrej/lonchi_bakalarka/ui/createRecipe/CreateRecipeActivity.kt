@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.core.content.ContextCompat
+import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.ActivityCreateRecipeBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseActivity
 
@@ -24,6 +26,8 @@ class CreateRecipeActivity : BaseActivity<CreateRecipeViewModel, ActivityCreateR
 
 
     override fun initView() {
+        binding.progressIndicator1.background.setTint(ContextCompat.getColor(this, R.color.green500))
+        binding.progressIndicator5.background.setTint(ContextCompat.getColor(this, R.color.green500))
     }
 
     override fun bindViewModel() = Unit

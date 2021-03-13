@@ -198,19 +198,40 @@
 	<style name="ContainedButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:textAppearance">@style/TextActionButton</item>
+		<item name="android:textAppearance">@style/TextContainedButton</item>
 		<item name="android:textColor">@color/text_color_button_contained_states</item>
 		<item name="android:backgroundTint">@color/surface_button_contained_states</item>
 		<item name="rippleColor">@color/btnPrimaryPressedBackgroundColor</item>
-		<item name="android:paddingStart">16dp</item>
-		<item name="android:paddingEnd">16dp</item>
-		<item name="android:paddingTop">10dp</item>
-		<item name="android:paddingBottom">10dp</item>
+		<item name="android:paddingStart">64dp</item>
+		<item name="android:paddingEnd">64dp</item>
+		<item name="android:paddingTop">12dp</item>
+		<item name="android:paddingBottom">12dp</item>
 		<item name="android:insetLeft">0dp</item>
 		<item name="android:insetRight">0dp</item>
+		<item name="android:textAllCaps">true</item>
 		<item name="android:insetTop">@dimen/inset_button_contained</item>
 		<item name="android:insetBottom">@dimen/inset_button_contained</item>
 		<item name="cornerRadius">@dimen/corner_radius_button_contained</item>
+		<item name="elevation">2dp</item>
+	</style>
+
+	<style name="ContainedActionButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textAppearance">@style/TextActionButton</item>
+		<item name="android:textColor">@color/text_color_button_action_contained_states</item>
+		<item name="android:backgroundTint">@color/surface_button_action_contained_states</item>
+		<item name="rippleColor">@color/btnPrimaryPressedBackgroundColor</item>
+		<item name="android:paddingStart">64dp</item>
+		<item name="android:paddingEnd">64dp</item>
+		<item name="android:paddingTop">12dp</item>
+		<item name="android:paddingBottom">12dp</item>
+		<item name="android:insetLeft">0dp</item>
+		<item name="android:insetRight">0dp</item>
+		<item name="android:textAllCaps">true</item>
+		<item name="android:insetTop">@dimen/inset_button_contained</item>
+		<item name="android:insetBottom">@dimen/inset_button_contained</item>
+		<item name="cornerRadius">@dimen/corner_radius_button_action</item>
 	</style>
 
 	<style name="ContainedMiniButton" parent="ContainedButton">
@@ -230,6 +251,18 @@
 	</style>
 
 	<style name="ContainedButtonWithStartIcon" parent="ContainedButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">40dp</item>
+		<item name="android:paddingStart">12dp</item>
+		<item name="android:paddingEnd">16dp</item>
+		<item name="android:paddingTop">10dp</item>
+		<item name="android:paddingBottom">10dp</item>
+		<item name="iconPadding">12dp</item>
+		<item name="iconGravity">textStart</item>
+		<item name="iconTint">@color/icon_color_contained_button_states</item>
+	</style>
+
+	<style name="ContainedActionButtonWithStartIcon" parent="ContainedActionButton">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">40dp</item>
 		<item name="android:paddingStart">12dp</item>
@@ -280,6 +313,19 @@
 	<style name="ContainedTallIconButton" parent="ContainedIconButton">
 		<item name="android:layout_width">56dp</item>
 		<item name="android:layout_height">64dp</item>
+	</style>
+
+	<style name="BaseFloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:backgroundTint">@color/gray200</item>
+		<item name="android:tint">@color/gray900</item>
+		<item name="android:elevation">2dp</item>
+		<item name="android:src">@drawable/ic_back_24</item>
+		<item name="backgroundTint">@color/gray200</item>
+		<item name="rippleColor">@color/gray500</item>
+		<item name="borderWidth">0dp</item>
+		<item name="elevation">2dp</item>
 	</style>
 
 	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->

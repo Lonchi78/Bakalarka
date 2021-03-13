@@ -3,6 +3,7 @@ package com.lonchi.andrej.lonchi_bakalarka.logic.dagger
 import com.lonchi.andrej.lonchi_bakalarka.ui.about.AboutFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.allergens.AllergensFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsBottomSheet
+import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.CreateRecipeNameFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.diets.DietsFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverListFragment
@@ -31,6 +32,9 @@ abstract class FragmentBuilderModule {
 
     @ContributesAndroidInjector(modules = [DiscoverModule::class])
     abstract fun contributeDiscoverFragment(): DiscoverFragment
+
+    @ContributesAndroidInjector(modules = [CreateRecipeNameModule::class])
+    abstract fun contributeCreateRecipeNameFragment(): CreateRecipeNameFragment
 
     @ContributesAndroidInjector(modules = [DiscoverListModule::class])
     abstract fun contributeDiscoverListFragment(): DiscoverListFragment
