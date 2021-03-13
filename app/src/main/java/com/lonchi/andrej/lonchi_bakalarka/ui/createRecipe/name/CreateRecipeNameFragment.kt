@@ -1,4 +1,4 @@
-package com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe
+package com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.name
 
 import android.view.View
 import android.widget.Toast

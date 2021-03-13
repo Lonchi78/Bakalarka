@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nameFragment"
-        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.CreateRecipeNameFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.name.CreateRecipeNameFragment"
         android:label="fragment_name"
         tools:layout="@layout/fragment_create_recipe_name">
         <action
@@ -21,8 +21,143 @@
 
     <fragment
         android:id="@+id/timeFragment"
-        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.CreateRecipeNameFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.time.CreateRecipeTimeFragment"
         android:label="fragment_time"
-        tools:layout="@layout/fragment_create_recipe_name">
+        tools:layout="@layout/fragment_create_recipe_time">
+        <action
+            android:id="@+id/action_timeFragment_to_ingredientsFragment"
+            app:destination="@id/ingredientsFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ingredientsFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.ingredients.CreateRecipeIngredientsFragment"
+        android:label="fragment_ingredients"
+        tools:layout="@layout/fragment_create_recipe_ingredients">
+        <action
+            android:id="@+id/action_ingredientsFragment_to_instructionsFragment"
+            app:destination="@id/instructionsFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_right" />
+        <action
+            android:id="@+id/action_ingredientsFragment_to_addIngredientsFragment"
+            app:destination="@id/addIngredientsFragment"
+            app:enterAnim="@anim/slide_from_bottom"
+            app:exitAnim="@anim/slide_to_top"
+            app:popEnterAnim="@anim/slide_from_top"
+            app:popExitAnim="@anim/slide_to_bottom" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addIngredientsFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.ingredients.CreateRecipeAddIngredientFragment"
+        android:label="fragment_add_ingredient"
+        tools:layout="@layout/fragment_create_recipe_add_ingredient"/>
+
+    <fragment
+        android:id="@+id/instructionsFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.instructions.CreateRecipeInstructionsFragment"
+        android:label="fragment_instructions"
+        tools:layout="@layout/fragment_create_recipe_instructions">
+        <action
+            android:id="@+id/action_instructionsFragment_to_photoFragment"
+            app:destination="@id/photoFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_right" />
+        <action
+            android:id="@+id/action_instructionsFragment_to_addInstructionFragment"
+            app:destination="@id/addInstructionFragment"
+            app:enterAnim="@anim/slide_from_bottom"
+            app:exitAnim="@anim/slide_to_top"
+            app:popEnterAnim="@anim/slide_from_top"
+            app:popExitAnim="@anim/slide_to_bottom" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addInstructionFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.instructions.CreateRecipeAddInstructionFragment"
+        android:label="fragment_add_instruction"
+        tools:layout="@layout/fragment_create_recipe_add_instruction"/>
+
+    <fragment
+        android:id="@+id/photoFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.photo.CreateRecipePhotoFragment"
+        android:label="fragment_photo"
+        tools:layout="@layout/fragment_create_recipe_photo">
+        <action
+            android:id="@+id/action_photoFragment_to_finalizeFragment"
+            app:destination="@id/finalizeFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/finalizeFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.finalize.CreateRecipeFinalizeFragment"
+        android:label="fragment_finalize"
+        tools:layout="@layout/fragment_create_recipe_finalize">
+        <action
+            android:id="@+id/action_finalizeFragment_to_successFragment"
+            app:destination="@id/successFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_right" />
+        <action
+            android:id="@+id/action_finalizeFragment_to_addDietsFragment"
+            app:destination="@id/addDietsFragment"
+            app:enterAnim="@anim/slide_from_bottom"
+            app:exitAnim="@anim/slide_to_top"
+            app:popEnterAnim="@anim/slide_from_top"
+            app:popExitAnim="@anim/slide_to_bottom" />
+        <action
+            android:id="@+id/action_finalizeFragment_to_addAllergensFragment"
+            app:destination="@id/addAllergensFragment"
+            app:enterAnim="@anim/slide_from_bottom"
+            app:exitAnim="@anim/slide_to_top"
+            app:popEnterAnim="@anim/slide_from_top"
+            app:popExitAnim="@anim/slide_to_bottom" />
+        <action
+            android:id="@+id/action_finalizeFragment_to_addNutritionFragment"
+            app:destination="@id/addNutritionFragment"
+            app:enterAnim="@anim/slide_from_bottom"
+            app:exitAnim="@anim/slide_to_top"
+            app:popEnterAnim="@anim/slide_from_top"
+            app:popExitAnim="@anim/slide_to_bottom" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addDietsFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.finalize.CreateRecipeAddDietsFragment"
+        android:label="fragment_add_diets"
+        tools:layout="@layout/fragment_create_recipe_add_diets"/>
+
+    <fragment
+        android:id="@+id/addAllergensFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.finalize.CreateRecipeAddAllergensFragment"
+        android:label="fragment_add_allergens"
+        tools:layout="@layout/fragment_create_recipe_add_allergens"/>
+
+    <fragment
+        android:id="@+id/addNutritionFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.finalize.CreateRecipeAddNutritionFragment"
+        android:label="fragment_add_nutrition"
+        tools:layout="@layout/fragment_create_recipe_add_nutrition"/>
+
+    <fragment
+        android:id="@+id/successFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.finalize.CreateRecipeSuccessFragment"
+        android:label="fragment_success"
+        tools:layout="@layout/fragment_create_recipe_success">
     </fragment>
 </navigation>

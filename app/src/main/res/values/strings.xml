@@ -115,10 +115,10 @@
 	<string name="create_recipe_instructions_title">Add instructions</string>
 	<string name="create_recipe_photo_title">Add photo of recipe</string>
 	<string name="create_recipe_finalize_title">Finalize</string>
-	<string name="create_recipe_finalize_add_nutritions">Finalize</string>
-	<string name="create_recipe_finalize_add_allergens">Finalize</string>
-	<string name="create_recipe_finalize_add_diets">Finalize</string>
-	<string name="create_recipe_success_title">Recept successfully created</string>
+	<string name="create_recipe_finalize_add_nutrition">Add nutrition</string>
+	<string name="create_recipe_finalize_add_allergens">Add allergens</string>
+	<string name="create_recipe_finalize_add_diets">Add diets</string>
+	<string name="create_recipe_success_title">Recipe successfully created</string>
 
 	<!--	Others	-->
 	<string name="text_input_placeholder">Search…</string>
