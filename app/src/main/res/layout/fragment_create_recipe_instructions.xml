@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:fitsSystemWindows="true">
 
@@ -42,11 +43,41 @@
             android:layout_height="wrap_content"
             android:paddingBottom="24dp">
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonAddInstruction"
+                style="@style/ContainedButtonWithStartIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/gray700"
+                app:iconTint="@color/gray700"
+                app:icon="@drawable/ic_add_circle_24"
+                app:rippleColor="@color/gray200"
+                android:text="@string/create_recipe_button_add_instruction"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerInstructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:overScrollMode="never"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/buttonAddInstruction"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_instruction_row" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonNext"
         style="@style/ContainedButton"
         android:layout_width="wrap_content"

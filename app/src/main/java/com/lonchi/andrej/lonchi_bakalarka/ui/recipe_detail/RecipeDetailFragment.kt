@@ -151,7 +151,7 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
         binding?.recyclerInstructions?.adapter = adapterInstructions
         binding?.recyclerInstructions?.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        adapterInstructions.submitList(recipe?.getAllInstructions()?.sortedBy { it.step })
+        adapterInstructions.submitList(recipe?.getAllInstructions()?.sortedBy { it.number })
     }
 
     private fun setupRecipeCuisines(recipe: RecipeItem?) {

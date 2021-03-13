@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.lonchi.andrej.lonchi_bakalarka.data.base.BaseRepository
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Ingredient
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Instruction
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.InstructionsWrapper
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeCustom
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.database.LonchiDatabase
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.preferences.SharedPreferencesInterface
@@ -11,6 +12,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RestApi
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.DeviceTracker
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
 import retrofit2.Retrofit
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -27,9 +29,9 @@ interface CreateRecipeRepository {
 
     fun setRecipeCookingTime(hours: Int, minutes: Int)
 
-    fun addRecipeIngredient(ingredient: Ingredient)
+    fun addRecipeIngredient(ingredientText: String)
 
-    fun addRecipeInstruction(instruction: Instruction)
+    fun addRecipeInstruction(instructionText: String)
 }
 
 class CreateRecipeRepositoryImpl @Inject internal constructor(
@@ -51,37 +53,56 @@ class CreateRecipeRepositoryImpl @Inject internal constructor(
 
     override fun setRecipeName(name: String) {
         val currentRecipe = newRecipe.value?.data
-        currentRecipe?.apply {
-            this.title = name
-        }
+        currentRecipe?.apply { this.title = name }
         newRecipe.postValue(Resource.success(currentRecipe))
     }
 
     override fun setRecipeCookingTime(hours: Int, minutes: Int) {
-        val totalMinutes = TimeUnit.HOURS.toMinutes(hours.toLong()).toInt() + minutes
         val currentRecipe = newRecipe.value?.data
-        currentRecipe?.apply {
-            this.readyInMinutes = totalMinutes
-        }
+
+        //  Calculate total cooking time in minutes and save it
+        val totalMinutes = TimeUnit.HOURS.toMinutes(hours.toLong()).toInt() + minutes
+        currentRecipe?.apply { this.readyInMinutes = totalMinutes }
         newRecipe.postValue(Resource.success(currentRecipe))
     }
 
-    override fun addRecipeIngredient(ingredient: Ingredient) {
+    override fun addRecipeIngredient(ingredientText: String) {
         val currentRecipe = newRecipe.value?.data
         val currentIngredients = currentRecipe?.getAllIngredients()?.toMutableList()
-        currentIngredients?.add(ingredient)
+
+        currentIngredients?.add(
+            Ingredient(
+
+            )
+        )
+
         currentRecipe?.apply {
             this.ingredients = currentIngredients
         }
         newRecipe.postValue(Resource.success(currentRecipe))
     }
 
-    override fun addRecipeInstruction(instruction: Instruction) {
+    override fun addRecipeInstruction(instructionText: String) {
         val currentRecipe = newRecipe.value?.data
-        val currentInstructions = currentRecipe?.getAllInstructions()?.toMutableList()
-        currentInstructions?.add(instruction)
+        val currentInstructionWrapper = currentRecipe?.instructions?.firstOrNull() ?: InstructionsWrapper()
+        val currentInstructions = currentInstructionWrapper.steps?.toMutableList() ?: mutableListOf()
+
+        //  Get instruction number
+        var newInstructionNumber = currentInstructions.maxByOrNull { it.number ?: 0 }?.number
+        if (newInstructionNumber == null) newInstructionNumber = 1 else newInstructionNumber += 1
+
+        //  Create instruction
+        currentInstructions.add(
+            Instruction(
+                number = newInstructionNumber,
+                step = instructionText
+            )
+        )
+
+        //  Add instruction to other ones
+        currentInstructionWrapper.steps = currentInstructions
         currentRecipe?.apply {
-            this.instructions?.firstOrNull()?.steps = currentInstructions
+            this.instructions = listOf(currentInstructionWrapper)
         }
         newRecipe.postValue(Resource.success(currentRecipe))
     }

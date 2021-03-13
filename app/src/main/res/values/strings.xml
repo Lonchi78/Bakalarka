@@ -107,18 +107,30 @@
 	<string name="create_recipe_button_add_instruction">Add instruction</string>
 	<string name="create_recipe_button_save">Save</string>
 	<string name="create_recipe_button_finalize">Finalize</string>
+
 	<string name="create_recipe_name_title">What’s the name of your own recipe?</string>
+
 	<string name="create_recipe_time_title">How long does it take to  cook your recipe?</string>
 	<string name="create_recipe_time_hours">HH</string>
 	<string name="create_recipe_time_minutes">MM</string>
 	<string name="create_recipe_time_input">Cooking time: %dh %dm</string>
+
 	<string name="create_recipe_ingredients_title">Add ingredients</string>
+	<string name="create_recipe_add_ingredient_title">Add ingredients</string>
+	<string name="create_recipe_add_ingredient_label_ingredient">Ingredient name</string>
+	<string name="create_recipe_add_ingredient_label_measure">Measure</string>
+
 	<string name="create_recipe_instructions_title">Add instructions</string>
+	<string name="create_recipe_add_instruction_title">Add instruction</string>
+	<string name="create_recipe_add_instruction_label">Instruction</string>
+
 	<string name="create_recipe_photo_title">Add photo of recipe</string>
+
 	<string name="create_recipe_finalize_title">Finalize</string>
 	<string name="create_recipe_finalize_add_nutrition">Add nutrition</string>
 	<string name="create_recipe_finalize_add_allergens">Add allergens</string>
 	<string name="create_recipe_finalize_add_diets">Add diets</string>
+
 	<string name="create_recipe_success_title">Recipe successfully created</string>
 
 	<!--	Others	-->

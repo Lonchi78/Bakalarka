@@ -252,12 +252,14 @@
 	<style name="ContainedButtonWithStartIcon" parent="ContainedButton">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">40dp</item>
+		<item name="android:textAppearance">@style/TextBodyLargeSemibold</item>
 		<item name="android:paddingStart">12dp</item>
 		<item name="android:paddingEnd">16dp</item>
 		<item name="android:paddingTop">10dp</item>
 		<item name="android:paddingBottom">10dp</item>
 		<item name="iconPadding">12dp</item>
 		<item name="iconGravity">textStart</item>
+		<item name="textAllCaps">false</item>
 		<item name="iconTint">@color/icon_color_contained_button_states</item>
 	</style>
 

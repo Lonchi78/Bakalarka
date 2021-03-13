@@ -47,8 +47,6 @@ class CreateRecipeActivity : BaseActivity<CreateRecipeViewModel, ActivityCreateR
     override fun bindViewModel() = Unit
 
     private fun handleCurrentProgress(destination: NavDestination) {
-        handleProgressVisibility(destination.id != R.id.successFragment)
-
         when (destination.id) {
             R.id.nameFragment -> setProgressIndicators(ProgressSteps.NAME.ordinal)
             R.id.timeFragment -> setProgressIndicators(ProgressSteps.TIME.ordinal)
@@ -56,14 +54,22 @@ class CreateRecipeActivity : BaseActivity<CreateRecipeViewModel, ActivityCreateR
             R.id.instructionsFragment -> setProgressIndicators(ProgressSteps.INSTRUCTIONS.ordinal)
             R.id.photoFragment -> setProgressIndicators(ProgressSteps.PHOTO.ordinal)
             R.id.finalizeFragment -> setProgressIndicators(ProgressSteps.FINALIZE.ordinal)
+            R.id.successFragment,
+            R.id.addIngredientsFragment,
+            R.id.addInstructionFragment,
+            R.id.addAllergensFragment,
+            R.id.addDietsFragment,
+            R.id.addNutritionFragment -> progressIndicatorsVisibility(false)
         }
     }
 
-    private fun handleProgressVisibility(visibility: Boolean) {
-        binding.groupProgressIndicator.setVisible(visibility)
+    private fun progressIndicatorsVisibility(isVisible: Boolean) {
+        binding.groupProgressIndicator.setVisible(isVisible)
     }
 
     private fun setProgressIndicators(currentProgress: Int) {
+        progressIndicatorsVisibility(true)
+
         binding.progressIndicator1.background.setTint(
             ContextCompat.getColor(
                 this,
