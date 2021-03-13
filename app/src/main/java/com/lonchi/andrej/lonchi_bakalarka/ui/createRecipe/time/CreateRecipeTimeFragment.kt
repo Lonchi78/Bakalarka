@@ -5,6 +5,7 @@ import androidx.navigation.fragment.findNavController
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentCreateRecipeTimeBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
+import timber.log.Timber
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
@@ -26,6 +27,19 @@ class CreateRecipeTimeFragment : BaseFragment<CreateRecipeTimeViewModel, Fragmen
             findNavController().navigate(CreateRecipeTimeFragmentDirections.actionTimeFragmentToIngredientsFragment())
         }
 
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            binding?.timePicker?.hour = 6
+            binding?.timePicker?.minute = 20
+        } else {
+            binding?.timePicker?.currentHour = 6
+            binding?.timePicker?.currentMinute = 20
+        }
+
+        binding?.timePicker?.setIs24HourView(true)
+        binding?.timePicker?.setOnTimeChangedListener { _, hour, minute ->
+            binding?.buttonNext?.isEnabled = (hour != 0) || (minute != 0)
+            binding?.textTime?.text = getString(R.string.create_recipe_time_input, hour, minute)
+        }
     }
 
     override fun bindViewModel() {

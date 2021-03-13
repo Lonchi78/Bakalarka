@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -20,12 +21,12 @@
             style="@style/TextHeadline1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:layout_marginTop="16dp"
             android:paddingStart="32dp"
             android:paddingEnd="32dp"
-            android:layout_marginTop="16dp"
             android:paddingBottom="8dp"
-            android:text="@string/create_recipe_time_title" />
+            android:text="@string/create_recipe_time_title"
+            android:textAlignment="center" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -42,6 +43,28 @@
             android:layout_height="wrap_content"
             android:paddingBottom="24dp">
 
+            <TextView
+                android:id="@+id/textTime"
+                style="@style/TextHeadline3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="96dp"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textAlignment="center"
+                tools:text="Cooking time: 0h 55m"/>
+
+            <TimePicker
+                android:id="@+id/timePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:timePickerMode="spinner"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textTime"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
@@ -54,7 +77,8 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/create_recipe_button_next"/>
+        android:enabled="false"
+        android:text="@string/create_recipe_button_next" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/buttonBack"
@@ -62,9 +86,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
-        android:contentDescription="@null"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
-        android:src="@drawable/ic_back_24"/>
+        android:contentDescription="@null"
+        android:src="@drawable/ic_back_24" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

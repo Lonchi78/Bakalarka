@@ -3,4 +3,5 @@
 	<integer name="screen_animation_duration">200</integer>
 	<integer name="view_animation_duration">400</integer>
 	<integer name="image_cross_fade_duration">300</integer>
+	<integer name="hide_keyboard_delay">200</integer>
 </resources>

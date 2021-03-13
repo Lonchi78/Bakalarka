@@ -111,6 +111,7 @@
 	<string name="create_recipe_time_title">How long does it take to  cook your recipe?</string>
 	<string name="create_recipe_time_hours">HH</string>
 	<string name="create_recipe_time_minutes">MM</string>
+	<string name="create_recipe_time_input">Cooking time: %dh %dm</string>
 	<string name="create_recipe_ingredients_title">Add ingredients</string>
 	<string name="create_recipe_instructions_title">Add instructions</string>
 	<string name="create_recipe_photo_title">Add photo of recipe</string>

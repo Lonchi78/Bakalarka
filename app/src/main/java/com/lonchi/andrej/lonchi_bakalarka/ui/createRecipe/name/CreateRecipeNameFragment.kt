@@ -26,12 +26,16 @@ class CreateRecipeNameFragment : BaseFragment<CreateRecipeNameViewModel, Fragmen
             requireActivity().onBackPressed()
         }
         binding?.buttonNext?.setOnClickListener {
-            findNavController().navigate(CreateRecipeNameFragmentDirections.actionNameFragmentToTimeFragment())
+            requireActivity().hideKeyboard()
+            binding?.label?.postDelayed({
+                findNavController().navigate(CreateRecipeNameFragmentDirections.actionNameFragmentToTimeFragment())
+            }, resources.getInteger(R.integer.hide_keyboard_delay).toLong())
         }
 
         binding?.searchInput?.setEndIconClickClearInput(true)
         binding?.searchInput?.setMicrophoneIconOnClickListener {
             requireActivity().hideKeyboard()
+            //  TODO - add mic
             Toast.makeText(requireContext(), "hlasa ze majk", Toast.LENGTH_SHORT).show()
         }
         binding?.searchInput?.requestFocus()
