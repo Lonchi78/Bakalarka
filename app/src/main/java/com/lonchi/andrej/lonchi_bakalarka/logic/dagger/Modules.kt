@@ -132,6 +132,12 @@ class AppModule(private val application: Application) {
     internal fun provideRecipesRepository(impl: RecipesRepositoryImpl): RecipesRepository {
         return impl
     }
+
+    @Provides
+    @Singleton
+    internal fun provideCreateRecipeRepository(impl: CreateRecipeRepositoryImpl): CreateRecipeRepository {
+        return impl
+    }
 }
 
 @Module

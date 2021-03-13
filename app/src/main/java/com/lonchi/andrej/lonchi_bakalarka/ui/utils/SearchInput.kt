@@ -74,6 +74,8 @@ class SearchInput : BaseView<SearchInputBinding> {
 
     fun getInputField() = binding?.searchPlaceholder
 
+    fun getInputText(): String = binding?.searchPlaceholder?.text?.toString().orEmpty()
+
     fun setEndIconDrawable(drawableId: Int?) {
         this.endIconDrawableId = drawableId
         endIconDrawableId?.let { binding?.searchEndIcon?.setImageResource(it) }

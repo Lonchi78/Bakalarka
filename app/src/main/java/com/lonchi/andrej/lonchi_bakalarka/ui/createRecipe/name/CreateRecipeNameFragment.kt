@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.lonchi.andrej.lonchi_bakalarka.R
+import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentCreateRecipeNameBinding
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.hideKeyboard
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
@@ -26,10 +27,7 @@ class CreateRecipeNameFragment : BaseFragment<CreateRecipeNameViewModel, Fragmen
             requireActivity().onBackPressed()
         }
         binding?.buttonNext?.setOnClickListener {
-            requireActivity().hideKeyboard()
-            binding?.label?.postDelayed({
-                findNavController().navigate(CreateRecipeNameFragmentDirections.actionNameFragmentToTimeFragment())
-            }, resources.getInteger(R.integer.hide_keyboard_delay).toLong())
+            nextStep()
         }
 
         binding?.searchInput?.setEndIconClickClearInput(true)
@@ -42,10 +40,24 @@ class CreateRecipeNameFragment : BaseFragment<CreateRecipeNameViewModel, Fragmen
     }
 
     override fun bindViewModel() {
-        //binding?.searchInput?.changeCurrentQuery(viewModel.filterString.value.orEmpty())
+        viewModel.newRecipe.observe(viewLifecycleOwner) {
+            if (it.status is SuccessStatus) {
+                val name = it.data?.getName().orEmpty()
+                binding?.searchInput?.changeCurrentQuery(name)
+                binding?.buttonNext?.isEnabled = name.isNotEmpty()
+            }
+        }
+
         binding?.searchInput?.setTextObserver {
             binding?.buttonNext?.isEnabled = it.isNotEmpty()
-            Timber.d("bindViewModel: .searchInput?.setTextObserver = $it")
         }
+    }
+
+    private fun nextStep() {
+        viewModel.setRecipeName(binding?.searchInput?.getInputText().orEmpty())
+        requireActivity().hideKeyboard()
+        binding?.label?.postDelayed({
+            findNavController().navigate(CreateRecipeNameFragmentDirections.actionNameFragmentToTimeFragment())
+        }, resources.getInteger(R.integer.hide_keyboard_delay).toLong())
     }
 }
