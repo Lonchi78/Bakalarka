@@ -77,7 +77,7 @@
 
 	<color name="btnPrimaryRestingBackgroundColor">#d22d80</color>
 
-	<color name="btnPrimaryPressedBackgroundColor">@color/orange800</color>
+	<color name="btnPrimaryPressedBackgroundColor">@color/orange700</color>
 
 	<color name="btnPrimaryDisabledBackgroundColor">#edf2f7</color>
 

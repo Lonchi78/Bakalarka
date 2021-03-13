@@ -120,4 +120,7 @@
 	<string name="create_recipe_finalize_add_diets">Finalize</string>
 	<string name="create_recipe_success_title">Recept successfully created</string>
 
+	<!--	Others	-->
+	<string name="text_input_placeholder">Search…</string>
+
 </resources>

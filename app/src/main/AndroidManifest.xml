@@ -29,6 +29,7 @@
 
 		<activity android:name="com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginActivity" />
 		<activity android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.DiscoverByIngredientActivity" />
-		<activity android:name="com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.CreateRecipeActivity" />
+		<activity android:name="com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.CreateRecipeActivity"
+			android:windowSoftInputMode="adjustResize" />
 	</application>
 </manifest>
