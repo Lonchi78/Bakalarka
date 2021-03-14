@@ -148,6 +148,22 @@
 	<string name="diet_primal">Primal</string>
 	<string name="diet_whole_30">Whole30</string>
 
+	<!--	Intolerances	-->
+	<string name="intolerances_dairy">Dairy</string>
+	<string name="intolerances_egg">Egg</string>
+	<string name="intolerances_gluten">Gluten</string>
+	<string name="intolerances_grain">Grain</string>
+
+	<string name="intolerances_peanut">Peanut</string>
+	<string name="intolerances_seafood">Seafood</string>
+	<string name="intolerances_sesame">Sesame</string>
+	<string name="intolerances_shellfish">Shellfish</string>
+
+	<string name="intolerances_soy">Soy</string>
+	<string name="intolerances_sulfite">Sulfite</string>
+	<string name="intolerances_tree_nut">Tree Nut</string>
+	<string name="intolerances_wheat">Wheat</string>
+
 	<!--	Others	-->
 	<string name="text_input_placeholder">Search…</string>
 

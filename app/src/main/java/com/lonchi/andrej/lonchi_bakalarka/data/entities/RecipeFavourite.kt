@@ -39,6 +39,8 @@ class RecipeFavourite : RecipeItem, Recipe() {
 
     override fun getAllDiets(): List<String?>? = this.diets
 
+    override fun getAllIntolerances(): List<String?>? = this.intolerances
+
     override fun getAllCuisines(): List<String?>? = this.cuisines
 
     override fun getRecipeSourceUrl(): String? = this.sourceUrl

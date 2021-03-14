@@ -4,10 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.lonchi.andrej.lonchi_bakalarka.data.converters.*
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeCustom
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeFavourite
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.TestEntity
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.User
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.*
 
 
 /**
@@ -18,6 +15,8 @@ import com.lonchi.andrej.lonchi_bakalarka.data.entities.User
             TestEntity::class,
             RecipeFavourite::class,
             RecipeCustom::class,
+            Intolerances::class,
+            Diets::class,
             User::class
         ],
         version = 1,
@@ -38,4 +37,6 @@ abstract class LonchiDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun favouriteRecipesDao(): FavouriteRecipesDao
     abstract fun customRecipesDao(): CustomRecipesDao
+    abstract fun intolerancesDao(): IntolerancesDao
+    abstract fun dietsDao(): DietsDao
 }

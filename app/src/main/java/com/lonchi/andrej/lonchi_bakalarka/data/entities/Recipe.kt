@@ -33,6 +33,9 @@ open class Recipe : RecipeItem {
     @TypeConverters(ListOfStringsTypeConverters::class)
     @Json(name = "diets") var diets: List<String?>? = listOf()
 
+    @TypeConverters(ListOfStringsTypeConverters::class)
+    @Json(name = "intolerances") var intolerances: List<String?>? = listOf()
+
     @Json(name = "nutrition") @Embedded(prefix = "nutrition_") var nutrition: NutritionWrapper? = null
 
     @TypeConverters(IngredientTypeConverters::class)
@@ -62,6 +65,8 @@ open class Recipe : RecipeItem {
     override fun getAllInstructions(): List<Instruction>? = this.instructions?.firstOrNull()?.steps
 
     override fun getAllDiets(): List<String?>? = this.diets
+
+    override fun getAllIntolerances(): List<String?>? = this.intolerances
 
     override fun getAllCuisines(): List<String?>? = this.cuisines
 

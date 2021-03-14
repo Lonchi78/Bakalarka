@@ -32,6 +32,8 @@ interface RecipeItem {
 
     fun getAllCuisines(): List<String?>?
 
+    fun getAllIntolerances(): List<String?>?
+
     fun getRecipeSourceUrl(): String?
 
 }
