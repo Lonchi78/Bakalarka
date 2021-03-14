@@ -1,5 +1,6 @@
 package com.lonchi.andrej.lonchi_bakalarka.data.repository
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.lonchi.andrej.lonchi_bakalarka.data.base.BaseRepository
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.*
@@ -19,7 +20,8 @@ import javax.inject.Inject
  */
 interface CreateRecipeRepository {
     val newRecipe: MutableLiveData<Resource<RecipeCustom>>
-    val diets: MutableLiveData<List<String>>
+
+    val allDiets: MutableLiveData<List<String>>
 
     fun createNewRecipe()
 
@@ -30,6 +32,8 @@ interface CreateRecipeRepository {
     fun addRecipeIngredient(ingredientText: String)
 
     fun addRecipeInstruction(instructionText: String)
+
+    fun addDiets(diets: List<String>)
 }
 
 class CreateRecipeRepositoryImpl @Inject internal constructor(
@@ -37,19 +41,16 @@ class CreateRecipeRepositoryImpl @Inject internal constructor(
     db: LonchiDatabase,
     private val prefs: SharedPreferencesInterface,
     retrofit: Retrofit,
-    private val deviceTracker: DeviceTracker
+    private val deviceTracker: DeviceTracker,
+    private val context: Context
 ) : BaseRepository(db, api, prefs, retrofit), CreateRecipeRepository {
 
     override val newRecipe: MutableLiveData<Resource<RecipeCustom>> = MutableLiveData<Resource<RecipeCustom>>().apply {
         postValue(Resource.notStarted())
     }
 
-    override val newRecipe: MutableLiveData<Resource<RecipeCustom>> = MutableLiveData<Resource<RecipeCustom>>().apply {
-        postValue(
-            Resource.success(
-                DietsEnum.PESCETARIAN
-            )
-        )
+    override val allDiets: MutableLiveData<List<String>> = MutableLiveData<List<String>>().apply {
+        postValue(DietsEnum.getAllDiets(context))
     }
 
     override fun createNewRecipe() {
@@ -109,6 +110,12 @@ class CreateRecipeRepositoryImpl @Inject internal constructor(
         currentRecipe?.apply {
             this.instructions = listOf(currentInstructionWrapper)
         }
+        newRecipe.postValue(Resource.success(currentRecipe))
+    }
+
+    override fun addDiets(diets: List<String>) {
+        val currentRecipe = newRecipe.value?.data
+        currentRecipe?.diets = diets
         newRecipe.postValue(Resource.success(currentRecipe))
     }
 }

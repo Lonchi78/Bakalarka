@@ -1,5 +1,6 @@
 package com.lonchi.andrej.lonchi_bakalarka.data.entities
 
+import android.content.Context
 import com.lonchi.andrej.lonchi_bakalarka.R
 
 enum class DietsEnum (val stringRes: Int) {
@@ -16,7 +17,13 @@ enum class DietsEnum (val stringRes: Int) {
 
     companion object {
 
-        fun getAllDiets(): List<String>
+        fun getAllDiets(context: Context): List<String> {
+            val tmp = mutableListOf<String>()
+            values().forEach {
+                tmp.add(context.getString(it.stringRes))
+            }
+            return tmp
+        }
 
     }
 }

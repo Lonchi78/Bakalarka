@@ -1,10 +1,12 @@
 package com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.finalize
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeCustom
+import androidx.lifecycle.Transformations
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.CreateRecipeRepository
-import com.lonchi.andrej.lonchi_bakalarka.data.repository.RecipesRepository
+import com.lonchi.andrej.lonchi_bakalarka.data.utils.combineLatestLiveData
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.diets.adapter.AddDietsObject
 import javax.inject.Inject
 
 /**
@@ -16,6 +18,48 @@ class CreateRecipeAddDietsViewModel @Inject constructor(
 
     val newRecipe = createRecipeRepository.newRecipe
 
-    val diets: MutableLiveData<Pair<List<String?>, List<String?>>> =
-        Tr
+    val currentDiets: MutableList<String> = mutableListOf()
+
+    private val selectedDiets: MutableLiveData<List<String>> = MutableLiveData<List<String>>().apply {
+        postValue(listOf())
+    }
+    val diets: LiveData<List<AddDietsObject>> =
+        Transformations.map(
+            combineLatestLiveData(
+                createRecipeRepository.allDiets,
+                selectedDiets
+            )
+        ) {
+            val tmp = mutableListOf<AddDietsObject>()
+
+            it.first.forEach { diet ->
+                tmp.add(
+                    AddDietsObject(
+                        name = diet,
+                        isChecked = it.second.firstOrNull { selectedDiet ->
+                            selectedDiet == diet
+                        } != null
+                    )
+                )
+            }
+
+            tmp
+        }
+
+    fun addDiet(diet: String) {
+        val currentDiets = selectedDiets.value?.toMutableList() ?: mutableListOf()
+        currentDiets.add(diet)
+        selectedDiets.postValue(currentDiets)
+    }
+
+    fun removeDiet(diet: String) {
+        val currentDiets = selectedDiets.value?.toMutableList() ?: mutableListOf()
+        currentDiets.remove(diet)
+        selectedDiets.postValue(currentDiets)
+    }
+
+    fun saveDiets() {
+        val currentDiets = selectedDiets.value?.toMutableList() ?: mutableListOf()
+        createRecipeRepository.addDiets(currentDiets)
+    }
 }
