@@ -23,6 +23,8 @@ interface CreateRecipeRepository {
 
     val allDiets: MutableLiveData<List<String>>
 
+    val allIntolerances: MutableLiveData<List<String>>
+
     fun createNewRecipe()
 
     fun setRecipeName(name: String)
@@ -34,6 +36,8 @@ interface CreateRecipeRepository {
     fun addRecipeInstruction(instructionText: String)
 
     fun addDiets(diets: List<String?>)
+
+    fun addIntolerances(intolerances: List<String?>)
 }
 
 class CreateRecipeRepositoryImpl @Inject internal constructor(
@@ -51,6 +55,10 @@ class CreateRecipeRepositoryImpl @Inject internal constructor(
 
     override val allDiets: MutableLiveData<List<String>> = MutableLiveData<List<String>>().apply {
         postValue(DietsEnum.getAllDiets(context))
+    }
+
+    override val allIntolerances: MutableLiveData<List<String>> = MutableLiveData<List<String>>().apply {
+        postValue(IntolerancesEnum.getAllIntolerances(context))
     }
 
     override fun createNewRecipe() {
@@ -116,6 +124,12 @@ class CreateRecipeRepositoryImpl @Inject internal constructor(
     override fun addDiets(diets: List<String?>) {
         val currentRecipe = newRecipe.value?.data
         currentRecipe?.diets = diets
+        newRecipe.postValue(Resource.success(currentRecipe))
+    }
+
+    override fun addIntolerances(intolerances: List<String?>) {
+        val currentRecipe = newRecipe.value?.data
+        currentRecipe?.intolerances = intolerances
         newRecipe.postValue(Resource.success(currentRecipe))
     }
 }

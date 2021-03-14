@@ -40,6 +40,7 @@ class CreateRecipeFinalizeFragment : BaseFragment<CreateRecipeFinalizeViewModel,
         viewModel.newRecipe.observe(viewLifecycleOwner) {
             if (it.status is SuccessStatus && it.data != null) {
                 handleRecipeNutrition(it.data)
+                handleRecipeIntolerances(it.data)
                 handleRecipeDiets(it.data)
             }
         }
@@ -96,6 +97,30 @@ class CreateRecipeFinalizeFragment : BaseFragment<CreateRecipeFinalizeViewModel,
                 nutrition.getCarbohydrates()?.percentOfDailyNeeds ?: 0f
             binding?.progressBarFat?.progress =
                 nutrition.getFat()?.percentOfDailyNeeds ?: 0f
+        }
+    }
+
+    private fun handleRecipeIntolerances(recipe: RecipeItem?) {
+        val intolerances = recipe?.getAllIntolerances()
+
+        if (intolerances?.isNullOrEmpty() == null || intolerances.isNullOrEmpty()) {
+            binding?.groupRowAllergensEmpty?.setVisible(true)
+            binding?.groupRowAllergensData?.setVisible(false)
+        } else {
+            binding?.groupRowAllergensEmpty?.setVisible(false)
+            binding?.groupRowAllergensData?.setVisible(true)
+
+            intolerances.forEach {
+                binding?.chipGroupAllergens?.addView(
+                    (layoutInflater.inflate(
+                        R.layout.chip_single_choice,
+                        binding?.chipGroupAllergens,
+                        false
+                    ) as Chip).apply {
+                        text = it
+                    }
+                )
+            }
         }
     }
 
