@@ -2,10 +2,7 @@ package com.lonchi.andrej.lonchi_bakalarka.data.repository
 
 import androidx.lifecycle.MutableLiveData
 import com.lonchi.andrej.lonchi_bakalarka.data.base.BaseRepository
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.Ingredient
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.Instruction
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.InstructionsWrapper
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeCustom
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.*
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.database.LonchiDatabase
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.preferences.SharedPreferencesInterface
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RestApi
@@ -22,6 +19,7 @@ import javax.inject.Inject
  */
 interface CreateRecipeRepository {
     val newRecipe: MutableLiveData<Resource<RecipeCustom>>
+    val diets: MutableLiveData<List<String>>
 
     fun createNewRecipe()
 
@@ -42,9 +40,16 @@ class CreateRecipeRepositoryImpl @Inject internal constructor(
     private val deviceTracker: DeviceTracker
 ) : BaseRepository(db, api, prefs, retrofit), CreateRecipeRepository {
 
-
     override val newRecipe: MutableLiveData<Resource<RecipeCustom>> = MutableLiveData<Resource<RecipeCustom>>().apply {
         postValue(Resource.notStarted())
+    }
+
+    override val newRecipe: MutableLiveData<Resource<RecipeCustom>> = MutableLiveData<Resource<RecipeCustom>>().apply {
+        postValue(
+            Resource.success(
+                DietsEnum.PESCETARIAN
+            )
+        )
     }
 
     override fun createNewRecipe() {
