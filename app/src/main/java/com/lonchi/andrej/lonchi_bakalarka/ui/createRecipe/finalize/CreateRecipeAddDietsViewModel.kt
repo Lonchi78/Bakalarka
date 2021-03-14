@@ -16,13 +16,10 @@ class CreateRecipeAddDietsViewModel @Inject constructor(
     private val createRecipeRepository: CreateRecipeRepository
 ) : BaseViewModel() {
 
-    val newRecipe = createRecipeRepository.newRecipe
-
-    val currentDiets: MutableList<String> = mutableListOf()
-
-    private val selectedDiets: MutableLiveData<List<String>> = MutableLiveData<List<String>>().apply {
-        postValue(listOf())
+    private val selectedDiets: MutableLiveData<List<String?>> = MutableLiveData<List<String?>>().apply {
+        postValue(createRecipeRepository.newRecipe.value?.data?.diets ?: emptyList())
     }
+
     val diets: LiveData<List<AddDietsObject>> =
         Transformations.map(
             combineLatestLiveData(

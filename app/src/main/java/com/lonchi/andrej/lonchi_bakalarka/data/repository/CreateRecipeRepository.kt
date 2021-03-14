@@ -33,7 +33,7 @@ interface CreateRecipeRepository {
 
     fun addRecipeInstruction(instructionText: String)
 
-    fun addDiets(diets: List<String>)
+    fun addDiets(diets: List<String?>)
 }
 
 class CreateRecipeRepositoryImpl @Inject internal constructor(
@@ -113,7 +113,7 @@ class CreateRecipeRepositoryImpl @Inject internal constructor(
         newRecipe.postValue(Resource.success(currentRecipe))
     }
 
-    override fun addDiets(diets: List<String>) {
+    override fun addDiets(diets: List<String?>) {
         val currentRecipe = newRecipe.value?.data
         currentRecipe?.diets = diets
         newRecipe.postValue(Resource.success(currentRecipe))

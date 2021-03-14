@@ -26,17 +26,14 @@ class CreateRecipeFinalizeFragment : BaseFragment<CreateRecipeFinalizeViewModel,
         binding?.buttonBack?.setOnClickListener { requireActivity().onBackPressed() }
         binding?.buttonFinalize?.setOnClickListener { finishCreatingRecipe() }
 
-        binding?.viewAddNutrition?.setOnClickListener {
-            findNavController().navigate(CreateRecipeFinalizeFragmentDirections.actionFinalizeFragmentToAddNutritionFragment())
-        }
-        binding?.viewAddAllergens?.setOnClickListener {
-            findNavController().navigate(CreateRecipeFinalizeFragmentDirections.actionFinalizeFragmentToAddAllergensFragment())
-        }
-        binding?.viewAddDiets?.setOnClickListener {
-            findNavController().navigate(CreateRecipeFinalizeFragmentDirections.actionFinalizeFragmentToAddDietsFragment())
-        }
+        binding?.viewAddNutrition?.setOnClickListener { openNutritionScreen() }
+        binding?.iconNutritionEdit?.setOnClickListener { openNutritionScreen() }
 
-        //  TODO - allow to edit data
+        binding?.viewAddAllergens?.setOnClickListener { openAllergensScreen() }
+        binding?.iconAllergensEdit?.setOnClickListener { openAllergensScreen() }
+
+        binding?.viewAddDiets?.setOnClickListener { openDietsScreen() }
+        binding?.iconDietsEdit?.setOnClickListener { openDietsScreen() }
     }
 
     override fun bindViewModel() {
@@ -46,6 +43,18 @@ class CreateRecipeFinalizeFragment : BaseFragment<CreateRecipeFinalizeViewModel,
                 handleRecipeDiets(it.data)
             }
         }
+    }
+
+    private fun openNutritionScreen() {
+        findNavController().navigate(CreateRecipeFinalizeFragmentDirections.actionFinalizeFragmentToAddNutritionFragment())
+    }
+
+    private fun openAllergensScreen() {
+        findNavController().navigate(CreateRecipeFinalizeFragmentDirections.actionFinalizeFragmentToAddAllergensFragment())
+    }
+
+    private fun openDietsScreen() {
+        findNavController().navigate(CreateRecipeFinalizeFragmentDirections.actionFinalizeFragmentToAddDietsFragment())
     }
 
     private fun finishCreatingRecipe() {

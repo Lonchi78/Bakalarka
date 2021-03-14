@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
@@ -67,6 +67,6 @@ class DietRowsAdapter(
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         internal val root = view.findViewById<ConstraintLayout>(R.id.itemDietRoot)
         internal val name = view.findViewById<TextView>(R.id.textName)
-        internal val icon = view.findViewById<ImageButton>(R.id.iconCheck)
+        internal val icon = view.findViewById<ImageView>(R.id.iconCheck)
     }
 }
