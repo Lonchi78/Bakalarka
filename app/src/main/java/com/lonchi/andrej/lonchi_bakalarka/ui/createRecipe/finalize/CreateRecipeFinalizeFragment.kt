@@ -9,6 +9,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentCreateRecipeFinalizeBinding
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.setVisible
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
+import timber.log.Timber
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
@@ -88,6 +89,11 @@ class CreateRecipeFinalizeFragment : BaseFragment<CreateRecipeFinalizeViewModel,
                 R.string.nutrition_value_fat,
                 nutrition.getFat()?.amount?.toInt() ?: 0
             )
+
+            Timber.d("nutrition.getCalories()?.percentOfDailyNeeds = ${nutrition.getCalories()?.percentOfDailyNeeds}")
+            Timber.d("nutrition.getProtein()?.percentOfDailyNeeds = ${nutrition.getProtein()?.percentOfDailyNeeds ?: 0f}")
+            Timber.d("nutrition.getCarbohydrates()?.percentOfDailyNeeds = ${nutrition.getCarbohydrates()?.percentOfDailyNeeds ?: 0f}")
+            Timber.d("nutrition.getFat()?.percentOfDailyNeeds = ${nutrition.getFat()?.percentOfDailyNeeds ?: 0f}")
 
             binding?.progressBarCalories?.progress =
                 nutrition.getCalories()?.percentOfDailyNeeds ?: 0f

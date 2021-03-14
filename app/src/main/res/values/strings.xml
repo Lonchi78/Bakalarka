@@ -134,6 +134,15 @@
 	<string name="create_recipe_finalize_allergens">Allergens</string>
 	<string name="create_recipe_finalize_diets">Diets</string>
 
+	<string name="create_recipe_finalize_add_nutrition_calories">Calories</string>
+	<string name="create_recipe_finalize_add_nutrition_proteins">Proteins</string>
+	<string name="create_recipe_finalize_add_nutrition_carbs">Carbs</string>
+	<string name="create_recipe_finalize_add_nutrition_fat">Fat</string>
+	<string name="create_recipe_finalize_add_nutrition_calories_unit">cal</string>
+	<string name="create_recipe_finalize_add_nutrition_proteins_unit">g</string>
+	<string name="create_recipe_finalize_add_nutrition_carbs_unit">g</string>
+	<string name="create_recipe_finalize_add_nutrition_fat_unit">g</string>
+
 	<string name="create_recipe_success_title">Recipe successfully created</string>
 
 	<!--	Diets	-->

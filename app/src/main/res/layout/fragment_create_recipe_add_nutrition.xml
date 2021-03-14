@@ -45,13 +45,63 @@
 
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/snackbarRoot"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp">
+
+            <com.lonchi.andrej.lonchi_bakalarka.ui.utils.EditTextInput
+                android:id="@+id/editTextCalories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:placeholderText="@string/create_recipe_finalize_add_nutrition_calories"/>
+
+            <com.lonchi.andrej.lonchi_bakalarka.ui.utils.EditTextInput
+                android:id="@+id/editTextProteins"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:layout_constraintTop_toBottomOf="@id/editTextCalories"
+                app:placeholderText="@string/create_recipe_finalize_add_nutrition_proteins"/>
+
+            <com.lonchi.andrej.lonchi_bakalarka.ui.utils.EditTextInput
+                android:id="@+id/editTextCarbs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:layout_constraintTop_toBottomOf="@id/editTextProteins"
+                app:placeholderText="@string/create_recipe_finalize_add_nutrition_carbs"/>
+
+            <com.lonchi.andrej.lonchi_bakalarka.ui.utils.EditTextInput
+                android:id="@+id/editTextFat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:layout_constraintTop_toBottomOf="@id/editTextCarbs"
+                app:placeholderText="@string/create_recipe_finalize_add_nutrition_fat"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonSave"
+        style="@style/ContainedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_recipe_button_save"
         android:layout_marginBottom="16dp"
+        app:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,18 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.lonchi.andrej.lonchi_bakalarka.data.base.BaseRepository
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.*
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.NutritionWrapper.Companion.KEY_CALORIES
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.NutritionWrapper.Companion.KEY_CALORIES_UNIT
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.NutritionWrapper.Companion.KEY_CARBOHYDRATES
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.NutritionWrapper.Companion.KEY_CARBOHYDRATES_UNIT
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.NutritionWrapper.Companion.KEY_FAT
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.NutritionWrapper.Companion.KEY_FAT_UNIT
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.NutritionWrapper.Companion.KEY_PROTEIN
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.NutritionWrapper.Companion.KEY_PROTEIN_UNIT
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.NutritionWrapper.Companion.getCaloriesPercentOfDailyNeeds
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.NutritionWrapper.Companion.getCarbohydratesPercentOfDailyNeeds
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.NutritionWrapper.Companion.getFatsPercentOfDailyNeeds
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.NutritionWrapper.Companion.getProteinsPercentOfDailyNeeds
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.database.LonchiDatabase
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.preferences.SharedPreferencesInterface
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RestApi
@@ -34,6 +46,8 @@ interface CreateRecipeRepository {
     fun addRecipeIngredient(ingredientText: String)
 
     fun addRecipeInstruction(instructionText: String)
+
+    fun addNutrition(calories: Int, fat: Int, protein: Int, carbs: Int)
 
     fun addDiets(diets: List<String?>)
 
@@ -130,6 +144,58 @@ class CreateRecipeRepositoryImpl @Inject internal constructor(
     override fun addIntolerances(intolerances: List<String?>) {
         val currentRecipe = newRecipe.value?.data
         currentRecipe?.intolerances = intolerances
+        newRecipe.postValue(Resource.success(currentRecipe))
+    }
+
+    override fun addNutrition(calories: Int, fat: Int, protein: Int, carbs: Int) {
+        val currentRecipe = newRecipe.value?.data
+        val nutritionWrapper = newRecipe.value?.data?.nutrition ?: NutritionWrapper()
+        val listOfNutrient = mutableListOf<Nutrient>()
+
+        //  Calories
+        listOfNutrient.add(
+            Nutrient(
+                name = KEY_CALORIES,
+                amount = calories.toFloat(),
+                unit = KEY_CALORIES_UNIT,
+                percentOfDailyNeeds = getCaloriesPercentOfDailyNeeds(calories)
+            )
+        )
+
+        //  Fats
+        listOfNutrient.add(
+            Nutrient(
+                name = KEY_FAT,
+                amount = fat.toFloat(),
+                unit = KEY_FAT_UNIT,
+                percentOfDailyNeeds = getFatsPercentOfDailyNeeds(fat)
+            )
+        )
+
+        //  Proteins
+        listOfNutrient.add(
+            Nutrient(
+                name = KEY_PROTEIN,
+                amount = protein.toFloat(),
+                unit = KEY_PROTEIN_UNIT,
+                percentOfDailyNeeds = getProteinsPercentOfDailyNeeds(protein)
+            )
+        )
+
+        //  Carbs
+        listOfNutrient.add(
+            Nutrient(
+                name = KEY_CARBOHYDRATES,
+                amount = carbs.toFloat(),
+                unit = KEY_CARBOHYDRATES_UNIT,
+                percentOfDailyNeeds = getCarbohydratesPercentOfDailyNeeds(carbs)
+            )
+        )
+
+        Timber.d("addNutrition: ${listOfNutrient.toString()}")
+
+        nutritionWrapper.nutrients = listOfNutrient
+        currentRecipe?.nutrition = nutritionWrapper
         newRecipe.postValue(Resource.success(currentRecipe))
     }
 }
