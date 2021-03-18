@@ -33,9 +33,9 @@ class CreateRecipeAddInstructionFragment : BaseFragment<CreateRecipeAddInstructi
     }
 
     override fun bindViewModel() {
-        binding?.instructionInput?.setTextObserver {
-            binding?.buttonAddInstruction?.isEnabled = it.isNotEmpty()
-        }
+        binding?.instructionInput?.setTextObserver(
+            { binding?.buttonAddInstruction?.isEnabled = it.isNotEmpty() }
+        )
     }
 
     private fun saveInstruction() {

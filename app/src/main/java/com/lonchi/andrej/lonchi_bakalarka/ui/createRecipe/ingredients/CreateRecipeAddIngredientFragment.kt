@@ -41,18 +41,18 @@ class CreateRecipeAddIngredientFragment : BaseFragment<CreateRecipeAddIngredient
     }
 
     override fun bindViewModel() {
-        binding?.inputIngredientName?.setTextObserver {
+        binding?.inputIngredientName?.setTextObserver ({
             viewModel.validateInput(
                 name = it,
                 measure = binding?.inputIngredientMeasure?.getInputText().orEmpty()
             )
-        }
-        binding?.inputIngredientMeasure?.setTextObserver {
+        })
+        binding?.inputIngredientMeasure?.setTextObserver ({
             viewModel.validateInput(
                 name = binding?.inputIngredientName?.getInputText().orEmpty(),
                 measure = it
             )
-        }
+        })
 
         viewModel.saveButtonEnabled.observe(viewLifecycleOwner) {
             binding?.buttonAddIngredient?.isEnabled = it

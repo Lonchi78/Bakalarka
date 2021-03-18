@@ -7,6 +7,7 @@ import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentCreateRecipeNameBinding
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.hideKeyboard
+import com.lonchi.andrej.lonchi_bakalarka.logic.util.openKeyboard
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import timber.log.Timber
 
@@ -23,12 +24,8 @@ class CreateRecipeNameFragment : BaseFragment<CreateRecipeNameViewModel, Fragmen
     override val bindingInflater: (View) -> FragmentCreateRecipeNameBinding = { FragmentCreateRecipeNameBinding.bind(it) }
 
     override fun initView() {
-        binding?.buttonBack?.setOnClickListener {
-            requireActivity().onBackPressed()
-        }
-        binding?.buttonNext?.setOnClickListener {
-            nextStep()
-        }
+        binding?.buttonBack?.setOnClickListener { requireActivity().onBackPressed() }
+        binding?.buttonNext?.setOnClickListener { nextStep() }
 
         binding?.searchInput?.setEndIconClickClearInput(true)
         binding?.searchInput?.setMicrophoneIconOnClickListener {
@@ -48,9 +45,9 @@ class CreateRecipeNameFragment : BaseFragment<CreateRecipeNameViewModel, Fragmen
             }
         }
 
-        binding?.searchInput?.setTextObserver {
+        binding?.searchInput?.setTextObserver({
             binding?.buttonNext?.isEnabled = it.isNotEmpty()
-        }
+        })
     }
 
     private fun nextStep() {

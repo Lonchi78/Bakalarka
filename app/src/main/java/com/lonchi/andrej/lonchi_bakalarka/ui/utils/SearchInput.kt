@@ -108,8 +108,8 @@ class SearchInput : BaseView<SearchInputBinding> {
         binding?.iconMic?.setOnClickListener { action() }
     }
 
-    fun setTextObserver(action: (String) -> Unit) {
-        binding?.searchPlaceholder?.afterTextChangedDebounce(200L) { action.invoke(it) }
+    fun setTextObserver(action: (String) -> Unit, delayMillis: Long = 200L) {
+        binding?.searchPlaceholder?.afterTextChangedDebounce(delayMillis) { action.invoke(it) }
     }
 
     private fun setupClearIcon() {

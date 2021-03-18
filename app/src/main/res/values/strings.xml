@@ -34,6 +34,7 @@
 	<string name="discover_search_by_ingredients_chip">Try</string>
 	<string name="discover_quick_search">Quick search</string>
 	<string name="discover_search_bar_placeholder">Search…</string>
+	<string name="discover_search_query_placeholder">Pasta…</string>
 
 	<!--	Meal planner	-->
 	<string name="meal_planner_title">Meal planner</string>
