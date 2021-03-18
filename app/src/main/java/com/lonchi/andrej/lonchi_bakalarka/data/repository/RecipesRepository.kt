@@ -13,6 +13,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeCustom
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.User
 import com.lonchi.andrej.lonchi_bakalarka.data.mappers.ObjectMappers.Companion.mapToFavouriteRecipe
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RecipesResponse
+import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.SearchRecipesResponse
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.DeviceTracker
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
@@ -36,6 +37,7 @@ interface RecipesRepository {
     fun deleteRecipeToFavourites(uid: String)
 
     fun getRandomRecipes(number: Int): Single<Resource<RecipesResponse>>
+    fun searchRecipesByQuery(query: String): Single<Resource<SearchRecipesResponse>>
     fun getRecipeDetail(id: Long): Single<Resource<Recipe>>
 }
 
@@ -79,6 +81,15 @@ class RecipesRepositoryImpl @Inject internal constructor(
         api.getRandomRecipes(
             apiKey = BuildConfig.API_KEY,
             numberOfResults = number
+        )
+            .asSyncOperation()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+
+    override fun searchRecipesByQuery(query: String): Single<Resource<SearchRecipesResponse>> =
+        api.searchRecipes(
+            apiKey = BuildConfig.API_KEY,
+            query = query
         )
             .asSyncOperation()
             .subscribeOn(Schedulers.io())

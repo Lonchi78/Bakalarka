@@ -74,3 +74,14 @@ data class ImageLabelingResponse(val items: List<ImageLabelingItem>)
 data class RecipesResponse(
     @Json(name = "recipes") val recipes: List<Recipe>
 ): BaseResponse()
+
+data class SearchRecipesResponse(
+    @Json(name = "results") val results: List<Recipe>,
+    @Json(name = "baseUri") val baseUri: String,
+    @Json(name = "isStale") val isStale: Boolean,
+    @Json(name = "offset") val offset: Int,
+    @Json(name = "number") val number: Int,
+    @Json(name = "totalResults") val totalResults: Int,
+    @Json(name = "processingTimeMs") val processingTimeMs: Int,
+    @Json(name = "expires") val expires: Long
+): BaseResponse()

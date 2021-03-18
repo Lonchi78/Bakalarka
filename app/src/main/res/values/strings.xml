@@ -35,6 +35,7 @@
 	<string name="discover_quick_search">Quick search</string>
 	<string name="discover_search_bar_placeholder">Search…</string>
 	<string name="discover_search_query_placeholder">Pasta…</string>
+	<string name="discover_search_recipe_ready_in_minutes">%d mins</string>
 
 	<!--	Meal planner	-->
 	<string name="meal_planner_title">Meal planner</string>

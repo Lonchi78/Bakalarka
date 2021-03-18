@@ -64,4 +64,10 @@ interface RestApi {
         @Query("includeNutrition") includeNutrition: Boolean? = true
     ): Single<Response<Recipe>>
 
+    @GET("recipes/search")
+    fun searchRecipes(
+        @Query("apiKey") apiKey: String,
+        @Query("query") query: String
+    ): Single<Response<SearchRecipesResponse>>
+
 }

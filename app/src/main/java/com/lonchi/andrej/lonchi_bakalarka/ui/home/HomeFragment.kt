@@ -110,11 +110,6 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     }
 
     private fun onRecipeItemClick(recipe: RecipeItem) {
-        Toast.makeText(
-            requireContext(),
-            "onRecipeItemClick ${recipe.getName()}",
-            Toast.LENGTH_SHORT
-        ).show()
         findNavController().navigate(
             HomeFragmentDirections.actionGlobalRecipeDetailFragment(
                 recipeId = recipe.getId(),
