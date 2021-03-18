@@ -43,7 +43,9 @@ interface CreateRecipeRepository {
 
     fun setRecipeCookingTime(hours: Int, minutes: Int)
 
-    fun addRecipeIngredient(ingredientText: String)
+    fun addRecipeIngredient(ingredientName: String, ingredientMesaure: String)
+
+    fun deleteIngredient(ingredient: Ingredient)
 
     fun addRecipeInstruction(instructionText: String)
 
@@ -94,15 +96,29 @@ class CreateRecipeRepositoryImpl @Inject internal constructor(
         newRecipe.postValue(Resource.success(currentRecipe))
     }
 
-    override fun addRecipeIngredient(ingredientText: String) {
+    override fun addRecipeIngredient(ingredientName: String, ingredientMesaure: String) {
         val currentRecipe = newRecipe.value?.data
         val currentIngredients = currentRecipe?.getAllIngredients()?.toMutableList()
 
         currentIngredients?.add(
             Ingredient(
-
+                name = ingredientName,
+                originalName = ingredientName,
+                customMeasure = ingredientMesaure
             )
         )
+
+        currentRecipe?.apply {
+            this.ingredients = currentIngredients
+        }
+        newRecipe.postValue(Resource.success(currentRecipe))
+    }
+
+    override fun deleteIngredient(ingredient: Ingredient) {
+        val currentRecipe = newRecipe.value?.data
+        val currentIngredients = currentRecipe?.getAllIngredients()?.toMutableList()
+
+        currentIngredients?.remove(ingredient)
 
         currentRecipe?.apply {
             this.ingredients = currentIngredients

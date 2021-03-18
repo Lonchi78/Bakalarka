@@ -8,6 +8,7 @@ data class Ingredient (
     @Json(name = "image") var image: String? = null,
     @Json(name = "name") var name: String? = null,
     @Json(name = "originalName") var originalName: String? = null,
+    @Json(name = "customMeasure") var customMeasure: String? = null,
     @Json(name = "measures") @Embedded(prefix = "ingredient_") var measures: Measures? = null
 )
 
