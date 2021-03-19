@@ -66,11 +66,17 @@ class UserRepositoryImpl @Inject internal constructor(
 
     companion object {
         private const val DB_KEY_USERS = "users"
+        private const val DB_USERDATA_NAME = "name"
+        private const val DB_USERDATA_EMAIL = "email"
+        private const val DB_USERDATA_DIETS = "diets"
+        private const val DB_USERDATA_INTOLERANCES = "intolerances"
+        private const val DB_USERDATA_FAVOURITE_RECIPES = "favouriteRecipes"
+        private const val DB_USERDATA_CUSTOM_RECIPES = "customRecipes"
     }
 
     private var disposable: CompositeDisposable? = null
 
-    private lateinit var database: DatabaseReference
+    private var database: DatabaseReference = Firebase.database.reference
 
     init {
         disposable = CompositeDisposable()
@@ -125,7 +131,6 @@ class UserRepositoryImpl @Inject internal constructor(
     }
 
     override fun updateUserData() {
-        Timber.d("updateUserData:")
         disposable?.dispose()
         disposable?.add(
             Single.zip(
@@ -135,9 +140,6 @@ class UserRepositoryImpl @Inject internal constructor(
                 db.dietsDao().listAllSingle(),
                 db.intolerancesDao().listAllSingle(),
                 { user, customRecipes, favouriteRecipes, diets, intolerances ->
-                    Timber.d("updateUserData: in zip")
-                    Timber.d("updateUserData: in zip, fav = ${favouriteRecipes.size}")
-                    Timber.d("updateUserData: in zip, custom = ${customRecipes.size}")
                     UserData(
                         name = user.firstOrNull()?.name ?: "",
                         email = user.firstOrNull()?.email ?: "",
@@ -148,12 +150,7 @@ class UserRepositoryImpl @Inject internal constructor(
                     )
                 }
             )
-                .doOnSubscribe {
-                    Timber.d("updateUserData: doOnSubscribe")
-                }
                 .subscribe({
-                    Timber.d("updateUserData subs: $it")
-                    database = Firebase.database.reference
                     val userUid = prefs.getUserUidFromSharedPreferences()
                     database.child(DB_KEY_USERS).child(userUid).setValue(it)
                 }, {
@@ -163,18 +160,70 @@ class UserRepositoryImpl @Inject internal constructor(
     }
 
     override fun updateDiets() {
-        TODO("Not yet implemented")
+        disposable?.dispose()
+        disposable?.add(
+            db.dietsDao().listAllSingle()
+                .subscribe({
+                    val userUid = prefs.getUserUidFromSharedPreferences()
+                    database
+                        .child(DB_KEY_USERS)
+                        .child(userUid)
+                        .child(DB_USERDATA_DIETS)
+                        .setValue(it.firstOrNull() ?: Diets())
+                }, {
+                    Timber.e("updateDiets err: $it")
+                })
+        )
     }
 
     override fun updateIntolerances() {
-        TODO("Not yet implemented")
+        disposable?.dispose()
+        disposable?.add(
+            db.intolerancesDao().listAllSingle()
+                .subscribe({
+                    val userUid = prefs.getUserUidFromSharedPreferences()
+                    database
+                        .child(DB_KEY_USERS)
+                        .child(userUid)
+                        .child(DB_USERDATA_INTOLERANCES)
+                        .setValue(it.firstOrNull() ?: Intolerances())
+                }, {
+                    Timber.e("updateIntolerances err: $it")
+                })
+        )
     }
 
     override fun updateCustomRecipes() {
-        TODO("Not yet implemented")
+        disposable?.dispose()
+        disposable?.add(
+            db.customRecipesDao().getAllRecipesSingle()
+                .subscribe({
+                    val userUid = prefs.getUserUidFromSharedPreferences()
+                    database
+                        .child(DB_KEY_USERS)
+                        .child(userUid)
+                        .child(DB_USERDATA_CUSTOM_RECIPES)
+                        .setValue(it)
+                }, {
+                    Timber.e("updateCustomRecipes err: $it")
+                })
+        )
     }
 
     override fun updateFavouriteRecipes() {
-        TODO("Not yet implemented")
+        disposable?.dispose()
+        disposable?.add(
+            db.favouriteRecipesDao().getAllRecipesSingle()
+                .subscribe({
+                    val userUid = prefs.getUserUidFromSharedPreferences()
+                    database
+                        .child(DB_KEY_USERS)
+                        .child(userUid)
+                        .child(DB_USERDATA_FAVOURITE_RECIPES)
+                        .setValue(it)
+                }, {
+                    Timber.e("updateFavouriteRecipes err: $it")
+                })
+        )
     }
 }

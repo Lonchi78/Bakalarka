@@ -34,7 +34,7 @@ interface RecipesRepository {
     fun getOwnRecipe(uid: String): Single<List<RecipeCustom>>
 
     fun addRecipeToFavourites(recipe: Recipe)
-    fun deleteRecipeToFavourites(uid: String)
+    fun removeRecipeToFavourites(uid: String)
 
     fun getRandomRecipes(number: Int): Single<Resource<RecipesResponse>>
     fun searchRecipesByQuery(query: String): Single<Resource<SearchRecipesResponse>>
@@ -46,7 +46,8 @@ class RecipesRepositoryImpl @Inject internal constructor(
     db: LonchiDatabase,
     private val prefs: SharedPreferencesInterface,
     retrofit: Retrofit,
-    private val deviceTracker: DeviceTracker
+    private val deviceTracker: DeviceTracker,
+    private val userRepository: UserRepository
 ) : BaseRepository(db, api, prefs, retrofit), RecipesRepository {
 
     override fun getFavouriteRecipe(uid: String): Single<List<RecipeFavourite>> {
@@ -59,12 +60,12 @@ class RecipesRepositoryImpl @Inject internal constructor(
 
     override fun addRecipeToFavourites(recipe: Recipe) {
         db.favouriteRecipesDao().insert(recipe.mapToFavouriteRecipe(moshi))
-        //  TODO - add to firebase db
+        userRepository.updateFavouriteRecipes()
     }
 
-    override fun deleteRecipeToFavourites(uid: String) {
+    override fun removeRecipeToFavourites(uid: String) {
         db.favouriteRecipesDao().deleteRecipe(uid)
-        //  TODO - delete from firebase db
+        userRepository.updateFavouriteRecipes()
     }
 
     /**

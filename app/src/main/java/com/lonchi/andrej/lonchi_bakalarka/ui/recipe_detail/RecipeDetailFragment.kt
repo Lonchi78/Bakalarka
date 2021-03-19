@@ -8,6 +8,7 @@ import coil.load
 import com.google.android.material.chip.Chip
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Recipe
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeFavourite
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeItem
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.LoadingStatus
@@ -16,6 +17,7 @@ import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentRecipeDetailBindin
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.openWebUrl
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.setVisible
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
+import timber.log.Timber
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
@@ -127,12 +129,30 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
     }
 
     private fun setupRecipeActionButton(recipe: RecipeItem?) {
-        binding?.buttonLike?.setOnClickListener {
-            //  TODO - detect if is liked or not, handle icon
-            binding?.buttonLike?.icon =
-                ContextCompat.getDrawable(requireContext(), R.drawable.ic_like_fill_20)
-            viewModel.addToFavourites(recipe as? Recipe ?: return@setOnClickListener)
+        Timber.d("setupRecipeActionButton: ${recipe}")
+        Timber.d("setupRecipeActionButton: ${recipe?.getRecipeIdType()}")
+        Timber.d("setupRecipeActionButton: ${RecipeIdTypeEnum.getRecipeIdType(recipe?.getRecipeIdType() ?: -1)}")
+        when (RecipeIdTypeEnum.getRecipeIdType(recipe?.getRecipeIdType() ?: -1)) {
+            RecipeIdTypeEnum.FAVOURITE_RECIPE -> {
+                binding?.buttonLike?.setOnClickListener {
+                    binding?.buttonLike?.icon =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.ic_like_empty_20)
+                    viewModel.removeFromFavourites(recipe as? RecipeFavourite ?: return@setOnClickListener)
+                }
+            }
+            RecipeIdTypeEnum.OWN_RECIPE -> {
+                //  todo custom view na toto
+            }
+            else -> {
+                binding?.buttonLike?.setOnClickListener {
+                    binding?.buttonLike?.icon =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.ic_like_fill_20)
+                    viewModel.addToFavourites(recipe as? Recipe ?: return@setOnClickListener)
+                }
+            }
         }
+
+        //  TODO - add to meal planner
         binding?.buttonShare?.setOnClickListener {
             Toast.makeText(requireContext(), "TODO - share", Toast.LENGTH_SHORT).show()
         }

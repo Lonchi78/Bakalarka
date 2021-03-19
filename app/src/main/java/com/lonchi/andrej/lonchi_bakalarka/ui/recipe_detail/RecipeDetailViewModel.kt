@@ -2,6 +2,7 @@ package com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail
 
 import androidx.lifecycle.MutableLiveData
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Recipe
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeFavourite
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeItem
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.RecipesRepository
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
@@ -38,6 +39,8 @@ class RecipeDetailViewModel @Inject constructor(
     }
 
     fun addToFavourites(recipe: Recipe) = recipesRepository.addRecipeToFavourites(recipe)
+
+    fun removeFromFavourites(recipe: RecipeFavourite) = recipesRepository.removeRecipeToFavourites(recipe.getId())
 
     private fun getFavouriteRecipeDetail(uid: String) {
         compositeDisposable.add(
