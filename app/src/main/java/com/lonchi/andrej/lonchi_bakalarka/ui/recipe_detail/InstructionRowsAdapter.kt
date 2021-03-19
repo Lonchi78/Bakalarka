@@ -26,9 +26,7 @@ class InstructionRowsAdapter(
 
     override fun areContentsTheSame(oldItem: Instruction, newItem: Instruction): Boolean {
         return oldItem.step == newItem.step
-                && oldItem.length == newItem.length
-                && oldItem.length?.number == newItem.length?.number
-                && oldItem.length?.unit == newItem.length?.unit
+                && oldItem.number == newItem.number
     }
 
 }) {

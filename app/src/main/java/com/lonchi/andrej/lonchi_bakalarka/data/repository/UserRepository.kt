@@ -100,6 +100,10 @@ class UserRepositoryImpl @Inject internal constructor(
     override fun performUserLogout() {
         prefs.removeUserId()
         db.userDao().deleteAll()
+        db.favouriteRecipesDao().deleteAllRecipes()
+        db.customRecipesDao().deleteAllRecipes()
+        db.dietsDao().deleteAll()
+        db.intolerancesDao().deleteAll()
     }
 
     /**

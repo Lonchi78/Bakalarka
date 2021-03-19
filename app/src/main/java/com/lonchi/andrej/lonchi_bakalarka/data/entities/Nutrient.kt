@@ -6,7 +6,7 @@ import com.squareup.moshi.Json
 
 data class NutritionWrapper (
     @TypeConverters(NutrientTypeConverters::class)
-    @Json(name = "nutrients") var nutrients: List<Nutrient>? = listOf()
+    @Json(name = "nutrients") var nutrients: List<Nutrient?>? = listOf()
 ) {
     companion object {
         const val KEY_CALORIES = "Calories"
@@ -34,25 +34,25 @@ data class NutritionWrapper (
 
     fun getCalories(): Nutrient? {
         return this.nutrients?.firstOrNull {
-            it.name == KEY_CALORIES
+            it?.name == KEY_CALORIES
         }
     }
 
     fun getFat(): Nutrient? {
         return this.nutrients?.firstOrNull {
-            it.name == KEY_FAT
+            it?.name == KEY_FAT
         }
     }
 
     fun getCarbohydrates(): Nutrient? {
         return this.nutrients?.firstOrNull {
-            it.name == KEY_CARBOHYDRATES
+            it?.name == KEY_CARBOHYDRATES
         }
     }
 
     fun getProtein(): Nutrient? {
         return this.nutrients?.firstOrNull {
-            it.name == KEY_PROTEIN
+            it?.name == KEY_PROTEIN
         }
     }
 }
