@@ -60,6 +60,7 @@ class CreateRecipeFinalizeFragment : BaseFragment<CreateRecipeFinalizeViewModel,
     }
 
     private fun finishCreatingRecipe() {
+        viewModel.createRecipe()
         findNavController().navigate(CreateRecipeFinalizeFragmentDirections.actionFinalizeFragmentToSuccessFragment())
     }
 

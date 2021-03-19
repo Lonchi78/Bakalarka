@@ -1,7 +1,6 @@
 package com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.finalize
 
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.CreateRecipeRepository
-import com.lonchi.andrej.lonchi_bakalarka.data.repository.RecipesRepository
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseViewModel
 import javax.inject.Inject
 
@@ -13,4 +12,8 @@ class CreateRecipeFinalizeViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     val newRecipe = createRecipeRepository.newRecipe
+
+    fun createRecipe() {
+        createRecipeRepository.saveNewRecipe()
+    }
 }

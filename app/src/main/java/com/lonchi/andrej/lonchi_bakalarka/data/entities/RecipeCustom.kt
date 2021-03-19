@@ -3,12 +3,15 @@ package com.lonchi.andrej.lonchi_bakalarka.data.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
+import com.squareup.moshi.Json
 
 @Entity
 class RecipeCustom : RecipeItem, Recipe() {
 
     @PrimaryKey
     var uid: String = this.idRestApi.toString()
+
+    @Json(name = "idType") var idType: Int = RecipeIdTypeEnum.OWN_RECIPE.ordinal
 
     override fun toString(): String {
         return "Custom recipe: ${super.toString()}"

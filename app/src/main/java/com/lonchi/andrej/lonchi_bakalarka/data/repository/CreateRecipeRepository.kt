@@ -23,6 +23,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.utils.DeviceTracker
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
 import retrofit2.Retrofit
 import timber.log.Timber
+import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -54,6 +55,8 @@ interface CreateRecipeRepository {
     fun addDiets(diets: List<String?>)
 
     fun addIntolerances(intolerances: List<String?>)
+
+    fun saveNewRecipe()
 }
 
 class CreateRecipeRepositoryImpl @Inject internal constructor(
@@ -213,5 +216,13 @@ class CreateRecipeRepositoryImpl @Inject internal constructor(
         nutritionWrapper.nutrients = listOfNutrient
         currentRecipe?.nutrition = nutritionWrapper
         newRecipe.postValue(Resource.success(currentRecipe))
+    }
+
+    override fun saveNewRecipe() {
+        val currentRecipe = newRecipe.value?.data
+        currentRecipe?.uid = UUID.randomUUID().toString()
+        currentRecipe?.let {
+            db.customRecipesDao().saveRecipe(it)
+        }
     }
 }
