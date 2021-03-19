@@ -30,6 +30,9 @@ import javax.inject.Inject
 interface RecipesRepository {
     val loggedUser: LiveData<Resource<User>>
 
+    fun getAllFavouritesRecipes(): LiveData<List<RecipeFavourite>>
+    fun getAllCustomRecipes(): LiveData<List<RecipeCustom>>
+
     fun getFavouriteRecipe(uid: String): Single<List<RecipeFavourite>>
     fun getOwnRecipe(uid: String): Single<List<RecipeCustom>>
 
@@ -49,6 +52,14 @@ class RecipesRepositoryImpl @Inject internal constructor(
     private val deviceTracker: DeviceTracker,
     private val userRepository: UserRepository
 ) : BaseRepository(db, api, prefs, retrofit), RecipesRepository {
+
+    override fun getAllCustomRecipes(): LiveData<List<RecipeCustom>> {
+        return db.customRecipesDao().getAllRecipes()
+    }
+
+    override fun getAllFavouritesRecipes(): LiveData<List<RecipeFavourite>> {
+        return db.favouriteRecipesDao().getAllRecipes()
+    }
 
     override fun getFavouriteRecipe(uid: String): Single<List<RecipeFavourite>> {
         return db.favouriteRecipesDao().getRecipe(uid)

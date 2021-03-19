@@ -37,6 +37,7 @@ class RecipeRowsAdapter(
 
     companion object {
         const val RECIPE_IMAGE_BASE_URL = "https://spoonacular.com/recipeImages/"
+        const val RECIPE_HTTPS_PREFIX = "https:"
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -54,9 +55,16 @@ class RecipeRowsAdapter(
             recipe.readyInMinutes
         )
 
-        holder.image?.load1(RECIPE_IMAGE_BASE_URL + recipe.image) {
-            placeholder(R.color.gray50)
-            error(R.color.gray50)
+        if (recipe.image?.startsWith(RECIPE_HTTPS_PREFIX) == true) {
+            holder.image?.load1(recipe.image) {
+                placeholder(R.color.gray50)
+                error(R.color.gray50)
+            }
+        } else {
+            holder.image?.load1(RECIPE_IMAGE_BASE_URL + recipe.image) {
+                placeholder(R.color.gray50)
+                error(R.color.gray50)
+            }
         }
     }
 
