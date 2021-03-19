@@ -6,6 +6,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import com.lonchi.andrej.lonchi_bakalarka.data.base.BaseDao
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Intolerances
+import io.reactivex.Single
 
 
 /**
@@ -16,6 +17,9 @@ interface IntolerancesDao : BaseDao<Intolerances> {
 
     @Query("SELECT * FROM Intolerances")
     fun listAll(): LiveData<List<Intolerances>>
+
+    @Query("SELECT * FROM Intolerances")
+    fun listAllSingle(): Single<List<Intolerances>>
 
     @Query("DELETE FROM Intolerances")
     fun deleteAll()

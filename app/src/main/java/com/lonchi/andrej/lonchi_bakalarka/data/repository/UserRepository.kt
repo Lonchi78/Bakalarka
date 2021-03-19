@@ -3,18 +3,27 @@ package com.lonchi.andrej.lonchi_bakalarka.data.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.database.LonchiDatabase
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.preferences.SharedPreferencesInterface
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RestApi
 import com.lonchi.andrej.lonchi_bakalarka.data.base.BaseRepository
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.User
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.*
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.DeviceTracker
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.mapToUser
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Observable
+import io.reactivex.Single
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.BiFunction
+import io.reactivex.functions.Function5
 import retrofit2.Retrofit
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -38,6 +47,13 @@ interface UserRepository {
 
     fun unauthorizedActionOcurred()
     fun getAuthToken(): String
+
+    fun getUserData()
+    fun updateUserData()
+    fun updateDiets()
+    fun updateIntolerances()
+    fun updateCustomRecipes()
+    fun updateFavouriteRecipes()
 }
 
 class UserRepositoryImpl @Inject internal constructor(
@@ -47,6 +63,18 @@ class UserRepositoryImpl @Inject internal constructor(
     retrofit: Retrofit,
     private val deviceTracker: DeviceTracker
 ) : BaseRepository(db, api, prefs, retrofit), UserRepository {
+
+    companion object {
+        private const val DB_KEY_USERS = "users"
+    }
+
+    private var disposable: CompositeDisposable? = null
+
+    private lateinit var database: DatabaseReference
+
+    init {
+        disposable = CompositeDisposable()
+    }
 
     /**
      * Get logged user state based on data in database
@@ -88,4 +116,61 @@ class UserRepositoryImpl @Inject internal constructor(
      */
     override fun getAuthToken(): String = basicSharedPreferences.getUserUidFromSharedPreferences()
 
+    override fun getUserData() {
+
+    }
+
+    override fun updateUserData() {
+        Timber.d("updateUserData:")
+        disposable?.dispose()
+        disposable?.add(
+            Single.zip(
+                db.userDao().listAllSingle(),
+                db.customRecipesDao().getAllRecipesSingle(),
+                db.favouriteRecipesDao().getAllRecipesSingle(),
+                db.dietsDao().listAllSingle(),
+                db.intolerancesDao().listAllSingle(),
+                { user, customRecipes, favouriteRecipes, diets, intolerances ->
+                    Timber.d("updateUserData: in zip")
+                    Timber.d("updateUserData: in zip, fav = ${favouriteRecipes.size}")
+                    Timber.d("updateUserData: in zip, custom = ${customRecipes.size}")
+                    UserData(
+                        name = user.firstOrNull()?.name ?: "",
+                        email = user.firstOrNull()?.email ?: "",
+                        diets = diets.firstOrNull() ?: Diets(),
+                        intolerances = intolerances.firstOrNull() ?: Intolerances(),
+                        customRecipes = customRecipes,
+                        favouriteRecipes = favouriteRecipes
+                    )
+                }
+            )
+                .doOnSubscribe {
+                    Timber.d("updateUserData: doOnSubscribe")
+                }
+                .subscribe({
+                    Timber.d("updateUserData subs: $it")
+                    database = Firebase.database.reference
+                    val userUid = prefs.getUserUidFromSharedPreferences()
+                    database.child(DB_KEY_USERS).child(userUid).setValue(it)
+                }, {
+                    Timber.e("updateUserData err: $it")
+                })
+        )
+    }
+
+    override fun updateDiets() {
+        TODO("Not yet implemented")
+    }
+
+    override fun updateIntolerances() {
+        TODO("Not yet implemented")
+    }
+
+    override fun updateCustomRecipes() {
+        TODO("Not yet implemented")
+    }
+
+    override fun updateFavouriteRecipes() {
+        TODO("Not yet implemented")
+    }
 }

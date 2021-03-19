@@ -19,7 +19,7 @@ class RecipeCustom : RecipeItem, Recipe() {
 
     override fun getId(): String = this.uid
 
-    override fun getIdType(): RecipeIdTypeEnum = RecipeIdTypeEnum.OWN_RECIPE
+    override fun getRecipeIdType(): Int = idType
 
     override fun getName(): String = this.title ?: ""
 

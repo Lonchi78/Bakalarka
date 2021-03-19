@@ -18,6 +18,9 @@ interface FavouriteRecipesDao : BaseDao<RecipeFavourite> {
     @Query("SELECT * FROM RecipeFavourite")
     fun getAllRecipes(): LiveData<List<RecipeFavourite>>
 
+    @Query("SELECT * FROM RecipeFavourite")
+    fun getAllRecipesSingle(): Single<List<RecipeFavourite>>
+
     @Query("SELECT * FROM RecipeFavourite WHERE uid = :id")
     fun getRecipe(id: String): Single<List<RecipeFavourite>>
 

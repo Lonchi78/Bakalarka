@@ -15,6 +15,7 @@ import com.lonchi.andrej.lonchi_bakalarka.logic.util.hideKeyboard
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.openKeyboard
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeFragmentDirections
+import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
@@ -87,7 +88,7 @@ class DiscoverListFragment : BaseFragment<DiscoverListViewModel, FragmentDiscove
         findNavController().navigate(
             HomeFragmentDirections.actionGlobalRecipeDetailFragment(
                 recipeId = recipe.getId(),
-                idType = recipe.getIdType()
+                idType = RecipeIdTypeEnum.getRecipeIdType(recipe.getRecipeIdType())
             )
         )
     }

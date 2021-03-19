@@ -35,6 +35,8 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>()
         handleLoggedUser()
 
         binding?.viewFavourites?.setOnClickListener {
+            viewModel.test()
+            return@setOnClickListener
             findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToFavouritesFragment())
         }
 

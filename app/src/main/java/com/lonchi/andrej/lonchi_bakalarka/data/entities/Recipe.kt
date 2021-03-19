@@ -46,7 +46,7 @@ open class Recipe : RecipeItem {
 
     override fun getId(): String = this.idRestApi.toString()
 
-    override fun getIdType(): RecipeIdTypeEnum = RecipeIdTypeEnum.REST
+    override fun getRecipeIdType(): Int = RecipeIdTypeEnum.REST.ordinal
 
     override fun getName(): String = this.title ?: ""
 

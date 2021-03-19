@@ -1,12 +1,9 @@
 package com.lonchi.andrej.lonchi_bakalarka.ui.home
 
 import android.view.View
-import android.widget.Toast
-import androidx.annotation.NonNull
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.RecyclerView
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeItem
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorStatus
@@ -14,8 +11,8 @@ import com.lonchi.andrej.lonchi_bakalarka.data.utils.LoadingStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentHomeBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
-import com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.CreateRecipeActivity
+import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipes.RecipeCardsAdapter
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipes.RecipeCardsColumnAdapter
 
@@ -113,7 +110,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         findNavController().navigate(
             HomeFragmentDirections.actionGlobalRecipeDetailFragment(
                 recipeId = recipe.getId(),
-                idType = recipe.getIdType()
+                idType = RecipeIdTypeEnum.getRecipeIdType(recipe.getRecipeIdType())
             )
         )
     }

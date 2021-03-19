@@ -16,13 +16,13 @@ class RecipeFavourite : RecipeItem, Recipe() {
     override fun toString(): String {
         //  TODO
         return "Favourite recipe: { " +
-                "recipeId = $uid\ngetIdType = ${getIdType()}\ntitle = $title\nimage = $image\n" +
+                "recipeId = $uid\ngetIdType = ${getRecipeIdType()}\ntitle = $title\nimage = $image\n" +
                 "}"
     }
 
     override fun getId(): String = this.uid
 
-    override fun getIdType(): RecipeIdTypeEnum = RecipeIdTypeEnum.FAVOURITE_RECIPE
+    override fun getRecipeIdType(): Int = idType
 
     override fun getName(): String = this.title ?: ""
 

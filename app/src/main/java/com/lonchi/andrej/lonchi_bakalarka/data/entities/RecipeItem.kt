@@ -10,7 +10,7 @@ interface RecipeItem {
 
     fun getId(): String
 
-    fun getIdType(): RecipeIdTypeEnum
+    fun getRecipeIdType(): Int
 
     fun getName(): String
 
