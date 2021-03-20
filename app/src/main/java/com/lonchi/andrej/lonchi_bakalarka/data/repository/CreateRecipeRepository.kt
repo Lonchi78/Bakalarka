@@ -65,7 +65,8 @@ class CreateRecipeRepositoryImpl @Inject internal constructor(
     private val prefs: SharedPreferencesInterface,
     retrofit: Retrofit,
     private val deviceTracker: DeviceTracker,
-    private val context: Context
+    private val context: Context,
+    private val userRepository: UserRepository
 ) : BaseRepository(db, api, prefs, retrofit), CreateRecipeRepository {
 
     override val newRecipe: MutableLiveData<Resource<RecipeCustom>> = MutableLiveData<Resource<RecipeCustom>>().apply {
@@ -224,5 +225,6 @@ class CreateRecipeRepositoryImpl @Inject internal constructor(
         currentRecipe?.let {
             db.customRecipesDao().saveRecipe(it)
         }
+        userRepository.updateCustomRecipes()
     }
 }
