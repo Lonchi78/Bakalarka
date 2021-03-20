@@ -1,6 +1,8 @@
 package com.lonchi.andrej.lonchi_bakalarka.data.repository
 
+import android.content.Context
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
@@ -36,11 +38,17 @@ interface UserRepository {
      */
     val loggedUser: LiveData<Resource<User>>
 
+    val allDiets: MutableLiveData<List<String>>
+
     /**
      * Method used to reduce lag for first app start.
      * May not be necessary if user does not need verification on server.
      */
     fun hasUserEverBeenLogged(): Boolean
+
+    fun getUserDiets(): LiveData<List<Diets>>
+    fun getUserDietsSingle(): Single<List<Diets>>
+    fun saveUserDiets(diets: List<String?>)
 
     fun performUserLogin(firebaseUser: FirebaseUser)
     fun performUserLogout()
@@ -61,7 +69,8 @@ class UserRepositoryImpl @Inject internal constructor(
     db: LonchiDatabase,
     private val prefs: SharedPreferencesInterface,
     retrofit: Retrofit,
-    private val deviceTracker: DeviceTracker
+    private val deviceTracker: DeviceTracker,
+    private val context: Context
 ) : BaseRepository(db, api, prefs, retrofit), UserRepository {
 
     companion object {
@@ -80,6 +89,23 @@ class UserRepositoryImpl @Inject internal constructor(
 
     init {
         disposable = CompositeDisposable()
+    }
+
+    override val allDiets: MutableLiveData<List<String>> = MutableLiveData<List<String>>().apply {
+        postValue(DietsEnum.getAllDiets(context))
+    }
+
+    override fun getUserDiets(): LiveData<List<Diets>> {
+        return db.dietsDao().listAll()
+    }
+
+    override fun getUserDietsSingle(): Single<List<Diets>> {
+        return db.dietsDao().listAllSingle()
+    }
+
+    override fun saveUserDiets(diets: List<String?>) {
+        db.dietsDao().saveDiets(Diets(diets = diets))
+        updateDiets()
     }
 
     /**

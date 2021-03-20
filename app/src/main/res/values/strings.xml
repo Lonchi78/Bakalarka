@@ -70,10 +70,12 @@
 	<string name="own_recipes_title">Own recipes</string>
 
 	<!--	Allergens		-->
-	<string name="allergens_title">Allergens</string>
+	<string name="allergens_title">Intolerances</string>
+	<string name="user_allergens_title">Your intolerances</string>
 
 	<!--	Diets		-->
 	<string name="diets_title">Diets</string>
+	<string name="user_diets_title">Your diets</string>
 
 	<!--	Settings	-->
 	<string name="settings_title">Settings</string>
