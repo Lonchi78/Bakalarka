@@ -1,6 +1,5 @@
 package com.lonchi.andrej.lonchi_bakalarka.ui.diets
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -72,5 +71,4 @@ class DietsViewModel @Inject constructor(
         val currentDiets = selectedDiets.value?.toMutableList() ?: mutableListOf()
         userRepository.saveUserDiets(currentDiets.toList())
     }
-
 }

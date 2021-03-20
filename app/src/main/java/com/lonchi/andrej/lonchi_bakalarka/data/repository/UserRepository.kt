@@ -39,6 +39,7 @@ interface UserRepository {
     val loggedUser: LiveData<Resource<User>>
 
     val allDiets: MutableLiveData<List<String>>
+    val allIntolerances: MutableLiveData<List<String>>
 
     /**
      * Method used to reduce lag for first app start.
@@ -46,9 +47,11 @@ interface UserRepository {
      */
     fun hasUserEverBeenLogged(): Boolean
 
-    fun getUserDiets(): LiveData<List<Diets>>
     fun getUserDietsSingle(): Single<List<Diets>>
     fun saveUserDiets(diets: List<String?>)
+
+    fun getUserIntolerancesSingle(): Single<List<Intolerances>>
+    fun saveUserIntolerances(intolerances: List<String?>)
 
     fun performUserLogin(firebaseUser: FirebaseUser)
     fun performUserLogout()
@@ -94,9 +97,8 @@ class UserRepositoryImpl @Inject internal constructor(
     override val allDiets: MutableLiveData<List<String>> = MutableLiveData<List<String>>().apply {
         postValue(DietsEnum.getAllDiets(context))
     }
-
-    override fun getUserDiets(): LiveData<List<Diets>> {
-        return db.dietsDao().listAll()
+    override val allIntolerances: MutableLiveData<List<String>> = MutableLiveData<List<String>>().apply {
+        postValue(IntolerancesEnum.getAllIntolerances(context))
     }
 
     override fun getUserDietsSingle(): Single<List<Diets>> {
@@ -106,6 +108,15 @@ class UserRepositoryImpl @Inject internal constructor(
     override fun saveUserDiets(diets: List<String?>) {
         db.dietsDao().saveDiets(Diets(diets = diets))
         updateDiets()
+    }
+
+    override fun getUserIntolerancesSingle(): Single<List<Intolerances>> {
+        return db.intolerancesDao().listAllSingle()
+    }
+
+    override fun saveUserIntolerances(intolerances: List<String?>) {
+        db.intolerancesDao().saveIntolerances(Intolerances(intolerances = intolerances))
+        updateIntolerances()
     }
 
     /**

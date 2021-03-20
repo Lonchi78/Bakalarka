@@ -34,7 +34,7 @@
                 style="@style/TextToolbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/allergens_title"
+                android:text="@string/user_allergens_title"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -55,13 +55,27 @@
 
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/snackbarRoot"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerIntolerances"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginBottom="16dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:itemCount="15"
+        tools:listitem="@layout/item_allergen"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonSave"
+        style="@style/ContainedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_recipe_button_save"
+        android:layout_marginBottom="16dp"
+        app:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
