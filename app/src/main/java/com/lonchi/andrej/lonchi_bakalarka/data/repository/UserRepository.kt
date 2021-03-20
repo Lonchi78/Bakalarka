@@ -5,8 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.database.LonchiDatabase
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.preferences.SharedPreferencesInterface
@@ -138,6 +142,7 @@ class UserRepositoryImpl @Inject internal constructor(
     override fun performUserLogin(firebaseUser: FirebaseUser) {
         prefs.putUserUidToSharedPreferences(firebaseUser.uid)
         db.userDao().saveUser(firebaseUser.mapToUser())
+        getUserData()
     }
 
     override fun performUserLogout() {
@@ -164,7 +169,27 @@ class UserRepositoryImpl @Inject internal constructor(
     override fun getAuthToken(): String = basicSharedPreferences.getUserUidFromSharedPreferences()
 
     override fun getUserData() {
+        val userUid = prefs.getUserUidFromSharedPreferences()
+        val userListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                try {
+                    val userData = dataSnapshot.getValue<UserData>()
+                    userData?.intolerances?.let { db.intolerancesDao().saveIntolerances(it) }
+                    userData?.diets?.let { db.dietsDao().saveDiets(it) }
+                    userData?.favouriteRecipes?.let { db.favouriteRecipesDao().saveAllRecipes(it) }
+                    userData?.customRecipes?.let { db.customRecipesDao().saveAllRecipes(it) }
+                } catch (e: Exception) {
+                    Timber.e("onDataChange exception: $e")
+                }
+            }
 
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Timber.e("onCancelled: ${databaseError.code}")
+                Timber.e("onCancelled: ${databaseError.message}")
+            }
+        }
+        database.child(DB_KEY_USERS).child(userUid).addListenerForSingleValueEvent(userListener)
     }
 
     override fun updateUserData() {
@@ -263,4 +288,6 @@ class UserRepositoryImpl @Inject internal constructor(
                 })
         )
     }
+
+
 }
