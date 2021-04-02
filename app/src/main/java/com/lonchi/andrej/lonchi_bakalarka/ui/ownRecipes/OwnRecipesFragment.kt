@@ -62,9 +62,9 @@ class OwnRecipesFragment : BaseFragment<OwnRecipesViewModel, FragmentOwnRecipesB
 
     private fun onRecipeClick(recipe: RecipeItem) {
         findNavController().navigate(
-            HomeFragmentDirections.actionGlobalRecipeDetailFragment(
+            HomeFragmentDirections.actionGlobalRecipeDetailCustomFragment(
                 recipeId = recipe.getId(),
-                idType = RecipeIdTypeEnum.FAVOURITE_RECIPE
+                idType = RecipeIdTypeEnum.OWN_RECIPE
             )
         )
     }

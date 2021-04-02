@@ -39,6 +39,8 @@ open class Recipe : RecipeItem {
 
     override fun getRecipeIdType(): Int = RecipeIdTypeEnum.REST.ordinal
 
+    override fun getRecipeType(): RecipeIdTypeEnum = RecipeIdTypeEnum.REST
+
     override fun getName(): String = this.title ?: ""
 
     override fun getImageUrl(): String = this.image ?: ""

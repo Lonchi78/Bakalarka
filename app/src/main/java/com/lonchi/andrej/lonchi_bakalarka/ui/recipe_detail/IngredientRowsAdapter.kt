@@ -18,7 +18,8 @@ import coil.load as load1
  *  @author Andrej Lončík <andrejloncik@gmail.com>
  * */
 class IngredientRowsAdapter(
-    val context: Context
+    val context: Context,
+    val isCustom: Boolean? = false
 ) : ListAdapter<Ingredient, IngredientRowsAdapter.ViewHolder>(object :
     DiffUtil.ItemCallback<Ingredient>() {
 
@@ -51,9 +52,12 @@ class IngredientRowsAdapter(
         val ingredient = getItem(position)
         holder.ingredientName.text = ingredient.name
 
-        //  TODO: detect preferred measure metic or us
-        holder.ingredientAmount.text =
-            ingredient.measures?.metric?.amount?.toString() + " " + ingredient.measures?.metric?.unitShort
+        if (isCustom == true) {
+            holder.ingredientAmount.text = ingredient.customMeasure
+        } else {
+            holder.ingredientAmount.text =
+                ingredient.measures?.metric?.amount?.toString() + " " + ingredient.measures?.metric?.unitShort
+        }
 
         holder.image?.load1(INGREDIENT_IMAGE_BASE_URL_100 + ingredient.image) {
             placeholder(R.color.gray50)

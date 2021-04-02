@@ -107,12 +107,32 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     }
 
     private fun onRecipeItemClick(recipe: RecipeItem) {
-        findNavController().navigate(
-            HomeFragmentDirections.actionGlobalRecipeDetailFragment(
-                recipeId = recipe.getId(),
-                idType = RecipeIdTypeEnum.getRecipeIdType(recipe.getRecipeIdType())
-            )
-        )
+        when (recipe.getRecipeType()) {
+            RecipeIdTypeEnum.FAVOURITE_RECIPE -> {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionGlobalRecipeDetailFragment(
+                        recipeId = recipe.getId(),
+                        idType = RecipeIdTypeEnum.FAVOURITE_RECIPE
+                    )
+                )
+            }
+            RecipeIdTypeEnum.OWN_RECIPE -> {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionGlobalRecipeDetailFragment(
+                        recipeId = recipe.getId(),
+                        idType = RecipeIdTypeEnum.OWN_RECIPE
+                    )
+                )
+            }
+            else -> {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionGlobalRecipeDetailFragment(
+                        recipeId = recipe.getId(),
+                        idType = RecipeIdTypeEnum.REST
+                    )
+                )
+            }
+        }
     }
 
 }

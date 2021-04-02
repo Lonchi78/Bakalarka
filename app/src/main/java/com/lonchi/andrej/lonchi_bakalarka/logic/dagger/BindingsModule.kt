@@ -26,6 +26,7 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.MealPlannerViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.ownRecipes.OwnRecipesViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.profile.ProfileViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.custom.RecipeDetailCustomViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeDetailViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.settings.SettingsViewModel
 import dagger.Binds
@@ -179,6 +180,14 @@ abstract class RecipeDetailModule {
     @IntoMap
     @ViewModelKey(RecipeDetailViewModel::class)
     abstract fun bindsRecipeDetailViewModel(viewModel: RecipeDetailViewModel): ViewModel
+}
+
+@Module
+abstract class RecipeDetailCustomModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(RecipeDetailCustomViewModel::class)
+    abstract fun bindsRecipeDetailCustomViewModel(viewModel: RecipeDetailCustomViewModel): ViewModel
 }
 
 @Module

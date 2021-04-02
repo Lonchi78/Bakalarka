@@ -24,6 +24,8 @@ class RecipeFavourite : RecipeItem, Recipe() {
 
     override fun getRecipeIdType(): Int = idType
 
+    override fun getRecipeType(): RecipeIdTypeEnum = RecipeIdTypeEnum.FAVOURITE_RECIPE
+
     override fun getName(): String = this.title ?: ""
 
     override fun getImageUrl(): String = this.image ?: ""

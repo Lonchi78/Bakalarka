@@ -12,6 +12,8 @@ interface RecipeItem {
 
     fun getRecipeIdType(): Int
 
+    fun getRecipeType(): RecipeIdTypeEnum
+
     fun getName(): String
 
     fun getImageUrl(): String
