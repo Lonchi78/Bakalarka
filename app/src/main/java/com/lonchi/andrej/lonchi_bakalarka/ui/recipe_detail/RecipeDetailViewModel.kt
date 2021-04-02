@@ -32,15 +32,46 @@ class RecipeDetailViewModel @Inject constructor(
         when (recipeIdType) {
             RecipeIdTypeEnum.FAVOURITE_RECIPE -> getFavouriteRecipeDetail(recipeId)
             RecipeIdTypeEnum.OWN_RECIPE -> getOwnRecipeDetail(recipeId)
-            RecipeIdTypeEnum.REST -> getRestRecipeDetail(recipeId)
+            RecipeIdTypeEnum.REST -> getRestRecipeDetailFromDb(recipeId)
         }
         this.recipeId = recipeId
         this.recipeIdType = recipeIdType
     }
 
-    fun addToFavourites(recipe: Recipe) = recipesRepository.addRecipeToFavourites(recipe)
+    fun addToFavourites(recipe: Recipe) {
+        recipesRepository.addRecipeToFavourites(recipe)
 
-    fun removeFromFavourites(recipe: RecipeFavourite) = recipesRepository.removeRecipeToFavourites(recipe.getId())
+        this.recipeId = recipe.getId()
+        this.recipeIdType = RecipeIdTypeEnum.FAVOURITE_RECIPE
+        syncFavouriteRecipe(recipe.getId())
+    }
+
+    fun removeFromFavourites(recipe: RecipeFavourite) {
+        recipesRepository.removeRecipeToFavourites(recipe.getId())
+
+        this.recipeId = recipe.getId()
+        this.recipeIdType = RecipeIdTypeEnum.REST
+        stateRecipeDetail.postValue(
+            Resource.success(recipe.toRestRecipe())
+        )
+    }
+
+    private fun syncFavouriteRecipe(uid: String) {
+        compositeDisposable.add(
+            recipesRepository.getFavouriteRecipe(uid)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    if (it.isNullOrEmpty()) {
+                        stateRecipeDetail.postValue(Resource.error(ErrorIdentification.Unknown()))
+                    } else {
+                        stateRecipeDetail.postValue(Resource.success(it.first()))
+                    }
+                }, {
+                    Timber.e("getFavouriteRecipeDetail fatal error! $it")
+                })
+        )
+    }
 
     private fun getFavouriteRecipeDetail(uid: String) {
         compositeDisposable.add(
@@ -80,7 +111,24 @@ class RecipeDetailViewModel @Inject constructor(
         )
     }
 
-    private fun getRestRecipeDetail(uid: String) {
+    private fun getRestRecipeDetailFromDb(uid: String) {
+        compositeDisposable.add(
+            recipesRepository.getFavouriteRecipe(uid)
+                .doOnSubscribe { stateRecipeDetail.postValue(Resource.loading()) }
+                .subscribe({
+                    if (it.isNullOrEmpty()) {
+                        getRestRecipeDetailFromApi(uid)
+                    } else {
+                        stateRecipeDetail.postValue(Resource.success(it.first()))
+                    }
+                }, {
+                    Timber.e("GetRestRecipeDetail fatal error! $it")
+                    getRestRecipeDetailFromApi(uid)
+                })
+        )
+    }
+
+    private fun getRestRecipeDetailFromApi(uid: String) {
         compositeDisposable.add(
             recipesRepository.getRecipeDetail(uid.toLongOrNull() ?: -1)
                 .doOnSubscribe { stateRecipeDetail.postValue(Resource.loading()) }

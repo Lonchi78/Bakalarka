@@ -131,19 +131,21 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
     private fun setupRecipeActionButton(recipe: RecipeItem?) {
         Timber.d("setupRecipeActionButton: ${recipe}")
         Timber.d("setupRecipeActionButton: ${recipe?.getRecipeIdType()}")
+        Timber.d("setupRecipeActionButton: ${recipe?.getRecipeType()}")
         Timber.d("setupRecipeActionButton: ${RecipeIdTypeEnum.getRecipeIdType(recipe?.getRecipeIdType() ?: -1)}")
-        when (RecipeIdTypeEnum.getRecipeIdType(recipe?.getRecipeIdType() ?: -1)) {
+        when (recipe?.getRecipeType()) {
             RecipeIdTypeEnum.FAVOURITE_RECIPE -> {
+                binding?.buttonLike?.icon =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_like_fill_20)
                 binding?.buttonLike?.setOnClickListener {
                     binding?.buttonLike?.icon =
                         ContextCompat.getDrawable(requireContext(), R.drawable.ic_like_empty_20)
                     viewModel.removeFromFavourites(recipe as? RecipeFavourite ?: return@setOnClickListener)
                 }
             }
-            RecipeIdTypeEnum.OWN_RECIPE -> {
-                //  todo custom view na toto
-            }
             else -> {
+                binding?.buttonLike?.icon =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_like_empty_20)
                 binding?.buttonLike?.setOnClickListener {
                     binding?.buttonLike?.icon =
                         ContextCompat.getDrawable(requireContext(), R.drawable.ic_like_fill_20)

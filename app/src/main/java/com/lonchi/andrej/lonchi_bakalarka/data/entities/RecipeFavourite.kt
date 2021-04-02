@@ -49,4 +49,20 @@ class RecipeFavourite : RecipeItem, Recipe() {
     override fun getAllCuisines(): List<String?>? = this.cuisines
 
     override fun getRecipeSourceUrl(): String? = this.sourceUrl
+
+    fun toRestRecipe(): Recipe {
+        return Recipe().apply {
+            idRestApi = this@RecipeFavourite.idRestApi
+            title = this@RecipeFavourite.title
+            readyInMinutes = this@RecipeFavourite.readyInMinutes
+            image = this@RecipeFavourite.image
+            sourceUrl = this@RecipeFavourite.sourceUrl
+            nutrition = this@RecipeFavourite.nutrition
+            cuisines = this@RecipeFavourite.cuisines
+            diets = this@RecipeFavourite.diets
+            intolerances = this@RecipeFavourite.intolerances
+            ingredients = this@RecipeFavourite.ingredients
+            instructions = this@RecipeFavourite.instructions
+        }
+    }
 }

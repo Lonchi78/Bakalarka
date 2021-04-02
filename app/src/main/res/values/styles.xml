@@ -227,7 +227,7 @@
 		<item name="android:paddingBottom">12dp</item>
 		<item name="android:insetLeft">0dp</item>
 		<item name="android:insetRight">0dp</item>
-		<item name="android:textAllCaps">true</item>
+		<item name="android:textAllCaps">false</item>
 		<item name="android:insetTop">@dimen/inset_button_contained</item>
 		<item name="android:insetBottom">@dimen/inset_button_contained</item>
 		<item name="cornerRadius">@dimen/corner_radius_button_action</item>
