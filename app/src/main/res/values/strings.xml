@@ -11,6 +11,10 @@
 	<string name="error_bad_email_or_password">Incorrect email or password</string>
 	<string name="error_unknown">Oops, something went wrong</string>
 
+	<string name="speech_to_text_hint">I\'m listening</string>
+	<string name="speech_to_text_error">Your device does\'t support speech to text</string>
+	<string name="speech_to_text_no_results">Sorry, i don\'t understand.</string>
+
 	<!--	Home	-->
 	<string name="home_title">Home</string>
 	<string name="home_label_favourites">Favourites</string>

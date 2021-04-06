@@ -2,6 +2,7 @@ package com.lonchi.andrej.lonchi_bakalarka.ui.utils
 
 import android.content.Context
 import android.text.Editable
+import android.text.SpannableStringBuilder
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -70,6 +71,10 @@ class SearchInput : BaseView<SearchInputBinding> {
     fun setPlaceholderText(text: String?) {
         placeholderText = text
         binding?.searchPlaceholder?.hint = text
+    }
+
+    fun setInputText(value: String) {
+        binding?.searchPlaceholder?.text = SpannableStringBuilder(value)
     }
 
     fun getInputField() = binding?.searchPlaceholder
