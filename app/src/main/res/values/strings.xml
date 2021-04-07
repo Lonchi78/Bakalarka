@@ -15,6 +15,9 @@
 	<string name="speech_to_text_error">Your device does\'t support speech to text</string>
 	<string name="speech_to_text_no_results">Sorry, i don\'t understand.</string>
 
+	<string name="action_button_voice_input">Voice input</string>
+	<string name="action_button_scan_with_ai">Scan with AI</string>
+
 	<!--	Home	-->
 	<string name="home_title">Home</string>
 	<string name="home_label_favourites">Favourites</string>
@@ -66,6 +69,11 @@
 	<string name="found_ingredients_title">Found ingredients</string>
 	<string name="found_ingredients_button_single">Add Ingredient</string>
 	<string name="found_ingredients_button_multi">Add Ingredients</string>
+
+	<!--	Discover by ingredients		-->
+	<string name="discover_by_ingredients_title">Ingredients</string>
+	<string name="discover_by_ingredients_button">Find recipes</string>
+	<string name="discover_by_ingredients_add_ingredient_title">Add ingredient</string>
 
 	<!--	Favourites		-->
 	<string name="favourites_title">Favourites</string>
