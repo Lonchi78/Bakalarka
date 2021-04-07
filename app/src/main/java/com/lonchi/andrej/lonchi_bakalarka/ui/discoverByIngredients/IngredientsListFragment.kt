@@ -1,12 +1,12 @@
 package com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients
 
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lonchi.andrej.lonchi_bakalarka.R
-import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentAllergensBinding
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentIngredientsListBinding
-import com.lonchi.andrej.lonchi_bakalarka.ui.allergens.adapter.AllergenRowsAdapter
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
+import timber.log.Timber
 
 
 /**
@@ -23,37 +23,39 @@ class IngredientsListFragment : BaseFragment<IngredientsListViewModel, FragmentI
     override val bindingInflater: (View) -> FragmentIngredientsListBinding =
         { FragmentIngredientsListBinding.bind(it) }
 
-    private val adapterAllergens by lazy {
-        AllergenRowsAdapter(
+    private val adapterIngredients by lazy {
+        IngredientRowsDiscoverByAdapter(
             context = requireContext(),
-            removeAllergen = { viewModel.removeIntolerance(it.name) },
-            addAllergen = { viewModel.addIntolerance(it.name) }
+            deleteIngredient = { viewModel.removeIngredient(it) }
         )
     }
 
     override fun initView() {
         binding?.iconBack?.setOnClickListener { requireActivity().onBackPressed() }
-        binding?.buttonFindRecipes?.setOnClickListener { saveIntolerances() }
+        binding?.buttonFindRecipes?.setOnClickListener { findRecipes() }
+        binding?.buttonAddIngredient?.setOnClickListener { addIngredient() }
 
-        binding?.recyclerIngredients?.adapter = adapterAllergens
+        binding?.recyclerIngredients?.adapter = adapterIngredients
         binding?.recyclerIngredients?.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     }
 
     override fun bindViewModel() {
-        viewModel.intolerances.observe(viewLifecycleOwner) {
-            var numberOfIntolerances = 0
-            it.forEach { diet ->
-                if (diet.isChecked) numberOfIntolerances++
-            }
-            binding?.chipCounter?.text = numberOfIntolerances.toString()
+        //viewModel.resetIngredients()
 
-            adapterAllergens.submitList(it)
+        viewModel.ingredients.observe(viewLifecycleOwner) {
+            Timber.d("bindViewModel: ingredients = $it")
+            Timber.d("bindViewModel: ingredients = ${it.size}")
+            binding?.chipCounter?.text = it.size.toString()
+            adapterIngredients.submitList(it)
         }
     }
 
-    private fun saveIntolerances() {
-        viewModel.saveIntolerances()
-        requireActivity().onBackPressed()
+    private fun addIngredient() {
+        findNavController().navigate(IngredientsListFragmentDirections.actionIngredientsListFragmentToIngredientsAddFragment())
+    }
+
+    private fun findRecipes() {
+
     }
 }

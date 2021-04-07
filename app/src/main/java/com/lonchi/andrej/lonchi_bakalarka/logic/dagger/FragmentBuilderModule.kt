@@ -15,6 +15,7 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.diets.DietsFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverListFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.IngredientsListFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.addIngredient.DiscoverByIngredientsAddFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.favourites.FavouritesFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.fragment.MainFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeFragment
@@ -89,6 +90,9 @@ abstract class FragmentBuilderModule {
 
     @ContributesAndroidInjector(modules = [CreateRecipeIngredientsModule::class])
     abstract fun contributeCreateRecipeIngredientsFragment(): CreateRecipeIngredientsFragment
+
+    @ContributesAndroidInjector(modules = [DiscoverByIngredientsAddModule::class])
+    abstract fun contributeDiscoverByIngredientsAddFragment(): DiscoverByIngredientsAddFragment
 
     @ContributesAndroidInjector(modules = [CreateRecipeAddIngredientModule::class])
     abstract fun contributeCreateRecipeAddIngredientFragment(): CreateRecipeAddIngredientFragment

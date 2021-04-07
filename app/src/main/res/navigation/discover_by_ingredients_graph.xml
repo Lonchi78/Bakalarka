@@ -2,40 +2,17 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_navigation_graph"
-    app:startDestination="@id/homeFragment">
-
-    <action
-        android:id="@+id/action_global_recipeDetailFragment"
-        app:destination="@id/recipeDetailFragment"
-        app:enterAnim="@anim/slide_from_right"
-        app:exitAnim="@anim/slide_to_left"
-        app:popEnterAnim="@anim/slide_from_left"
-        app:popExitAnim="@anim/slide_to_right" />
-
-    <action
-        android:id="@+id/action_global_recipeDetailCustomFragment"
-        app:destination="@id/recipeDetailCustomFragment"
-        app:enterAnim="@anim/slide_from_right"
-        app:exitAnim="@anim/slide_to_left"
-        app:popEnterAnim="@anim/slide_from_left"
-        app:popExitAnim="@anim/slide_to_right" />
+    android:id="@+id/discover_by_ingredients_graph"
+    app:startDestination="@id/ingredientsListFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home">
+        android:id="@+id/ingredientsListFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.IngredientsListFragment"
+        android:label="fragment_ingredients_list"
+        tools:layout="@layout/fragment_ingredients_list">
         <action
-            android:id="@+id/action_homeFragment_to_favouritesFragment"
-            app:destination="@id/favouritesFragment"
-            app:enterAnim="@anim/slide_from_right"
-            app:exitAnim="@anim/slide_to_left"
-            app:popEnterAnim="@anim/slide_from_left"
-            app:popExitAnim="@anim/slide_to_right" />
-        <action
-            android:id="@+id/action_homeFragment_to_ownRecipesFragment"
-            app:destination="@id/ownRecipesFragment"
+            android:id="@+id/action_ingredientsListFragment_to_ingredientsAddFragment"
+            app:destination="@id/ingredientsAddFragment"
             app:enterAnim="@anim/slide_from_right"
             app:exitAnim="@anim/slide_to_left"
             app:popEnterAnim="@anim/slide_from_left"
@@ -43,139 +20,9 @@
     </fragment>
 
     <fragment
-        android:id="@+id/discoverFragment"
-        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverFragment"
-        android:label="fragment_discover"
-        tools:layout="@layout/fragment_discover">
-        <action
-            android:id="@+id/action_discoverFragment_to_discoverListFragment"
-            app:destination="@id/discoverListFragment"
-            app:enterAnim="@anim/slide_from_right"
-            app:exitAnim="@anim/slide_to_left"
-            app:popEnterAnim="@anim/slide_from_left"
-            app:popExitAnim="@anim/slide_to_right" />
-    </fragment>
+        android:id="@+id/ingredientsAddFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.addIngredient.DiscoverByIngredientsAddFragment"
+        android:label="fragment_ingredients_add"
+        tools:layout="@layout/fragment_discover_by_ingredients_add"/>
 
-    <fragment
-        android:id="@+id/discoverListFragment"
-        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverListFragment"
-        android:label="fragment_discover_list"
-        tools:layout="@layout/fragment_discover_list"/>
-
-    <fragment
-        android:id="@+id/mealPlannerFragment"
-        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.MealPlannerFragment"
-        android:label="fragment_meal_planner"
-        tools:layout="@layout/fragment_meal_planner" />
-
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.profile.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile">
-        <action
-            android:id="@+id/action_profileFragment_to_favouritesFragment"
-            app:destination="@id/favouritesFragment"
-            app:enterAnim="@anim/slide_from_right"
-            app:exitAnim="@anim/slide_to_left"
-            app:popEnterAnim="@anim/slide_from_left"
-            app:popExitAnim="@anim/slide_to_right" />
-        <action
-            android:id="@+id/action_profileFragment_to_ownRecipesFragment"
-            app:destination="@id/ownRecipesFragment"
-            app:enterAnim="@anim/slide_from_right"
-            app:exitAnim="@anim/slide_to_left"
-            app:popEnterAnim="@anim/slide_from_left"
-            app:popExitAnim="@anim/slide_to_right" />
-        <action
-            android:id="@+id/action_profileFragment_to_dietsFragment"
-            app:destination="@id/dietsFragment"
-            app:enterAnim="@anim/slide_from_right"
-            app:exitAnim="@anim/slide_to_left"
-            app:popEnterAnim="@anim/slide_from_left"
-            app:popExitAnim="@anim/slide_to_right" />
-        <action
-            android:id="@+id/action_profileFragment_to_allergnesFragment"
-            app:destination="@id/allergensFragment"
-            app:enterAnim="@anim/slide_from_right"
-            app:exitAnim="@anim/slide_to_left"
-            app:popEnterAnim="@anim/slide_from_left"
-            app:popExitAnim="@anim/slide_to_right" />
-        <action
-            android:id="@+id/action_profileFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment"
-            app:enterAnim="@anim/slide_from_right"
-            app:exitAnim="@anim/slide_to_left"
-            app:popEnterAnim="@anim/slide_from_left"
-            app:popExitAnim="@anim/slide_to_right" />
-        <action
-            android:id="@+id/action_profileFragment_to_aboutFragment"
-            app:destination="@id/aboutFragment"
-            app:enterAnim="@anim/slide_from_right"
-            app:exitAnim="@anim/slide_to_left"
-            app:popEnterAnim="@anim/slide_from_left"
-            app:popExitAnim="@anim/slide_to_right" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/favouritesFragment"
-        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.favourites.FavouritesFragment"
-        android:label="fragment_favourites"
-        tools:layout="@layout/fragment_favourites" />
-
-    <fragment
-        android:id="@+id/ownRecipesFragment"
-        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.ownRecipes.OwnRecipesFragment"
-        android:label="fragment_own_recipes"
-        tools:layout="@layout/fragment_own_recipes" />
-
-    <fragment
-        android:id="@+id/allergensFragment"
-        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.allergens.AllergensFragment"
-        android:label="fragment_allergens"
-        tools:layout="@layout/fragment_allergens" />
-
-    <fragment
-        android:id="@+id/dietsFragment"
-        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.diets.DietsFragment"
-        android:label="fragment_diets"
-        tools:layout="@layout/fragment_diets" />
-
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.settings.SettingsFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
-
-    <fragment
-        android:id="@+id/aboutFragment"
-        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.about.AboutFragment"
-        android:label="fragment_about"
-        tools:layout="@layout/fragment_about" />
-
-    <fragment
-        android:id="@+id/recipeDetailFragment"
-        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeDetailFragment"
-        android:label="fragment_recipe_detail"
-        tools:layout="@layout/fragment_recipe_detail">
-        <argument
-            android:name="recipeId"
-            app:argType="string" />
-        <argument
-            android:name="idType"
-            app:argType="com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/recipeDetailCustomFragment"
-        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.custom.RecipeDetailCustomFragment"
-        android:label="fragment_recipe_detail_custom"
-        tools:layout="@layout/fragment_recipe_detail_custom">
-        <argument
-            android:name="recipeId"
-            app:argType="string" />
-        <argument
-            android:name="idType"
-            app:argType="com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum" />
-    </fragment>
 </navigation>

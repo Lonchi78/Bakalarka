@@ -74,6 +74,7 @@
 	<string name="discover_by_ingredients_title">Ingredients</string>
 	<string name="discover_by_ingredients_button">Find recipes</string>
 	<string name="discover_by_ingredients_add_ingredient_title">Add ingredient</string>
+	<string name="discover_by_ingredients_add_ingredient_placeholder">Cucumber…</string>
 
 	<!--	Favourites		-->
 	<string name="favourites_title">Favourites</string>

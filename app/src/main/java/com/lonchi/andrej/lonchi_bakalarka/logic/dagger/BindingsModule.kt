@@ -22,6 +22,7 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.fragment.FragmentViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.DiscoverByIngredientViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.IngredientsListViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.addIngredient.DiscoverByIngredientsAddViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.MealPlannerViewModel
@@ -245,6 +246,14 @@ abstract class CreateRecipeIngredientsModule {
     @IntoMap
     @ViewModelKey(CreateRecipeIngredientsViewModel::class)
     abstract fun bindsCreateRecipeIngredientsViewModel(viewModel: CreateRecipeIngredientsViewModel): ViewModel
+}
+
+@Module
+abstract class DiscoverByIngredientsAddModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(DiscoverByIngredientsAddViewModel::class)
+    abstract fun bindsDiscoverByIngredientsAddViewModel(viewModel: DiscoverByIngredientsAddViewModel): ViewModel
 }
 
 @Module
