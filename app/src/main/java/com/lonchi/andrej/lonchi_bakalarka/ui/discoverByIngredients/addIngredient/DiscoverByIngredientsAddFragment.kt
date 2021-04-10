@@ -1,11 +1,15 @@
 package com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.addIngredient
 
+import android.app.Activity
+import android.content.Intent
+import android.speech.RecognizerIntent
 import android.view.View
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentDiscoverByIngredientsAddBinding
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.hideKeyboard
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.openKeyboard
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
+import timber.log.Timber
 
 
 /**
@@ -30,6 +34,14 @@ class DiscoverByIngredientsAddFragment : BaseFragment<DiscoverByIngredientsAddVi
         binding?.inputIngredientName?.getInputField()?.let {
             requireActivity().openKeyboard(it)
         }
+
+        binding?.buttonImageInput?.setOnClickListener {
+            //  TODO - connect to image labeling
+        }
+        binding?.buttonVoiceInput?.setOnClickListener {
+            requireActivity().hideKeyboard()
+            speechToText()
+        }
     }
 
     override fun bindViewModel() {
@@ -51,5 +63,33 @@ class DiscoverByIngredientsAddFragment : BaseFragment<DiscoverByIngredientsAddVi
         binding?.buttonAddIngredient?.postDelayed({
             requireActivity().onBackPressed()
         }, resources.getInteger(R.integer.hide_keyboard_delay).toLong())
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        when (requestCode) {
+            // Handle the result for our request code.
+            REQUEST_CODE_STT -> {
+                // Safety checks to ensure data is available.
+                if (resultCode == Activity.RESULT_OK && data != null) {
+
+                    // Retrieve the result array.
+                    val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+
+                    // Ensure result array is not null or empty to avoid errors.
+                    if (!result.isNullOrEmpty()) {
+                        // Recognized text is in the first position.
+                        val recognizedText = result[0]
+
+                        // Do what you want with the recognized text.
+                        Timber.d("STT onActivityResult: $recognizedText")
+                        binding?.inputIngredientName?.setInputText(recognizedText)
+                    }
+                } else {
+                    showErrorSnackbar(getString(R.string.speech_to_text_no_results))
+                }
+            }
+        }
     }
 }
