@@ -107,6 +107,10 @@ class SearchInput : BaseView<SearchInputBinding> {
         }
     }
 
+    fun setMicrophoneIconVisibility(visible: Boolean) {
+        binding?.iconMic?.setVisible(visible)
+    }
+
     fun setMicrophoneIconOnClickListener(action: () -> Unit) {
         binding?.iconMic?.isClickable = true
         binding?.iconMic?.isFocusable = true

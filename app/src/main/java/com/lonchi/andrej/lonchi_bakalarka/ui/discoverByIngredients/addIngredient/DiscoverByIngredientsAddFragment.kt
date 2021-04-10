@@ -1,10 +1,10 @@
 package com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.addIngredient
 
 import android.view.View
-import android.widget.Toast
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentDiscoverByIngredientsAddBinding
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.hideKeyboard
+import com.lonchi.andrej.lonchi_bakalarka.logic.util.openKeyboard
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 
 
@@ -25,12 +25,11 @@ class DiscoverByIngredientsAddFragment : BaseFragment<DiscoverByIngredientsAddVi
         binding?.buttonAddIngredient?.setOnClickListener { saveIngredient() }
 
         binding?.inputIngredientName?.setEndIconClickClearInput(true)
-        binding?.inputIngredientName?.setMicrophoneIconOnClickListener {
-            requireActivity().hideKeyboard()
-            //  TODO - add mic
-            Toast.makeText(requireContext(), "hlasa ze majk", Toast.LENGTH_SHORT).show()
-        }
+        binding?.inputIngredientName?.setMicrophoneIconVisibility(false)
         binding?.inputIngredientName?.requestFocus()
+        binding?.inputIngredientName?.getInputField()?.let {
+            requireActivity().openKeyboard(it)
+        }
     }
 
     override fun bindViewModel() {
