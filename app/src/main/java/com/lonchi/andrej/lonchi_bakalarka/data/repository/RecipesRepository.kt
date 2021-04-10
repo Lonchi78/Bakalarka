@@ -13,10 +13,12 @@ import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeCustom
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.User
 import com.lonchi.andrej.lonchi_bakalarka.data.mappers.ObjectMappers.Companion.mapToFavouriteRecipe
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RecipesResponse
+import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.SearchRecipesByIngredientsResponse
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.SearchRecipesResponse
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.DeviceTracker
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
+import com.lonchi.andrej.lonchi_bakalarka.logic.util.toCommaSeparatedString
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -41,6 +43,7 @@ interface RecipesRepository {
 
     fun getRandomRecipes(number: Int): Single<Resource<RecipesResponse>>
     fun searchRecipesByQuery(query: String): Single<Resource<SearchRecipesResponse>>
+    fun searchRecipesByIngredients(ingredients: List<String>): Single<Resource<List<Recipe>>>
     fun getRecipeDetail(id: Long): Single<Resource<Recipe>>
 }
 
@@ -102,6 +105,15 @@ class RecipesRepositoryImpl @Inject internal constructor(
         api.searchRecipes(
             apiKey = BuildConfig.API_KEY,
             query = query
+        )
+            .asSyncOperation()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+
+    override fun searchRecipesByIngredients(ingredients: List<String>): Single<Resource<List<Recipe>>> =
+        api.searchRecipesByIngredients(
+            apiKey = BuildConfig.API_KEY,
+            query = ingredients.toCommaSeparatedString()
         )
             .asSyncOperation()
             .subscribeOn(Schedulers.io())

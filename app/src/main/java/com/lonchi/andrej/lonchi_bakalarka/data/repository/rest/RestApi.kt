@@ -70,4 +70,10 @@ interface RestApi {
         @Query("query") query: String
     ): Single<Response<SearchRecipesResponse>>
 
+    @GET("recipes/findByIngredients")
+    fun searchRecipesByIngredients(
+        @Query("apiKey") apiKey: String,
+        @Query("ingredients") query: String
+    ): Single<Response<List<Recipe>>>
+
 }

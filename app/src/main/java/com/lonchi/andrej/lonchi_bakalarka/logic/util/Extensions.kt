@@ -294,3 +294,11 @@ fun Activity.isGpsOn(): Boolean =
 /* * * * * * * * * * * * * Others * * * * * * * * * * * *  */
 
 fun getAppVersion(): String = BuildConfig.VERSION_NAME
+
+fun List<String>.toCommaSeparatedString(): String {
+    var tmp = ""
+    this.forEach {
+        tmp += ",$it"
+    }
+    return tmp
+}

@@ -85,3 +85,7 @@ data class SearchRecipesResponse(
     @Json(name = "processingTimeMs") val processingTimeMs: Int,
     @Json(name = "expires") val expires: Long
 ): BaseResponse()
+
+data class SearchRecipesByIngredientsResponse(
+    @Json(name = "results") val results: List<Recipe>
+): BaseResponse()

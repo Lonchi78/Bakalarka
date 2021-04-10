@@ -56,6 +56,6 @@ class IngredientsListFragment : BaseFragment<IngredientsListViewModel, FragmentI
     }
 
     private fun findRecipes() {
-
+        viewModel.searchRecipesByIngredients()
     }
 }
