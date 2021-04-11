@@ -1,5 +1,5 @@
 <resources>
-	<string name="app_name">Bakalarka</string>
+	<string name="app_name">Recipio</string>
 	<string name="system_language">en</string>
 
 	<string name="global_permissions_are_needed">I can\'t do this without these permissions &#128549;</string>
