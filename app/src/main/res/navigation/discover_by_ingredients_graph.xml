@@ -5,6 +5,27 @@
     android:id="@+id/discover_by_ingredients_graph"
     app:startDestination="@id/ingredientsListFragment">
 
+    <action
+        android:id="@+id/action_global_recipeDetailFragment"
+        app:destination="@id/recipeDetailFragment"
+        app:enterAnim="@anim/slide_from_right"
+        app:exitAnim="@anim/slide_to_left"
+        app:popEnterAnim="@anim/slide_from_left"
+        app:popExitAnim="@anim/slide_to_right" />
+
+    <fragment
+        android:id="@+id/recipeDetailFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeDetailFragment"
+        android:label="fragment_recipe_detail"
+        tools:layout="@layout/fragment_recipe_detail">
+        <argument
+            android:name="recipeId"
+            app:argType="string" />
+        <argument
+            android:name="idType"
+            app:argType="com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum" />
+    </fragment>
+
     <fragment
         android:id="@+id/ingredientsListFragment"
         android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsListFragment"

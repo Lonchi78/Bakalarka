@@ -1,4 +1,4 @@
-package com.lonchi.andrej.lonchi_bakalarka.ui.discover
+package com.lonchi.andrej.lonchi_bakalarka.ui.discover.byQuery
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -17,10 +17,10 @@ import coil.load as load1
 /**
  *  @author Andrej Lončík <andrejloncik@gmail.com>
  * */
-class RecipeRowsAdapter(
+class RecipeByQueryRowsAdapter(
     val context: Context,
     val onRecipeClick: (Recipe) -> Unit
-) : ListAdapter<Recipe, RecipeRowsAdapter.ViewHolder>(object :
+) : ListAdapter<Recipe, RecipeByQueryRowsAdapter.ViewHolder>(object :
     DiffUtil.ItemCallback<Recipe>() {
 
     override fun areItemsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
@@ -42,7 +42,7 @@ class RecipeRowsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_recipe_row, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_recipe_by_query_row, parent, false)
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

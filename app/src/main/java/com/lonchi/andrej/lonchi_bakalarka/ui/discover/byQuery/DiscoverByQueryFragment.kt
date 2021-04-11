@@ -17,7 +17,6 @@ import com.lonchi.andrej.lonchi_bakalarka.logic.util.hideKeyboard
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.openKeyboard
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverFragment
-import com.lonchi.andrej.lonchi_bakalarka.ui.discover.RecipeRowsAdapter
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeFragmentDirections
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
 import timber.log.Timber
@@ -35,7 +34,7 @@ class DiscoverByQueryFragment : BaseFragment<DiscoverByQueryViewModel, FragmentD
     override val bindingInflater: (View) -> FragmentDiscoverListBinding = { FragmentDiscoverListBinding.bind(it) }
 
     private val adapterRecipes by lazy {
-        RecipeRowsAdapter(
+        RecipeByQueryRowsAdapter(
             context = requireContext(),
             onRecipeClick = { onRecipeClick(it) }
         )
