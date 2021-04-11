@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/ingredientsListFragment"
-        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.IngredientsListFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsListFragment"
         android:label="fragment_ingredients_list"
         tools:layout="@layout/fragment_ingredients_list">
         <action
@@ -17,12 +17,25 @@
             app:exitAnim="@anim/slide_to_left"
             app:popEnterAnim="@anim/slide_from_left"
             app:popExitAnim="@anim/slide_to_right" />
+        <action
+            android:id="@+id/action_ingredientsListFragment_to_ingredientsResultsFragment"
+            app:destination="@id/ingredientsResultsFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_right" />
     </fragment>
 
     <fragment
         android:id="@+id/ingredientsAddFragment"
-        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.addIngredient.DiscoverByIngredientsAddFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.addIngredient.DiscoverByIngredientsAddFragment"
         android:label="fragment_ingredients_add"
-        tools:layout="@layout/fragment_discover_by_ingredients_add"/>
+        tools:layout="@layout/fragment_discover_by_ingredients_add" />
+
+    <fragment
+        android:id="@+id/ingredientsResultsFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsResultsFragment"
+        android:label="fragment_ingredients_results"
+        tools:layout="@layout/fragment_discover_by_ingredients_results"/>
 
 </navigation>

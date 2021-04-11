@@ -58,7 +58,7 @@
 
     <fragment
         android:id="@+id/discoverListFragment"
-        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverListFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discover.byQuery.DiscoverByQueryFragment"
         android:label="fragment_discover_list"
         tools:layout="@layout/fragment_discover_list"/>
 

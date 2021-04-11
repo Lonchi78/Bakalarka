@@ -1,17 +1,13 @@
 package com.lonchi.andrej.lonchi_bakalarka.ui.discover
 
 import android.view.View
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import coil.load
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentDiscoverBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
-import com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.DiscoverByIngredientActivity
-import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
-import com.lonchi.andrej.lonchi_bakalarka.ui.profile.ProfileFragmentDirections
-import timber.log.Timber
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsActivity
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
@@ -56,9 +52,14 @@ class DiscoverFragment : BaseFragment<DiscoverViewModel, FragmentDiscoverBinding
         }
 
         binding?.chipSearchByIngredients?.setOnClickListener {
-            startActivity(DiscoverByIngredientActivity.getStartIntent(requireContext()))
+            startActivity(DiscoverByIngredientsActivity.getStartIntent(requireContext()))
         }
     }
 
     override fun bindViewModel() = Unit
+
+    override fun onDestroyView() {
+        viewModel.resetIngredients()
+        super.onDestroyView()
+    }
 }

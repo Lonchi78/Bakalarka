@@ -13,9 +13,10 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.photo.CreateRecipePhot
 import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.time.CreateRecipeTimeFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.diets.DietsFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverFragment
-import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverListFragment
-import com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.IngredientsListFragment
-import com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.addIngredient.DiscoverByIngredientsAddFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byQuery.DiscoverByQueryFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsListFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsResultsFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.addIngredient.DiscoverByIngredientsAddFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.favourites.FavouritesFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.fragment.MainFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeFragment
@@ -44,10 +45,13 @@ abstract class FragmentBuilderModule {
     abstract fun contributeDiscoverFragment(): DiscoverFragment
 
     @ContributesAndroidInjector(modules = [IngredientsListModule::class])
-    abstract fun contributeIngredientsListFragment(): IngredientsListFragment
+    abstract fun contributeIngredientsListFragment(): DiscoverByIngredientsListFragment
+
+    @ContributesAndroidInjector(modules = [DiscoverByIngredientsResultsModule::class])
+    abstract fun contributeDiscoverByIngredientsResultsFragment(): DiscoverByIngredientsResultsFragment
 
     @ContributesAndroidInjector(modules = [DiscoverListModule::class])
-    abstract fun contributeDiscoverListFragment(): DiscoverListFragment
+    abstract fun contributeDiscoverListFragment(): DiscoverByQueryFragment
 
     @ContributesAndroidInjector(modules = [MealPlannerModule::class])
     abstract fun contributeMealPlannerFragment(): MealPlannerFragment

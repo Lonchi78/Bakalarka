@@ -1,4 +1,4 @@
-package com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients
+package com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients
 
 import android.content.Context
 import android.view.LayoutInflater

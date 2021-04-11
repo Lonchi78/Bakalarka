@@ -1,4 +1,4 @@
-package com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.addIngredient
+package com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.addIngredient
 
 import android.app.Activity
 import android.content.Intent

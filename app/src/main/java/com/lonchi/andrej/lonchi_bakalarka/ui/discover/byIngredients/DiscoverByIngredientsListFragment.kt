@@ -1,4 +1,4 @@
-package com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients
+package com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients
 
 import android.view.View
 import androidx.navigation.fragment.findNavController
@@ -6,20 +6,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentIngredientsListBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
-import timber.log.Timber
 
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
-class IngredientsListFragment : BaseFragment<IngredientsListViewModel, FragmentIngredientsListBinding>() {
+class DiscoverByIngredientsListFragment : BaseFragment<DiscoverByIngredientsListViewModel, FragmentIngredientsListBinding>() {
 
     companion object {
-        fun newInstance() = IngredientsListFragment()
+        fun newInstance() = DiscoverByIngredientsListFragment()
     }
 
     override val layoutId: Int = R.layout.fragment_ingredients_list
-    override val vmClassToken: Class<IngredientsListViewModel> = IngredientsListViewModel::class.java
+    override val vmClassToken: Class<DiscoverByIngredientsListViewModel> = DiscoverByIngredientsListViewModel::class.java
     override val bindingInflater: (View) -> FragmentIngredientsListBinding =
         { FragmentIngredientsListBinding.bind(it) }
 
@@ -41,21 +40,23 @@ class IngredientsListFragment : BaseFragment<IngredientsListViewModel, FragmentI
     }
 
     override fun bindViewModel() {
-        //viewModel.resetIngredients()
-
         viewModel.ingredients.observe(viewLifecycleOwner) {
-            Timber.d("bindViewModel: ingredients = $it")
-            Timber.d("bindViewModel: ingredients = ${it.size}")
             binding?.chipCounter?.text = it.size.toString()
             adapterIngredients.submitList(it)
         }
     }
 
     private fun addIngredient() {
-        findNavController().navigate(IngredientsListFragmentDirections.actionIngredientsListFragmentToIngredientsAddFragment())
+        findNavController().navigate(
+            DiscoverByIngredientsListFragmentDirections
+                .actionIngredientsListFragmentToIngredientsAddFragment()
+        )
     }
 
     private fun findRecipes() {
-        viewModel.searchRecipesByIngredients()
+        findNavController().navigate(
+            DiscoverByIngredientsListFragmentDirections
+                .actionIngredientsListFragmentToIngredientsResultsFragment()
+        )
     }
 }

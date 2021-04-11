@@ -1,11 +1,9 @@
-package com.lonchi.andrej.lonchi_bakalarka.ui.discover
+package com.lonchi.andrej.lonchi_bakalarka.ui.discover.byQuery
 
 import android.app.Activity
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.speech.RecognizerIntent
 import android.view.View
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lonchi.andrej.lonchi_bakalarka.R
@@ -18,21 +16,22 @@ import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentDiscoverListBindin
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.hideKeyboard
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.openKeyboard
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.RecipeRowsAdapter
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeFragmentDirections
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
 import timber.log.Timber
-import java.util.*
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
-class DiscoverListFragment : BaseFragment<DiscoverListViewModel, FragmentDiscoverListBinding>() {
+class DiscoverByQueryFragment : BaseFragment<DiscoverByQueryViewModel, FragmentDiscoverListBinding>() {
     companion object {
         fun newInstance() = DiscoverFragment()
     }
 
     override val layoutId: Int = R.layout.fragment_discover_list
-    override val vmClassToken: Class<DiscoverListViewModel> = DiscoverListViewModel::class.java
+    override val vmClassToken: Class<DiscoverByQueryViewModel> = DiscoverByQueryViewModel::class.java
     override val bindingInflater: (View) -> FragmentDiscoverListBinding = { FragmentDiscoverListBinding.bind(it) }
 
     private val adapterRecipes by lazy {

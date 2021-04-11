@@ -1,8 +1,7 @@
-package com.lonchi.andrej.lonchi_bakalarka.ui.discover
+package com.lonchi.andrej.lonchi_bakalarka.ui.discover.byQuery
 
 import androidx.lifecycle.MutableLiveData
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.RecipesRepository
-import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RecipesResponse
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.SearchRecipesResponse
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
@@ -13,7 +12,7 @@ import javax.inject.Inject
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
-class DiscoverListViewModel @Inject constructor(
+class DiscoverByQueryViewModel @Inject constructor(
     private val recipesRepository: RecipesRepository
 ) : BaseViewModel() {
 

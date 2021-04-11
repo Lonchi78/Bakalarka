@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -20,7 +19,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.setVisible
-import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverListFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.utils.LonchiSnackbar
 import dagger.android.support.DaggerFragment
 import timber.log.Timber

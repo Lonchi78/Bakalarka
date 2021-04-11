@@ -1,9 +1,7 @@
-package com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.addIngredient
+package com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.addIngredient
 
 import androidx.lifecycle.MutableLiveData
-import com.lonchi.andrej.lonchi_bakalarka.data.repository.CreateRecipeRepository
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.DiscoverByIngredientsRepository
-import com.lonchi.andrej.lonchi_bakalarka.data.repository.RecipesRepository
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseViewModel
 import timber.log.Timber
 import javax.inject.Inject

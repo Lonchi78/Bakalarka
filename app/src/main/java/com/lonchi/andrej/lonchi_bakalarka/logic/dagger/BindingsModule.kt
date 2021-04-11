@@ -15,14 +15,15 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.instructions.CreateRec
 import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.photo.CreateRecipePhotoViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.time.CreateRecipeTimeViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.diets.DietsViewModel
-import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverListViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byQuery.DiscoverByQueryViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.favourites.FavouritesViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.fragment.FragmentViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeViewModel
-import com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.DiscoverByIngredientViewModel
-import com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.IngredientsListViewModel
-import com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.addIngredient.DiscoverByIngredientsAddViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsListViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsResultsViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.addIngredient.DiscoverByIngredientsAddViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.MealPlannerViewModel
@@ -68,8 +69,8 @@ abstract class LoginModule {
 abstract class DiscoverByIngredientModule {
     @Binds
     @IntoMap
-    @ViewModelKey(DiscoverByIngredientViewModel::class)
-    abstract fun bindsDiscoverByIngredientViewModel(viewModel: DiscoverByIngredientViewModel): ViewModel
+    @ViewModelKey(DiscoverByIngredientsViewModel::class)
+    abstract fun bindsDiscoverByIngredientViewModel(viewModel: DiscoverByIngredientsViewModel): ViewModel
 }
 
 @Module
@@ -108,16 +109,24 @@ abstract class DiscoverModule {
 abstract class IngredientsListModule {
     @Binds
     @IntoMap
-    @ViewModelKey(IngredientsListViewModel::class)
-    abstract fun bindsIngredientsListViewModel(viewModel: IngredientsListViewModel): ViewModel
+    @ViewModelKey(DiscoverByIngredientsListViewModel::class)
+    abstract fun bindsIngredientsListViewModel(viewModelDiscoverBy: DiscoverByIngredientsListViewModel): ViewModel
+}
+
+@Module
+abstract class DiscoverByIngredientsResultsModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(DiscoverByIngredientsResultsViewModel::class)
+    abstract fun bindsDiscoverByIngredientsResultsViewModel(viewModelDiscoverBy: DiscoverByIngredientsResultsViewModel): ViewModel
 }
 
 @Module
 abstract class DiscoverListModule {
     @Binds
     @IntoMap
-    @ViewModelKey(DiscoverListViewModel::class)
-    abstract fun bindsDiscoverListViewModel(viewModel: DiscoverListViewModel): ViewModel
+    @ViewModelKey(DiscoverByQueryViewModel::class)
+    abstract fun bindsDiscoverListViewModel(viewModel: DiscoverByQueryViewModel): ViewModel
 }
 
 @Module
