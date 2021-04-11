@@ -36,6 +36,12 @@
 	</plurals>
 
 	<!--	Discover	-->
+	<string name="discover_example_ingredient_cheese">Cheese</string>
+	<string name="discover_example_ingredient_chicken">Chicken</string>
+	<string name="discover_example_ingredient_tomato">Tomato</string>
+	<string name="discover_example_ingredient_avocado">Avocado</string>
+	<string name="discover_example_ingredient_red_onion">Red onion</string>
+	<string name="discover_example_ingredient_egg">Egg</string>
 	<string name="discover_title">Discover</string>
 	<string name="discover_search_by_ingredients">Search by ingredients?</string>
 	<string name="discover_search_by_ingredients_chip">Try</string>

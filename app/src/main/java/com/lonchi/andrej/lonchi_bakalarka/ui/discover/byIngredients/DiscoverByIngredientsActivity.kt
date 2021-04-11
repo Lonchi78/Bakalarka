@@ -14,17 +14,37 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseActivity
 class DiscoverByIngredientsActivity : BaseActivity<DiscoverByIngredientsViewModel, ActivityDiscoverByIngredientsBinding>() {
 
     companion object {
-        fun getStartIntent(context: Context, extras: Bundle? = null): Intent =
+        fun getStartIntent(context: Context, previewIngredient: String? = null): Intent =
             Intent(context, DiscoverByIngredientsActivity::class.java)
-                .apply { if (extras != null) this.putExtras(extras) }
+                .apply {
+                    if (!previewIngredient.isNullOrEmpty()) {
+                        this.putExtras(
+                            Bundle().apply {
+                                putString(BUNDLE_KEY_PREVIEW_INGREDIENT, previewIngredient)
+                            }
+                        )
+                    }
+                }
+
+        private const val BUNDLE_KEY_PREVIEW_INGREDIENT = "bundle.key.preview.ingredient"
     }
 
     override val bindingInflater: (LayoutInflater) -> ActivityDiscoverByIngredientsBinding = { ActivityDiscoverByIngredientsBinding.inflate(it) }
     override val vmClassToken: Class<DiscoverByIngredientsViewModel> = DiscoverByIngredientsViewModel::class.java
 
-
-    override fun initView() {
+    override fun initView() = Unit
+    override fun bindViewModel() {
+        handleInputArguments()
     }
 
-    override fun bindViewModel() = Unit
+    override fun onDestroy() {
+        viewModel.resetIngredients()
+        super.onDestroy()
+    }
+
+    private fun handleInputArguments() {
+        intent.extras?.getString(BUNDLE_KEY_PREVIEW_INGREDIENT)?.let {
+            viewModel.addIngredient(it)
+        }
+    }
 }

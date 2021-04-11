@@ -298,7 +298,7 @@ fun getAppVersion(): String = BuildConfig.VERSION_NAME
 fun List<String>.toCommaSeparatedString(): String {
     var tmp = ""
     this.forEach {
-        tmp += ",$it"
+        tmp += ",${it.toLowerCase()}"
     }
     return tmp
 }

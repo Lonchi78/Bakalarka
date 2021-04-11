@@ -53,10 +53,8 @@ class DiscoverByIngredientsResultsFragment : BaseFragment<DiscoverByIngredientsR
             when (it.status) {
                 is SuccessStatus -> {
                     if (!it.data.isNullOrEmpty()) {
-                        binding?.chipCounter?.text = it.data.size.toString()
                         adapterRecipes.submitList(it.data)
                     } else {
-                        binding?.chipCounter?.text = 0.toString()
                         showErrorSnackbar(ErrorIdentification.Unknown())
                     }
                 }

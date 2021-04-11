@@ -1,7 +1,6 @@
 package com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients
 
-import com.google.firebase.auth.FirebaseUser
-import com.lonchi.andrej.lonchi_bakalarka.data.repository.UserRepository
+import com.lonchi.andrej.lonchi_bakalarka.data.repository.DiscoverByIngredientsRepository
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseViewModel
 import javax.inject.Inject
 
@@ -10,8 +9,12 @@ import javax.inject.Inject
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
 class DiscoverByIngredientsViewModel @Inject constructor(
-    private val userRepository: UserRepository
+    private val rootRepository: DiscoverByIngredientsRepository
 ) : BaseViewModel() {
 
-    fun login(firebaseUser: FirebaseUser) = userRepository.performUserLogin(firebaseUser)
+    fun addIngredient(value: String) = rootRepository.addIngredient(value)
+
+    fun resetIngredients() {
+        rootRepository.resetIngredients()
+    }
 }
