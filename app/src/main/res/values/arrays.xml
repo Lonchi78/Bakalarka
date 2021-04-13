@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="initial_slider_values">
+    <array name="slider_values_calories">
+        <item>50</item>
+        <item>800</item>
+    </array>
+
+    <array name="slider_values_protein">
         <item>0</item>
-        <item>10</item>
+        <item>100</item>
+    </array>
+
+    <array name="slider_values_fat">
+        <item>0</item>
+        <item>100</item>
+    </array>
+
+    <array name="slider_values_carbs">
+        <item>0</item>
+        <item>100</item>
     </array>
 </resources>

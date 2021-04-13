@@ -50,8 +50,8 @@
                 android:contentDescription="@null"
                 android:src="@drawable/ic_reset_24"
                 android:tint="@color/orange500"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -61,16 +61,16 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="24dp"
-            android:paddingBottom="24dp"
             android:paddingStart="16dp"
-            android:paddingEnd="16dp">
+            android:paddingTop="24dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="64dp">
 
             <TextView
                 android:id="@+id/labelDiets"
@@ -85,48 +85,187 @@
                 android:id="@+id/switchDiets"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="@id/labelDiets"
                 app:layout_constraintBottom_toBottomOf="@id/labelDiets"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/labelDiets" />
 
             <TextView
                 android:id="@+id/labelIntolerances"
                 style="@style/TextHeadline4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/filter_intolerances"
                 android:layout_marginTop="32dp"
+                android:text="@string/filter_intolerances"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/labelDiets"/>
+                app:layout_constraintTop_toBottomOf="@id/labelDiets" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switchIntolerances"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="@id/labelIntolerances"
                 app:layout_constraintBottom_toBottomOf="@id/labelIntolerances"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/labelIntolerances" />
 
             <TextView
                 android:id="@+id/labelCalories"
                 style="@style/TextHeadline4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/filter_calories"
                 android:layout_marginTop="40dp"
+                android:text="@string/filter_calories"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/labelIntolerances"/>
+                app:layout_constraintTop_toBottomOf="@id/labelIntolerances" />
 
             <com.google.android.material.slider.RangeSlider
                 android:id="@+id/rangeCalories"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:valueFrom="0"
-                android:valueTo="10"
-                android:stepSize="2"
-                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:stepSize="@integer/slider_values_calories_step"
+                android:valueFrom="@integer/slider_values_calories_min"
+                android:valueTo="@integer/slider_values_calories_max"
                 app:layout_constraintTop_toBottomOf="@id/labelCalories"
-                app:values="@array/initial_slider_values" />
+                app:values="@array/slider_values_calories" />
+
+            <TextView
+                android:id="@+id/textCaloriesMin"
+                style="@style/TextBodySmallRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rangeCalories"
+                tools:text="10 g" />
+
+            <TextView
+                android:id="@+id/textCaloriesMax"
+                style="@style/TextBodySmallRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_calories"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rangeCalories"
+                tools:text="100 g" />
+
+            <TextView
+                android:id="@+id/labelProtein"
+                style="@style/TextHeadline4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/filter_protein"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textCaloriesMin" />
+
+            <com.google.android.material.slider.RangeSlider
+                android:id="@+id/rangeProtein"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:stepSize="@integer/slider_values_protein_step"
+                android:valueFrom="@integer/slider_values_protein_min"
+                android:valueTo="@integer/slider_values_protein_max"
+                app:layout_constraintTop_toBottomOf="@id/labelProtein"
+                app:values="@array/slider_values_protein" />
+
+            <TextView
+                android:id="@+id/textProteinMin"
+                style="@style/TextBodySmallRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rangeProtein"
+                tools:text="10 g" />
+
+            <TextView
+                android:id="@+id/textProteinMax"
+                style="@style/TextBodySmallRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_calories"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rangeProtein"
+                tools:text="100 g" />
+
+            <TextView
+                android:id="@+id/labelFat"
+                style="@style/TextHeadline4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/filter_fat"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textProteinMin" />
+
+            <com.google.android.material.slider.RangeSlider
+                android:id="@+id/rangeFat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:stepSize="@integer/slider_values_fat_step"
+                android:valueFrom="@integer/slider_values_fat_min"
+                android:valueTo="@integer/slider_values_fat_max"
+                app:layout_constraintTop_toBottomOf="@id/labelFat"
+                app:values="@array/slider_values_fat" />
+
+            <TextView
+                android:id="@+id/textFatMin"
+                style="@style/TextBodySmallRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rangeFat"
+                tools:text="10 g" />
+
+            <TextView
+                android:id="@+id/textFatMax"
+                style="@style/TextBodySmallRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_calories"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rangeFat"
+                tools:text="100 g" />
+
+            <TextView
+                android:id="@+id/labelCarbs"
+                style="@style/TextHeadline4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/filter_carbs"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textFatMin" />
+
+            <com.google.android.material.slider.RangeSlider
+                android:id="@+id/rangeCarbs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:stepSize="@integer/slider_values_carbs_step"
+                android:valueFrom="@integer/slider_values_carbs_min"
+                android:valueTo="@integer/slider_values_carbs_max"
+                app:layout_constraintTop_toBottomOf="@id/labelCarbs"
+                app:values="@array/slider_values_carbs" />
+
+            <TextView
+                android:id="@+id/textCarbsMin"
+                style="@style/TextBodySmallRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rangeCarbs"
+                tools:text="10 g" />
+
+            <TextView
+                android:id="@+id/textCarbsMax"
+                style="@style/TextBodySmallRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_calories"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rangeCarbs"
+                tools:text="100 g" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -137,11 +276,11 @@
         style="@style/ContainedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/filter_save_filters"
         android:layout_marginBottom="16dp"
+        android:text="@string/filter_save_filters"
         app:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
