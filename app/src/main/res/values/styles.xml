@@ -6,11 +6,11 @@
 		<item name="colorPrimary">@color/colorPrimary</item>
 		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 		<item name="colorAccent">@color/colorAccent</item>
-		<item name="android:statusBarColor">@color/gray50</item>
+		<item name="android:statusBarColor">@color/gray900</item>
 		<item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
 
-		<item name="android:windowTranslucentStatus">false</item>
-		<item name="android:windowTranslucentNavigation">false</item>
+		<!--<item name="android:windowTranslucentStatus">false</item>
+		<item name="android:windowTranslucentNavigation">false</item>-->
 	</style>
 
 	<style name="SplashTheme" parent="AppTheme">

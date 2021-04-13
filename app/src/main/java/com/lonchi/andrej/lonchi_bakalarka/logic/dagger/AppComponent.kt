@@ -32,6 +32,7 @@ import javax.inject.Singleton
             CameraModule::class,
             HomeModule::class,
             DiscoverModule::class,
+            FilterModule::class,
             IngredientsListModule::class,
             DiscoverListModule::class,
             MealPlannerModule::class,

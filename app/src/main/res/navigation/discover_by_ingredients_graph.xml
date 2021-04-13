@@ -13,6 +13,12 @@
         app:popEnterAnim="@anim/slide_from_left"
         app:popExitAnim="@anim/slide_to_right" />
 
+    <action
+        android:id="@+id/action_global_filterFragment"
+        app:destination="@id/filterFragment"
+        app:enterAnim="@anim/slide_from_bottom"
+        app:popExitAnim="@anim/slide_to_bottom" />
+
     <fragment
         android:id="@+id/recipeDetailFragment"
         android:name="com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeDetailFragment"
@@ -58,5 +64,11 @@
         android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsResultsFragment"
         android:label="fragment_ingredients_results"
         tools:layout="@layout/fragment_discover_by_ingredients_results"/>
+
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discover.FilterFragment"
+        android:label="fragment_filter"
+        tools:layout="@layout/fragment_filter"/>
 
 </navigation>

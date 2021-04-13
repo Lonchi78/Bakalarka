@@ -14,6 +14,12 @@
         app:popExitAnim="@anim/slide_to_right" />
 
     <action
+        android:id="@+id/action_global_filterFragment"
+        app:destination="@id/filterFragment"
+        app:enterAnim="@anim/slide_from_bottom"
+        app:popExitAnim="@anim/slide_to_bottom" />
+
+    <action
         android:id="@+id/action_global_recipeDetailCustomFragment"
         app:destination="@id/recipeDetailCustomFragment"
         app:enterAnim="@anim/slide_from_right"
@@ -60,7 +66,7 @@
         android:id="@+id/discoverListFragment"
         android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discover.byQuery.DiscoverByQueryFragment"
         android:label="fragment_discover_list"
-        tools:layout="@layout/fragment_discover_list"/>
+        tools:layout="@layout/fragment_discover_by_query"/>
 
     <fragment
         android:id="@+id/mealPlannerFragment"
@@ -178,4 +184,10 @@
             android:name="idType"
             app:argType="com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum" />
     </fragment>
+
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discover.FilterFragment"
+        android:label="fragment_filter"
+        tools:layout="@layout/fragment_filter"/>
 </navigation>

@@ -17,6 +17,7 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.time.CreateRecipeTimeV
 import com.lonchi.andrej.lonchi_bakalarka.ui.diets.DietsViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byQuery.DiscoverByQueryViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.FilterViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.favourites.FavouritesViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.fragment.FragmentViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeViewModel
@@ -103,6 +104,14 @@ abstract class DiscoverModule {
     @IntoMap
     @ViewModelKey(DiscoverViewModel::class)
     abstract fun bindsDiscoverViewModel(viewModel: DiscoverViewModel): ViewModel
+}
+
+@Module
+abstract class FilterModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(FilterViewModel::class)
+    abstract fun bindsFilterViewModel(viewModel: FilterViewModel): ViewModel
 }
 
 @Module

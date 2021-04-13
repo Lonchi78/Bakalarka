@@ -13,6 +13,7 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.photo.CreateRecipePhot
 import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.time.CreateRecipeTimeFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.diets.DietsFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.FilterFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byQuery.DiscoverByQueryFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsListFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsResultsFragment
@@ -43,6 +44,9 @@ abstract class FragmentBuilderModule {
 
     @ContributesAndroidInjector(modules = [DiscoverModule::class])
     abstract fun contributeDiscoverFragment(): DiscoverFragment
+
+    @ContributesAndroidInjector(modules = [FilterModule::class])
+    abstract fun contributeFilterFragment(): FilterFragment
 
     @ContributesAndroidInjector(modules = [IngredientsListModule::class])
     abstract fun contributeIngredientsListFragment(): DiscoverByIngredientsListFragment

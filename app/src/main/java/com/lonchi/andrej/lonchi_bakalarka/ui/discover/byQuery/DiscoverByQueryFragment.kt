@@ -12,26 +12,25 @@ import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.LoadingStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
-import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentDiscoverListBinding
+import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentDiscoverByQueryBinding
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.hideKeyboard
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.openKeyboard
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverFragment
-import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeFragmentDirections
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
 import timber.log.Timber
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
-class DiscoverByQueryFragment : BaseFragment<DiscoverByQueryViewModel, FragmentDiscoverListBinding>() {
+class DiscoverByQueryFragment : BaseFragment<DiscoverByQueryViewModel, FragmentDiscoverByQueryBinding>() {
     companion object {
         fun newInstance() = DiscoverFragment()
     }
 
-    override val layoutId: Int = R.layout.fragment_discover_list
+    override val layoutId: Int = R.layout.fragment_discover_by_query
     override val vmClassToken: Class<DiscoverByQueryViewModel> = DiscoverByQueryViewModel::class.java
-    override val bindingInflater: (View) -> FragmentDiscoverListBinding = { FragmentDiscoverListBinding.bind(it) }
+    override val bindingInflater: (View) -> FragmentDiscoverByQueryBinding = { FragmentDiscoverByQueryBinding.bind(it) }
 
     private val adapterRecipes by lazy {
         RecipeByQueryRowsAdapter(
@@ -42,6 +41,7 @@ class DiscoverByQueryFragment : BaseFragment<DiscoverByQueryViewModel, FragmentD
 
     override fun initView() {
         binding?.iconBack?.setOnClickListener { requireActivity().onBackPressed() }
+        binding?.iconFilter?.setOnClickListener { openFilterScreen() }
 
         binding?.queryInput?.setEndIconClickClearInput(true)
         binding?.queryInput?.setPlaceholderText(getString(R.string.discover_search_query_placeholder))
@@ -50,10 +50,10 @@ class DiscoverByQueryFragment : BaseFragment<DiscoverByQueryViewModel, FragmentD
             speechToText()
         }
 
-        binding?.queryInput?.requestFocus()
-        binding?.queryInput?.getInputField()?.let {
+        //binding?.queryInput?.requestFocus()
+        /*binding?.queryInput?.getInputField()?.let {
             requireActivity().openKeyboard(it)
-        }
+        }*/
 
         binding?.recyclerRecipes?.adapter = adapterRecipes
         binding?.recyclerRecipes?.layoutManager =
@@ -87,9 +87,15 @@ class DiscoverByQueryFragment : BaseFragment<DiscoverByQueryViewModel, FragmentD
         }
     }
 
+    private fun openFilterScreen() {
+        findNavController().navigate(
+            DiscoverByQueryFragmentDirections.actionGlobalFilterFragment()
+        )
+    }
+
     private fun onRecipeClick(recipe: RecipeItem) {
         findNavController().navigate(
-            HomeFragmentDirections.actionGlobalRecipeDetailFragment(
+            DiscoverByQueryFragmentDirections.actionGlobalRecipeDetailFragment(
                 recipeId = recipe.getId(),
                 idType = RecipeIdTypeEnum.getRecipeIdType(recipe.getRecipeIdType())
             )
