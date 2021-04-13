@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="slider_values_calories">
-        <item>50</item>
+        <item>0</item>
         <item>800</item>
     </array>
 

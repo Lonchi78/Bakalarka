@@ -16,6 +16,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.entities.*
             RecipeFavourite::class,
             RecipeCustom::class,
             Intolerances::class,
+            Filter::class,
             Diets::class,
             User::class
         ],
@@ -38,5 +39,6 @@ abstract class LonchiDatabase : RoomDatabase() {
     abstract fun favouriteRecipesDao(): FavouriteRecipesDao
     abstract fun customRecipesDao(): CustomRecipesDao
     abstract fun intolerancesDao(): IntolerancesDao
+    abstract fun filterDao(): FilterDao
     abstract fun dietsDao(): DietsDao
 }

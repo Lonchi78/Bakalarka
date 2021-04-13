@@ -41,6 +41,7 @@ interface UserRepository {
      * Primary livedata stream containing logged user state
      */
     val loggedUser: LiveData<Resource<User>>
+    val actualFilter: LiveData<Resource<Filter>>
 
     val allDiets: MutableLiveData<List<String>>
     val allIntolerances: MutableLiveData<List<String>>
@@ -56,6 +57,8 @@ interface UserRepository {
 
     fun getUserIntolerancesSingle(): Single<List<Intolerances>>
     fun saveUserIntolerances(intolerances: List<String?>)
+
+    fun saveActualFilter(filter: Filter)
 
     fun performUserLogin(firebaseUser: FirebaseUser)
     fun performUserLogout()
@@ -123,6 +126,10 @@ class UserRepositoryImpl @Inject internal constructor(
         updateIntolerances()
     }
 
+    override fun saveActualFilter(filter: Filter) {
+        db.filterDao().saveFilter(filter)
+    }
+
     /**
      * Get logged user state based on data in database
      * If user is not in db than user is not logged and Resource contains error
@@ -131,6 +138,10 @@ class UserRepositoryImpl @Inject internal constructor(
     override val loggedUser: LiveData<Resource<User>> = Transformations.map(db.userDao().listAll()) {
         it.firstOrNull()?.let { Resource.success(it) }
                 ?: Resource.error(ErrorIdentification.Authentication(), null)
+    }
+
+    override val actualFilter: LiveData<Resource<Filter>> = Transformations.map(db.filterDao().listAll()) {
+        it.firstOrNull()?.let { Resource.success(it) } ?: Resource.notStarted()
     }
 
 
