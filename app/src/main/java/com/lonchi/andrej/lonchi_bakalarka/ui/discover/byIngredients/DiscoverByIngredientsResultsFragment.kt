@@ -11,7 +11,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.utils.LoadingStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentDiscoverByIngredientsResultsBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
-import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeFragmentDirections
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.RecipeDiscoverRowsAdapter
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
 
 
@@ -30,7 +30,7 @@ class DiscoverByIngredientsResultsFragment : BaseFragment<DiscoverByIngredientsR
         { FragmentDiscoverByIngredientsResultsBinding.bind(it) }
 
     private val adapterRecipes by lazy {
-        RecipeByIngredientsRowsAdapter(
+        RecipeDiscoverRowsAdapter(
             context = requireContext(),
             onRecipeClick = { onRecipeClick(it) }
         )

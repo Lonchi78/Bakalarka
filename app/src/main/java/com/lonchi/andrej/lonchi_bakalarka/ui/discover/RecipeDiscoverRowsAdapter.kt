@@ -1,4 +1,4 @@
-package com.lonchi.andrej.lonchi_bakalarka.ui.discover.byQuery
+package com.lonchi.andrej.lonchi_bakalarka.ui.discover
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -17,10 +17,10 @@ import coil.load as load1
 /**
  *  @author Andrej Lončík <andrejloncik@gmail.com>
  * */
-class RecipeByQueryRowsAdapter(
+class RecipeDiscoverRowsAdapter(
     val context: Context,
     val onRecipeClick: (Recipe) -> Unit
-) : ListAdapter<Recipe, RecipeByQueryRowsAdapter.ViewHolder>(object :
+) : ListAdapter<Recipe, RecipeDiscoverRowsAdapter.ViewHolder>(object :
     DiffUtil.ItemCallback<Recipe>() {
 
     override fun areItemsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
@@ -42,18 +42,13 @@ class RecipeByQueryRowsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_recipe_by_query_row, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_recipe_by_ingredients_row, parent, false)
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val recipe = getItem(position)
         holder.layoutRoot.setOnClickListener { onRecipeClick.invoke(recipe) }
-
         holder.textName.text = recipe.title
-        holder.textCookingTime.text = context.getString(
-            R.string.discover_search_recipe_ready_in_minutes,
-            recipe.readyInMinutes
-        )
 
         if (recipe.image?.startsWith(RECIPE_HTTPS_PREFIX) == true) {
             holder.image?.load1(recipe.image) {
@@ -72,6 +67,5 @@ class RecipeByQueryRowsAdapter(
         internal val layoutRoot = view.findViewById<ConstraintLayout>(R.id.rootLayout)
         internal val image = view.findViewById<ImageView>(R.id.imageRecipe)
         internal val textName = view.findViewById<TextView>(R.id.textRecipeName)
-        internal val textCookingTime = view.findViewById<TextView>(R.id.textRecipeCookingTime)
     }
 }

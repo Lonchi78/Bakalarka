@@ -24,7 +24,7 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsListViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsResultsViewModel
-import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.addIngredient.DiscoverByIngredientsAddViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsAddViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.MealPlannerViewModel

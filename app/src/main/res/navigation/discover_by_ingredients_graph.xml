@@ -55,7 +55,7 @@
 
     <fragment
         android:id="@+id/ingredientsAddFragment"
-        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.addIngredient.DiscoverByIngredientsAddFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsAddFragment"
         android:label="fragment_ingredients_add"
         tools:layout="@layout/fragment_discover_by_ingredients_add" />
 

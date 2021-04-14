@@ -1,4 +1,4 @@
-package com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.addIngredient
+package com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients
 
 import androidx.lifecycle.MutableLiveData
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.DiscoverByIngredientsRepository

@@ -8,7 +8,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeCustom
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeItem
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentOwnRecipesBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
-import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byQuery.RecipeByQueryRowsAdapter
+import com.lonchi.andrej.lonchi_bakalarka.ui.recipes.RecipeRowsAdapter
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeFragmentDirections
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
 
@@ -28,7 +28,7 @@ class OwnRecipesFragment : BaseFragment<OwnRecipesViewModel, FragmentOwnRecipesB
         { FragmentOwnRecipesBinding.bind(it) }
 
     private val adapterRecipes by lazy {
-        RecipeByQueryRowsAdapter(
+        RecipeRowsAdapter(
             context = requireContext(),
             onRecipeClick = { onRecipeClick(it) }
         )
