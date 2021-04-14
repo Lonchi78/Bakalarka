@@ -53,9 +53,11 @@ interface UserRepository {
     fun hasUserEverBeenLogged(): Boolean
 
     fun getUserDietsSingle(): Single<List<Diets>>
+    fun getUserDietsBlocking(): List<Diets>
     fun saveUserDiets(diets: List<String?>)
 
     fun getUserIntolerancesSingle(): Single<List<Intolerances>>
+    fun getUserIntolerancesBlocking(): List<Intolerances>
     fun saveUserIntolerances(intolerances: List<String?>)
 
     fun saveActualFilter(filter: Filter)
@@ -112,6 +114,10 @@ class UserRepositoryImpl @Inject internal constructor(
         return db.dietsDao().listAllSingle()
     }
 
+    override fun getUserDietsBlocking(): List<Diets> {
+        return db.dietsDao().listAllBlocking()
+    }
+
     override fun saveUserDiets(diets: List<String?>) {
         db.dietsDao().saveDiets(Diets(diets = diets))
         updateDiets()
@@ -119,6 +125,10 @@ class UserRepositoryImpl @Inject internal constructor(
 
     override fun getUserIntolerancesSingle(): Single<List<Intolerances>> {
         return db.intolerancesDao().listAllSingle()
+    }
+
+    override fun getUserIntolerancesBlocking(): List<Intolerances> {
+        return db.intolerancesDao().listAllBlocking()
     }
 
     override fun saveUserIntolerances(intolerances: List<String?>) {

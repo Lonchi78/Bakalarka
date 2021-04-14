@@ -295,10 +295,12 @@ fun Activity.isGpsOn(): Boolean =
 
 fun getAppVersion(): String = BuildConfig.VERSION_NAME
 
-fun List<String>.toCommaSeparatedString(): String {
+fun List<String?>?.toCommaSeparatedString(): String {
     var tmp = ""
-    this.forEach {
-        tmp += ",${it.toLowerCase()}"
+    this?.forEach { nullableString ->
+        nullableString?.let {
+            tmp += ",${it.toLowerCase()}"
+        }
     }
     return tmp
 }

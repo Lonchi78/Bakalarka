@@ -50,10 +50,10 @@ class DiscoverByQueryFragment : BaseFragment<DiscoverByQueryViewModel, FragmentD
             speechToText()
         }
 
-        //binding?.queryInput?.requestFocus()
-        /*binding?.queryInput?.getInputField()?.let {
+        binding?.queryInput?.requestFocus()
+        binding?.queryInput?.getInputField()?.let {
             requireActivity().openKeyboard(it)
-        }*/
+        }
 
         binding?.recyclerRecipes?.adapter = adapterRecipes
         binding?.recyclerRecipes?.layoutManager =

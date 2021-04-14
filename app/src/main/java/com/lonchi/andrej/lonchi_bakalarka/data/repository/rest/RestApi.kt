@@ -64,10 +64,20 @@ interface RestApi {
         @Query("includeNutrition") includeNutrition: Boolean? = true
     ): Single<Response<Recipe>>
 
-    @GET("recipes/search")
-    fun searchRecipes(
+    @GET("recipes/complexSearch")
+    fun searchRecipesByQuery(
         @Query("apiKey") apiKey: String,
-        @Query("query") query: String
+        @Query("query") query: String,
+        @Query("diet") diet: String? = null,
+        @Query("intolerances") intolerances: String? = null,
+        @Query("minCalories") minCalories: Int? = null,
+        @Query("maxCalories") maxCalories: Int? = null,
+        @Query("minFat") minFat: Int? = null,
+        @Query("maxFat") maxFat: Int? = null,
+        @Query("minCarbs") minCarbs: Int? = null,
+        @Query("maxCarbs") maxCarbs: Int? = null,
+        @Query("minProtein") minProtein: Int? = null,
+        @Query("maxProtein") maxProtein: Int? = null
     ): Single<Response<SearchRecipesResponse>>
 
     @GET("recipes/findByIngredients")

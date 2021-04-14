@@ -21,6 +21,9 @@ interface IntolerancesDao : BaseDao<Intolerances> {
     @Query("SELECT * FROM Intolerances")
     fun listAllSingle(): Single<List<Intolerances>>
 
+    @Query("SELECT * FROM Intolerances")
+    fun listAllBlocking(): List<Intolerances>
+
     @Query("DELETE FROM Intolerances")
     fun deleteAll()
 

@@ -21,6 +21,9 @@ interface DietsDao : BaseDao<Diets> {
     @Query("SELECT * FROM Diets")
     fun listAllSingle(): Single<List<Diets>>
 
+    @Query("SELECT * FROM Diets")
+    fun listAllBlocking(): List<Diets>
+
     @Query("DELETE FROM Diets")
     fun deleteAll()
 

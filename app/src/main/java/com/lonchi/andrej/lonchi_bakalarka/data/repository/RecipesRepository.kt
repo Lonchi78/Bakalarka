@@ -3,21 +3,18 @@ package com.lonchi.andrej.lonchi_bakalarka.data.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.lonchi.andrej.lonchi_bakalarka.BuildConfig
+import com.lonchi.andrej.lonchi_bakalarka.data.base.BaseRepository
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.*
+import com.lonchi.andrej.lonchi_bakalarka.data.mappers.ObjectMappers.Companion.mapToFavouriteRecipe
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.database.LonchiDatabase
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.preferences.SharedPreferencesInterface
-import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RestApi
-import com.lonchi.andrej.lonchi_bakalarka.data.base.BaseRepository
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeFavourite
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.Recipe
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeCustom
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.User
-import com.lonchi.andrej.lonchi_bakalarka.data.mappers.ObjectMappers.Companion.mapToFavouriteRecipe
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RecipesResponse
-import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.SearchRecipesByIngredientsResponse
+import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RestApi
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.SearchRecipesResponse
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.DeviceTracker
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
+import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.toCommaSeparatedString
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -101,14 +98,41 @@ class RecipesRepositoryImpl @Inject internal constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 
-    override fun searchRecipesByQuery(query: String): Single<Resource<SearchRecipesResponse>> =
-        api.searchRecipes(
-            apiKey = BuildConfig.API_KEY,
-            query = query
-        )
-            .asSyncOperation()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+    override fun searchRecipesByQuery(query: String): Single<Resource<SearchRecipesResponse>> {
+        val filterResource = userRepository.actualFilter.value
+        val filterData = filterResource?.data
+
+        if (filterResource?.status is SuccessStatus && filterData != null && filterData != Filter()) {
+            val diets = userRepository.getUserDietsBlocking()
+            val intolerances = userRepository.getUserIntolerancesBlocking()
+
+            return api.searchRecipesByQuery(
+                apiKey = BuildConfig.API_KEY,
+                query = query,
+                diet = diets.firstOrNull()?.diets?.toCommaSeparatedString(),
+                intolerances = intolerances.firstOrNull()?.intolerances?.toCommaSeparatedString(),
+                minCalories = filterData.caloriesMin,
+                maxCalories = filterData.caloriesMax,
+                minFat = filterData.fatMin,
+                maxFat = filterData.fatMax,
+                minCarbs = filterData.carbsMin,
+                maxCarbs = filterData.carbsMax,
+                minProtein = filterData.proteinMin,
+                maxProtein = filterData.proteinMax
+            )
+                .asSyncOperation()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+        } else {
+            return api.searchRecipesByQuery(
+                apiKey = BuildConfig.API_KEY,
+                query = query
+            )
+                .asSyncOperation()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+        }
+    }
 
     override fun searchRecipesByIngredients(ingredients: List<String>): Single<Resource<List<Recipe>>> =
         api.searchRecipesByIngredients(
