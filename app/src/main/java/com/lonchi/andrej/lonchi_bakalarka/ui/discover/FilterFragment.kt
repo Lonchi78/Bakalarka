@@ -39,8 +39,8 @@ class FilterFragment : BaseFragment<FilterViewModel, FragmentFilterBinding>() {
         binding?.switchIntolerances?.isChecked = filter.includeIntolerances
 
         binding?.rangeCalories?.values = listOf(filter.caloriesMin.toFloat(), filter.caloriesMax.toFloat())
-        binding?.textCaloriesMin?.text = getString(R.string.filter_gram_value, filter.caloriesMin)
-        binding?.textCaloriesMax?.text = getString(R.string.filter_gram_value, filter.caloriesMax)
+        binding?.textCaloriesMin?.text = getString(R.string.filter_calories_value, filter.caloriesMin)
+        binding?.textCaloriesMax?.text = getString(R.string.filter_calories_value, filter.caloriesMax)
 
         binding?.rangeProtein?.values = listOf(filter.proteinMin.toFloat(), filter.proteinMax.toFloat())
         binding?.textProteinMin?.text = getString(R.string.filter_gram_value, filter.proteinMin)
@@ -58,10 +58,10 @@ class FilterFragment : BaseFragment<FilterViewModel, FragmentFilterBinding>() {
     private fun setupRanges() {
         binding?.rangeCalories?.addOnChangeListener { rangeSlider, _, _ ->
             rangeSlider.values.getOrNull(0)?.let {
-                binding?.textCaloriesMin?.text = getString(R.string.filter_gram_value, it.toInt())
+                binding?.textCaloriesMin?.text = getString(R.string.filter_calories_value, it.toInt())
             }
             rangeSlider.values.getOrNull(1)?.let {
-                binding?.textCaloriesMax?.text = getString(R.string.filter_gram_value, it.toInt())
+                binding?.textCaloriesMax?.text = getString(R.string.filter_calories_value, it.toInt())
             }
         }
 

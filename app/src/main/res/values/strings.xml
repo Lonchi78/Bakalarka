@@ -204,6 +204,7 @@
 	<string name="filter_fat">Fat</string>
 	<string name="filter_carbs">Carbs</string>
 	<string name="filter_gram_value">%d g</string>
+	<string name="filter_calories_value">%d g</string>
 	<string name="filter_save_filters">Save filters</string>
 
 	<!--	Others	-->
