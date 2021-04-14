@@ -49,8 +49,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        binding.signInButton.setOnClickListener {
-            Timber.d("initView: signin click")
+        binding.buttonSignInGoogle.setOnClickListener {
             signIn()
         }
 

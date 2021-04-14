@@ -18,6 +18,13 @@
 	<string name="action_button_voice_input">Voice input</string>
 	<string name="action_button_scan_with_ai">Scan with AI</string>
 
+	<!--	Login	-->
+	<string name="login_welcome">Welcome in</string>
+	<string name="login_button_sign_in_with_google">Sign in with Google</string>
+	<string name="login_button_dot_divider">·</string>
+	<string name="login_button_about_app">About Recipio</string>
+	<string name="login_button_privacy_policy">Privacy policy</string>
+
 	<!--	Home	-->
 	<string name="home_title">Home</string>
 	<string name="home_label_favourites">Favourites</string>

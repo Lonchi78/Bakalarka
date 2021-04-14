@@ -263,6 +263,26 @@
 		<item name="iconTint">@color/icon_color_contained_button_states</item>
 	</style>
 
+	<style name="ContainedButtonSocials" parent="ContainedButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">40dp</item>
+		<item name="android:textAppearance">@style/TextContainedButton</item>
+		<item name="android:textColor">@color/gray900</item>
+		<item name="android:backgroundTint">@color/white</item>
+		<item name="rippleColor">@color/gray200</item>
+		<item name="android:paddingStart">64dp</item>
+		<item name="android:paddingEnd">64dp</item>
+		<item name="android:paddingTop">12dp</item>
+		<item name="android:paddingBottom">12dp</item>
+		<item name="iconPadding">12dp</item>
+		<item name="iconGravity">textStart</item>
+		<item name="textAllCaps">false</item>
+		<item name="strokeColor">@color/orange500</item>
+		<item name="strokeWidth">1.5dp</item>
+		<item name="elevation">0dp</item>
+		<item name="iconTint">@null</item>
+	</style>
+
 	<style name="ContainedActionButtonWithStartIcon" parent="ContainedActionButton">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">40dp</item>
