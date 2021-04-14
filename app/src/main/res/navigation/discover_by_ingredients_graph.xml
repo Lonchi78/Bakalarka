@@ -36,7 +36,7 @@
         android:id="@+id/ingredientsListFragment"
         android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsListFragment"
         android:label="fragment_ingredients_list"
-        tools:layout="@layout/fragment_ingredients_list">
+        tools:layout="@layout/fragment_discover_by_ingredients_list">
         <action
             android:id="@+id/action_ingredientsListFragment_to_ingredientsAddFragment"
             app:destination="@id/ingredientsAddFragment"

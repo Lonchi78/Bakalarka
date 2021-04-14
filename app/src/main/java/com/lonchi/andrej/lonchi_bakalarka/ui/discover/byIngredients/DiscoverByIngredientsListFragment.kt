@@ -4,23 +4,23 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lonchi.andrej.lonchi_bakalarka.R
-import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentIngredientsListBinding
+import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentDiscoverByIngredientsListBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
-class DiscoverByIngredientsListFragment : BaseFragment<DiscoverByIngredientsListViewModel, FragmentIngredientsListBinding>() {
+class DiscoverByIngredientsListFragment : BaseFragment<DiscoverByIngredientsListViewModel, FragmentDiscoverByIngredientsListBinding>() {
 
     companion object {
         fun newInstance() = DiscoverByIngredientsListFragment()
     }
 
-    override val layoutId: Int = R.layout.fragment_ingredients_list
+    override val layoutId: Int = R.layout.fragment_discover_by_ingredients_list
     override val vmClassToken: Class<DiscoverByIngredientsListViewModel> = DiscoverByIngredientsListViewModel::class.java
-    override val bindingInflater: (View) -> FragmentIngredientsListBinding =
-        { FragmentIngredientsListBinding.bind(it) }
+    override val bindingInflater: (View) -> FragmentDiscoverByIngredientsListBinding =
+        { FragmentDiscoverByIngredientsListBinding.bind(it) }
 
     private val adapterIngredients by lazy {
         IngredientRowsDiscoverByAdapter(
