@@ -1,5 +1,6 @@
 package com.lonchi.andrej.lonchi_bakalarka.logic.dagger
 
+import com.lonchi.andrej.lonchi_bakalarka.ui.about.AboutActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.CreateRecipeActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsActivity
@@ -23,6 +24,9 @@ abstract class ActivitiesBuilderModule {
 
     @ContributesAndroidInjector(modules = [LoginModule::class])
     abstract fun bindLoginActivity(): LoginActivity
+
+    @ContributesAndroidInjector(modules = [AboutModule::class])
+    abstract fun bindAboutActivity(): AboutActivity
 
     @ContributesAndroidInjector(modules = [DiscoverByIngredientModule::class])
     abstract fun bindDiscoverByIngredientActivity(): DiscoverByIngredientsActivity

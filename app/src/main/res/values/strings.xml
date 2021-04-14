@@ -25,6 +25,21 @@
 	<string name="login_button_about_app">About Recipio</string>
 	<string name="login_button_privacy_policy">Privacy policy</string>
 
+	<!--	About	-->
+	<string name="about_desc">This application was created as part of the author\'s diploma thesis - Mobile Application for Recommending and Managing Cooking Recipes. Recipe data is downloaded from the Spoonacular Food API service.\n2021 © All rights reserved</string>
+	<string name="about_data_source">Data source</string>
+	<string name="about_data_source_value">Spoonacular Food API</string>
+	<string name="about_data_source_url">https://spoonacular.com/food-api</string>
+	<string name="about_diploma_thesis">Diploma thesis</string>
+	<string name="about_diploma_thesis_value">vut.fit.thesis/xyz</string>
+	<string name="about_diploma_thesis_url">vut.fit.thesis/xyz</string>
+	<string name="about_author">Author</string>
+	<string name="about_author_value">Andrej Lončík</string>
+	<string name="about_author_url">http://andrejloncik.com/</string>
+	<string name="about_contact">Contact</string>
+	<string name="about_contact_value">andrejloncik@gmail.com</string>
+	<string name="about_contact_email">andrejloncik@gmail.com</string>
+
 	<!--	Home	-->
 	<string name="home_title">Home</string>
 	<string name="home_label_favourites">Favourites</string>

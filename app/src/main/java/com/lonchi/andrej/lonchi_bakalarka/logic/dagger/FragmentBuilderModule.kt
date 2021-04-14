@@ -1,6 +1,5 @@
 package com.lonchi.andrej.lonchi_bakalarka.logic.dagger
 
-import com.lonchi.andrej.lonchi_bakalarka.ui.about.AboutFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.allergens.AllergensFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsBottomSheet
 import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.finalize.*
@@ -77,9 +76,6 @@ abstract class FragmentBuilderModule {
 
     @ContributesAndroidInjector(modules = [SettingsModule::class])
     abstract fun contributeSettingsFragment(): SettingsFragment
-
-    @ContributesAndroidInjector(modules = [AboutModule::class])
-    abstract fun contributeAboutFragment(): AboutFragment
 
     @ContributesAndroidInjector(modules = [RecipeDetailModule::class])
     abstract fun contributeRecipeDetailFragment(): RecipeDetailFragment

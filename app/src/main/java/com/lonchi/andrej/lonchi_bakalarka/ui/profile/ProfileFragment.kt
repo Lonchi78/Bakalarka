@@ -12,6 +12,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentProfileBinding
+import com.lonchi.andrej.lonchi_bakalarka.ui.about.AboutActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginActivity
 
@@ -55,7 +56,7 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>()
         }
 
         binding?.viewAbout?.setOnClickListener {
-            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToAboutFragment())
+            startActivity(AboutActivity.getStartIntent(requireContext()))
         }
 
         binding?.viewLogOut?.setOnClickListener {
