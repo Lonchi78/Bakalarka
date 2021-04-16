@@ -79,6 +79,13 @@
             app:exitAnim="@anim/slide_to_top"
             app:popEnterAnim="@anim/slide_from_top"
             app:popExitAnim="@anim/slide_to_bottom" />
+        <action
+            android:id="@+id/action_instructionsFragment_to_finalizeFragment"
+            app:destination="@id/finalizeFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_right" />
     </fragment>
 
     <fragment

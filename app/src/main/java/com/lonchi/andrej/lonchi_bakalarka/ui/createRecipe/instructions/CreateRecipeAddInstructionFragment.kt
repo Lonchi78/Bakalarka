@@ -25,6 +25,7 @@ class CreateRecipeAddInstructionFragment : BaseFragment<CreateRecipeAddInstructi
         binding?.buttonAddInstruction?.setOnClickListener { saveInstruction() }
 
         binding?.instructionInput?.setEndIconClickClearInput(true)
+        binding?.instructionInput?.setPlaceholderText(getString(R.string.create_recipe_placeholder_instruction))
         binding?.instructionInput?.setMicrophoneIconOnClickListener {
             requireActivity().hideKeyboard()
             //  TODO - add mic

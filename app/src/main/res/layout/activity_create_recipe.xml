@@ -15,7 +15,6 @@
 		progressIndicator2,
 		progressIndicator3,
 		progressIndicator4,
-		progressIndicator5,
 		progressIndicator6"/>
 
 	<View
@@ -64,18 +63,6 @@
 		android:layout_marginStart="6dp"
 		android:layout_marginEnd="6dp"
 		app:layout_constraintStart_toEndOf="@id/progressIndicator3"
-		app:layout_constraintEnd_toStartOf="@id/progressIndicator5"
-		app:layout_constraintTop_toTopOf="parent"/>
-
-	<View
-		android:id="@+id/progressIndicator5"
-		android:layout_width="8dp"
-		android:layout_height="8dp"
-		android:background="@drawable/bg_dot"
-		android:layout_marginTop="24dp"
-		android:layout_marginStart="6dp"
-		android:layout_marginEnd="6dp"
-		app:layout_constraintStart_toEndOf="@id/progressIndicator4"
 		app:layout_constraintEnd_toStartOf="@id/progressIndicator6"
 		app:layout_constraintTop_toTopOf="parent"/>
 
@@ -86,7 +73,7 @@
 		android:background="@drawable/bg_dot"
 		android:layout_marginTop="24dp"
 		android:layout_marginStart="6dp"
-		app:layout_constraintStart_toEndOf="@id/progressIndicator5"
+		app:layout_constraintStart_toEndOf="@id/progressIndicator4"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintTop_toTopOf="parent"/>
 

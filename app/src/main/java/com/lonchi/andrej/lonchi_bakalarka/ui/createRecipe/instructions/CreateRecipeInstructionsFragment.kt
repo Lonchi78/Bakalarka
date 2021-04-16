@@ -34,7 +34,8 @@ class CreateRecipeInstructionsFragment : BaseFragment<CreateRecipeInstructionsVi
             requireActivity().onBackPressed()
         }
         binding?.buttonNext?.setOnClickListener {
-            findNavController().navigate(CreateRecipeInstructionsFragmentDirections.actionInstructionsFragmentToPhotoFragment())
+            //findNavController().navigate(CreateRecipeInstructionsFragmentDirections.actionInstructionsFragmentToPhotoFragment())
+            findNavController().navigate(CreateRecipeInstructionsFragmentDirections.actionInstructionsFragmentToFinalizeFragment())
         }
         binding?.buttonAddInstruction?.setOnClickListener {
             findNavController().navigate(CreateRecipeInstructionsFragmentDirections.actionInstructionsFragmentToAddInstructionFragment())

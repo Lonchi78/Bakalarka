@@ -156,6 +156,11 @@
 	<string name="create_recipe_button_show_recipe">Show recipe</string>
 	<string name="create_recipe_button_back_to_home">Back to home</string>
 
+	<string name="create_recipe_placeholder_name">Chicken madras</string>
+	<string name="create_recipe_placeholder_ingredient_name">Cheddar</string>
+	<string name="create_recipe_placeholder_ingredient_value">250 g</string>
+	<string name="create_recipe_placeholder_instruction">Cut the onion into small pieces</string>
+
 	<string name="create_recipe_name_title">What’s the name of your own recipe?</string>
 
 	<string name="create_recipe_time_title">How long does it take to  cook your recipe?</string>

@@ -27,6 +27,7 @@ class CreateRecipeNameFragment : BaseFragment<CreateRecipeNameViewModel, Fragmen
         binding?.buttonBack?.setOnClickListener { requireActivity().onBackPressed() }
         binding?.buttonNext?.setOnClickListener { nextStep() }
 
+        binding?.searchInput?.setPlaceholderText(getString(R.string.create_recipe_placeholder_name))
         binding?.searchInput?.setEndIconClickClearInput(true)
         binding?.searchInput?.setMicrophoneIconOnClickListener {
             requireActivity().hideKeyboard()

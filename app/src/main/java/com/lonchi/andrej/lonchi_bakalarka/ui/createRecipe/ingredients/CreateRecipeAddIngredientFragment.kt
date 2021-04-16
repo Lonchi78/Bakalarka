@@ -26,6 +26,7 @@ class CreateRecipeAddIngredientFragment : BaseFragment<CreateRecipeAddIngredient
         binding?.buttonAddIngredient?.setOnClickListener { saveIngredient() }
 
         binding?.inputIngredientName?.setEndIconClickClearInput(true)
+        binding?.inputIngredientName?.setPlaceholderText(getString(R.string.create_recipe_placeholder_ingredient_name))
         binding?.inputIngredientName?.setMicrophoneIconOnClickListener {
             requireActivity().hideKeyboard()
             //  TODO - add mic
@@ -37,6 +38,7 @@ class CreateRecipeAddIngredientFragment : BaseFragment<CreateRecipeAddIngredient
         }
 
         binding?.inputIngredientMeasure?.setEndIconClickClearInput(true)
+        binding?.inputIngredientMeasure?.setPlaceholderText(getString(R.string.create_recipe_placeholder_ingredient_value))
         binding?.inputIngredientMeasure?.setMicrophoneIconOnClickListener {
             requireActivity().hideKeyboard()
             //  TODO - add mic

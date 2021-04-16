@@ -23,12 +23,19 @@ class CreateRecipeActivity : BaseActivity<CreateRecipeViewModel, ActivityCreateR
             Intent(context, CreateRecipeActivity::class.java)
                 .apply { if (extras != null) this.putExtras(extras) }
 
-        private enum class ProgressSteps {
+        /*private enum class ProgressSteps {
             NAME,
             TIME,
             INGREDIENTS,
             INSTRUCTIONS,
             PHOTO,
+            FINALIZE
+        }*/
+        private enum class ProgressSteps {
+            NAME,
+            TIME,
+            INGREDIENTS,
+            INSTRUCTIONS,
             FINALIZE
         }
     }
@@ -52,7 +59,7 @@ class CreateRecipeActivity : BaseActivity<CreateRecipeViewModel, ActivityCreateR
             R.id.timeFragment -> setProgressIndicators(ProgressSteps.TIME.ordinal)
             R.id.ingredientsFragment -> setProgressIndicators(ProgressSteps.INGREDIENTS.ordinal)
             R.id.instructionsFragment -> setProgressIndicators(ProgressSteps.INSTRUCTIONS.ordinal)
-            R.id.photoFragment -> setProgressIndicators(ProgressSteps.PHOTO.ordinal)
+            //R.id.photoFragment -> setProgressIndicators(ProgressSteps.PHOTO.ordinal)
             R.id.finalizeFragment -> setProgressIndicators(ProgressSteps.FINALIZE.ordinal)
             R.id.successFragment,
             R.id.addIngredientsFragment,
@@ -94,12 +101,12 @@ class CreateRecipeActivity : BaseActivity<CreateRecipeViewModel, ActivityCreateR
                 if (ProgressSteps.INSTRUCTIONS.ordinal <= currentProgress) R.color.green500 else R.color.gray200
             )
         )
-        binding.progressIndicator5.background.setTint(
+        /*binding.progressIndicator5.background.setTint(
             ContextCompat.getColor(
                 this,
                 if (ProgressSteps.PHOTO.ordinal <= currentProgress) R.color.green500 else R.color.gray200
             )
-        )
+        )*/
         binding.progressIndicator6.background.setTint(
             ContextCompat.getColor(
                 this,
