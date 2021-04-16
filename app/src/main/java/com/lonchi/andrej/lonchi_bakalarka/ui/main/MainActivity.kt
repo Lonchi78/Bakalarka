@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.lonchi.andrej.lonchi_bakalarka.R

@@ -1,5 +1,7 @@
 package com.lonchi.andrej.lonchi_bakalarka.ui.home
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +14,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentHomeBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.CreateRecipeActivity
+import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.finalize.CreateRecipeSuccessFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipes.RecipeCardsAdapter
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipes.RecipeCardsColumnAdapter
@@ -24,6 +27,8 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
     companion object {
         fun newInstance() = HomeFragment()
+
+        private const val REQUEST_CODE_CREATE_CUSTOM_RECIPE = 100
     }
 
     override val layoutId: Int = R.layout.fragment_home
@@ -79,7 +84,10 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         }
 
         binding?.buttonCreateRecipe?.setOnClickListener {
-            startActivity(CreateRecipeActivity.getStartIntent(requireContext()))
+            startActivityForResult(
+                CreateRecipeActivity.getStartIntent(requireContext()),
+                REQUEST_CODE_CREATE_CUSTOM_RECIPE
+            )
         }
     }
 
@@ -102,6 +110,21 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
                     //  TODO - show loading status?
                 }
                 else -> Unit
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_CODE_CREATE_CUSTOM_RECIPE && resultCode == RESULT_OK) {
+            data?.getStringExtra(CreateRecipeSuccessFragment.KEY_CREATED_CUSTOM_RECIPE_ID)?.let {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionGlobalRecipeDetailCustomFragment(
+                        recipeId = it,
+                        idType = RecipeIdTypeEnum.OWN_RECIPE
+                    )
+                )
             }
         }
     }

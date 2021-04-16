@@ -225,6 +225,7 @@ class CreateRecipeRepositoryImpl @Inject internal constructor(
         currentRecipe?.let {
             db.customRecipesDao().saveRecipe(it)
         }
+        newRecipe.postValue(Resource.success(currentRecipe))
         userRepository.updateCustomRecipes()
     }
 }

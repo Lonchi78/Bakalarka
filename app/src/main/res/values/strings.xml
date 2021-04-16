@@ -153,6 +153,8 @@
 	<string name="create_recipe_button_add_instruction">Add instruction</string>
 	<string name="create_recipe_button_save">Save</string>
 	<string name="create_recipe_button_finalize">Finalize</string>
+	<string name="create_recipe_button_show_recipe">Show recipe</string>
+	<string name="create_recipe_button_back_to_home">Back to home</string>
 
 	<string name="create_recipe_name_title">What’s the name of your own recipe?</string>
 
@@ -189,7 +191,7 @@
 	<string name="create_recipe_finalize_add_nutrition_carbs_unit">g</string>
 	<string name="create_recipe_finalize_add_nutrition_fat_unit">g</string>
 
-	<string name="create_recipe_success_title">Recipe successfully created</string>
+	<string name="create_recipe_success_title">Recipe created</string>
 
 	<!--	Diets	-->
 	<string name="diet_gluten_free">Gluten Free</string>
