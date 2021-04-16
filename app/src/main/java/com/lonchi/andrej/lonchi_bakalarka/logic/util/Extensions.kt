@@ -15,6 +15,9 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.browser.customtabs.CustomTabColorSchemeParams
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.graphics.TypefaceCompatUtil
 import com.lonchi.andrej.lonchi_bakalarka.BuildConfig
@@ -193,6 +196,15 @@ fun View.animateFadeOut(context: Context, endVisibility: Int) {
 
 
 /* * * * * * * * * * * * * * * INTENTS * * * * * * * * * * * * * * * * * */
+
+fun Context.openUrlWithCustomTabs(url: Int) {
+    val builder = CustomTabsIntent.Builder()
+    builder.setStartAnimations(this, R.anim.slide_from_right, R.anim.slide_to_left)
+    builder.setExitAnimations(this, R.anim.slide_from_left, R.anim.slide_to_right)
+
+    val customTabsIntent = builder.build()
+    customTabsIntent.launchUrl(this, Uri.parse(getString(url)))
+}
 
 fun Context.openWebUrl(url: String) {
     val formattedUrl = if (url.startsWith("http")) url else "http://$url"

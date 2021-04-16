@@ -17,6 +17,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.ActivityLoginBinding
+import com.lonchi.andrej.lonchi_bakalarka.logic.util.openUrlWithCustomTabs
 import com.lonchi.andrej.lonchi_bakalarka.ui.about.AboutActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
@@ -55,6 +56,9 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         }
         binding.textAbout.setOnClickListener {
             startActivity(AboutActivity.getStartIntent(this, intent.extras))
+        }
+        binding.textPrivacyPolicy.setOnClickListener {
+            openUrlWithCustomTabs(R.string.global_privacy_policy_url)
         }
 
         auth = Firebase.auth

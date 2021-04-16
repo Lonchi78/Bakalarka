@@ -189,6 +189,9 @@ dependencies {
 
     //  Circular progress bar
     implementation 'com.mikhaellopez:circularprogressbar:3.0.3'
+
+    //  Custom tabs
+    implementation "androidx.browser:browser:1.3.0"
 }
 
 static def versionCodeFromDate() {
