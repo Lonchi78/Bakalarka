@@ -5,6 +5,7 @@ import android.widget.Toast
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentCreateRecipeAddIngredientBinding
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.hideKeyboard
+import com.lonchi.andrej.lonchi_bakalarka.logic.util.openKeyboard
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 
 
@@ -31,6 +32,9 @@ class CreateRecipeAddIngredientFragment : BaseFragment<CreateRecipeAddIngredient
             Toast.makeText(requireContext(), "hlasa ze majk", Toast.LENGTH_SHORT).show()
         }
         binding?.inputIngredientName?.requestFocus()
+        binding?.inputIngredientName?.getInputField()?.let {
+            requireActivity().openKeyboard(it)
+        }
 
         binding?.inputIngredientMeasure?.setEndIconClickClearInput(true)
         binding?.inputIngredientMeasure?.setMicrophoneIconOnClickListener {

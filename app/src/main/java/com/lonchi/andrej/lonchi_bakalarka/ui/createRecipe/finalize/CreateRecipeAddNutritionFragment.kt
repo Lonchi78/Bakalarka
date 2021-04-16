@@ -10,6 +10,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentCreateRecipeAddNutritionBinding
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.hideKeyboard
+import com.lonchi.andrej.lonchi_bakalarka.logic.util.openKeyboard
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.name.CreateRecipeNameFragmentDirections
 import timber.log.Timber
@@ -42,6 +43,10 @@ class CreateRecipeAddNutritionFragment : BaseFragment<CreateRecipeAddNutritionVi
         binding?.editTextCalories?.setInputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_NORMAL)
         binding?.editTextCalories?.setLabelText(getString(R.string.create_recipe_finalize_add_nutrition_calories))
         binding?.editTextCalories?.setPrefixText(getString(R.string.create_recipe_finalize_add_nutrition_calories_unit))
+        binding?.editTextCalories?.requestFocus()
+        binding?.editTextCalories?.getInputField()?.let {
+            requireActivity().openKeyboard(it)
+        }
     }
 
     private fun setEditTextProteins() {
