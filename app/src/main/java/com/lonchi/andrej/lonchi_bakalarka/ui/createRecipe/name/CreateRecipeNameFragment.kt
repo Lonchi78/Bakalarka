@@ -1,5 +1,8 @@
 package com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.name
 
+import android.app.Activity
+import android.content.Intent
+import android.speech.RecognizerIntent
 import android.view.View
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
@@ -31,8 +34,7 @@ class CreateRecipeNameFragment : BaseFragment<CreateRecipeNameViewModel, Fragmen
         binding?.searchInput?.setEndIconClickClearInput(true)
         binding?.searchInput?.setMicrophoneIconOnClickListener {
             requireActivity().hideKeyboard()
-            //  TODO - add mic
-            Toast.makeText(requireContext(), "hlasa ze majk", Toast.LENGTH_SHORT).show()
+            speechToText()
         }
         binding?.searchInput?.requestFocus()
     }
@@ -57,5 +59,33 @@ class CreateRecipeNameFragment : BaseFragment<CreateRecipeNameViewModel, Fragmen
         binding?.label?.postDelayed({
             findNavController().navigate(CreateRecipeNameFragmentDirections.actionNameFragmentToTimeFragment())
         }, resources.getInteger(R.integer.hide_keyboard_delay).toLong())
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        when (requestCode) {
+            // Handle the result for our request code.
+            REQUEST_CODE_STT -> {
+                // Safety checks to ensure data is available.
+                if (resultCode == Activity.RESULT_OK && data != null) {
+
+                    // Retrieve the result array.
+                    val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+
+                    // Ensure result array is not null or empty to avoid errors.
+                    if (!result.isNullOrEmpty()) {
+                        // Recognized text is in the first position.
+                        val recognizedText = result[0]
+
+                        // Do what you want with the recognized text.
+                        Timber.d("STT onActivityResult: $recognizedText")
+                        binding?.searchInput?.setInputText(recognizedText)
+                    }
+                } else {
+                    showErrorSnackbar(getString(R.string.speech_to_text_no_results))
+                }
+            }
+        }
     }
 }

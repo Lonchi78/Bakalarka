@@ -135,7 +135,7 @@
 
 	<color name="searchBarIconInactive">#868687</color>
 	<color name="searchBarStrokeInactive">#BCBDB7</color>
-	<color name="searchBarTextInactive">#868687</color>
+	<color name="searchBarTextInactive">#B6BDC5</color>
 	<color name="searchBarIconActive">#868687</color>
 	<color name="searchBarStrokeActive">#BCBDB7</color>
 	<color name="searchBarTextActive">@color/gray900</color>

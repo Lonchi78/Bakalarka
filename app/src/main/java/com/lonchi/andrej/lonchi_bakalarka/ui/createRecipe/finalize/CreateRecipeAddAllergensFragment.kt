@@ -37,9 +37,9 @@ class CreateRecipeAddAllergensFragment : BaseFragment<CreateRecipeAddAllergensVi
     }
 
     override fun bindViewModel() {
-        viewModel.intolerances.observe(viewLifecycleOwner) {
-            binding?.chipCounter?.text = it.size.toString()
-            adapterAllergens.submitList(it)
+        viewModel.intolerances.observe(viewLifecycleOwner) { addAllergens ->
+            binding?.chipCounter?.text = addAllergens.filter { it.isChecked }.size.toString()
+            adapterAllergens.submitList(addAllergens)
         }
     }
 

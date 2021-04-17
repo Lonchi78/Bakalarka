@@ -38,9 +38,9 @@ class CreateRecipeAddDietsFragment :
     }
 
     override fun bindViewModel() {
-        viewModel.diets.observe(viewLifecycleOwner) {
-            binding?.chipCounter?.text = it.size.toString()
-            adapterDiets.submitList(it)
+        viewModel.diets.observe(viewLifecycleOwner) { addDiets ->
+            binding?.chipCounter?.text = addDiets.filter { it.isChecked }.size.toString()
+            adapterDiets.submitList(addDiets)
         }
     }
 

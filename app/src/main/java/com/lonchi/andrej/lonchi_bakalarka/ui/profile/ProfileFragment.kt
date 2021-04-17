@@ -85,10 +85,8 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>()
             binding?.textUserName?.text = it.displayName
             binding?.textUserMail?.text = it.email
 
-            //  TODO - nefunguje
             binding?.imgUserAvatar?.load(it.photoUrl) {
                 crossfade(true)
-                //placeholder(R.drawable.ic_profile_24)
                 error(R.drawable.ic_profile_24)
             }
         }
