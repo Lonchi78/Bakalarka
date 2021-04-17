@@ -22,6 +22,8 @@ import androidx.core.content.FileProvider
 import androidx.core.graphics.TypefaceCompatUtil
 import com.lonchi.andrej.lonchi_bakalarka.BuildConfig
 import com.lonchi.andrej.lonchi_bakalarka.R
+import java.sql.Time
+import java.util.*
 
 
 /**
@@ -304,6 +306,19 @@ fun Activity.isGpsOn(): Boolean =
 
 
 /* * * * * * * * * * * * * Others * * * * * * * * * * * *  */
+
+/**
+ *  Good Morning = 5:00 AM - 11:59 AM
+ *  Good Afternoon = 12:00 PM - 4:59 PM
+ *  Good Evening = 5:00 PM - 4:59 AM
+ * */
+fun Context.getGreetingText(): String {
+    return when (Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
+        in 5..11 -> this.getString(R.string.home_greeting_morning)
+        in 12..16 -> this.getString(R.string.home_greeting_afternoon)
+        else -> this.getString(R.string.home_greeting_evening)
+    }
+}
 
 fun getAppVersion(): String = BuildConfig.VERSION_NAME
 

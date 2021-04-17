@@ -12,6 +12,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.LoadingStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentHomeBinding
+import com.lonchi.andrej.lonchi_bakalarka.logic.util.getGreetingText
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.CreateRecipeActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.finalize.CreateRecipeSuccessFragment
@@ -57,6 +58,8 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     }
 
     override fun initView() {
+        binding?.textGreetings?.text = requireContext().getGreetingText()
+
         binding?.recyclerRandomRecipes?.adapter = adapterRandomRecipes
         binding?.recyclerRandomRecipes?.layoutManager = LinearLayoutManager(
             requireContext(),
