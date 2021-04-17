@@ -8,6 +8,7 @@ import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentDiscoverBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsActivity
+import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
@@ -22,6 +23,7 @@ class DiscoverFragment : BaseFragment<DiscoverViewModel, FragmentDiscoverBinding
     override val bindingInflater: (View) -> FragmentDiscoverBinding = { FragmentDiscoverBinding.bind(it) }
 
     override fun initView() {
+        (requireActivity() as? MainActivity)?.showBottomNavigation()
         setupPreviewIngredients()
 
         binding?.searchBar?.setOnClickListener {

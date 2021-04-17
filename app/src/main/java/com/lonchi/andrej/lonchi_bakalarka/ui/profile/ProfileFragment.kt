@@ -15,6 +15,7 @@ import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentProfileBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.about.AboutActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginActivity
+import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
@@ -33,6 +34,7 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>()
     private lateinit var mGoogleSignInClient: GoogleSignInClient
 
     override fun initView() {
+        (requireActivity() as? MainActivity)?.showBottomNavigation()
         handleLoggedUser()
 
         binding?.viewFavourites?.setOnClickListener {

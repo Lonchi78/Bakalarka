@@ -17,6 +17,7 @@ import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentRecipeDetailBindin
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.openWebUrl
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.setVisible
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
 import timber.log.Timber
 
 /**
@@ -44,6 +45,7 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
     }
 
     override fun initView() {
+        (requireActivity() as? MainActivity)?.hideBottomNavigation()
         handleArguments()
 
         binding?.iconBack?.setOnClickListener {

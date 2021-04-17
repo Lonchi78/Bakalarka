@@ -5,6 +5,7 @@ import com.google.android.material.chip.Chip
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentMealPlannerBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
@@ -19,6 +20,7 @@ class MealPlannerFragment : BaseFragment<MealPlannerViewModel, FragmentMealPlann
     override val bindingInflater: (View) -> FragmentMealPlannerBinding = { FragmentMealPlannerBinding.bind(it) }
 
     override fun initView() {
+        (requireActivity() as? MainActivity)?.showBottomNavigation()
         binding?.labelMealPlanner?.setOnClickListener {
             val chip = layoutInflater.inflate(
                 R.layout.chip_single_choice,

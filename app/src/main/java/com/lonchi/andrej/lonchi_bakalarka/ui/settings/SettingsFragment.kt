@@ -4,6 +4,7 @@ import android.view.View
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentSettingsBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
@@ -20,6 +21,7 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         { FragmentSettingsBinding.bind(it) }
 
     override fun initView() {
+        (requireActivity() as? MainActivity)?.hideBottomNavigation()
         binding?.iconBack?.setOnClickListener { requireActivity().onBackPressed() }
     }
 

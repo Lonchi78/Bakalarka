@@ -6,6 +6,7 @@ import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentAllergensBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.allergens.adapter.AllergenRowsAdapter
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
 
 
 /**
@@ -31,6 +32,7 @@ class AllergensFragment : BaseFragment<AllergensViewModel, FragmentAllergensBind
     }
 
     override fun initView() {
+        (requireActivity() as? MainActivity)?.hideBottomNavigation()
         binding?.iconBack?.setOnClickListener { requireActivity().onBackPressed() }
         binding?.buttonSave?.setOnClickListener { saveIntolerances() }
 

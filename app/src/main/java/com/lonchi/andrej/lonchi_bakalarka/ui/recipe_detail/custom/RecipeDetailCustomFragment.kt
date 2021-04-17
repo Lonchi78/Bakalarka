@@ -11,6 +11,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentRecipeDetailCustomBinding
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.setVisible
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.IngredientRowsAdapter
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.InstructionRowsAdapter
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeDetailFragmentArgs
@@ -41,6 +42,7 @@ class RecipeDetailCustomFragment : BaseFragment<RecipeDetailCustomViewModel, Fra
     }
 
     override fun initView() {
+        (requireActivity() as? MainActivity)?.hideBottomNavigation()
         handleArguments()
 
         binding?.iconBack?.setOnClickListener {

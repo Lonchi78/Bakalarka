@@ -8,6 +8,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.ActivityMainBinding
+import com.lonchi.andrej.lonchi_bakalarka.logic.util.setVisible
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.onboarding.OnboardingActivity
 
@@ -43,5 +44,13 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 startActivity(OnboardingActivity.getStartIntent(this))
             }, 1000)
         }
+    }
+
+    fun showBottomNavigation() {
+        binding.mainBottomNavigationView.setVisible(true)
+    }
+
+    fun hideBottomNavigation() {
+        binding.mainBottomNavigationView.setVisible(false)
     }
 }

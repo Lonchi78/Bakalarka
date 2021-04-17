@@ -6,6 +6,7 @@ import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentDietsBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.diets.adapter.DietRowsAdapter
+import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
 
 
 /**
@@ -31,6 +32,7 @@ class DietsFragment : BaseFragment<DietsViewModel, FragmentDietsBinding>() {
     }
 
     override fun initView() {
+        (requireActivity() as? MainActivity)?.hideBottomNavigation()
         binding?.iconBack?.setOnClickListener { requireActivity().onBackPressed() }
         binding?.buttonSave?.setOnClickListener { saveDiets() }
 

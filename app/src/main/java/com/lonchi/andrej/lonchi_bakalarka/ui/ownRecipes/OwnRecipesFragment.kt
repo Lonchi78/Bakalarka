@@ -10,6 +10,7 @@ import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentOwnRecipesBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipes.RecipeRowsAdapter
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeFragmentDirections
+import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
 
 
@@ -35,6 +36,7 @@ class OwnRecipesFragment : BaseFragment<OwnRecipesViewModel, FragmentOwnRecipesB
     }
 
     override fun initView() {
+        (requireActivity() as? MainActivity)?.hideBottomNavigation()
         binding?.iconBack?.setOnClickListener { requireActivity().onBackPressed() }
 
         binding?.recyclerRecipes?.adapter = adapterRecipes

@@ -6,6 +6,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.entities.Filter
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentFilterBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
@@ -20,6 +21,7 @@ class FilterFragment : BaseFragment<FilterViewModel, FragmentFilterBinding>() {
     override val bindingInflater: (View) -> FragmentFilterBinding = { FragmentFilterBinding.bind(it) }
 
     override fun initView() {
+        (requireActivity() as? MainActivity)?.hideBottomNavigation()
         binding?.iconBack?.setOnClickListener { requireActivity().onBackPressed() }
         binding?.iconReset?.setOnClickListener { viewModel.resetFilter() }
         binding?.buttonSave?.setOnClickListener { saveFilter() }
