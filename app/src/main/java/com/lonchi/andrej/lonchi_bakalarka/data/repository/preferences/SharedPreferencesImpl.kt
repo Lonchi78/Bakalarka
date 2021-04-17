@@ -20,10 +20,7 @@ class SharedPreferencesImpl @Inject internal constructor(
         const val KEY_AUTH_TOKEN = "auth.token"
         const val KEY_LANG_KEY = "language"
         const val KEY_FIREBASE_TOKEN = "firebase.token"
-        const val KEY_DEVICE_HW_ID = "device.hw.id"
-        const val KEY_DEVICE_ID = "device.id"
-        const val KEY_STATUS_WORK_NOW = "status.work.now"
-        const val KEY_STATUS_WORK_LATER = "status.work.later"
+        const val KEY_FIRST_START = "first.start"
     }
 
     // Temporary fix for issue with SharePreference LiveData
@@ -87,5 +84,11 @@ class SharedPreferencesImpl @Inject internal constructor(
 
     override fun updateLastKnownLanguage(lang: String) =
         putStringToSharedPreferences(KEY_LANG_KEY, lang)
+
+    override fun getFirstStart(): Boolean =
+        getBooleanFromSharedPreferences(KEY_FIRST_START, true)
+
+    override fun updateFirstStart(value: Boolean) =
+        putBooleanToSharedPreferences(KEY_FIRST_START, value)
 
 }

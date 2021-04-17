@@ -52,6 +52,9 @@ interface UserRepository {
      */
     fun hasUserEverBeenLogged(): Boolean
 
+    fun getFirstStart(): Boolean
+    fun updateFirstStart(value: Boolean)
+
     fun getUserDietsSingle(): Single<List<Diets>>
     fun getUserDietsBlocking(): List<Diets>
     fun saveUserDiets(diets: List<String?>)
@@ -108,6 +111,14 @@ class UserRepositoryImpl @Inject internal constructor(
     }
     override val allIntolerances: MutableLiveData<List<String>> = MutableLiveData<List<String>>().apply {
         postValue(IntolerancesEnum.getAllIntolerances(context))
+    }
+
+    override fun getFirstStart(): Boolean {
+        return prefs.getFirstStart()
+    }
+
+    override fun updateFirstStart(value: Boolean) {
+        prefs.updateFirstStart(value)
     }
 
     override fun getUserDietsSingle(): Single<List<Diets>> {

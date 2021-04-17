@@ -49,8 +49,7 @@ class OnboardingActivity : FragmentActivity() {
         binding?.buttonNext?.setOnClickListener {
             binding?.viewPager?.currentItem?.let {
                 if (it == (NUM_PAGES - 1)) {
-                    startActivity(MainActivity.getStartIntent(this, intent.extras))
-                    finishAffinity()
+                    finish()
                 } else {
                     binding?.viewPager?.currentItem = it + 1
                 }

@@ -56,8 +56,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             signIn()
         }
         binding.textAbout.setOnClickListener {
-            //startActivity(AboutActivity.getStartIntent(this, intent.extras))
-            startActivity(OnboardingActivity.getStartIntent(this))
+            startActivity(AboutActivity.getStartIntent(this, intent.extras))
         }
         binding.textPrivacyPolicy.setOnClickListener {
             openUrlWithCustomTabs(R.string.global_privacy_policy_url)

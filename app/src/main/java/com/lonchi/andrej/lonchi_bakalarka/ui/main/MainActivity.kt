@@ -9,6 +9,7 @@ import androidx.navigation.ui.NavigationUI
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.ActivityMainBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseActivity
+import com.lonchi.andrej.lonchi_bakalarka.ui.onboarding.OnboardingActivity
 
 
 /**
@@ -31,10 +32,16 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         NavigationUI.setupWithNavController(binding.mainBottomNavigationView, navController)
     }
 
-    override fun bindViewModel() = Unit
+    override fun bindViewModel() {
+        handleFirstStart()
+    }
 
-    override fun onPause() {
-        super.onPause()
-        viewModel.resetState()
+    private fun handleFirstStart() {
+        if (viewModel.getFirstUse()) {
+            viewModel.updateFirstStart(false)
+            binding.mainBottomNavigationView.postDelayed({
+                startActivity(OnboardingActivity.getStartIntent(this))
+            }, 1000)
+        }
     }
 }
