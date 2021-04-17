@@ -29,7 +29,6 @@ class CreateRecipeAddDietsFragment :
     }
 
     override fun initView() {
-        //  TODO - add counter chip
         binding?.iconBack?.setOnClickListener { requireActivity().onBackPressed() }
         binding?.buttonSave?.setOnClickListener { saveDiets() }
 
@@ -40,6 +39,7 @@ class CreateRecipeAddDietsFragment :
 
     override fun bindViewModel() {
         viewModel.diets.observe(viewLifecycleOwner) {
+            binding?.chipCounter?.text = it.size.toString()
             adapterDiets.submitList(it)
         }
     }

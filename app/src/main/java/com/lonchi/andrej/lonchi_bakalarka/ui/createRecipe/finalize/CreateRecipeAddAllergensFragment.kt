@@ -28,7 +28,6 @@ class CreateRecipeAddAllergensFragment : BaseFragment<CreateRecipeAddAllergensVi
     }
 
     override fun initView() {
-        //  TODO - add counter chip
         binding?.iconBack?.setOnClickListener { requireActivity().onBackPressed() }
         binding?.buttonSave?.setOnClickListener { saveIntolerances() }
 
@@ -39,6 +38,7 @@ class CreateRecipeAddAllergensFragment : BaseFragment<CreateRecipeAddAllergensVi
 
     override fun bindViewModel() {
         viewModel.intolerances.observe(viewLifecycleOwner) {
+            binding?.chipCounter?.text = it.size.toString()
             adapterAllergens.submitList(it)
         }
     }
