@@ -21,6 +21,7 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.favourites.FavouritesFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.fragment.MainFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.MealPlannerFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.onboarding.OnboardingFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.ownRecipes.OwnRecipesFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.profile.ProfileFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.custom.RecipeDetailCustomFragment
@@ -79,6 +80,9 @@ abstract class FragmentBuilderModule {
 
     @ContributesAndroidInjector(modules = [RecipeDetailModule::class])
     abstract fun contributeRecipeDetailFragment(): RecipeDetailFragment
+
+    @ContributesAndroidInjector(modules = [OnboardingModule::class])
+    abstract fun contributeOnboardingFragment(): OnboardingFragment
 
     @ContributesAndroidInjector(modules = [RecipeDetailCustomModule::class])
     abstract fun contributeRecipeDetailCustomFragment(): RecipeDetailCustomFragment

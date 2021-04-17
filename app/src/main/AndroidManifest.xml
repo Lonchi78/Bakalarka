@@ -26,6 +26,7 @@
 
 		<activity android:name="com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity"
 			android:windowSoftInputMode="adjustPan" />
+		<activity android:name="com.lonchi.andrej.lonchi_bakalarka.ui.onboarding.OnboardingActivity" />
 		<activity android:name="com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraActivity" />
 		<activity android:name="com.lonchi.andrej.lonchi_bakalarka.ui.about.AboutActivity" />
 		<activity android:name="com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginActivity" />

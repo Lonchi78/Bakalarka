@@ -19,6 +19,12 @@
 	<string name="action_button_voice_input">Voice input</string>
 	<string name="action_button_scan_with_ai">Scan with AI</string>
 
+	<!--	Onboarding	-->
+	<string name="onboarding_1_discover_by_query">Find recipes by query…</string>
+	<string name="onboarding_2_discover_by_ingredients">…or by ingredients</string>
+	<string name="onboarding_3_recipe_detail">See detail of found recipe</string>
+	<string name="onboarding_4_create_recipe">Create your own recipe</string>
+
 	<!--	Login	-->
 	<string name="login_welcome">Welcome in</string>
 	<string name="login_button_sign_in_with_google">Sign in with Google</string>

@@ -44,6 +44,7 @@ import javax.inject.Singleton
             SettingsModule::class,
             AboutModule::class,
             RecipeDetailModule::class,
+            OnboardingModule::class,
             RecipeDetailCustomModule::class,
             FoundIngredientsModule::class,
             CreateRecipeNameModule::class,
