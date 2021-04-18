@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.lonchi.andrej.lonchi_bakalarka.R
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.MealPlanEnum
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.MealPlannerDay
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
@@ -30,15 +31,9 @@ class AddToMealPlannerFragment : BaseFragment<AddToMealPlannerViewModel, Fragmen
     override fun initView() {
         (requireActivity() as? MainActivity)?.hideBottomNavigation()
         binding?.iconBack?.setOnClickListener { requireActivity().onBackPressed() }
-        binding?.iconAddBreakfast?.setOnClickListener {
-            //  todo
-        }
-        binding?.iconAddLunch?.setOnClickListener {
-            //  todo
-        }
-        binding?.iconAddDinner?.setOnClickListener {
-            //  todo
-        }
+        binding?.iconAddBreakfast?.setOnClickListener { viewModel.saveToMealPlan(MealPlanEnum.BREAKFAST) }
+        binding?.iconAddLunch?.setOnClickListener { viewModel.saveToMealPlan(MealPlanEnum.LUNCH) }
+        binding?.iconAddDinner?.setOnClickListener { viewModel.saveToMealPlan(MealPlanEnum.DINNER) }
     }
 
     override fun bindViewModel() {

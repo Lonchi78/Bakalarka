@@ -15,6 +15,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
 import io.reactivex.Single
 import retrofit2.Retrofit
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -56,25 +57,34 @@ class MealPlanRepositoryImpl @Inject internal constructor(
     }
 
     override fun saveToMealPlan(date: String, time: MealPlanEnum) {
+        Timber.d("saveToMealPlan: $date, time = $time")
+        Timber.d("saveToMealPlan tmpRecipe: ${tmpRecipe.toString()}")
         val recipe = tmpRecipe ?: return
         val mealPlan = db.mealPlanDao().getMealPlanBlocking(date).firstOrNull() ?: MealPlan().apply {
             this.date = date
         }
+        Timber.d("saveToMealPlan: mealPlan = $mealPlan")
         when (time) {
             MealPlanEnum.BREAKFAST -> {
                 val tmp = mealPlan.breakfast?.toMutableList() ?: mutableListOf()
+                Timber.d("saveToMealPlan BREAKFAST: ${tmp.size}")
                 tmp.add(recipe)
                 mealPlan.breakfast = tmp
+                Timber.d("saveToMealPlan BREAKFAST: ${mealPlan.breakfast?.size}")
             }
             MealPlanEnum.LUNCH -> {
                 val tmp = mealPlan.lunch?.toMutableList() ?: mutableListOf()
+                Timber.d("saveToMealPlan LUNCH: ${tmp.size}")
                 tmp.add(recipe)
                 mealPlan.lunch = tmp
+                Timber.d("saveToMealPlan LUNCH: ${mealPlan.lunch?.size}")
             }
             MealPlanEnum.DINNER -> {
                 val tmp = mealPlan.dinner?.toMutableList() ?: mutableListOf()
+                Timber.d("saveToMealPlan DINNER: ${tmp.size}")
                 tmp.add(recipe)
                 mealPlan.dinner = tmp
+                Timber.d("saveToMealPlan DINNER: ${mealPlan.dinner?.size}")
             }
         }
         db.mealPlanDao().saveMealPlan(mealPlan)

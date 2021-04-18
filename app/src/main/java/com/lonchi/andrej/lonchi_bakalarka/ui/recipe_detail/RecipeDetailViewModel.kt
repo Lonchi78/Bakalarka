@@ -32,6 +32,7 @@ class RecipeDetailViewModel @Inject constructor(
 
     fun saveRecipeToMealPlan() {
         stateRecipeDetail.value?.data?.let {
+            Timber.d("saveRecipeToMealPlan: $it")
             mealPlanRepository.tmpRecipe = it
         }
     }

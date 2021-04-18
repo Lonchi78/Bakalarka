@@ -3,7 +3,9 @@ package com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.MealPlan
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.MealPlannerDay
+import com.lonchi.andrej.lonchi_bakalarka.data.repository.MealPlanRepository
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.combineLatestLiveData
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseViewModel
@@ -14,7 +16,9 @@ import javax.inject.Inject
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
-class MealPlannerViewModel @Inject constructor() : BaseViewModel() {
+class MealPlannerViewModel @Inject constructor(
+    private val mealPlannerRepository: MealPlanRepository
+) : BaseViewModel() {
 
     companion object {
         const val DAYS_IN_WEEK = 7
@@ -58,6 +62,17 @@ class MealPlannerViewModel @Inject constructor() : BaseViewModel() {
             )
         }
         Resource.success(tmp)
+    }
+
+    val selectedMealPlan: LiveData<MealPlan?> = Transformations.map(
+        combineLatestLiveData(
+            selectedDayData,
+            mealPlannerRepository.getAllMealPlans()
+        )
+    ) {
+        it.second.firstOrNull { mealPlan ->
+            mealPlan.date == it.first.getDateId()
+        }
     }
 
     init {
