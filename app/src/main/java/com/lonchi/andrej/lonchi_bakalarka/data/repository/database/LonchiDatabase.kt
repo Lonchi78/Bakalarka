@@ -15,6 +15,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.entities.*
             TestEntity::class,
             RecipeFavourite::class,
             RecipeCustom::class,
+            MealPlan::class,
             Intolerances::class,
             Filter::class,
             Diets::class,
@@ -25,6 +26,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.entities.*
 )
 
 @TypeConverters(
+    RecipeTypeConverters::class,
     InstructionTypeConverters::class,
     NutrientTypeConverters::class,
     InstructionsWrapperTypeConverters::class,
@@ -38,6 +40,7 @@ abstract class LonchiDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun favouriteRecipesDao(): FavouriteRecipesDao
     abstract fun customRecipesDao(): CustomRecipesDao
+    abstract fun mealPlanDao(): MealPlanDao
     abstract fun intolerancesDao(): IntolerancesDao
     abstract fun filterDao(): FilterDao
     abstract fun dietsDao(): DietsDao

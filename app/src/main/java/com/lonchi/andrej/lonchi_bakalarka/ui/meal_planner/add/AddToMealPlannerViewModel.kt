@@ -3,10 +3,17 @@ package com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.add
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.MealPlanEnum
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.MealPlannerDay
+import com.lonchi.andrej.lonchi_bakalarka.data.repository.MealPlanRepository
+import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.combineLatestLiveData
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
@@ -14,7 +21,9 @@ import javax.inject.Inject
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
-class AddToMealPlannerViewModel @Inject constructor() : BaseViewModel() {
+class AddToMealPlannerViewModel @Inject constructor(
+    private val mealPlannerRepository: MealPlanRepository
+) : BaseViewModel() {
 
     companion object {
         const val DAYS_IN_WEEK = 7
@@ -97,6 +106,19 @@ class AddToMealPlannerViewModel @Inject constructor() : BaseViewModel() {
         todayData.postValue(tmp)
         selectedDayData.postValue(tmp)
         thisWeekData.postValue(days)
+    }
+
+    fun saveToMealPlan(time: MealPlanEnum) {
+        val selectedDate = selectedDayData.value?.getDateId() ?: MealPlannerDay(
+            day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH),
+            month = Calendar.getInstance().get(Calendar.MONTH) + 1,
+            year = Calendar.getInstance().get(Calendar.YEAR)
+        ).getDateId()
+
+        mealPlannerRepository.saveToMealPlan(
+            date = selectedDate,
+            time = time
+        )
     }
 
 }

@@ -144,6 +144,12 @@ class AppModule(private val application: Application) {
     internal fun provideDiscoverByIngredientsRepository(impl: DiscoverByIngredientsRepositoryImpl): DiscoverByIngredientsRepository {
         return impl
     }
+
+    @Provides
+    @Singleton
+    internal fun provideMealPlanRepository(impl: MealPlanRepositoryImpl): MealPlanRepository {
+        return impl
+    }
 }
 
 @Module

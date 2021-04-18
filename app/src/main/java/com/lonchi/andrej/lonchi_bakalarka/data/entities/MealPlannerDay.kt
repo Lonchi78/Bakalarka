@@ -7,6 +7,10 @@ data class MealPlannerDay(
     val isToday: Boolean = false,
     val isSelected: Boolean = false
 ) {
+    fun getDateId(): String {
+        return "${year}_${month}_${day}"
+    }
+
     fun isSameDay(otherDay: MealPlannerDay): Boolean {
         return this.day == otherDay.day &&
                 this.month == otherDay.month &&

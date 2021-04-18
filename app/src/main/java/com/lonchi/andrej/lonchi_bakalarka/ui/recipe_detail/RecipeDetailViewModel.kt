@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Recipe
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeFavourite
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeItem
+import com.lonchi.andrej.lonchi_bakalarka.data.repository.MealPlanRepository
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.RecipesRepository
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
@@ -18,15 +19,22 @@ import javax.inject.Inject
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
 class RecipeDetailViewModel @Inject constructor(
-    private val recipesRepository: RecipesRepository
+    private val recipesRepository: RecipesRepository,
+    private val mealPlanRepository: MealPlanRepository
 ) : BaseViewModel() {
 
-    val stateRecipeDetail: MutableLiveData<Resource<RecipeItem>> = MutableLiveData<Resource<RecipeItem>>().apply {
+    val stateRecipeDetail: MutableLiveData<Resource<Recipe>> = MutableLiveData<Resource<Recipe>>().apply {
         postValue(Resource.notStarted())
     }
 
     var recipeId: String? = null
     var recipeIdType: RecipeIdTypeEnum? = null
+
+    fun saveRecipeToMealPlan() {
+        stateRecipeDetail.value?.data?.let {
+            mealPlanRepository.tmpRecipe = it
+        }
+    }
 
     fun handleInputArguments(recipeId: String, recipeIdType: RecipeIdTypeEnum) {
         when (recipeIdType) {

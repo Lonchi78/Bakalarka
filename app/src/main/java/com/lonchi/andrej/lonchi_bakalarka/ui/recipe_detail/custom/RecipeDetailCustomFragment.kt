@@ -47,6 +47,7 @@ class RecipeDetailCustomFragment : BaseFragment<RecipeDetailCustomViewModel, Fra
         (requireActivity() as? MainActivity)?.hideBottomNavigation()
         handleArguments()
         binding?.buttonMealplan?.setOnClickListener {
+            viewModel.saveRecipeToMealPlan()
             findNavController().navigate(
                 RecipeDetailCustomFragmentDirections.actionGlobalAddToMealPlannerFragment()
             )
