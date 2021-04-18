@@ -5,15 +5,22 @@ import android.view.View
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.lonchi.andrej.lonchi_bakalarka.R
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.MealPlan
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.MealPlanEnum
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.MealPlannerDay
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeItem
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentAddToMealPlannerBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
+import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.MealPlannerFragmentDirections
+import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
+import com.lonchi.andrej.lonchi_bakalarka.ui.recipes.RecipeRowsAdapter
 
 
 /**
@@ -28,17 +35,51 @@ class AddToMealPlannerFragment : BaseFragment<AddToMealPlannerViewModel, Fragmen
     override val vmClassToken: Class<AddToMealPlannerViewModel> = AddToMealPlannerViewModel::class.java
     override val bindingInflater: (View) -> FragmentAddToMealPlannerBinding = { FragmentAddToMealPlannerBinding.bind(it) }
 
+    private val adapterBreakfast by lazy {
+        RecipeRowsAdapter(
+            context = requireContext(),
+            onRecipeClick = { onRecipeClick(it) }
+        )
+    }
+    private val adapterLunch by lazy {
+        RecipeRowsAdapter(
+            context = requireContext(),
+            onRecipeClick = { onRecipeClick(it) }
+        )
+    }
+    private val adapterDinner by lazy {
+        RecipeRowsAdapter(
+            context = requireContext(),
+            onRecipeClick = { onRecipeClick(it) }
+        )
+    }
+
     override fun initView() {
         (requireActivity() as? MainActivity)?.hideBottomNavigation()
         binding?.iconBack?.setOnClickListener { requireActivity().onBackPressed() }
         binding?.iconAddBreakfast?.setOnClickListener { viewModel.saveToMealPlan(MealPlanEnum.BREAKFAST) }
         binding?.iconAddLunch?.setOnClickListener { viewModel.saveToMealPlan(MealPlanEnum.LUNCH) }
         binding?.iconAddDinner?.setOnClickListener { viewModel.saveToMealPlan(MealPlanEnum.DINNER) }
+
+        binding?.recyclerBreakfast?.adapter = adapterBreakfast
+        binding?.recyclerBreakfast?.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+        binding?.recyclerLunch?.adapter = adapterLunch
+        binding?.recyclerLunch?.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+        binding?.recyclerDinner?.adapter = adapterDinner
+        binding?.recyclerDinner?.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     }
 
     override fun bindViewModel() {
         viewModel.thisWeek.observe(viewLifecycleOwner) {
             handleThisWeek(it)
+        }
+        viewModel.selectedMealPlan.observe(viewLifecycleOwner) {
+            handleMealPlan(it)
         }
     }
 
@@ -101,6 +142,41 @@ class AddToMealPlannerFragment : BaseFragment<AddToMealPlannerViewModel, Fragmen
                 textView?.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray900))
                 textView?.backgroundTintList = ColorStateList.valueOf(
                     ContextCompat.getColor(requireContext(), R.color.transparent)
+                )
+            }
+        }
+    }
+
+    private fun handleMealPlan(mealPlan: MealPlan?) {
+        adapterBreakfast.submitList(mealPlan?.breakfast ?: listOf())
+        adapterLunch.submitList(mealPlan?.lunch ?: listOf())
+        adapterDinner.submitList(mealPlan?.dinner ?: listOf())
+    }
+
+    private fun onRecipeClick(recipe: RecipeItem) {
+        when (recipe.getRecipeType()) {
+            RecipeIdTypeEnum.FAVOURITE_RECIPE -> {
+                findNavController().navigate(
+                    MealPlannerFragmentDirections.actionGlobalRecipeDetailFragment(
+                        recipeId = recipe.getId(),
+                        idType = RecipeIdTypeEnum.FAVOURITE_RECIPE
+                    )
+                )
+            }
+            RecipeIdTypeEnum.OWN_RECIPE -> {
+                findNavController().navigate(
+                    MealPlannerFragmentDirections.actionGlobalRecipeDetailCustomFragment(
+                        recipeId = recipe.getId(),
+                        idType = RecipeIdTypeEnum.OWN_RECIPE
+                    )
+                )
+            }
+            RecipeIdTypeEnum.REST -> {
+                findNavController().navigate(
+                    MealPlannerFragmentDirections.actionGlobalRecipeDetailFragment(
+                        recipeId = recipe.getId(),
+                        idType = RecipeIdTypeEnum.REST
+                    )
                 )
             }
         }

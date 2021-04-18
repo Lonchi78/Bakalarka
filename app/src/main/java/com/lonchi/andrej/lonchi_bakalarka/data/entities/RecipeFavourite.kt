@@ -11,7 +11,7 @@ class RecipeFavourite : RecipeItem, Recipe() {
     @PrimaryKey
     var uid: String = ""
 
-    @Json(name = "idType") var idType: Int = RecipeIdTypeEnum.FAVOURITE_RECIPE.ordinal
+    @Json(name = "idType") var idType = RecipeIdTypeEnum.FAVOURITE_RECIPE.ordinal
 
     override fun toString(): String {
         //  TODO
@@ -22,7 +22,7 @@ class RecipeFavourite : RecipeItem, Recipe() {
 
     override fun getId(): String = this.uid
 
-    override fun getRecipeIdType(): Int = idType
+    override fun getRecipeIdType(): Int = RecipeIdTypeEnum.FAVOURITE_RECIPE.ordinal
 
     override fun getRecipeType(): RecipeIdTypeEnum = RecipeIdTypeEnum.FAVOURITE_RECIPE
 

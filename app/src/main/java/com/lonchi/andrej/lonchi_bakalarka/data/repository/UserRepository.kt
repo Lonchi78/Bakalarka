@@ -184,6 +184,7 @@ class UserRepositoryImpl @Inject internal constructor(
         db.customRecipesDao().deleteAllRecipes()
         db.dietsDao().deleteAll()
         db.intolerancesDao().deleteAll()
+        db.mealPlanDao().deleteAllMealPlans()
     }
 
     /**

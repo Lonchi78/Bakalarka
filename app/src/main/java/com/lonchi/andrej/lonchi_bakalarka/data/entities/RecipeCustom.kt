@@ -11,7 +11,7 @@ class RecipeCustom : RecipeItem, Recipe() {
     @PrimaryKey
     var uid: String = this.idRestApi.toString()
 
-    @Json(name = "idType") var idType: Int = RecipeIdTypeEnum.OWN_RECIPE.ordinal
+    @Json(name = "idType") var idType = RecipeIdTypeEnum.OWN_RECIPE.ordinal
 
     override fun toString(): String {
         return "Custom recipe: ${super.toString()}"
@@ -19,7 +19,7 @@ class RecipeCustom : RecipeItem, Recipe() {
 
     override fun getId(): String = this.uid
 
-    override fun getRecipeIdType(): Int = idType
+    override fun getRecipeIdType(): Int = RecipeIdTypeEnum.OWN_RECIPE.ordinal
 
     override fun getRecipeType(): RecipeIdTypeEnum = RecipeIdTypeEnum.OWN_RECIPE
 

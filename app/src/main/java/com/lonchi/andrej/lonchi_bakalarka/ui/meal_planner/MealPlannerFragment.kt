@@ -189,6 +189,7 @@ class MealPlannerFragment : BaseFragment<MealPlannerViewModel, FragmentMealPlann
     }
 
     private fun onRecipeClick(recipe: RecipeItem) {
+        //  TODO - every recipe is REST, because idType is not stored
         when (recipe.getRecipeType()) {
             RecipeIdTypeEnum.FAVOURITE_RECIPE -> {
                 findNavController().navigate(
