@@ -5,48 +5,436 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
-	<com.google.android.material.chip.Chip
-		android:id="@+id/chip1"
-		style="@style/ChipChoiceClickable"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="16dp"
-		app:chipStrokeColor="@color/green500"
-		android:layout_marginStart="16dp"
-		android:checkable="true"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		android:text="Huba"/>
-
-	<com.google.android.material.chip.Chip
-		android:id="@+id/chip2"
-		style="@style/ChipChoiceClickable"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:checked="true"
-		android:layout_marginTop="16dp"
-		android:layout_marginStart="16dp"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintStart_toEndOf="@id/chip1"
-		android:text="Huba pica rit"/>
-
-	<com.google.android.material.chip.ChipGroup
-		android:id="@+id/chipGroup"
-		style="@style/Widget.MaterialComponents.ChipGroup"
-		android:layout_marginTop="32dp"
-		app:layout_constraintTop_toBottomOf="@id/chip1"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
-
 	<TextView
 		android:id="@+id/labelMealPlanner"
+		style="@style/TextHeadline1"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="@string/meal_planner_title"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintLeft_toLeftOf="parent"
-		app:layout_constraintRight_toRightOf="parent"
-		app:layout_constraintTop_toTopOf="parent" />
+		android:layout_marginTop="32dp"
+		android:layout_marginStart="16dp"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"/>
+
+	<LinearLayout
+		android:id="@+id/calendarWrapper"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:layout_constraintTop_toBottomOf="@id/labelMealPlanner"
+		android:orientation="horizontal"
+		android:layout_marginTop="24dp">
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/layoutMonday"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:clickable="true"
+			android:focusable="true"
+			android:background="?android:selectableItemBackground"
+			android:layout_weight="1">
+
+			<TextView
+				android:id="@+id/labelMonday"
+				style="@style/TextCalendarLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/meal_planner_monday"
+				android:layout_marginTop="8dp"
+				app:layout_constraintTop_toTopOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"/>
+
+			<TextView
+				android:id="@+id/textMondayNumber"
+				style="@style/TextCalendarNumber"
+				android:background="@drawable/bc_text_round"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:layout_marginBottom="8dp"
+				android:backgroundTint="@color/white"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/labelMonday"
+				app:layout_constraintBottom_toBottomOf="parent"
+				tools:text="11"/>
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/layoutTuesday"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:clickable="true"
+			android:focusable="true"
+			android:background="?android:selectableItemBackground"
+			android:layout_weight="1">
+
+			<TextView
+				android:id="@+id/labelTuesday"
+				style="@style/TextCalendarLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/meal_planner_tuesday"
+				android:layout_marginTop="8dp"
+				app:layout_constraintTop_toTopOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"/>
+
+			<TextView
+				android:id="@+id/textTuesdayNumber"
+				style="@style/TextCalendarNumber"
+				android:background="@drawable/bc_text_round"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:layout_marginBottom="8dp"
+				android:backgroundTint="@color/white"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/labelTuesday"
+				app:layout_constraintBottom_toBottomOf="parent"
+				tools:text="12"/>
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/layoutWednesday"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:clickable="true"
+			android:focusable="true"
+			android:background="?android:selectableItemBackground"
+			android:layout_weight="1">
+
+			<TextView
+				android:id="@+id/labelWednesday"
+				style="@style/TextCalendarLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/meal_planner_wednesday"
+				android:layout_marginTop="8dp"
+				app:layout_constraintTop_toTopOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"/>
+
+			<TextView
+				android:id="@+id/textWednesdayNumber"
+				style="@style/TextCalendarNumber"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:layout_marginBottom="8dp"
+				android:background="@drawable/bc_text_round"
+				android:backgroundTint="@color/green500"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/labelWednesday"
+				app:layout_constraintBottom_toBottomOf="parent"
+				tools:text="13"/>
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/layoutThursday"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:clickable="true"
+			android:focusable="true"
+			android:background="?android:selectableItemBackground"
+			android:layout_weight="1">
+
+			<TextView
+				android:id="@+id/labelThursday"
+				style="@style/TextCalendarLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/meal_planner_thursday"
+				android:layout_marginTop="8dp"
+				app:layout_constraintTop_toTopOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"/>
+
+			<TextView
+				android:id="@+id/textThursdayNumber"
+				style="@style/TextCalendarNumber"
+				android:background="@drawable/bc_text_round"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:layout_marginBottom="8dp"
+				android:backgroundTint="@color/white"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/labelThursday"
+				app:layout_constraintBottom_toBottomOf="parent"
+				tools:text="14"/>
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/layoutFriday"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:clickable="true"
+			android:focusable="true"
+			android:background="?android:selectableItemBackground"
+			android:layout_weight="1">
+
+			<TextView
+				android:id="@+id/labelFriday"
+				style="@style/TextCalendarLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/meal_planner_friday"
+				android:layout_marginTop="8dp"
+				app:layout_constraintTop_toTopOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"/>
+
+			<TextView
+				android:id="@+id/textFridayNumber"
+				style="@style/TextCalendarNumber"
+				android:background="@drawable/bc_text_round"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:layout_marginBottom="8dp"
+				android:backgroundTint="@color/white"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/labelFriday"
+				app:layout_constraintBottom_toBottomOf="parent"
+				tools:text="15"/>
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/layoutSaturday"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:clickable="true"
+			android:focusable="true"
+			android:background="?android:selectableItemBackground"
+			android:layout_weight="1">
+
+			<TextView
+				android:id="@+id/labelSaturday"
+				style="@style/TextCalendarLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/meal_planner_saturday"
+				android:layout_marginTop="8dp"
+				app:layout_constraintTop_toTopOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"/>
+
+			<TextView
+				android:id="@+id/textSaturdayNumber"
+				style="@style/TextCalendarNumber"
+				android:background="@drawable/bc_text_round"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:layout_marginBottom="8dp"
+				android:backgroundTint="@color/white"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/labelSaturday"
+				app:layout_constraintBottom_toBottomOf="parent"
+				tools:text="16"/>
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/layoutSunday"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:clickable="true"
+			android:focusable="true"
+			android:background="?android:selectableItemBackground"
+			android:layout_weight="1">
+
+			<TextView
+				android:id="@+id/labelSunday"
+				style="@style/TextCalendarLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/meal_planner_sunday"
+				android:layout_marginTop="8dp"
+				app:layout_constraintTop_toTopOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"/>
+
+			<TextView
+				android:id="@+id/textSundayNumber"
+				style="@style/TextCalendarNumber"
+				android:background="@drawable/bc_text_round"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:layout_marginBottom="8dp"
+				android:backgroundTint="@color/gray200"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/labelSunday"
+				app:layout_constraintBottom_toBottomOf="parent"
+				tools:text="17"/>
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	</LinearLayout>
+
+	<androidx.core.widget.NestedScrollView
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_marginTop="24dp"
+		app:layout_constraintTop_toBottomOf="@id/calendarWrapper"
+		app:layout_constraintBottom_toBottomOf="parent">
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+			<androidx.constraintlayout.widget.ConstraintLayout
+				android:id="@+id/sectionBreakfast"
+				app:layout_constraintTop_toTopOf="parent"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+
+				<TextView
+					android:id="@+id/labelBreakfast"
+					style="@style/TextHeadline3"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="16dp"
+					android:text="@string/meal_planner_breakfast"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent" />
+
+				<ImageButton
+					android:id="@+id/iconAddBreakfast"
+					style="@style/BaseImageButton"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginEnd="16dp"
+					android:contentDescription="@null"
+					android:tint="@color/gray500"
+					android:src="@drawable/ic_add_circle_24"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintTop_toTopOf="@id/labelBreakfast"
+					app:layout_constraintBottom_toBottomOf="@id/labelBreakfast"/>
+
+				<androidx.recyclerview.widget.RecyclerView
+					android:id="@+id/recyclerBreakfast"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:clipToPadding="false"
+					android:orientation="vertical"
+					android:overScrollMode="never"
+					android:paddingTop="12dp"
+					android:paddingBottom="16dp"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintTop_toBottomOf="@id/labelBreakfast"
+					tools:itemCount="2"
+					tools:listitem="@layout/item_recipe_by_query_row" />
+
+			</androidx.constraintlayout.widget.ConstraintLayout>
+
+			<androidx.constraintlayout.widget.ConstraintLayout
+				android:id="@+id/sectionLunch"
+				android:layout_marginTop="8dp"
+				app:layout_constraintTop_toBottomOf="@id/sectionBreakfast"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+
+				<TextView
+					android:id="@+id/labelLunch"
+					style="@style/TextHeadline3"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="16dp"
+					android:text="@string/meal_planner_lunch"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent" />
+
+				<ImageButton
+					android:id="@+id/iconAddLunch"
+					style="@style/BaseImageButton"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginEnd="16dp"
+					android:contentDescription="@null"
+					android:tint="@color/gray500"
+					android:src="@drawable/ic_add_circle_24"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintTop_toTopOf="@id/labelLunch"
+					app:layout_constraintBottom_toBottomOf="@id/labelLunch"/>
+
+				<androidx.recyclerview.widget.RecyclerView
+					android:id="@+id/recyclerLunch"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:clipToPadding="false"
+					android:orientation="vertical"
+					android:overScrollMode="never"
+					android:paddingTop="12dp"
+					android:paddingBottom="16dp"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintTop_toBottomOf="@id/labelLunch"
+					tools:itemCount="1"
+					tools:listitem="@layout/item_recipe_by_query_row" />
+
+			</androidx.constraintlayout.widget.ConstraintLayout>
+
+			<androidx.constraintlayout.widget.ConstraintLayout
+				android:id="@+id/sectionDinner"
+				android:layout_marginTop="8dp"
+				app:layout_constraintTop_toBottomOf="@id/sectionLunch"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+
+				<TextView
+					android:id="@+id/labelDinner"
+					style="@style/TextHeadline3"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="16dp"
+					android:text="@string/meal_planner_dinner"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent" />
+
+				<ImageButton
+					android:id="@+id/iconAddDinner"
+					style="@style/BaseImageButton"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginEnd="16dp"
+					android:contentDescription="@null"
+					android:tint="@color/gray500"
+					android:src="@drawable/ic_add_circle_24"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintTop_toTopOf="@id/labelDinner"
+					app:layout_constraintBottom_toBottomOf="@id/labelDinner"/>
+
+				<androidx.recyclerview.widget.RecyclerView
+					android:id="@+id/recyclerDinner"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:clipToPadding="false"
+					android:orientation="vertical"
+					android:overScrollMode="never"
+					android:paddingTop="12dp"
+					android:paddingBottom="16dp"
+					android:visibility="gone"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintTop_toBottomOf="@id/labelDinner"
+					tools:itemCount="1"
+					tools:listitem="@layout/item_recipe_by_query_row" />
+
+			</androidx.constraintlayout.widget.ConstraintLayout>
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	</androidx.core.widget.NestedScrollView>
 
 	<androidx.coordinatorlayout.widget.CoordinatorLayout
 		android:id="@+id/snackbarRoot"

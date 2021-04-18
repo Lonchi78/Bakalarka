@@ -1,11 +1,19 @@
 package com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner
 
+import android.content.res.ColorStateList
 import android.view.View
-import com.google.android.material.chip.Chip
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import com.lonchi.andrej.lonchi_bakalarka.R
+import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
+import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
+import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentMealPlannerBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
+import timber.log.Timber
+import java.util.*
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
@@ -21,16 +29,75 @@ class MealPlannerFragment : BaseFragment<MealPlannerViewModel, FragmentMealPlann
 
     override fun initView() {
         (requireActivity() as? MainActivity)?.showBottomNavigation()
-        binding?.labelMealPlanner?.setOnClickListener {
-            val chip = layoutInflater.inflate(
-                R.layout.chip_single_choice,
-                binding?.chipGroup,
-                false
-            ) as Chip
-            chip.text = (0..100).random().toString()
-            binding?.chipGroup?.addView(chip)
+    }
+
+    override fun bindViewModel() {
+        viewModel.thisWeek.observe(viewLifecycleOwner) {
+            handleThisWeek(it)
         }
     }
 
-    override fun bindViewModel() = Unit
+    private fun handleThisWeek(week: Resource<List<MealPlannerViewModel.Companion.DayInWeek>>) {
+        if (week.status is SuccessStatus && week.data != null) {
+            val days = week.data
+            days.getOrNull(0)?.let {
+                handleDayText(binding?.textMondayNumber, binding?.layoutMonday, it)
+            }
+            days.getOrNull(1)?.let {
+                handleDayText(binding?.textTuesdayNumber, binding?.layoutTuesday, it)
+            }
+            days.getOrNull(2)?.let {
+                handleDayText(binding?.textWednesdayNumber, binding?.layoutWednesday, it)
+            }
+            days.getOrNull(3)?.let {
+                handleDayText(binding?.textThursdayNumber, binding?.layoutThursday, it)
+            }
+            days.getOrNull(4)?.let {
+                handleDayText(binding?.textFridayNumber, binding?.layoutFriday, it)
+            }
+            days.getOrNull(5)?.let {
+                handleDayText(binding?.textSaturdayNumber, binding?.layoutSaturday, it)
+            }
+            days.getOrNull(6)?.let {
+                handleDayText(binding?.textSundayNumber, binding?.layoutSunday, it)
+            }
+        } else {
+            showErrorSnackbar(ErrorIdentification.Unknown(), binding?.snackbarRoot)
+        }
+    }
+
+    private fun handleDayText(
+        textView: TextView?,
+        rootLayout: ConstraintLayout?,
+        dayInWeek: MealPlannerViewModel.Companion.DayInWeek
+    ) {
+        textView?.text = dayInWeek.day.toString()
+        rootLayout?.setOnClickListener { viewModel.changeSelectedDay(dayInWeek) }
+        when {
+            dayInWeek.isToday && dayInWeek.isSelected -> {
+                textView?.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                textView?.backgroundTintList = ColorStateList.valueOf(
+                    ContextCompat.getColor(requireContext(), R.color.green500)
+                )
+            }
+            dayInWeek.isToday && !dayInWeek.isSelected -> {
+                textView?.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray900))
+                textView?.backgroundTintList = ColorStateList.valueOf(
+                    ContextCompat.getColor(requireContext(), R.color.gray200)
+                )
+            }
+            dayInWeek.isSelected -> {
+                textView?.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                textView?.backgroundTintList = ColorStateList.valueOf(
+                    ContextCompat.getColor(requireContext(), R.color.green500)
+                )
+            }
+            else -> {
+                textView?.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray900))
+                textView?.backgroundTintList = ColorStateList.valueOf(
+                    ContextCompat.getColor(requireContext(), R.color.transparent)
+                )
+            }
+        }
+    }
 }

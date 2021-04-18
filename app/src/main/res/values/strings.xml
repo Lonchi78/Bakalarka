@@ -84,6 +84,16 @@
 
 	<!--	Meal planner	-->
 	<string name="meal_planner_title">Meal planner</string>
+	<string name="meal_planner_monday">MON</string>
+	<string name="meal_planner_tuesday">TUE</string>
+	<string name="meal_planner_wednesday">WED</string>
+	<string name="meal_planner_thursday">THU</string>
+	<string name="meal_planner_friday">FRI</string>
+	<string name="meal_planner_saturday">SAT</string>
+	<string name="meal_planner_sunday">SUN</string>
+	<string name="meal_planner_breakfast">Breakfast</string>
+	<string name="meal_planner_lunch">Lunch</string>
+	<string name="meal_planner_dinner">Dinner</string>
 
 	<!--	Profile		-->
 	<string name="profile_title">Profile</string>
