@@ -77,6 +77,7 @@ interface UserRepository {
     fun updateIntolerances()
     fun updateCustomRecipes()
     fun updateFavouriteRecipes()
+    fun updateMealPlans()
 }
 
 class UserRepositoryImpl @Inject internal constructor(
@@ -96,6 +97,7 @@ class UserRepositoryImpl @Inject internal constructor(
         private const val DB_USERDATA_INTOLERANCES = "intolerances"
         private const val DB_USERDATA_FAVOURITE_RECIPES = "favouriteRecipes"
         private const val DB_USERDATA_CUSTOM_RECIPES = "customRecipes"
+        private const val DB_USERDATA_MEALPLANS = "mealPlans"
     }
 
     private var disposable: CompositeDisposable? = null
@@ -211,6 +213,7 @@ class UserRepositoryImpl @Inject internal constructor(
                     userData?.diets?.let { db.dietsDao().saveDiets(it) }
                     userData?.favouriteRecipes?.let { db.favouriteRecipesDao().saveAllRecipes(it) }
                     userData?.customRecipes?.let { db.customRecipesDao().saveAllRecipes(it) }
+                    userData?.mealPlans?.let { db.mealPlanDao().saveAllMealPlan(it) }
                 } catch (e: Exception) {
                     Timber.e("onDataChange exception: $e")
                 }
@@ -234,14 +237,16 @@ class UserRepositoryImpl @Inject internal constructor(
                 db.favouriteRecipesDao().getAllRecipesSingle(),
                 db.dietsDao().listAllSingle(),
                 db.intolerancesDao().listAllSingle(),
-                { user, customRecipes, favouriteRecipes, diets, intolerances ->
+                db.mealPlanDao().getAllMealPlanSingle(),
+                { user, customRecipes, favouriteRecipes, diets, intolerances, mealPlans ->
                     UserData(
                         name = user.firstOrNull()?.name ?: "",
                         email = user.firstOrNull()?.email ?: "",
                         diets = diets.firstOrNull() ?: Diets(),
                         intolerances = intolerances.firstOrNull() ?: Intolerances(),
                         customRecipes = customRecipes,
-                        favouriteRecipes = favouriteRecipes
+                        favouriteRecipes = favouriteRecipes,
+                        mealPlans = mealPlans
                     )
                 }
             )
@@ -322,5 +327,20 @@ class UserRepositoryImpl @Inject internal constructor(
         )
     }
 
-
+    override fun updateMealPlans() {
+        disposable?.dispose()
+        disposable?.add(
+            db.mealPlanDao().getAllMealPlanSingle()
+                .subscribe({
+                    val userUid = prefs.getUserUidFromSharedPreferences()
+                    database
+                        .child(DB_KEY_USERS)
+                        .child(userUid)
+                        .child(DB_USERDATA_MEALPLANS)
+                        .setValue(it)
+                }, {
+                    Timber.e("updateFavouriteRecipes err: $it")
+                })
+        )
+    }
 }

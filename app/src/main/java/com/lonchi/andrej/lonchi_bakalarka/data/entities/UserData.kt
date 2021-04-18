@@ -6,7 +6,8 @@ data class UserData (
     val intolerances: Intolerances? = null,
     val diets: Diets? = null,
     val favouriteRecipes: List<RecipeFavourite>? = null,
-    val customRecipes: List<RecipeCustom>? = null
+    val customRecipes: List<RecipeCustom>? = null,
+    val mealPlans: List<MealPlan>? = null
 ) {
 
 }
