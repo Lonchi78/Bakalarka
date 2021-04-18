@@ -3,6 +3,7 @@ package com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.google.android.material.chip.Chip
@@ -47,7 +48,11 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
     override fun initView() {
         (requireActivity() as? MainActivity)?.hideBottomNavigation()
         handleArguments()
-
+        binding?.buttonMealplan?.setOnClickListener {
+            findNavController().navigate(
+                RecipeDetailFragmentDirections.actionGlobalAddToMealPlannerFragment()
+            )
+        }
         binding?.iconBack?.setOnClickListener {
             requireActivity().onBackPressed()
         }
@@ -154,11 +159,6 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
                     viewModel.addToFavourites(recipe as? Recipe ?: return@setOnClickListener)
                 }
             }
-        }
-
-        //  TODO - add to meal planner
-        binding?.buttonShare?.setOnClickListener {
-            Toast.makeText(requireContext(), "TODO - share", Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -28,6 +28,7 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIn
 import com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.MealPlannerViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.add.AddToMealPlannerViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.bottom_sheet.AddToMealPlanViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.onboarding.OnboardingViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.ownRecipes.OwnRecipesViewModel
@@ -146,6 +147,14 @@ abstract class MealPlannerModule {
     @IntoMap
     @ViewModelKey(MealPlannerViewModel::class)
     abstract fun bindsMealPlannerViewModel(viewModel: MealPlannerViewModel): ViewModel
+}
+
+@Module
+abstract class AddToMealPlannerModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(AddToMealPlannerViewModel::class)
+    abstract fun bindsAddToMealPlannerViewModel(viewModel: AddToMealPlannerViewModel): ViewModel
 }
 
 @Module

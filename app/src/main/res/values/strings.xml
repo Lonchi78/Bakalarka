@@ -98,6 +98,7 @@
 	<string name="meal_planner_bottom_sheet_favourites">Favourites</string>
 	<string name="meal_planner_bottom_sheet_own_recipes">Own recipes</string>
 	<string name="meal_planner_bottom_sheet_discover">Discover</string>
+	<string name="add_to_meal_planner_title">Select date and time</string>
 
 	<!--	Profile		-->
 	<string name="profile_title">Profile</string>
@@ -163,7 +164,7 @@
 	<string name="nutrition_value_protein">%d g</string>
 	<string name="button_like_recipe">Like it</string>
 	<string name="button_dislike_recipe">Don\'t like it</string>
-	<string name="button_share_recipe">Share it</string>
+	<string name="button_add_to_mealplan_recipe">Add to plan</string>
 	<string name="label_ingredients">Ingredients</string>
 	<string name="label_instructions">Instructions</string>
 	<string name="label_intolerances">Intolerances</string>

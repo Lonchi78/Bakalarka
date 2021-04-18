@@ -1,6 +1,7 @@
 package com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.custom
 
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
 import com.lonchi.andrej.lonchi_bakalarka.R
@@ -15,6 +16,7 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.IngredientRowsAdapter
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.InstructionRowsAdapter
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeDetailFragmentArgs
+import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeDetailFragmentDirections
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
@@ -44,7 +46,11 @@ class RecipeDetailCustomFragment : BaseFragment<RecipeDetailCustomViewModel, Fra
     override fun initView() {
         (requireActivity() as? MainActivity)?.hideBottomNavigation()
         handleArguments()
-
+        binding?.buttonMealplan?.setOnClickListener {
+            findNavController().navigate(
+                RecipeDetailCustomFragmentDirections.actionGlobalAddToMealPlannerFragment()
+            )
+        }
         binding?.iconBack?.setOnClickListener {
             requireActivity().onBackPressed()
         }

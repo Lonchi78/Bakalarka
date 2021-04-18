@@ -37,6 +37,7 @@ import javax.inject.Singleton
             IngredientsListModule::class,
             DiscoverListModule::class,
             MealPlannerModule::class,
+            AddToMealPlannerModule::class,
             ProfileModule::class,
             FavouritesModule::class,
             OwnRecipesModule::class,

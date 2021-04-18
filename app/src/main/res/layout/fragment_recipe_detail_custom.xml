@@ -294,6 +294,23 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonMealplan"
+                style="@style/ContainedActionButtonWithStartIcon"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/gray50"
+                android:text="@string/button_add_to_mealplan_recipe"
+                app:icon="@drawable/ic_meal_planner_20"
+                app:iconTint="@color/gray900"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/wrapperProgressBars"
+                app:rippleColor="@color/gray200" />
+
             <TextView
                 android:id="@+id/labelIngredients"
                 style="@style/TextHeadline3"
@@ -303,7 +320,7 @@
                 android:layout_marginTop="40dp"
                 android:text="@string/label_ingredients"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/wrapperProgressBars" />
+                app:layout_constraintTop_toBottomOf="@id/buttonMealplan" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipCounterIngredients"

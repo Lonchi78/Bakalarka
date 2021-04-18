@@ -1,4 +1,4 @@
-package com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner
+package com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.add
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,7 +14,7 @@ import javax.inject.Inject
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
-class MealPlannerViewModel @Inject constructor() : BaseViewModel() {
+class AddToMealPlannerViewModel @Inject constructor() : BaseViewModel() {
 
     companion object {
         const val DAYS_IN_WEEK = 7

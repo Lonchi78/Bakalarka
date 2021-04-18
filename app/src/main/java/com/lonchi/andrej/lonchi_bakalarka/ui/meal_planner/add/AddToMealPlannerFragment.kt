@@ -1,40 +1,44 @@
-package com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner
+package com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.add
 
 import android.content.res.ColorStateList
 import android.view.View
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.navigation.fragment.findNavController
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.MealPlannerDay
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
-import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentMealPlannerBinding
+import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentAddToMealPlannerBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
-import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.bottom_sheet.AddToMealPlanBottomSheet
+
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
-class MealPlannerFragment : BaseFragment<MealPlannerViewModel, FragmentMealPlannerBinding>() {
+class AddToMealPlannerFragment : BaseFragment<AddToMealPlannerViewModel, FragmentAddToMealPlannerBinding>() {
     companion object {
-        fun newInstance() = MealPlannerFragment()
+        fun newInstance() = AddToMealPlannerFragment()
     }
 
-    override val layoutId: Int = R.layout.fragment_meal_planner
-    override val vmClassToken: Class<MealPlannerViewModel> = MealPlannerViewModel::class.java
-    override val bindingInflater: (View) -> FragmentMealPlannerBinding = { FragmentMealPlannerBinding.bind(it) }
-
-    private var addToMealPlanBottomSheet: AddToMealPlanBottomSheet? = null
+    override val layoutId: Int = R.layout.fragment_add_to_meal_planner
+    override val vmClassToken: Class<AddToMealPlannerViewModel> = AddToMealPlannerViewModel::class.java
+    override val bindingInflater: (View) -> FragmentAddToMealPlannerBinding = { FragmentAddToMealPlannerBinding.bind(it) }
 
     override fun initView() {
-        (requireActivity() as? MainActivity)?.showBottomNavigation()
-        binding?.iconAddBreakfast?.setOnClickListener { showAddToMealPlanBottomSheet() }
-        binding?.iconAddLunch?.setOnClickListener { showAddToMealPlanBottomSheet() }
-        binding?.iconAddDinner?.setOnClickListener { showAddToMealPlanBottomSheet() }
+        (requireActivity() as? MainActivity)?.hideBottomNavigation()
+        binding?.iconBack?.setOnClickListener { requireActivity().onBackPressed() }
+        binding?.iconAddBreakfast?.setOnClickListener {
+            //  todo
+        }
+        binding?.iconAddLunch?.setOnClickListener {
+            //  todo
+        }
+        binding?.iconAddDinner?.setOnClickListener {
+            //  todo
+        }
     }
 
     override fun bindViewModel() {
@@ -43,41 +47,36 @@ class MealPlannerFragment : BaseFragment<MealPlannerViewModel, FragmentMealPlann
         }
     }
 
-    override fun onDestroyView() {
-        addToMealPlanBottomSheet?.dismiss()
-        super.onDestroyView()
-    }
-
     private fun handleThisWeek(week: Resource<List<MealPlannerDay>>) {
         if (week.status is SuccessStatus && week.data != null) {
             val days = week.data
             days.getOrNull(0)?.let {
-                handleDayText(binding?.textMondayNumber, binding?.layoutMonday, it)
+                handleDay(binding?.textMondayNumber, binding?.layoutMonday, it)
             }
             days.getOrNull(1)?.let {
-                handleDayText(binding?.textTuesdayNumber, binding?.layoutTuesday, it)
+                handleDay(binding?.textTuesdayNumber, binding?.layoutTuesday, it)
             }
             days.getOrNull(2)?.let {
-                handleDayText(binding?.textWednesdayNumber, binding?.layoutWednesday, it)
+                handleDay(binding?.textWednesdayNumber, binding?.layoutWednesday, it)
             }
             days.getOrNull(3)?.let {
-                handleDayText(binding?.textThursdayNumber, binding?.layoutThursday, it)
+                handleDay(binding?.textThursdayNumber, binding?.layoutThursday, it)
             }
             days.getOrNull(4)?.let {
-                handleDayText(binding?.textFridayNumber, binding?.layoutFriday, it)
+                handleDay(binding?.textFridayNumber, binding?.layoutFriday, it)
             }
             days.getOrNull(5)?.let {
-                handleDayText(binding?.textSaturdayNumber, binding?.layoutSaturday, it)
+                handleDay(binding?.textSaturdayNumber, binding?.layoutSaturday, it)
             }
             days.getOrNull(6)?.let {
-                handleDayText(binding?.textSundayNumber, binding?.layoutSunday, it)
+                handleDay(binding?.textSundayNumber, binding?.layoutSunday, it)
             }
         } else {
             showErrorSnackbar(ErrorIdentification.Unknown(), binding?.snackbarRoot)
         }
     }
 
-    private fun handleDayText(
+    private fun handleDay(
         textView: TextView?,
         rootLayout: ConstraintLayout?,
         dayInWeek: MealPlannerDay
@@ -110,37 +109,5 @@ class MealPlannerFragment : BaseFragment<MealPlannerViewModel, FragmentMealPlann
                 )
             }
         }
-    }
-
-    private fun showAddToMealPlanBottomSheet() {
-        if (addToMealPlanBottomSheet?.isVisible != true) {
-            addToMealPlanBottomSheet = AddToMealPlanBottomSheet(
-                onFavouriteClick = ::fromFavouriteRecipesClick,
-                onCustomClick = ::fromCustomRecipesClick,
-                onDiscoverClick = ::fromDiscoverRecipesClick
-            )
-            addToMealPlanBottomSheet?.show(
-                requireActivity().supportFragmentManager,
-                addToMealPlanBottomSheet?.tag
-            )
-        }
-    }
-
-    private fun fromFavouriteRecipesClick() {
-        findNavController().navigate(
-            MealPlannerFragmentDirections.actionHomeFragmentToFavouritesFragment()
-        )
-    }
-
-    private fun fromCustomRecipesClick() {
-        findNavController().navigate(
-            MealPlannerFragmentDirections.actionHomeFragmentToOwnRecipesFragment()
-        )
-    }
-
-    private fun fromDiscoverRecipesClick() {
-        findNavController().navigate(
-            MealPlannerFragmentDirections.actionHomeFragmentToDiscoverListFragment()
-        )
     }
 }
