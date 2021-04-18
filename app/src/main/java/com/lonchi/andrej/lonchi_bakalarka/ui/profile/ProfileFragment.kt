@@ -57,10 +57,6 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>()
             findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToSettingsFragment())
         }
 
-        binding?.viewAbout?.setOnClickListener {
-            startActivity(AboutActivity.getStartIntent(requireContext()))
-        }
-
         binding?.viewLogOut?.setOnClickListener {
             Firebase.auth.signOut()
 
