@@ -72,7 +72,29 @@
         android:id="@+id/mealPlannerFragment"
         android:name="com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.MealPlannerFragment"
         android:label="fragment_meal_planner"
-        tools:layout="@layout/fragment_meal_planner" />
+        tools:layout="@layout/fragment_meal_planner" >
+        <action
+            android:id="@+id/action_homeFragment_to_discoverListFragment"
+            app:destination="@id/discoverListFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_favouritesFragment"
+            app:destination="@id/favouritesFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_ownRecipesFragment"
+            app:destination="@id/ownRecipesFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/profileFragment"

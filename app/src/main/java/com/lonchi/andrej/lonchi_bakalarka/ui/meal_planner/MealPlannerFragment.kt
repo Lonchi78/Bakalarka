@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.ImageLabelingItem
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
@@ -129,11 +130,20 @@ class MealPlannerFragment : BaseFragment<MealPlannerViewModel, FragmentMealPlann
     }
 
     private fun fromFavouriteRecipesClick() {
+        findNavController().navigate(
+            MealPlannerFragmentDirections.actionHomeFragmentToFavouritesFragment()
+        )
     }
 
     private fun fromCustomRecipesClick() {
+        findNavController().navigate(
+            MealPlannerFragmentDirections.actionHomeFragmentToOwnRecipesFragment()
+        )
     }
 
     private fun fromDiscoverRecipesClick() {
+        findNavController().navigate(
+            MealPlannerFragmentDirections.actionHomeFragmentToDiscoverListFragment()
+        )
     }
 }
