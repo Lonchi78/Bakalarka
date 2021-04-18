@@ -94,6 +94,10 @@
 	<string name="meal_planner_breakfast">Breakfast</string>
 	<string name="meal_planner_lunch">Lunch</string>
 	<string name="meal_planner_dinner">Dinner</string>
+	<string name="meal_planner_bottom_sheet_title">Add to meal plan from</string>
+	<string name="meal_planner_bottom_sheet_favourites">Favourites</string>
+	<string name="meal_planner_bottom_sheet_own_recipes">Own recipes</string>
+	<string name="meal_planner_bottom_sheet_discover">Discover</string>
 
 	<!--	Profile		-->
 	<string name="profile_title">Profile</string>

@@ -8,6 +8,7 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.CreateRecipeActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
+import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.bottom_sheet.AddToMealPlanBottomSheet
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -47,6 +48,7 @@ import javax.inject.Singleton
             OnboardingModule::class,
             RecipeDetailCustomModule::class,
             FoundIngredientsModule::class,
+            AddToMealPlanModule::class,
             CreateRecipeNameModule::class,
             CreateRecipeTimeModule::class,
             CreateRecipePhotoModule::class,
@@ -84,4 +86,5 @@ interface AppComponent {
     fun inject(createRecipeActivity: CreateRecipeActivity)
 
     fun inject(foundIngredientsBottomSheet: FoundIngredientsBottomSheet)
+    fun inject(addToMealPlanBottomSheet: AddToMealPlanBottomSheet)
 }

@@ -6,12 +6,15 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.lonchi.andrej.lonchi_bakalarka.R
+import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.ImageLabelingItem
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentMealPlannerBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsBottomSheet
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
+import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.bottom_sheet.AddToMealPlanBottomSheet
 import timber.log.Timber
 import java.util.*
 
@@ -27,14 +30,24 @@ class MealPlannerFragment : BaseFragment<MealPlannerViewModel, FragmentMealPlann
     override val vmClassToken: Class<MealPlannerViewModel> = MealPlannerViewModel::class.java
     override val bindingInflater: (View) -> FragmentMealPlannerBinding = { FragmentMealPlannerBinding.bind(it) }
 
+    private var addToMealPlanBottomSheet: AddToMealPlanBottomSheet? = null
+
     override fun initView() {
         (requireActivity() as? MainActivity)?.showBottomNavigation()
+        binding?.iconAddBreakfast?.setOnClickListener { showAddToMealPlanBottomSheet() }
+        binding?.iconAddLunch?.setOnClickListener { showAddToMealPlanBottomSheet() }
+        binding?.iconAddDinner?.setOnClickListener { showAddToMealPlanBottomSheet() }
     }
 
     override fun bindViewModel() {
         viewModel.thisWeek.observe(viewLifecycleOwner) {
             handleThisWeek(it)
         }
+    }
+
+    override fun onDestroyView() {
+        addToMealPlanBottomSheet?.dismiss()
+        super.onDestroyView()
     }
 
     private fun handleThisWeek(week: Resource<List<MealPlannerViewModel.Companion.DayInWeek>>) {
@@ -99,5 +112,28 @@ class MealPlannerFragment : BaseFragment<MealPlannerViewModel, FragmentMealPlann
                 )
             }
         }
+    }
+
+    private fun showAddToMealPlanBottomSheet() {
+        if (addToMealPlanBottomSheet?.isVisible != true) {
+            addToMealPlanBottomSheet = AddToMealPlanBottomSheet(
+                onFavouriteClick = ::fromFavouriteRecipesClick,
+                onCustomClick = ::fromCustomRecipesClick,
+                onDiscoverClick = ::fromDiscoverRecipesClick
+            )
+            addToMealPlanBottomSheet?.show(
+                requireActivity().supportFragmentManager,
+                addToMealPlanBottomSheet?.tag
+            )
+        }
+    }
+
+    private fun fromFavouriteRecipesClick() {
+    }
+
+    private fun fromCustomRecipesClick() {
+    }
+
+    private fun fromDiscoverRecipesClick() {
     }
 }
