@@ -75,6 +75,10 @@ data class RecipesResponse(
     @Json(name = "recipes") val recipes: List<Recipe>
 ): BaseResponse()
 
+data class JokeResponse(
+    @Json(name = "text") val joke: String?
+): BaseResponse()
+
 data class SearchRecipesResponse(
     @Json(name = "results") val results: List<Recipe>,
     @Json(name = "baseUri") val baseUri: String,

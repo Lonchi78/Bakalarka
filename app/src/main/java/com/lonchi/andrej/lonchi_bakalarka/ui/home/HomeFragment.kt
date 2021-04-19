@@ -6,13 +6,18 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
+import com.google.android.material.chip.Chip
 import com.lonchi.andrej.lonchi_bakalarka.R
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.Recipe
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeItem
+import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.JokeResponse
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.LoadingStatus
+import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentHomeBinding
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.getGreetingText
+import com.lonchi.andrej.lonchi_bakalarka.logic.util.setVisible
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.CreateRecipeActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.finalize.CreateRecipeSuccessFragment
@@ -31,6 +36,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         fun newInstance() = HomeFragment()
 
         private const val REQUEST_CODE_CREATE_CUSTOM_RECIPE = 100
+        private const val LIMIT_CARDS_ADAPTER = 5
     }
 
     override val layoutId: Int = R.layout.fragment_home
@@ -103,9 +109,6 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
             when (it.status) {
                 is SuccessStatus -> {
                     adapterRandomRecipes.submitList(it.data)
-                    adapterFavouriteRecipes.submitList(it.data)
-                    adapterOwnRecipes.submitList(it.data)
-                    binding?.chipCounterFavourites?.text = (0..10).random().toString()
                 }
                 is ErrorStatus -> {
                     //  TODO - add error state or hide section, show connectivity problem
@@ -116,6 +119,18 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
                 }
                 else -> Unit
             }
+        }
+        viewModel.randomIngredients.observe(viewLifecycleOwner) {
+            handleRandomIngredients(it)
+        }
+        viewModel.stateRandomJoke.observe(viewLifecycleOwner) {
+            handleRandomJoke(it)
+        }
+        viewModel.getAllFavouritesRecipes().observe(viewLifecycleOwner) {
+            handleFavouriteRecipes(it)
+        }
+        viewModel.getAllCustomRecipes().observe(viewLifecycleOwner) {
+            handleOwnRecipes(it)
         }
     }
 
@@ -159,6 +174,70 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
                         idType = RecipeIdTypeEnum.REST
                     )
                 )
+            }
+        }
+    }
+
+    private fun handleRandomIngredients(ingredients: List<String>) {
+        ingredients.forEach {
+            binding?.chipGroupIngredients?.addView(
+                (layoutInflater.inflate(
+                    R.layout.chip_single_choice,
+                    binding?.chipGroupIngredients,
+                    false
+                ) as Chip).apply {
+                    text = it
+                }
+            )
+        }
+    }
+
+    private fun handleRandomJoke(jokeResponse: Resource<JokeResponse>) {
+        when {
+            jokeResponse.status is SuccessStatus && jokeResponse.data?.joke != null -> {
+                binding?.textJoke?.setVisible(true)
+                binding?.textJoke?.text = jokeResponse.data.joke
+            }
+            else -> binding?.textJoke?.setVisible(false)
+        }
+    }
+
+    private fun handleFavouriteRecipes(recipes: List<Recipe>) {
+        binding?.chipCounterFavourites?.text = recipes.size.toString()
+
+        when {
+            recipes.isEmpty() -> {
+                binding?.emptyLayoutFavouriteRecipes?.setVisible(true)
+                binding?.recyclerFavouriteRecipes?.setVisible(false)
+            }
+            recipes.size >= LIMIT_CARDS_ADAPTER -> {
+                binding?.emptyLayoutFavouriteRecipes?.setVisible(false)
+                binding?.recyclerFavouriteRecipes?.setVisible(true)
+                adapterFavouriteRecipes.submitList(recipes.subList(0, LIMIT_CARDS_ADAPTER - 1))
+            }
+            else -> {
+                binding?.emptyLayoutFavouriteRecipes?.setVisible(false)
+                binding?.recyclerFavouriteRecipes?.setVisible(true)
+                adapterFavouriteRecipes.submitList(recipes)
+            }
+        }
+        adapterFavouriteRecipes.submitList(recipes)
+    }
+
+    private fun handleOwnRecipes(recipes: List<Recipe>) {
+        binding?.chipCounterOwnRecipes?.text = recipes.size.toString()
+
+        when {
+            recipes.isEmpty() -> {
+                binding?.recyclerOwnRecipes?.setVisible(false)
+            }
+            recipes.size >= LIMIT_CARDS_ADAPTER -> {
+                binding?.recyclerOwnRecipes?.setVisible(true)
+                adapterOwnRecipes.submitList(recipes.subList(0, LIMIT_CARDS_ADAPTER - 1))
+            }
+            else -> {
+                binding?.recyclerOwnRecipes?.setVisible(true)
+                adapterOwnRecipes.submitList(recipes)
             }
         }
     }

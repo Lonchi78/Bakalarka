@@ -8,6 +8,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.entities.*
 import com.lonchi.andrej.lonchi_bakalarka.data.mappers.ObjectMappers.Companion.mapToFavouriteRecipe
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.database.LonchiDatabase
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.preferences.SharedPreferencesInterface
+import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.JokeResponse
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RecipesResponse
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RestApi
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.SearchRecipesResponse
@@ -39,6 +40,7 @@ interface RecipesRepository {
     fun removeRecipeToFavourites(uid: String)
 
     fun getRandomRecipes(number: Int): Single<Resource<RecipesResponse>>
+    fun getRandomJoke(): Single<Resource<JokeResponse>>
     fun searchRecipesByQuery(query: String): Single<Resource<SearchRecipesResponse>>
     fun searchRecipesByIngredients(ingredients: List<String>): Single<Resource<List<Recipe>>>
     fun getRecipeDetail(id: Long): Single<Resource<Recipe>>
@@ -93,6 +95,14 @@ class RecipesRepositoryImpl @Inject internal constructor(
         api.getRandomRecipes(
             apiKey = BuildConfig.API_KEY,
             numberOfResults = number
+        )
+            .asSyncOperation()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+
+    override fun getRandomJoke(): Single<Resource<JokeResponse>> =
+        api.getRandomJoke(
+            apiKey = BuildConfig.API_KEY
         )
             .asSyncOperation()
             .subscribeOn(Schedulers.io())

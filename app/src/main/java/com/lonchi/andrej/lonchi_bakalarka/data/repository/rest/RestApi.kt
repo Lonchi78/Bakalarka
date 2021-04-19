@@ -57,6 +57,11 @@ interface RestApi {
         @Query("number") numberOfResults: Int
     ): Single<Response<RecipesResponse>>
 
+    @GET("food/jokes/random")
+    fun getRandomJoke(
+        @Query("apiKey") apiKey: String
+    ): Single<Response<JokeResponse>>
+
     @GET("recipes/{id}/information")
     fun getRecipeDetail(
         @Path(value = "id", encoded = true) recipeId: String,
