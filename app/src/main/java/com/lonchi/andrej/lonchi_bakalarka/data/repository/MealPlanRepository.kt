@@ -30,6 +30,7 @@ interface MealPlanRepository {
     fun getMealPlan(date: String): Single<List<MealPlan>>
 
     fun saveToMealPlan(date: String, time: MealPlanEnum)
+    fun removeFromMealPlan(date: String, time: MealPlanEnum, recipe: Recipe)
 }
 
 class MealPlanRepositoryImpl @Inject internal constructor(
@@ -76,6 +77,33 @@ class MealPlanRepositoryImpl @Inject internal constructor(
             MealPlanEnum.DINNER -> {
                 val tmp = mealPlan.dinner?.toMutableList() ?: mutableListOf()
                 tmp.add(recipe)
+                mealPlan.dinner = tmp
+            }
+        }
+
+        db.mealPlanDao().saveMealPlan(mealPlan)
+        userRepository.updateMealPlans()
+    }
+
+    override fun removeFromMealPlan(date: String, time: MealPlanEnum, recipe: Recipe) {
+        val mealPlan = db.mealPlanDao().getMealPlanBlocking(date).firstOrNull() ?: MealPlan().apply {
+            this.date = date
+        }
+
+        when (time) {
+            MealPlanEnum.BREAKFAST -> {
+                val tmp = mealPlan.breakfast?.toMutableList() ?: mutableListOf()
+                tmp.remove(recipe)
+                mealPlan.breakfast = tmp
+            }
+            MealPlanEnum.LUNCH -> {
+                val tmp = mealPlan.lunch?.toMutableList() ?: mutableListOf()
+                tmp.remove(recipe)
+                mealPlan.lunch = tmp
+            }
+            MealPlanEnum.DINNER -> {
+                val tmp = mealPlan.dinner?.toMutableList() ?: mutableListOf()
+                tmp.remove(recipe)
                 mealPlan.dinner = tmp
             }
         }

@@ -8,9 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lonchi.andrej.lonchi_bakalarka.R
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.MealPlan
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.MealPlannerDay
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeItem
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.*
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
@@ -18,6 +16,7 @@ import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentMealPlannerBinding
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.bottom_sheet.AddToMealPlanBottomSheet
+import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.bottom_sheet.RemoveFromMealPlanBottomSheet
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipes.RecipeRowsAdapter
 
@@ -36,22 +35,41 @@ class MealPlannerFragment : BaseFragment<MealPlannerViewModel, FragmentMealPlann
     private val adapterBreakfast by lazy {
         RecipeRowsAdapter(
             context = requireContext(),
-            onRecipeClick = { onRecipeClick(it) }
+            onRecipeClick = { onRecipeClick(it) },
+            onRecipeLongClick = {
+                showRemoveFromMealPlanBottomSheet(
+                    time = MealPlanEnum.BREAKFAST,
+                    recipe = it
+                )
+            }
         )
     }
     private val adapterLunch by lazy {
         RecipeRowsAdapter(
             context = requireContext(),
-            onRecipeClick = { onRecipeClick(it) }
+            onRecipeClick = { onRecipeClick(it) },
+            onRecipeLongClick = {
+                showRemoveFromMealPlanBottomSheet(
+                    time = MealPlanEnum.LUNCH,
+                    recipe = it
+                )
+            }
         )
     }
     private val adapterDinner by lazy {
         RecipeRowsAdapter(
             context = requireContext(),
-            onRecipeClick = { onRecipeClick(it) }
+            onRecipeClick = { onRecipeClick(it) },
+            onRecipeLongClick = {
+                showRemoveFromMealPlanBottomSheet(
+                    time = MealPlanEnum.DINNER,
+                    recipe = it
+                )
+            }
         )
     }
     private var addToMealPlanBottomSheet: AddToMealPlanBottomSheet? = null
+    private var removeFromMealPlanBottomSheet: RemoveFromMealPlanBottomSheet? = null
 
     override fun initView() {
         (requireActivity() as? MainActivity)?.showBottomNavigation()
@@ -83,6 +101,7 @@ class MealPlannerFragment : BaseFragment<MealPlannerViewModel, FragmentMealPlann
 
     override fun onDestroyView() {
         addToMealPlanBottomSheet?.dismiss()
+        removeFromMealPlanBottomSheet?.dismiss()
         super.onDestroyView()
     }
 
@@ -167,6 +186,18 @@ class MealPlannerFragment : BaseFragment<MealPlannerViewModel, FragmentMealPlann
                 requireActivity().supportFragmentManager,
                 addToMealPlanBottomSheet?.tag
             )
+        }
+    }
+
+    private fun showRemoveFromMealPlanBottomSheet(time: MealPlanEnum, recipe: Recipe) {
+        if (removeFromMealPlanBottomSheet?.isVisible != true) {
+            viewModel.thisWeek.value?.data?.firstOrNull { it.isSelected }?.let {
+                removeFromMealPlanBottomSheet = RemoveFromMealPlanBottomSheet(it.getDateId(), time, recipe)
+                removeFromMealPlanBottomSheet?.show(
+                    requireActivity().supportFragmentManager,
+                    removeFromMealPlanBottomSheet?.tag
+                )
+            }
         }
     }
 

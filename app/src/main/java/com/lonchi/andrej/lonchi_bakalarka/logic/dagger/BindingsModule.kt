@@ -30,6 +30,7 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.MealPlannerViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.add.AddToMealPlannerViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.bottom_sheet.AddToMealPlanViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.bottom_sheet.RemoveFromMealPlanViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.onboarding.OnboardingViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.ownRecipes.OwnRecipesViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.profile.ProfileViewModel
@@ -251,6 +252,14 @@ abstract class AddToMealPlanModule {
     @IntoMap
     @ViewModelKey(AddToMealPlanViewModel::class)
     abstract fun bindsAddToMealPlanViewModel(viewModel: AddToMealPlanViewModel): ViewModel
+}
+
+@Module
+abstract class RemoveFromMealPlanModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(RemoveFromMealPlanViewModel::class)
+    abstract fun bindsRemoveFromMealPlanViewModel(viewModel: RemoveFromMealPlanViewModel): ViewModel
 }
 
 @Module

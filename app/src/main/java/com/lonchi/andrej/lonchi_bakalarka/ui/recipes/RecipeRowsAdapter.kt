@@ -19,7 +19,8 @@ import coil.load as load1
  * */
 class RecipeRowsAdapter(
     val context: Context,
-    val onRecipeClick: (Recipe) -> Unit
+    val onRecipeClick: (Recipe) -> Unit,
+    val onRecipeLongClick: ((Recipe) -> Unit)? = null
 ) : ListAdapter<Recipe, RecipeRowsAdapter.ViewHolder>(object :
     DiffUtil.ItemCallback<Recipe>() {
 
@@ -48,6 +49,10 @@ class RecipeRowsAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val recipe = getItem(position)
         holder.layoutRoot.setOnClickListener { onRecipeClick.invoke(recipe) }
+        holder.layoutRoot.setOnLongClickListener {
+            onRecipeLongClick?.invoke(recipe)
+            true
+        }
 
         holder.textName.text = recipe.title
         holder.textCookingTime.text = context.getString(
