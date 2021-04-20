@@ -58,6 +58,8 @@
 	<string name="home_greeting_evening">Good Evening</string>
 	<string name="home_discover_by_ingredients">Discover new recipes by entering ingredients</string>
 	<string name="home_joke">Gurl, you remind me of a box of chocolates.....(Why?) Cause I want to take your top off.</string>
+	<string name="home_favourites_empty">You haven’t liked any recipe yet.</string>
+	<string name="home_own_recipes_empty">You haven’t created a recipe yet. Create your first one!</string>
 
 	<plurals name="recipe_time_minutes">
 		<item quantity="one">%d min</item>

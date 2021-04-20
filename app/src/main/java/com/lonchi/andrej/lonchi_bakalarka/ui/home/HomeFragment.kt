@@ -21,6 +21,7 @@ import com.lonchi.andrej.lonchi_bakalarka.logic.util.setVisible
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.CreateRecipeActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.finalize.CreateRecipeSuccessFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipes.RecipeCardsAdapter
@@ -68,6 +69,22 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         (requireActivity() as? MainActivity)?.showBottomNavigation()
         binding?.textGreetings?.text = requireContext().getGreetingText()
 
+        //  Buttons
+        binding?.buttonCreateRecipe?.setOnClickListener {
+            startActivityForResult(
+                CreateRecipeActivity.getStartIntent(requireContext()),
+                REQUEST_CODE_CREATE_CUSTOM_RECIPE
+            )
+        }
+        binding?.buttonDiscoverByIngredients?.setOnClickListener { onIngredientsClick() }
+        binding?.chipCounterFavourites?.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToFavouritesFragment())
+        }
+        binding?.chipCounterOwnRecipes?.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToOwnRecipesFragment())
+        }
+
+        //  Adapters
         binding?.recyclerRandomRecipes?.adapter = adapterRandomRecipes
         binding?.recyclerRandomRecipes?.layoutManager = LinearLayoutManager(
             requireContext(),
@@ -92,13 +109,6 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
             false
         ).apply {
             isMeasurementCacheEnabled = false
-        }
-
-        binding?.buttonCreateRecipe?.setOnClickListener {
-            startActivityForResult(
-                CreateRecipeActivity.getStartIntent(requireContext()),
-                REQUEST_CODE_CREATE_CUSTOM_RECIPE
-            )
         }
     }
 
@@ -179,17 +189,24 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     }
 
     private fun handleRandomIngredients(ingredients: List<String>) {
-        ingredients.forEach {
+        ingredients.forEach { ingredient ->
             binding?.chipGroupIngredients?.addView(
                 (layoutInflater.inflate(
                     R.layout.chip_single_choice,
                     binding?.chipGroupIngredients,
                     false
                 ) as Chip).apply {
-                    text = it
+                    text = ingredient
+                    isClickable = true
+                    isFocusable = true
+                    setOnClickListener { onIngredientsClick(ingredient) }
                 }
             )
         }
+    }
+
+    private fun onIngredientsClick(ingredient: String? = null) {
+        startActivity(DiscoverByIngredientsActivity.getStartIntent(requireContext(), ingredient))
     }
 
     private fun handleRandomJoke(jokeResponse: Resource<JokeResponse>) {
@@ -229,13 +246,16 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
         when {
             recipes.isEmpty() -> {
+                binding?.emptyLayoutOwnRecipes?.setVisible(true)
                 binding?.recyclerOwnRecipes?.setVisible(false)
             }
             recipes.size >= LIMIT_CARDS_ADAPTER -> {
+                binding?.emptyLayoutOwnRecipes?.setVisible(false)
                 binding?.recyclerOwnRecipes?.setVisible(true)
                 adapterOwnRecipes.submitList(recipes.subList(0, LIMIT_CARDS_ADAPTER - 1))
             }
             else -> {
+                binding?.emptyLayoutOwnRecipes?.setVisible(false)
                 binding?.recyclerOwnRecipes?.setVisible(true)
                 adapterOwnRecipes.submitList(recipes)
             }

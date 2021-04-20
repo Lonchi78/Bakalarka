@@ -92,6 +92,8 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginEnd="16dp"
+				android:clickable="true"
+				android:focusable="true"
 				app:layout_constraintTop_toTopOf="@id/labelFavourites"
 				app:layout_constraintBottom_toBottomOf="@id/labelFavourites"
 				app:layout_constraintEnd_toEndOf="parent"
@@ -102,28 +104,36 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="16dp"
-				android:visibility="gone"
+				android:visibility="visible"
 				app:layout_constraintTop_toBottomOf="@id/labelFavourites"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintEnd_toEndOf="parent">
 
 				<ImageView
 					android:id="@+id/imageEmptyLayoutFavouriteRecipes"
-					android:layout_width="64dp"
-					android:layout_height="64dp"
-					android:src="@drawable/ic_meal_planner_24"
+					android:layout_width="124dp"
+					android:layout_height="wrap_content"
+					android:src="@drawable/illu_pizza"
+					android:contentDescription="@null"
+					android:adjustViewBounds="true"
+					android:layout_marginTop="16dp"
 					app:layout_constraintEnd_toEndOf="parent"
 					app:layout_constraintStart_toStartOf="parent"
 					app:layout_constraintTop_toTopOf="parent"/>
 
 				<TextView
 					android:id="@+id/labelEmptyLayoutFavouriteRecipes"
+					style="@style/TextBodySmallRegular"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
+					android:layout_marginTop="16dp"
+					android:layout_marginBottom="16dp"
+					app:layout_constraintBottom_toBottomOf="parent"
+					android:textColor="@color/gray700"
 					app:layout_constraintTop_toBottomOf="@id/imageEmptyLayoutFavouriteRecipes"
 					app:layout_constraintStart_toStartOf="parent"
 					app:layout_constraintEnd_toEndOf="parent"
-					android:text="MDMS je to MDMS je to lepsie ney vsetko co sisi dal dnes"/>
+					android:text="@string/home_favourites_empty"/>
 
 			</androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -139,6 +149,7 @@
 				android:clipChildren="false"
 				android:clipToPadding="false"
 				android:overScrollMode="never"
+				tools:visibility="gone"
 				app:layout_constraintTop_toBottomOf="@id/labelFavourites"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintEnd_toEndOf="parent"
@@ -170,11 +181,11 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginEnd="16dp"
-				android:src="@drawable/ic_search_24"
+				android:src="@drawable/ic_more_24"
 				android:tint="@color/green500"
 				android:contentDescription="@null"
 				android:layout_marginTop="24dp"
-				app:layout_constraintTop_toBottomOf="@id/recyclerFavouriteRecipes"
+				app:layout_constraintTop_toBottomOf="@id/barrierFavouriteRecipes"
 				app:layout_constraintEnd_toEndOf="parent"/>
 
 			<com.google.android.material.chip.ChipGroup
@@ -185,6 +196,8 @@
 				android:layout_marginTop="16dp"
 				android:paddingStart="16dp"
 				android:paddingEnd="16dp"
+				android:clickable="true"
+				android:focusable="true"
 				app:layout_constraintTop_toBottomOf="@id/labelDiscoverByIngredients" />
 
 			<TextView
@@ -209,6 +222,44 @@
 				app:layout_constraintEnd_toEndOf="parent"
 				tools:text="4" />
 
+			<androidx.constraintlayout.widget.ConstraintLayout
+				android:id="@+id/emptyLayoutOwnRecipes"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:visibility="visible"
+				app:layout_constraintTop_toBottomOf="@id/labelOwnRecipes"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent">
+
+				<ImageView
+					android:id="@+id/imageEmptyLayoutOwnRecipes"
+					android:contentDescription="@null"
+					android:layout_width="124dp"
+					android:layout_height="wrap_content"
+					android:src="@drawable/illu_burger"
+					android:layout_marginTop="16dp"
+					android:adjustViewBounds="true"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent"/>
+
+				<TextView
+					android:id="@+id/labelEmptyLayoutOwnRecipes"
+					style="@style/TextBodySmallRegular"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="16dp"
+					android:layout_marginBottom="16dp"
+					app:layout_constraintBottom_toBottomOf="parent"
+					android:textColor="@color/gray700"
+					app:layout_constraintTop_toBottomOf="@id/imageEmptyLayoutOwnRecipes"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintEnd_toEndOf="parent"
+					android:text="@string/home_favourites_empty"/>
+
+			</androidx.constraintlayout.widget.ConstraintLayout>
+
 			<androidx.recyclerview.widget.RecyclerView
 				android:id="@+id/recyclerOwnRecipes"
 				android:layout_width="match_parent"
@@ -221,25 +272,34 @@
 				android:clipChildren="false"
 				android:clipToPadding="false"
 				android:overScrollMode="never"
+				android:visibility="gone"
 				app:layout_constraintTop_toBottomOf="@id/labelOwnRecipes"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintEnd_toEndOf="parent"
 				tools:listitem="@layout/item_recipe_card_column" />
 
+			<androidx.constraintlayout.widget.Barrier
+				android:id="@+id/barrierOwnRecipes"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				app:barrierDirection="bottom"
+				app:constraint_referenced_ids="recyclerOwnRecipes,emptyLayoutOwnRecipes" />
+
 			<TextView
 				android:id="@+id/textJoke"
-				style="@style/TextBodyLargeSemibold"
+				style="@style/TextBodyLargeRegular"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
 				android:layout_marginStart="32dp"
 				android:layout_marginEnd="32dp"
 				android:paddingTop="24dp"
-				android:paddingBottom="24dp"
+				android:paddingBottom="32dp"
 				android:gravity="center"
 				android:textColor="@color/gray500"
+				android:textStyle="italic"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintEnd_toEndOf="parent"
-				app:layout_constraintTop_toBottomOf="@id/recyclerOwnRecipes"
+				app:layout_constraintTop_toBottomOf="@id/barrierOwnRecipes"
 				tools:text="@string/home_joke"/>
 
 		</androidx.constraintlayout.widget.ConstraintLayout>
