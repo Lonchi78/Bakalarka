@@ -10,6 +10,7 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
@@ -31,7 +32,8 @@ import java.util.concurrent.Executors
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
-class DiscoverByIngredientsCameraFragment : BaseFragment<DiscoverByIngredientsCameraViewModel, FragmentDiscoverByIngredientsCameraBinding>() {
+class DiscoverByIngredientsCameraFragment :
+    BaseFragment<DiscoverByIngredientsCameraViewModel, FragmentDiscoverByIngredientsCameraBinding>() {
 
     companion object {
         fun newInstance() = DiscoverByIngredientsCameraFragment()
@@ -39,8 +41,10 @@ class DiscoverByIngredientsCameraFragment : BaseFragment<DiscoverByIngredientsCa
     }
 
     override val layoutId: Int = R.layout.fragment_discover_by_ingredients_camera
-    override val vmClassToken: Class<DiscoverByIngredientsCameraViewModel> = DiscoverByIngredientsCameraViewModel::class.java
-    override val bindingInflater: (View) -> FragmentDiscoverByIngredientsCameraBinding = { FragmentDiscoverByIngredientsCameraBinding.bind(it) }
+    override val vmClassToken: Class<DiscoverByIngredientsCameraViewModel> =
+        DiscoverByIngredientsCameraViewModel::class.java
+    override val bindingInflater: (View) -> FragmentDiscoverByIngredientsCameraBinding =
+        { FragmentDiscoverByIngredientsCameraBinding.bind(it) }
 
     private var ingredientsBottomSheet: FoundIngredientsBottomSheet? = null
     private lateinit var cameraExecutor: ExecutorService
@@ -53,6 +57,7 @@ class DiscoverByIngredientsCameraFragment : BaseFragment<DiscoverByIngredientsCa
     override fun initView() {
         cameraExecutor = Executors.newSingleThreadExecutor()
 
+        binding?.iconReset?.setOnClickListener { clearCapturedImage() }
         binding?.iconBack?.setOnClickListener { requireActivity().onBackPressed() }
         binding?.iconFlash?.setOnClickListener { changeFlashMode() }
         binding?.iconCapture?.setOnClickListener { capturePhoto() }
@@ -67,7 +72,11 @@ class DiscoverByIngredientsCameraFragment : BaseFragment<DiscoverByIngredientsCa
             setupCamera()
         } else {
             disable(binding?.iconCapture, binding?.iconFlash)
-            visible(binding?.labelPermissionsTitle, binding?.labelPermissionsSubtitle, binding?.buttonAllowPermissions)
+            visible(
+                binding?.labelPermissionsTitle,
+                binding?.labelPermissionsSubtitle,
+                binding?.buttonAllowPermissions
+            )
         }
     }
 
@@ -142,7 +151,11 @@ class DiscoverByIngredientsCameraFragment : BaseFragment<DiscoverByIngredientsCa
 
     private fun setupCamera() {
         enable(binding?.iconCapture, binding?.iconFlash)
-        gone(binding?.labelPermissionsTitle, binding?.labelPermissionsSubtitle, binding?.buttonAllowPermissions)
+        gone(
+            binding?.labelPermissionsTitle,
+            binding?.labelPermissionsSubtitle,
+            binding?.buttonAllowPermissions
+        )
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
 
         cameraProviderFuture.addListener({
@@ -189,7 +202,8 @@ class DiscoverByIngredientsCameraFragment : BaseFragment<DiscoverByIngredientsCa
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     Timber.d("Photo capture succeeded: ${Uri.fromFile(photoFile)}")
-                    val compressedImageUri = requireContext().compressImageFromUri(Uri.fromFile(photoFile))
+                    val compressedImageUri =
+                        requireContext().compressImageFromUri(Uri.fromFile(photoFile))
                     viewModel.imageLabelingProcess(compressedImageUri)
                     showPhotoPreview(compressedImageUri)
                 }
@@ -234,7 +248,7 @@ class DiscoverByIngredientsCameraFragment : BaseFragment<DiscoverByIngredientsCa
 
     private fun showFoundIngredientsBottomSheet() {
         if (ingredientsBottomSheet?.isVisible != true) {
-            ingredientsBottomSheet = FoundIngredientsBottomSheet(::selectedIngredients)
+            ingredientsBottomSheet = FoundIngredientsBottomSheet(::confirmIngredients)
             ingredientsBottomSheet?.show(
                 requireActivity().supportFragmentManager,
                 ingredientsBottomSheet?.tag
@@ -242,7 +256,17 @@ class DiscoverByIngredientsCameraFragment : BaseFragment<DiscoverByIngredientsCa
         }
     }
 
-    private fun selectedIngredients(selectedIngredients: List<ImageLabelingItem>) {
+    private fun confirmIngredients(selectedIngredients: List<ImageLabelingItem>) {
         viewModel.selectedIngredients(selectedIngredients)
+        binding?.iconBack?.postDelayed({
+            findNavController().navigate(
+                DiscoverByIngredientsCameraFragmentDirections.actionIngredientsCameraFragmentPopupToIngredientsListFragment()
+            )
+        }, 300)
+    }
+
+    private fun clearCapturedImage() {
+        //  TODO
+        Timber.d("clearCapturedImage:")
     }
 }

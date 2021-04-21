@@ -16,6 +16,7 @@ import javax.inject.Inject
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
 class DiscoverByIngredientsCameraViewModel @Inject constructor(
+    private val rootRepository: DiscoverByIngredientsRepository,
     private val imageLabelingRepository: ImageLabelingRepository
 ) : BaseViewModel() {
 
@@ -24,9 +25,7 @@ class DiscoverByIngredientsCameraViewModel @Inject constructor(
 
     fun selectedIngredients(selectedIngredients: List<ImageLabelingItem>) {
         Timber.d("selectedIngredients: ${selectedIngredients.size}")
-        selectedIngredients.forEach {
-            Timber.d("selectedIngredients: $it")
-        }
+        rootRepository.addIngredients(selectedIngredients.map { it.item })
     }
 
     fun clearImageLabelingCache() {

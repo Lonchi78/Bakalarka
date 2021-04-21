@@ -20,6 +20,7 @@ interface DiscoverByIngredientsRepository {
     fun resetIngredients()
 
     fun addIngredient(value: String)
+    fun addIngredients(value: List<String>)
 
     fun removeIngredient(value: String)
 }
@@ -43,6 +44,15 @@ class DiscoverByIngredientsRepositoryImpl @Inject internal constructor(
         (ingredients.value?.toMutableList() ?: mutableListOf()).apply {
             Timber.d("addIngredient: $this`")
             this.add(value)
+            Timber.d("addIngredient: $this")
+            ingredients.postValue(this)
+        }
+    }
+
+    override fun addIngredients(value: List<String>) {
+        (ingredients.value?.toMutableList() ?: mutableListOf()).apply {
+            Timber.d("addIngredient: $this`")
+            this.addAll(value)
             Timber.d("addIngredient: $this")
             ingredients.postValue(this)
         }

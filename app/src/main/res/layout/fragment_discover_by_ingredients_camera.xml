@@ -28,8 +28,22 @@
 		android:layout_marginStart="16dp"
 		android:contentDescription="@null"
 		android:src="@drawable/ic_back"
+		android:tint="@color/white"
 		app:layout_constraintTop_toTopOf="parent"
 		app:layout_constraintStart_toStartOf="parent"/>
+
+	<ImageButton
+		android:id="@+id/iconReset"
+		style="@style/BaseImageButton"
+		android:layout_width="40dp"
+		android:layout_height="40dp"
+		android:layout_marginTop="32dp"
+		android:layout_marginEnd="16dp"
+		android:contentDescription="@null"
+		android:src="@drawable/ic_reset_24"
+		android:tint="@color/white"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"/>
 
 	<ImageButton
 		android:id="@+id/iconCapture"
@@ -59,13 +73,12 @@
 
 	<TextView
 		android:id="@+id/labelPermissionsTitle"
+		style="@style/TextHeadline1"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:textColor="@color/rootWhite"
-		android:textSize="24sp"
-		android:textStyle="bold"
-		android:paddingStart="32dp"
-		android:paddingEnd="32dp"
+		android:paddingStart="16dp"
+		android:paddingEnd="16dp"
 		android:textAlignment="center"
 		android:text="@string/camera_permission_title"
 		app:layout_constraintBottom_toTopOf="@id/labelPermissionsSubtitle"
@@ -76,12 +89,12 @@
 
 	<TextView
 		android:id="@+id/labelPermissionsSubtitle"
+		style="@style/TextBodySmallRegular"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:textColor="@color/rootWhite"
-		android:textSize="14sp"
-		android:paddingStart="32dp"
-		android:paddingEnd="32dp"
+		android:paddingStart="48dp"
+		android:paddingEnd="48dp"
 		android:layout_marginTop="12dp"
 		android:textAlignment="center"
 		android:text="@string/camera_permission_subtitle"
@@ -92,14 +105,18 @@
 
 	<com.google.android.material.button.MaterialButton
 		android:id="@+id/buttonAllowPermissions"
+		style="@style/ContainedButton"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="40dp"
+		android:layout_marginTop="48dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginEnd="16dp"
+		android:layout_marginBottom="16dp"
 		android:text="@string/camera_permission_button"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@id/labelPermissionsSubtitle"
-		app:layout_constraintBottom_toBottomOf="parent"/>
+		app:layout_constraintBottom_toBottomOf="parent" />
 
 	<androidx.coordinatorlayout.widget.CoordinatorLayout
 		android:id="@+id/snackbarRoot"
