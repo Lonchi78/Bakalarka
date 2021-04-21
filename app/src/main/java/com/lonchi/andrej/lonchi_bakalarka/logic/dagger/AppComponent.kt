@@ -58,6 +58,8 @@ import javax.inject.Singleton
             CreateRecipeIngredientsModule::class,
             DiscoverByIngredientsAddModule::class,
             DiscoverByIngredientsResultsModule::class,
+            DiscoverByIngredientModule::class,
+            DiscoverByIngredientsCameraModule::class,
             CreateRecipeAddInstructionModule::class,
             CreateRecipeAddIngredientModule::class,
             CreateRecipeFinalizeModule::class,
@@ -67,7 +69,6 @@ import javax.inject.Singleton
             CreateRecipeSuccessModule::class,
             RemoveFromMealPlanModule::class,
             LoginModule::class,
-            DiscoverByIngredientModule::class,
             CreateRecipeModule::class,
             MainFragmentModule::class])
 interface AppComponent {

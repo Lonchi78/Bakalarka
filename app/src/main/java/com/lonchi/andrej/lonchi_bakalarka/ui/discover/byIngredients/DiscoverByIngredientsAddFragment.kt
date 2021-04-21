@@ -4,11 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.speech.RecognizerIntent
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentDiscoverByIngredientsAddBinding
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.hideKeyboard
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.openKeyboard
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraActivity
 import timber.log.Timber
 
 
@@ -36,7 +38,10 @@ class DiscoverByIngredientsAddFragment : BaseFragment<DiscoverByIngredientsAddVi
         }
 
         binding?.buttonImageInput?.setOnClickListener {
-            //  TODO - connect to image labeling
+            requireActivity().hideKeyboard()
+            findNavController().navigate(
+                DiscoverByIngredientsAddFragmentDirections.actionIngredientsAddFragmentToIngredientsCameraFragment()
+            )
         }
         binding?.buttonVoiceInput?.setOnClickListener {
             requireActivity().hideKeyboard()

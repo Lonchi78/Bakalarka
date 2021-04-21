@@ -65,7 +65,15 @@
         android:id="@+id/ingredientsAddFragment"
         android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsAddFragment"
         android:label="fragment_ingredients_add"
-        tools:layout="@layout/fragment_discover_by_ingredients_add" />
+        tools:layout="@layout/fragment_discover_by_ingredients_add" >
+        <action
+            android:id="@+id/action_ingredientsAddFragment_to_ingredientsCameraFragment"
+            app:destination="@id/ingredientsCameraFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/ingredientsResultsFragment"
@@ -84,5 +92,11 @@
         android:name="com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.add.AddToMealPlannerFragment"
         android:label="fragment_add_to_meal_planner"
         tools:layout="@layout/fragment_add_to_meal_planner"/>
+
+    <fragment
+        android:id="@+id/ingredientsCameraFragment"
+        android:name="com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsCameraFragment"
+        android:label="fragment_ingredients_camera"
+        tools:layout="@layout/activity_camera"/>
 
 </navigation>

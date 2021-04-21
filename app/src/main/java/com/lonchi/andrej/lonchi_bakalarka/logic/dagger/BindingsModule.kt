@@ -18,13 +18,10 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.diets.DietsViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byQuery.DiscoverByQueryViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.FilterViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.*
 import com.lonchi.andrej.lonchi_bakalarka.ui.favourites.FavouritesViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.fragment.FragmentViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeViewModel
-import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsViewModel
-import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsListViewModel
-import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsResultsViewModel
-import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.DiscoverByIngredientsAddViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.MealPlannerViewModel
@@ -308,6 +305,14 @@ abstract class DiscoverByIngredientsAddModule {
     @IntoMap
     @ViewModelKey(DiscoverByIngredientsAddViewModel::class)
     abstract fun bindsDiscoverByIngredientsAddViewModel(viewModel: DiscoverByIngredientsAddViewModel): ViewModel
+}
+
+@Module
+abstract class DiscoverByIngredientsCameraModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(DiscoverByIngredientsCameraViewModel::class)
+    abstract fun bindsDiscoverByIngredientsCameraViewModel(viewModel: DiscoverByIngredientsCameraViewModel): ViewModel
 }
 
 @Module

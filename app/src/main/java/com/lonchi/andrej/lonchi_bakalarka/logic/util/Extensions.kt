@@ -31,26 +31,26 @@ import java.util.*
  */
 /* * * * * * * * * * * * * * * ENABLE * * * * * * * * * * * * * * * * */
 
-fun enable(vararg views: View) {
-    views.forEach { it.isEnabled = true }
+fun enable(vararg views: View?) {
+    views.forEach { it?.isEnabled = true }
 }
 
-fun disable(vararg views: View) {
-    views.forEach { it.isEnabled = false }
+fun disable(vararg views: View?) {
+    views.forEach { it?.isEnabled = false }
 }
 
 /* * * * * * * * * * * * * * * VISIBILITY * * * * * * * * * * * * * * * * */
 
-fun gone(vararg views: View) {
-    views.forEach { it.visibility = View.GONE }
+fun gone(vararg views: View?) {
+    views.forEach { it?.visibility = View.GONE }
 }
 
-fun visible(vararg views: View) {
-    views.forEach { it.visibility = View.VISIBLE }
+fun visible(vararg views: View?) {
+    views.forEach { it?.visibility = View.VISIBLE }
 }
 
-fun invisible(vararg views: View) {
-    views.forEach { it.visibility = View.INVISIBLE }
+fun invisible(vararg views: View?) {
+    views.forEach { it?.visibility = View.INVISIBLE }
 }
 
 fun View.isVisible(): Boolean = this.visibility == View.VISIBLE
