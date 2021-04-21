@@ -12,4 +12,8 @@ class MealPlan() {
     var breakfast: List<Recipe>? = listOf()
     var lunch: List<Recipe>? = listOf()
     var dinner: List<Recipe>? = listOf()
+
+    override fun toString(): String {
+        return "MealPan { date = $date, breakfast = $breakfast, lunch = $lunch, dinner = $dinner }"
+    }
 }

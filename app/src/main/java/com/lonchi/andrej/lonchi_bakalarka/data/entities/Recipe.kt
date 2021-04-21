@@ -64,4 +64,9 @@ open class Recipe : RecipeItem {
     override fun getAllCuisines(): List<String?>? = this.cuisines
 
     override fun getRecipeSourceUrl(): String? = this.sourceUrl
+
+    override fun toString(): String {
+        return "Recipe { idRestApi = $idRestApi, idType = ${getRecipeIdType()}, " +
+                "title = $title, readyInMinutes = $readyInMinutes }"
+    }
 }

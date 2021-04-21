@@ -93,22 +93,19 @@ class MealPlanRepositoryImpl @Inject internal constructor(
         when (time) {
             MealPlanEnum.BREAKFAST -> {
                 val tmp = mealPlan.breakfast?.toMutableList() ?: mutableListOf()
-                tmp.remove(recipe)
-                mealPlan.breakfast = tmp
+                mealPlan.breakfast = tmp.filter { it.getId() != recipe.getId() }
             }
             MealPlanEnum.LUNCH -> {
                 val tmp = mealPlan.lunch?.toMutableList() ?: mutableListOf()
-                tmp.remove(recipe)
-                mealPlan.lunch = tmp
+                mealPlan.lunch = tmp.filter { it.getId() != recipe.getId() }
             }
             MealPlanEnum.DINNER -> {
                 val tmp = mealPlan.dinner?.toMutableList() ?: mutableListOf()
-                tmp.remove(recipe)
-                mealPlan.dinner = tmp
+                mealPlan.dinner = tmp.filter { it.getId() != recipe.getId() }
             }
         }
 
-        db.mealPlanDao().saveMealPlan(mealPlan)
+        db.mealPlanDao().update(mealPlan)
         userRepository.updateMealPlans()
     }
 }
