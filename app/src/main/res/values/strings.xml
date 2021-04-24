@@ -179,6 +179,7 @@
 	<string name="label_cuisines">Cuisines</string>
 	<string name="label_diets">Diets</string>
 	<string name="label_source">Source</string>
+	<string name="bottom_sheet_custom_recipe_delete">Delete recipe</string>
 
 	<!--	Create recipe	-->
 	<string name="create_recipe_button_next">Next</string>

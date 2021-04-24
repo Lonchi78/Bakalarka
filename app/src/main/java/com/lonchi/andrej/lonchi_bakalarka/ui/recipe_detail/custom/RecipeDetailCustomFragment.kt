@@ -16,18 +16,19 @@ import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.IngredientRowsAdapter
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.InstructionRowsAdapter
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeDetailFragmentArgs
-import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeDetailFragmentDirections
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
-class RecipeDetailCustomFragment : BaseFragment<RecipeDetailCustomViewModel, FragmentRecipeDetailCustomBinding>() {
+class RecipeDetailCustomFragment :
+    BaseFragment<RecipeDetailCustomViewModel, FragmentRecipeDetailCustomBinding>() {
     companion object {
         fun newInstance() = RecipeDetailCustomFragment()
     }
 
     override val layoutId: Int = R.layout.fragment_recipe_detail_custom
-    override val vmClassToken: Class<RecipeDetailCustomViewModel> = RecipeDetailCustomViewModel::class.java
+    override val vmClassToken: Class<RecipeDetailCustomViewModel> =
+        RecipeDetailCustomViewModel::class.java
     override val bindingInflater: (View) -> FragmentRecipeDetailCustomBinding =
         { FragmentRecipeDetailCustomBinding.bind(it) }
 
@@ -42,6 +43,7 @@ class RecipeDetailCustomFragment : BaseFragment<RecipeDetailCustomViewModel, Fra
             context = requireContext()
         )
     }
+    private var removeFromMealPlanBottomSheet: MoreCustomRecipeBottomSheet? = null
 
     override fun initView() {
         (requireActivity() as? MainActivity)?.hideBottomNavigation()
@@ -52,9 +54,8 @@ class RecipeDetailCustomFragment : BaseFragment<RecipeDetailCustomViewModel, Fra
                 RecipeDetailCustomFragmentDirections.actionGlobalAddToMealPlannerFragment()
             )
         }
-        binding?.iconBack?.setOnClickListener {
-            requireActivity().onBackPressed()
-        }
+        binding?.iconBack?.setOnClickListener { requireActivity().onBackPressed() }
+        binding?.iconMore?.setOnClickListener { showRemoveFromMealPlanBottomSheet() }
     }
 
     override fun bindViewModel() {
@@ -72,6 +73,11 @@ class RecipeDetailCustomFragment : BaseFragment<RecipeDetailCustomViewModel, Fra
         }
     }
 
+    override fun onDestroyView() {
+        removeFromMealPlanBottomSheet?.dismiss()
+        super.onDestroyView()
+    }
+
     private fun handleArguments() {
         arguments?.let {
             viewModel.handleInputArguments(
@@ -79,6 +85,23 @@ class RecipeDetailCustomFragment : BaseFragment<RecipeDetailCustomViewModel, Fra
                 recipeIdType = RecipeDetailFragmentArgs.fromBundle(it).idType
             )
         }
+    }
+
+    private fun showRemoveFromMealPlanBottomSheet() {
+        if (removeFromMealPlanBottomSheet?.isVisible != true) {
+            removeFromMealPlanBottomSheet = MoreCustomRecipeBottomSheet { onDeleteRecipeClick() }
+            removeFromMealPlanBottomSheet?.show(
+                requireActivity().supportFragmentManager,
+                removeFromMealPlanBottomSheet?.tag
+            )
+        }
+    }
+
+    private fun onDeleteRecipeClick() {
+        viewModel.deleteRecipe()
+        binding?.toolbar?.postDelayed({
+            requireActivity().onBackPressed()
+        }, 500)
     }
 
     private fun handleRecipeDetail(recipe: RecipeItem?) {
@@ -145,7 +168,8 @@ class RecipeDetailCustomFragment : BaseFragment<RecipeDetailCustomViewModel, Fra
 
     private fun setupRecipeIntolerances(recipe: RecipeItem?) {
         if (recipe?.getAllIntolerances()?.isNullOrEmpty() == null ||
-            recipe.getAllIntolerances()?.isNullOrEmpty() == true ) {
+            recipe.getAllIntolerances()?.isNullOrEmpty() == true
+        ) {
             binding?.labelIntolerances?.setVisible(false)
             binding?.chipGroupIntolerances?.setVisible(false)
         } else {
@@ -168,7 +192,8 @@ class RecipeDetailCustomFragment : BaseFragment<RecipeDetailCustomViewModel, Fra
 
     private fun setupRecipeDiets(recipe: RecipeItem?) {
         if (recipe?.getAllDiets()?.isNullOrEmpty() == null ||
-            recipe.getAllDiets()?.isNullOrEmpty() == true ) {
+            recipe.getAllDiets()?.isNullOrEmpty() == true
+        ) {
             binding?.labelDiets?.setVisible(false)
             binding?.chipGroupDiets?.setVisible(false)
         } else {

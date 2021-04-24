@@ -508,6 +508,7 @@
                 android:layout_height="40dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/bg_toolbar_icon"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -521,6 +522,7 @@
                 android:rotation="90"
                 android:src="@drawable/ic_more_24"
                 android:tint="@color/white"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@id/iconMoreBackground"
                 app:layout_constraintEnd_toEndOf="@id/iconMoreBackground"
                 app:layout_constraintStart_toStartOf="@id/iconMoreBackground"

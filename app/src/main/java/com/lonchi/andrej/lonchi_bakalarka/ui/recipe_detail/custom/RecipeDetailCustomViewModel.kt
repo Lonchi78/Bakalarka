@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Recipe
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeFavourite
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeItem
+import com.lonchi.andrej.lonchi_bakalarka.data.repository.CreateRecipeRepository
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.MealPlanRepository
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.RecipesRepository
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
@@ -21,7 +22,8 @@ import javax.inject.Inject
  */
 class RecipeDetailCustomViewModel @Inject constructor(
     private val recipesRepository: RecipesRepository,
-    private val mealPlanRepository: MealPlanRepository
+    private val mealPlanRepository: MealPlanRepository,
+    private val createRecipeRepository: CreateRecipeRepository
 ) : BaseViewModel() {
 
     val stateRecipeDetail: MutableLiveData<Resource<Recipe>> = MutableLiveData<Resource<Recipe>>().apply {
@@ -47,9 +49,11 @@ class RecipeDetailCustomViewModel @Inject constructor(
         this.recipeIdType = recipeIdType
     }
 
-    fun addToFavourites(recipe: Recipe) = recipesRepository.addRecipeToFavourites(recipe)
-
-    fun removeFromFavourites(recipe: RecipeFavourite) = recipesRepository.removeRecipeToFavourites(recipe.getId())
+    fun deleteRecipe() {
+        this.recipeId?.let {
+            createRecipeRepository.deleteRecipe(it)
+        }
+    }
 
     private fun getFavouriteRecipeDetail(uid: String) {
         compositeDisposable.add(

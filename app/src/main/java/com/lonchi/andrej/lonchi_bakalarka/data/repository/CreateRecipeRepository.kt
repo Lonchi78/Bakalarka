@@ -40,6 +40,8 @@ interface CreateRecipeRepository {
 
     fun createNewRecipe()
 
+    fun deleteRecipe(recipeId: String)
+
     fun setRecipeName(name: String)
 
     fun setRecipeCookingTime(hours: Int, minutes: Int)
@@ -83,6 +85,11 @@ class CreateRecipeRepositoryImpl @Inject internal constructor(
 
     override fun createNewRecipe() {
         newRecipe.postValue(Resource.success(RecipeCustom()))
+    }
+
+    override fun deleteRecipe(recipeId: String) {
+        db.customRecipesDao().deleteRecipe(recipeId)
+        userRepository.updateCustomRecipes()
     }
 
     override fun setRecipeName(name: String) {
