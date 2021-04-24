@@ -14,24 +14,10 @@ import javax.inject.Inject
  * @author Andrej Lončík <andrej.loncik@dactylgroup.com>
  */
 class FoundIngredientsViewModel @Inject constructor(
-    private val userRepository: UserRepository,
     private val imageLabelingRepository: ImageLabelingRepository
 ) : BaseViewModel() {
-
-    val foundIngredients: MutableLiveData<List<Ingredient>> = MutableLiveData<List<Ingredient>>().apply {
-        postValue(mockData())
-    }
 
     val imageLabelingState: MutableLiveData<Resource<ImageLabelingResponse>> =
         imageLabelingRepository.imageLabelingState
 
-    private fun mockData(): List<Ingredient> {
-        val tmp = mutableListOf<Ingredient>()
-        for (i in 0..9) {
-            tmp.add(
-                Ingredient(i.toLong(), "Ingredient $i")
-            )
-        }
-        return tmp
-    }
 }

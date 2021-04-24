@@ -11,7 +11,7 @@
 
 	<dimen name="item_ingredient_expected_height">56dp</dimen>
 	<!--	5 * 56dp = 560dp	-->
-	<dimen name="recycler_found_ingredient_max_height">280dp</dimen>
+	<dimen name="recycler_found_ingredient_max_height">360dp</dimen>
 
 	<!-- - - - - - Progress Dialog - - - - - - -->
 	<dimen name="progress_dialog_corner_radius">16dp</dimen>

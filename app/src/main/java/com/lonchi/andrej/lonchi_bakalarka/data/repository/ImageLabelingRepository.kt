@@ -30,12 +30,13 @@ import javax.inject.Inject
  */
 interface ImageLabelingRepository {
     companion object {
-        const val DEFAULT_CONFIDENCE_THRESHOLD = 0.7f
+        const val DEFAULT_CONFIDENCE_THRESHOLD = 0.70f
     }
 
     val imageLabelingState: MutableLiveData<Resource<ImageLabelingResponse>>
 
     fun clearImageLabelingCache()
+
     fun firebaseImageLabelingOnCloud(
         imageUri: Uri?,
         confidenceThreshold: Float = DEFAULT_CONFIDENCE_THRESHOLD
