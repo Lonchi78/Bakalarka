@@ -7,6 +7,7 @@ import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeCustom
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeItem
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentOwnRecipesBinding
+import com.lonchi.andrej.lonchi_bakalarka.logic.util.setVisible
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipes.RecipeRowsAdapter
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeFragmentDirections
@@ -54,9 +55,11 @@ class OwnRecipesFragment : BaseFragment<OwnRecipesViewModel, FragmentOwnRecipesB
         binding?.chipCounter?.text = recipes.size.toString()
 
         if (recipes.isNullOrEmpty()) {
-            //  TODO - add empty state
+            binding?.recyclerRecipes?.setVisible(false)
+            binding?.emptyLayoutOwnRecipes?.setVisible(true)
         } else {
-            //  TODO - hide added empty state
+            binding?.recyclerRecipes?.setVisible(true)
+            binding?.emptyLayoutOwnRecipes?.setVisible(false)
             adapterRecipes.submitList(recipes)
         }
     }
