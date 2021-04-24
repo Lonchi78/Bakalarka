@@ -19,6 +19,16 @@
 		android:contentDescription="@null"
 		android:visibility="gone" />
 
+	<View
+		android:id="@+id/iconBackBackground"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:background="@drawable/bg_toolbar_icon"
+		app:layout_constraintEnd_toEndOf="@id/iconBack"
+		app:layout_constraintStart_toStartOf="@id/iconBack"
+		app:layout_constraintBottom_toBottomOf="@id/iconBack"
+		app:layout_constraintTop_toTopOf="@id/iconBack"/>
+
 	<ImageButton
 		android:id="@+id/iconBack"
 		style="@style/BaseImageButton"
@@ -31,6 +41,16 @@
 		android:tint="@color/white"
 		app:layout_constraintTop_toTopOf="parent"
 		app:layout_constraintStart_toStartOf="parent"/>
+
+	<View
+		android:id="@+id/iconResetBackground"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:background="@drawable/bg_toolbar_icon"
+		app:layout_constraintEnd_toEndOf="@id/iconReset"
+		app:layout_constraintStart_toStartOf="@id/iconReset"
+		app:layout_constraintBottom_toBottomOf="@id/iconReset"
+		app:layout_constraintTop_toTopOf="@id/iconReset"/>
 
 	<ImageButton
 		android:id="@+id/iconReset"

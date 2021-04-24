@@ -1,7 +1,7 @@
 package com.lonchi.andrej.lonchi_bakalarka.logic.dagger
 
 import com.lonchi.andrej.lonchi_bakalarka.ui.allergens.AllergensFragment
-import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsBottomSheet
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.bottom_sheet.FoundIngredientsBottomSheet
 import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.finalize.*
 import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.ingredients.CreateRecipeAddIngredientFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.ingredients.CreateRecipeIngredientsFragment

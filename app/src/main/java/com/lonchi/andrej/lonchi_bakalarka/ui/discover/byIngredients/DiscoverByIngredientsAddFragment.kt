@@ -10,7 +10,6 @@ import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentDiscoverByIngredie
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.hideKeyboard
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.openKeyboard
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
-import com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraActivity
 import timber.log.Timber
 
 

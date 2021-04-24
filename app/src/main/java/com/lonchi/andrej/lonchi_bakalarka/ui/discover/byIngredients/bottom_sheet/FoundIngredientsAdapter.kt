@@ -1,4 +1,4 @@
-package com.lonchi.andrej.lonchi_bakalarka.ui.camera.adapter
+package com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.bottom_sheet
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.lonchi.andrej.lonchi_bakalarka.R
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.Ingredient
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.ImageLabelingItem
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.reverseVisibility
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.setVisible

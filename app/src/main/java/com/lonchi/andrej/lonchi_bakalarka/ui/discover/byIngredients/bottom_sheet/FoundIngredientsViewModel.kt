@@ -1,4 +1,4 @@
-package com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet
+package com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.bottom_sheet
 
 import androidx.lifecycle.MutableLiveData
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Ingredient

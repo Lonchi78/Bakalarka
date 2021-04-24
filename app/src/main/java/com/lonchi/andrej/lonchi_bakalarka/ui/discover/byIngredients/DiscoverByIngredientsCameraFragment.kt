@@ -23,7 +23,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentDiscoverByIngredientsCameraBinding
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.*
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
-import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsBottomSheet
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.bottom_sheet.FoundIngredientsBottomSheet
 import timber.log.Timber
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -57,7 +57,7 @@ class DiscoverByIngredientsCameraFragment :
     override fun initView() {
         cameraExecutor = Executors.newSingleThreadExecutor()
 
-        binding?.iconReset?.setOnClickListener { clearCapturedImage() }
+        binding?.iconReset?.setOnClickListener { resetPhotoPreview() }
         binding?.iconBack?.setOnClickListener { requireActivity().onBackPressed() }
         binding?.iconFlash?.setOnClickListener { changeFlashMode() }
         binding?.iconCapture?.setOnClickListener { capturePhoto() }
@@ -246,6 +246,11 @@ class DiscoverByIngredientsCameraFragment :
         }
     }
 
+    private fun resetPhotoPreview() {
+        visible(binding?.iconCapture, binding?.iconFlash)
+        binding?.imageCaptured?.setVisible(false)
+    }
+
     private fun showFoundIngredientsBottomSheet() {
         if (ingredientsBottomSheet?.isVisible != true) {
             ingredientsBottomSheet = FoundIngredientsBottomSheet(::confirmIngredients)
@@ -263,10 +268,5 @@ class DiscoverByIngredientsCameraFragment :
                 DiscoverByIngredientsCameraFragmentDirections.actionIngredientsCameraFragmentPopupToIngredientsListFragment()
             )
         }, 300)
-    }
-
-    private fun clearCapturedImage() {
-        //  TODO
-        Timber.d("clearCapturedImage:")
     }
 }

@@ -1,4 +1,4 @@
-package com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet
+package com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.bottom_sheet
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,7 +15,6 @@ import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.ImageLabelingItem
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.BottomSheetFoundIngredientsBinding
-import com.lonchi.andrej.lonchi_bakalarka.ui.camera.adapter.FoundIngredientsAdapter
 import javax.inject.Inject
 
 
