@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 
 /**
- * @author Andrej Lončík <andrej.loncik@dactylgroup.com>
+ * @author Andrej Lončík <andrejloncik@gmail.com>
  */
 class RemoveFromMealPlanViewModel @Inject constructor(
     private val mealPlanRepository: MealPlanRepository

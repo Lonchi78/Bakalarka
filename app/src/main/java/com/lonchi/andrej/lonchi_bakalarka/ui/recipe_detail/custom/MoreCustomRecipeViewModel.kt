@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 
 /**
- * @author Andrej Lončík <andrej.loncik@dactylgroup.com>
+ * @author Andrej Lončík <andrejloncik@gmail.com>
  */
 class MoreCustomRecipeViewModel @Inject constructor(
     private val createRecipeRepository: CreateRecipeRepository

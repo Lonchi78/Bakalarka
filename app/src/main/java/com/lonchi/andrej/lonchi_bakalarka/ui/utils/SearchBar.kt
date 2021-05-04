@@ -56,20 +56,20 @@ class SearchBar : BaseView<SearchBarBinding> {
     }
 
     fun handleLayoutSettings() {
-        binding?.dactylSearchPlaceholder?.text = placeholderText
-        startIconDrawableId?.let { binding?.dactylSearchIcon?.setImageResource(it) }
+        binding?.searchPlaceholder2?.text = placeholderText
+        startIconDrawableId?.let { binding?.searchIcon?.setImageResource(it) }
     }
 
     fun setPlaceholderText(text: String?) {
         placeholderText = text
-        binding?.dactylSearchPlaceholder?.text = text
+        binding?.searchPlaceholder2?.text = text
     }
 
-    fun getPlaceholderText(): String = binding?.dactylSearchPlaceholder?.text.toString()
+    fun getPlaceholderText(): String = binding?.searchPlaceholder2?.text.toString()
 
     fun setStartIconDrawable(drawableId: Int?) {
         this.startIconDrawableId = drawableId
-        startIconDrawableId?.let { binding?.dactylSearchIcon?.setImageResource(it) }
+        startIconDrawableId?.let { binding?.searchIcon?.setImageResource(it) }
     }
 
     fun setOnClickListener(action: () -> Unit) {

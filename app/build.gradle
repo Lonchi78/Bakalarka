@@ -196,7 +196,7 @@ dependencies {
 
 static def versionCodeFromDate() {
     def date = new Date()
-    def formattedDate = date.format('yyMMddHHmm')
+    def formattedDate = date.format('yyMMddHH')
     return Integer.valueOf(formattedDate)
 }
 

@@ -5,6 +5,6 @@ import javax.inject.Inject
 
 
 /**
- * @author Andrej Lončík <andrej.loncik@dactylgroup.com>
+ * @author Andrej Lončík <andrejloncik@gmail.com>
  */
 class AddToMealPlanViewModel @Inject constructor() : BaseViewModel()

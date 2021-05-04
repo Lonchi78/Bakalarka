@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 
 /**
- * @author Andrej Lončík <andrej.loncik@dactylgroup.com>
+ * @author Andrej Lončík <andrejloncik@gmail.com>
  */
 class FoundIngredientsViewModel @Inject constructor(
     private val imageLabelingRepository: ImageLabelingRepository
