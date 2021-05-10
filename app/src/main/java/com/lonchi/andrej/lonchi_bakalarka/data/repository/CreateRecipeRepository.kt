@@ -19,7 +19,6 @@ import com.lonchi.andrej.lonchi_bakalarka.data.entities.NutritionWrapper.Compani
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.database.LonchiDatabase
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.preferences.SharedPreferencesInterface
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RestApi
-import com.lonchi.andrej.lonchi_bakalarka.data.utils.DeviceTracker
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
 import retrofit2.Retrofit
 import timber.log.Timber
@@ -66,7 +65,6 @@ class CreateRecipeRepositoryImpl @Inject internal constructor(
     db: LonchiDatabase,
     private val prefs: SharedPreferencesInterface,
     retrofit: Retrofit,
-    private val deviceTracker: DeviceTracker,
     private val context: Context,
     private val userRepository: UserRepository
 ) : BaseRepository(db, api, prefs, retrofit), CreateRecipeRepository {

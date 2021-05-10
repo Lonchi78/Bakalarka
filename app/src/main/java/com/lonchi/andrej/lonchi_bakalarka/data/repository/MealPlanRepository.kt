@@ -6,16 +6,13 @@ import com.lonchi.andrej.lonchi_bakalarka.data.base.BaseRepository
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.MealPlan
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.MealPlanEnum
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Recipe
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeItem
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.database.LonchiDatabase
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.preferences.SharedPreferencesInterface
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RestApi
-import com.lonchi.andrej.lonchi_bakalarka.data.utils.DeviceTracker
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
 import io.reactivex.Single
 import retrofit2.Retrofit
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -38,7 +35,6 @@ class MealPlanRepositoryImpl @Inject internal constructor(
     db: LonchiDatabase,
     private val prefs: SharedPreferencesInterface,
     retrofit: Retrofit,
-    private val deviceTracker: DeviceTracker,
     private val userRepository: UserRepository
 ) : BaseRepository(db, api, prefs, retrofit), MealPlanRepository {
 

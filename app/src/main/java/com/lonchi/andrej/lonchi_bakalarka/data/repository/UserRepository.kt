@@ -12,22 +12,16 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import com.lonchi.andrej.lonchi_bakalarka.data.base.BaseRepository
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.*
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.database.LonchiDatabase
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.preferences.SharedPreferencesInterface
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RestApi
-import com.lonchi.andrej.lonchi_bakalarka.data.base.BaseRepository
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.*
-import com.lonchi.andrej.lonchi_bakalarka.data.utils.DeviceTracker
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.mapToUser
-import io.reactivex.Completable
-import io.reactivex.Flowable
-import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.functions.BiFunction
-import io.reactivex.functions.Function5
 import retrofit2.Retrofit
 import timber.log.Timber
 import javax.inject.Inject
@@ -85,7 +79,6 @@ class UserRepositoryImpl @Inject internal constructor(
     db: LonchiDatabase,
     private val prefs: SharedPreferencesInterface,
     retrofit: Retrofit,
-    private val deviceTracker: DeviceTracker,
     private val context: Context
 ) : BaseRepository(db, api, prefs, retrofit), UserRepository {
 

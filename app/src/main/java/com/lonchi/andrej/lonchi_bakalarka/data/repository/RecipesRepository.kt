@@ -12,7 +12,6 @@ import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.JokeResponse
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RecipesResponse
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RestApi
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.SearchRecipesResponse
-import com.lonchi.andrej.lonchi_bakalarka.data.utils.DeviceTracker
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
@@ -51,7 +50,6 @@ class RecipesRepositoryImpl @Inject internal constructor(
     db: LonchiDatabase,
     private val prefs: SharedPreferencesInterface,
     retrofit: Retrofit,
-    private val deviceTracker: DeviceTracker,
     private val userRepository: UserRepository
 ) : BaseRepository(db, api, prefs, retrofit), RecipesRepository {
 

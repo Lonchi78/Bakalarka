@@ -4,7 +4,6 @@ import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.ml.vision.FirebaseVision
-import com.google.firebase.ml.vision.cloud.FirebaseVisionCloudDetectorOptions
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.label.FirebaseVisionCloudImageLabelerOptions
 import com.lonchi.andrej.lonchi_bakalarka.data.base.BaseRepository
@@ -13,13 +12,9 @@ import com.lonchi.andrej.lonchi_bakalarka.data.repository.preferences.SharedPref
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.ImageLabelingResponse
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RestApi
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.toImageLabelingResponse
-import com.lonchi.andrej.lonchi_bakalarka.data.utils.DeviceTracker
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.Resource
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.uriToBitmap
-import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 import timber.log.Timber
 import javax.inject.Inject
@@ -48,7 +43,6 @@ class ImageLabelingRepositoryImpl @Inject internal constructor(
     db: LonchiDatabase,
     private val prefs: SharedPreferencesInterface,
     retrofit: Retrofit,
-    private val deviceTracker: DeviceTracker,
     private val appContext: Context,
 ) : BaseRepository(db, api, prefs, retrofit), ImageLabelingRepository {
 
