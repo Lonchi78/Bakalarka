@@ -170,7 +170,7 @@ abstract class BaseFragment<T, V : ViewBinding> : DaggerFragment() where T : Bas
         sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
 
         // Adding an extra language, you can use any language from the Locale class
-        sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.ENGLISH)
+        sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,  "en-US")
 
         // Text that shows up on the Speech input prompt
         sttIntent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.speech_to_text_hint))
