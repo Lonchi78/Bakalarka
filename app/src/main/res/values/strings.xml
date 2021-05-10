@@ -79,6 +79,7 @@
 	<string name="discover_example_ingredient_red_onion">Red onion</string>
 	<string name="discover_example_ingredient_egg">Egg</string>
 	<string name="discover_title">Discover</string>
+	<string name="discover_empty_results">No recipes matching your criteria :(</string>
 	<string name="discover_search_by_ingredients">Search by ingredients?</string>
 	<string name="discover_search_by_ingredients_chip">Try</string>
 	<string name="discover_quick_search">Quick search</string>
@@ -267,7 +268,7 @@
 	<string name="filter_fat">Fat</string>
 	<string name="filter_carbs">Carbs</string>
 	<string name="filter_gram_value">%d g</string>
-	<string name="filter_calories_value">%d g</string>
+	<string name="filter_calories_value">%d cal</string>
 	<string name="filter_save_filters">Save filters</string>
 
 	<!--	Others	-->

@@ -21,9 +21,12 @@ class DiscoverByQueryViewModel @Inject constructor(
     }
 
     fun searchRecipesByQuery(query: String) {
-        Timber.d("serachRecipesByQuery: $query")
+        compositeDisposable.clear()
         compositeDisposable.add(
             recipesRepository.searchRecipesByQuery(query)
+                .doOnSubscribe {
+                    searchRecipeState.postValue(Resource.loading())
+                }
                 .subscribe({ response ->
                     Timber.d("searchRecipesByQuery status: ${response.status}")
                     Timber.d("searchRecipesByQuery errId: ${response.errorIdentification}")

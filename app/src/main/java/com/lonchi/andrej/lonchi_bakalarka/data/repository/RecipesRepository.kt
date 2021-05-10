@@ -20,6 +20,7 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -107,12 +108,14 @@ class RecipesRepositoryImpl @Inject internal constructor(
             .observeOn(AndroidSchedulers.mainThread())
 
     override fun searchRecipesByQuery(query: String): Single<Resource<SearchRecipesResponse>> {
-        val filterResource = userRepository.actualFilter.value
-        val filterData = filterResource?.data
+        val filterResource = db.filterDao().listAllBlocking().firstOrNull()?.let {
+            Resource.success(it)
+        } ?: Resource.notStarted()
+        val filterData = filterResource.data
 
-        if (filterResource?.status is SuccessStatus && filterData != null && filterData != Filter()) {
-            val diets = userRepository.getUserDietsBlocking()
-            val intolerances = userRepository.getUserIntolerancesBlocking()
+        if (filterResource.status is SuccessStatus && filterData != null && filterData != Filter()) {
+            val diets = if (filterData.includeDiets) userRepository.getUserDietsBlocking() else listOf()
+            val intolerances = if (filterData.includeIntolerances) userRepository.getUserIntolerancesBlocking() else listOf()
 
             return api.searchRecipesByQuery(
                 apiKey = BuildConfig.API_KEY,

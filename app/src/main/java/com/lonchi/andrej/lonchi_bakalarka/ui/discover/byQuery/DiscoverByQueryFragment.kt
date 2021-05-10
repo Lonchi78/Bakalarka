@@ -15,6 +15,7 @@ import com.lonchi.andrej.lonchi_bakalarka.data.utils.SuccessStatus
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentDiscoverByQueryBinding
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.hideKeyboard
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.openKeyboard
+import com.lonchi.andrej.lonchi_bakalarka.logic.util.setVisible
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.RecipeDiscoverRowsAdapter
@@ -72,19 +73,27 @@ class DiscoverByQueryFragment : BaseFragment<DiscoverByQueryViewModel, FragmentD
         )
 
         viewModel.searchRecipeState.observe(viewLifecycleOwner) {
-            showProgressDialog(it.status is LoadingStatus)
+            binding?.progressBarSearching?.setVisible(it.status is LoadingStatus)
 
             when (it.status) {
+                is LoadingStatus -> {
+                    binding?.labelEmptyResults?.setVisible(false)
+                }
                 is SuccessStatus -> {
                     if (it.data != null) {
                         if (it.data.results.isNullOrEmpty()) {
-                            //  show empty state
+                            binding?.labelEmptyResults?.setVisible(true)
+                            binding?.recyclerRecipes?.setVisible(false)
                         } else {
+                            binding?.labelEmptyResults?.setVisible(false)
+                            binding?.recyclerRecipes?.setVisible(true)
                             adapterRecipes.submitList(it.data.results)
                         }
                     } else showErrorSnackbar(ErrorIdentification.Unknown())
                 }
-                is ErrorStatus -> showErrorSnackbar(it.errorIdentification)
+                is ErrorStatus -> {
+                    showErrorSnackbar(it.errorIdentification)
+                }
                 else -> Unit
             }
         }

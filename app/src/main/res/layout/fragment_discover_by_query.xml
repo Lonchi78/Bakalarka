@@ -65,6 +65,15 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:placeholderText="@string/discover_search_bar_placeholder" />
 
+    <ProgressBar
+        android:id="@+id/progressBarSearching"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/queryInput"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerRecipes"
         android:layout_width="match_parent"
@@ -75,9 +84,22 @@
         android:overScrollMode="never"
         android:paddingBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/queryInput"
+        app:layout_constraintTop_toBottomOf="@id/progressBarSearching"
         tools:itemCount="10"
         tools:listitem="@layout/item_recipe_by_query_row" />
+
+    <TextView
+        android:id="@+id/labelEmptyResults"
+        style="@style/TextBodyLargeRegular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/discover_empty_results"
+        android:textColor="@color/gray700"
+        android:visibility="gone"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/queryInput"/>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/snackbarRoot"

@@ -21,6 +21,9 @@ interface FilterDao : BaseDao<Filter> {
     @Query("SELECT * FROM Filter")
     fun listAllSingle(): Single<List<Filter>>
 
+    @Query("SELECT * FROM Filter")
+    fun listAllBlocking(): List<Filter>
+
     @Query("DELETE FROM Filter")
     fun deleteAll()
 

@@ -114,8 +114,6 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
     override fun bindViewModel() {
         viewModel.stateRandomRecipes.observe(viewLifecycleOwner) {
-            showProgressDialog(it.status is LoadingStatus)
-
             when (it.status) {
                 is SuccessStatus -> {
                     adapterRandomRecipes.submitList(it.data)
