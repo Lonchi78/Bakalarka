@@ -294,7 +294,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonLike"
-                style="@style/ContainedButtonWithStartIcon"
+                style="@style/ContainedActionButtonWithStartIcon"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
@@ -304,22 +304,22 @@
                 android:text="@string/button_like_recipe"
                 app:icon="@drawable/ic_like_empty_20"
                 app:iconTint="@color/red500"
-                app:layout_constraintEnd_toStartOf="@id/buttonShare"
+                app:layout_constraintEnd_toStartOf="@id/buttonMealplan"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/wrapperProgressBars"
                 app:rippleColor="@color/red100" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonShare"
-                style="@style/ContainedButtonWithStartIcon"
+                android:id="@+id/buttonMealplan"
+                style="@style/ContainedActionButtonWithStartIcon"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="16dp"
                 android:backgroundTint="@color/gray50"
-                android:text="@string/button_share_recipe"
-                app:icon="@drawable/ic_share_20"
+                android:text="@string/button_add_to_mealplan_recipe"
+                app:icon="@drawable/ic_meal_planner_20"
                 app:iconTint="@color/gray900"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/buttonLike"
@@ -508,6 +508,7 @@
                 android:layout_height="40dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/bg_toolbar_icon"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -521,6 +522,7 @@
                 android:rotation="90"
                 android:src="@drawable/ic_more_24"
                 android:tint="@color/white"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@id/iconMoreBackground"
                 app:layout_constraintEnd_toEndOf="@id/iconMoreBackground"
                 app:layout_constraintStart_toStartOf="@id/iconMoreBackground"

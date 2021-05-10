@@ -23,4 +23,8 @@ interface SharedPreferencesInterface {
     fun getLastKnownLanguage(): String
 
     fun updateLastKnownLanguage(lang: String)
+
+    fun getFirstStart(): Boolean
+
+    fun updateFirstStart(value: Boolean)
 }

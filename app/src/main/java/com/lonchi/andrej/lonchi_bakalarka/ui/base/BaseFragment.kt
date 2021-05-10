@@ -1,7 +1,10 @@
 package com.lonchi.andrej.lonchi_bakalarka.ui.base
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.speech.RecognizerIntent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +21,8 @@ import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.setVisible
 import com.lonchi.andrej.lonchi_bakalarka.ui.utils.LonchiSnackbar
 import dagger.android.support.DaggerFragment
+import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
 
 
@@ -25,6 +30,10 @@ import javax.inject.Inject
  * @author Andrej Lončík <andrejloncik@gmail.com>
  */
 abstract class BaseFragment<T, V : ViewBinding> : DaggerFragment() where T : BaseViewModel {
+
+    companion object {
+        const val REQUEST_CODE_STT = 1
+    }
 
     protected val TIMBER_TAG = "${this.javaClass.simpleName}: %s"
 
@@ -150,5 +159,29 @@ abstract class BaseFragment<T, V : ViewBinding> : DaggerFragment() where T : Bas
             view ?: activity?.findViewById(android.R.id.content) ?: return,
             Snackbar.LENGTH_LONG
         )?.show()
+    }
+
+
+    fun speechToText() {
+        // Get the Intent action
+        val sttIntent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+
+        // Language model defines the purpose, there are special models for other use cases, like search
+        sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+
+        // Adding an extra language, you can use any language from the Locale class
+        sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.ENGLISH)
+
+        // Text that shows up on the Speech input prompt
+        sttIntent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.speech_to_text_hint))
+
+        try {
+            // Start the intent for a result, and pass in our request code
+            startActivityForResult(sttIntent, REQUEST_CODE_STT)
+        } catch (e: ActivityNotFoundException) {
+            // Handling error when the service is not available
+            Timber.e("Speech to text exception! $e")
+            showErrorSnackbar(getString(R.string.speech_to_text_error))
+        }
     }
 }

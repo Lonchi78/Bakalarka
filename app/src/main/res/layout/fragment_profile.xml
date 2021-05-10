@@ -148,7 +148,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:contentDescription="@string/profile_own_recipes"
-                        android:src="@drawable/ic_profile_24"
+                        android:src="@drawable/ic_own_recipes"
                         app:layout_constraintBottom_toBottomOf="@id/viewOwnRecipes"
                         app:layout_constraintStart_toStartOf="@id/viewOwnRecipes"
                         app:layout_constraintTop_toTopOf="@id/viewOwnRecipes"
@@ -192,8 +192,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:contentDescription="@string/profile_allergens"
-                        android:src="@drawable/ic_profile_24"
+                        android:contentDescription="@string/profile_intolerances"
+                        android:src="@drawable/ic_intolerance"
                         app:layout_constraintBottom_toBottomOf="@id/viewAllergens"
                         app:layout_constraintStart_toStartOf="@id/viewAllergens"
                         app:layout_constraintTop_toTopOf="@id/viewAllergens"
@@ -220,7 +220,7 @@
                         android:paddingTop="16dp"
                         android:paddingEnd="16dp"
                         android:paddingBottom="16dp"
-                        android:text="@string/profile_allergens"
+                        android:text="@string/profile_intolerances"
                         app:layout_constraintStart_toEndOf="@id/iconAllergens"
                         app:layout_constraintTop_toBottomOf="@id/viewOwnRecipes" />
 
@@ -237,8 +237,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:contentDescription="@string/profile_allergens"
-                        android:src="@drawable/ic_profile_24"
+                        android:contentDescription="@string/profile_intolerances"
+                        android:src="@drawable/ic_diet"
                         app:layout_constraintBottom_toBottomOf="@id/viewDiets"
                         app:layout_constraintStart_toStartOf="@id/viewDiets"
                         app:layout_constraintTop_toTopOf="@id/viewDiets"
@@ -317,7 +317,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:contentDescription="@string/profile_favourites"
-                        android:src="@drawable/ic_profile_24"
+                        android:src="@drawable/ic_settings"
                         app:layout_constraintBottom_toBottomOf="@id/viewSettings"
                         app:layout_constraintStart_toStartOf="@id/viewSettings"
                         app:layout_constraintTop_toTopOf="@id/viewSettings"
@@ -349,51 +349,6 @@
                         app:layout_constraintTop_toBottomOf="@id/labelAppContent" />
 
                     <View
-                        android:id="@+id/viewAbout"
-                        style="@style/ProfileRow"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        app:layout_constraintBottom_toBottomOf="@id/labelAbout"
-                        app:layout_constraintTop_toTopOf="@id/labelAbout" />
-
-                    <ImageView
-                        android:id="@+id/iconAbout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:contentDescription="@string/profile_own_recipes"
-                        android:src="@drawable/ic_profile_24"
-                        app:layout_constraintBottom_toBottomOf="@id/viewAbout"
-                        app:layout_constraintStart_toStartOf="@id/viewAbout"
-                        app:layout_constraintTop_toTopOf="@id/viewAbout"
-                        app:tint="@color/green500" />
-
-                    <ImageView
-                        android:id="@+id/iconAboutNext"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:contentDescription="@null"
-                        android:src="@drawable/ic_next_16"
-                        app:layout_constraintBottom_toBottomOf="@id/viewAbout"
-                        app:layout_constraintEnd_toEndOf="@id/viewAbout"
-                        app:layout_constraintTop_toTopOf="@id/viewAbout"
-                        app:tint="@color/green500" />
-
-                    <TextView
-                        android:id="@+id/labelAbout"
-                        style="@style/TextBodyLargeRegular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="16dp"
-                        android:paddingTop="16dp"
-                        android:paddingEnd="16dp"
-                        android:paddingBottom="16dp"
-                        android:text="@string/profile_about"
-                        app:layout_constraintStart_toEndOf="@id/iconAbout"
-                        app:layout_constraintTop_toBottomOf="@id/viewSettings" />
-
-                    <View
                         android:id="@+id/viewLogOut"
                         style="@style/ProfileRow"
                         android:layout_width="match_parent"
@@ -406,8 +361,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:contentDescription="@string/profile_allergens"
-                        android:src="@drawable/ic_profile_24"
+                        android:contentDescription="@string/profile_intolerances"
+                        android:src="@drawable/ic_logout"
                         app:layout_constraintBottom_toBottomOf="@id/viewLogOut"
                         app:layout_constraintStart_toStartOf="@id/viewLogOut"
                         app:layout_constraintTop_toTopOf="@id/viewLogOut"
@@ -424,7 +379,7 @@
                         android:paddingBottom="16dp"
                         android:text="@string/profile_logout"
                         app:layout_constraintStart_toEndOf="@id/iconLogOut"
-                        app:layout_constraintTop_toBottomOf="@id/viewAbout" />
+                        app:layout_constraintTop_toBottomOf="@id/viewSettings" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

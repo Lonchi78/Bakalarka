@@ -3,11 +3,13 @@ package com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.google.android.material.chip.Chip
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Recipe
+import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeFavourite
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.RecipeItem
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorStatus
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.LoadingStatus
@@ -16,6 +18,8 @@ import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentRecipeDetailBindin
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.openWebUrl
 import com.lonchi.andrej.lonchi_bakalarka.logic.util.setVisible
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
+import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
+import timber.log.Timber
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
@@ -42,8 +46,14 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
     }
 
     override fun initView() {
+        (requireActivity() as? MainActivity)?.hideBottomNavigation()
         handleArguments()
-
+        binding?.buttonMealplan?.setOnClickListener {
+            viewModel.saveRecipeToMealPlan()
+            findNavController().navigate(
+                RecipeDetailFragmentDirections.actionGlobalAddToMealPlannerFragment()
+            )
+        }
         binding?.iconBack?.setOnClickListener {
             requireActivity().onBackPressed()
         }
@@ -127,14 +137,29 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
     }
 
     private fun setupRecipeActionButton(recipe: RecipeItem?) {
-        binding?.buttonLike?.setOnClickListener {
-            //  TODO - detect if is liked or not, handle icon
-            binding?.buttonLike?.icon =
-                ContextCompat.getDrawable(requireContext(), R.drawable.ic_like_fill_20)
-            viewModel.addToFavourites(recipe as? Recipe ?: return@setOnClickListener)
-        }
-        binding?.buttonShare?.setOnClickListener {
-            Toast.makeText(requireContext(), "TODO - share", Toast.LENGTH_SHORT).show()
+        Timber.d("setupRecipeActionButton: ${recipe}")
+        Timber.d("setupRecipeActionButton: ${recipe?.getRecipeIdType()}")
+        Timber.d("setupRecipeActionButton: ${recipe?.getRecipeType()}")
+        Timber.d("setupRecipeActionButton: ${RecipeIdTypeEnum.getRecipeIdType(recipe?.getRecipeIdType() ?: -1)}")
+        when (recipe?.getRecipeType()) {
+            RecipeIdTypeEnum.FAVOURITE_RECIPE -> {
+                binding?.buttonLike?.icon =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_like_fill_20)
+                binding?.buttonLike?.setOnClickListener {
+                    binding?.buttonLike?.icon =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.ic_like_empty_20)
+                    viewModel.removeFromFavourites(recipe as? RecipeFavourite ?: return@setOnClickListener)
+                }
+            }
+            else -> {
+                binding?.buttonLike?.icon =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_like_empty_20)
+                binding?.buttonLike?.setOnClickListener {
+                    binding?.buttonLike?.icon =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.ic_like_fill_20)
+                    viewModel.addToFavourites(recipe as? Recipe ?: return@setOnClickListener)
+                }
+            }
         }
     }
 
@@ -151,7 +176,7 @@ class RecipeDetailFragment : BaseFragment<RecipeDetailViewModel, FragmentRecipeD
         binding?.recyclerInstructions?.adapter = adapterInstructions
         binding?.recyclerInstructions?.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        adapterInstructions.submitList(recipe?.getAllInstructions()?.sortedBy { it.step })
+        adapterInstructions.submitList(recipe?.getAllInstructions()?.sortedBy { it.number })
     }
 
     private fun setupRecipeCuisines(recipe: RecipeItem?) {

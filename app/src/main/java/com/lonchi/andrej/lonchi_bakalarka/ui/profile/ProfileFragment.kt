@@ -12,8 +12,10 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.databinding.FragmentProfileBinding
+import com.lonchi.andrej.lonchi_bakalarka.ui.about.AboutActivity
 import com.lonchi.andrej.lonchi_bakalarka.ui.base.BaseFragment
 import com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginActivity
+import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainActivity
 
 /**
  * @author Andrej Lončík <andrejloncik@gmail.com>
@@ -32,6 +34,7 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>()
     private lateinit var mGoogleSignInClient: GoogleSignInClient
 
     override fun initView() {
+        (requireActivity() as? MainActivity)?.showBottomNavigation()
         handleLoggedUser()
 
         binding?.viewFavourites?.setOnClickListener {
@@ -52,10 +55,6 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>()
 
         binding?.viewSettings?.setOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToSettingsFragment())
-        }
-
-        binding?.viewAbout?.setOnClickListener {
-            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToAboutFragment())
         }
 
         binding?.viewLogOut?.setOnClickListener {
@@ -84,10 +83,8 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>()
             binding?.textUserName?.text = it.displayName
             binding?.textUserMail?.text = it.email
 
-            //  TODO - nefunguje
             binding?.imgUserAvatar?.load(it.photoUrl) {
                 crossfade(true)
-                //placeholder(R.drawable.ic_profile_24)
                 error(R.drawable.ic_profile_24)
             }
         }

@@ -9,4 +9,9 @@
 		<attr name="placeholderText" />
 		<attr name="startIconDrawable" />
 	</declare-styleable>
+
+	<declare-styleable name="EditTextInput">
+		<attr name="placeholderText" />
+		<attr name="endIconDrawable" />
+	</declare-styleable>
 </resources>

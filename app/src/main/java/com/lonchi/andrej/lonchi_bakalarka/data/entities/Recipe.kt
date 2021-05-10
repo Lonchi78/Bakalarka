@@ -17,15 +17,8 @@ open class Recipe : RecipeItem {
     @Json(name = "title") var title: String? = null
     @Json(name = "readyInMinutes") var readyInMinutes: Int? = null
     @Json(name = "image") var image: String? = null
-    @Json(name = "imageType") var imageType: String? = null
-    @Json(name = "servings") var servings: Int? = null
-    @Json(name = "healthScore") var healthScore: Float? = 0f
-
     @Json(name = "sourceUrl") var sourceUrl: String? = null
-    @Json(name = "creditsText") var creditsText: String? = null
-    @Json(name = "license") var license: String? = null
-    @Json(name = "sourceName") var sourceName: String? = null
-    @Json(name = "spoonacularSourceUrl") var spoonacularSourceUrl: String? = null
+    @Json(name = "nutrition") @Embedded(prefix = "nutrition_") var nutrition: NutritionWrapper? = null
 
     @TypeConverters(ListOfStringsTypeConverters::class)
     @Json(name = "cuisines") var cuisines: List<String?>? = listOf()
@@ -33,7 +26,8 @@ open class Recipe : RecipeItem {
     @TypeConverters(ListOfStringsTypeConverters::class)
     @Json(name = "diets") var diets: List<String?>? = listOf()
 
-    @Json(name = "nutrition") @Embedded(prefix = "nutrition_") var nutrition: NutritionWrapper? = null
+    @TypeConverters(ListOfStringsTypeConverters::class)
+    @Json(name = "intolerances") var intolerances: List<String?>? = listOf()
 
     @TypeConverters(IngredientTypeConverters::class)
     @Json(name = "extendedIngredients") var ingredients: List<Ingredient>? = listOf()
@@ -43,7 +37,9 @@ open class Recipe : RecipeItem {
 
     override fun getId(): String = this.idRestApi.toString()
 
-    override fun getIdType(): RecipeIdTypeEnum = RecipeIdTypeEnum.REST
+    override fun getRecipeIdType(): Int = RecipeIdTypeEnum.REST.ordinal
+
+    override fun getRecipeType(): RecipeIdTypeEnum = RecipeIdTypeEnum.REST
 
     override fun getName(): String = this.title ?: ""
 
@@ -63,7 +59,14 @@ open class Recipe : RecipeItem {
 
     override fun getAllDiets(): List<String?>? = this.diets
 
+    override fun getAllIntolerances(): List<String?>? = this.intolerances
+
     override fun getAllCuisines(): List<String?>? = this.cuisines
 
     override fun getRecipeSourceUrl(): String? = this.sourceUrl
+
+    override fun toString(): String {
+        return "Recipe { idRestApi = $idRestApi, idType = ${getRecipeIdType()}, " +
+                "title = $title, readyInMinutes = $readyInMinutes }"
+    }
 }

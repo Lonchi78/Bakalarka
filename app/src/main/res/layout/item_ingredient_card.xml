@@ -14,6 +14,7 @@
         app:cardElevation="@dimen/card_mini_elevation">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:selectableItemBackground"

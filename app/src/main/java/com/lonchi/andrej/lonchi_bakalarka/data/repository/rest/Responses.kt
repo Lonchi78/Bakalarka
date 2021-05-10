@@ -1,7 +1,6 @@
 package com.lonchi.andrej.lonchi_bakalarka.data.repository.rest
 
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Recipe
-import com.lonchi.andrej.lonchi_bakalarka.data.entities.User
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.ErrorIdentification
 import com.squareup.moshi.Json
 
@@ -49,21 +48,6 @@ class ErrorResponse(status: Int, error: String?) : BaseResponse(status, error) {
     override fun isSuccessful(): Boolean = false
 }
 
-class ItemsResponse<T>(
-    status: Int,
-    error: String?,
-    @Json(name = "data")
-    val items: List<T>
-) : BaseResponse(status, error)
-
-class DataResponse<T>(
-    StatusCode: Int,
-    Message: String?,
-    @Json(name = "Data") val data: T
-) : BaseResponse(StatusCode, Message)
-
-data class UserWrapper(val user: User)
-
 data class ImageLabelingItem(
     val item: String,
     val entityId: String?,
@@ -73,4 +57,19 @@ data class ImageLabelingResponse(val items: List<ImageLabelingItem>)
 
 data class RecipesResponse(
     @Json(name = "recipes") val recipes: List<Recipe>
+): BaseResponse()
+
+data class JokeResponse(
+    @Json(name = "text") val joke: String?
+): BaseResponse()
+
+data class SearchRecipesResponse(
+    @Json(name = "results") val results: List<Recipe>,
+    @Json(name = "baseUri") val baseUri: String,
+    @Json(name = "isStale") val isStale: Boolean,
+    @Json(name = "offset") val offset: Int,
+    @Json(name = "number") val number: Int,
+    @Json(name = "totalResults") val totalResults: Int,
+    @Json(name = "processingTimeMs") val processingTimeMs: Int,
+    @Json(name = "expires") val expires: Long
 ): BaseResponse()

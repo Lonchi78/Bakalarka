@@ -13,4 +13,6 @@ class ProfileViewModel @Inject constructor(
 
     fun logout() = userRepository.performUserLogout()
 
+    fun test() = userRepository.updateUserData()
+
 }

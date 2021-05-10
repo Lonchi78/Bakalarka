@@ -15,10 +15,15 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.browser.customtabs.CustomTabColorSchemeParams
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.graphics.TypefaceCompatUtil
 import com.lonchi.andrej.lonchi_bakalarka.BuildConfig
 import com.lonchi.andrej.lonchi_bakalarka.R
+import java.sql.Time
+import java.util.*
 
 
 /**
@@ -26,26 +31,26 @@ import com.lonchi.andrej.lonchi_bakalarka.R
  */
 /* * * * * * * * * * * * * * * ENABLE * * * * * * * * * * * * * * * * */
 
-fun enable(vararg views: View) {
-    views.forEach { it.isEnabled = true }
+fun enable(vararg views: View?) {
+    views.forEach { it?.isEnabled = true }
 }
 
-fun disable(vararg views: View) {
-    views.forEach { it.isEnabled = false }
+fun disable(vararg views: View?) {
+    views.forEach { it?.isEnabled = false }
 }
 
 /* * * * * * * * * * * * * * * VISIBILITY * * * * * * * * * * * * * * * * */
 
-fun gone(vararg views: View) {
-    views.forEach { it.visibility = View.GONE }
+fun gone(vararg views: View?) {
+    views.forEach { it?.visibility = View.GONE }
 }
 
-fun visible(vararg views: View) {
-    views.forEach { it.visibility = View.VISIBLE }
+fun visible(vararg views: View?) {
+    views.forEach { it?.visibility = View.VISIBLE }
 }
 
-fun invisible(vararg views: View) {
-    views.forEach { it.visibility = View.INVISIBLE }
+fun invisible(vararg views: View?) {
+    views.forEach { it?.visibility = View.INVISIBLE }
 }
 
 fun View.isVisible(): Boolean = this.visibility == View.VISIBLE
@@ -194,6 +199,15 @@ fun View.animateFadeOut(context: Context, endVisibility: Int) {
 
 /* * * * * * * * * * * * * * * INTENTS * * * * * * * * * * * * * * * * * */
 
+fun Context.openUrlWithCustomTabs(url: Int) {
+    val builder = CustomTabsIntent.Builder()
+    builder.setStartAnimations(this, R.anim.slide_from_right, R.anim.slide_to_left)
+    builder.setExitAnimations(this, R.anim.slide_from_left, R.anim.slide_to_right)
+
+    val customTabsIntent = builder.build()
+    customTabsIntent.launchUrl(this, Uri.parse(getString(url)))
+}
+
 fun Context.openWebUrl(url: String) {
     val formattedUrl = if (url.startsWith("http")) url else "http://$url"
     val intent = Intent(Intent.ACTION_VIEW)
@@ -293,4 +307,27 @@ fun Activity.isGpsOn(): Boolean =
 
 /* * * * * * * * * * * * * Others * * * * * * * * * * * *  */
 
+/**
+ *  Good Morning = 5:00 AM - 11:59 AM
+ *  Good Afternoon = 12:00 PM - 4:59 PM
+ *  Good Evening = 5:00 PM - 4:59 AM
+ * */
+fun Context.getGreetingText(): String {
+    return when (Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
+        in 5..11 -> this.getString(R.string.home_greeting_morning)
+        in 12..16 -> this.getString(R.string.home_greeting_afternoon)
+        else -> this.getString(R.string.home_greeting_evening)
+    }
+}
+
 fun getAppVersion(): String = BuildConfig.VERSION_NAME
+
+fun List<String?>?.toCommaSeparatedString(): String {
+    var tmp = ""
+    this?.forEach { nullableString ->
+        nullableString?.let {
+            tmp += ",${it.toLowerCase()}"
+        }
+    }
+    return tmp
+}

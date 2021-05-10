@@ -3,6 +3,7 @@ package com.lonchi.andrej.lonchi_bakalarka.data.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
+import com.squareup.moshi.Json
 
 @Entity
 class RecipeFavourite : RecipeItem, Recipe() {
@@ -10,16 +11,20 @@ class RecipeFavourite : RecipeItem, Recipe() {
     @PrimaryKey
     var uid: String = ""
 
+    @Json(name = "idType") var idType = RecipeIdTypeEnum.FAVOURITE_RECIPE.ordinal
+
     override fun toString(): String {
         //  TODO
         return "Favourite recipe: { " +
-                "recipeId = $uid\ngetIdType = ${getIdType()}\ntitle = $title\nimage = $image\n" +
+                "recipeId = $uid\ngetIdType = ${getRecipeIdType()}\ntitle = $title\nimage = $image\n" +
                 "}"
     }
 
     override fun getId(): String = this.uid
 
-    override fun getIdType(): RecipeIdTypeEnum = RecipeIdTypeEnum.FAVOURITE_RECIPE
+    override fun getRecipeIdType(): Int = RecipeIdTypeEnum.FAVOURITE_RECIPE.ordinal
+
+    override fun getRecipeType(): RecipeIdTypeEnum = RecipeIdTypeEnum.FAVOURITE_RECIPE
 
     override fun getName(): String = this.title ?: ""
 
@@ -39,7 +44,25 @@ class RecipeFavourite : RecipeItem, Recipe() {
 
     override fun getAllDiets(): List<String?>? = this.diets
 
+    override fun getAllIntolerances(): List<String?>? = this.intolerances
+
     override fun getAllCuisines(): List<String?>? = this.cuisines
 
     override fun getRecipeSourceUrl(): String? = this.sourceUrl
+
+    fun toRestRecipe(): Recipe {
+        return Recipe().apply {
+            idRestApi = this@RecipeFavourite.idRestApi
+            title = this@RecipeFavourite.title
+            readyInMinutes = this@RecipeFavourite.readyInMinutes
+            image = this@RecipeFavourite.image
+            sourceUrl = this@RecipeFavourite.sourceUrl
+            nutrition = this@RecipeFavourite.nutrition
+            cuisines = this@RecipeFavourite.cuisines
+            diets = this@RecipeFavourite.diets
+            intolerances = this@RecipeFavourite.intolerances
+            ingredients = this@RecipeFavourite.ingredients
+            instructions = this@RecipeFavourite.instructions
+        }
+    }
 }

@@ -18,8 +18,14 @@ interface CustomRecipesDao : BaseDao<RecipeCustom> {
     @Query("SELECT * FROM RecipeCustom")
     fun getAllRecipes(): LiveData<List<RecipeCustom>>
 
+    @Query("SELECT * FROM RecipeCustom")
+    fun getAllRecipesSingle(): Single<List<RecipeCustom>>
+
     @Query("SELECT * FROM RecipeCustom WHERE uid = :id")
     fun getRecipe(id: String): Single<List<RecipeCustom>>
+
+    @Query("DELETE FROM RecipeCustom WHERE uid = :id")
+    fun deleteRecipe(id: String)
 
     @Query("DELETE FROM RecipeCustom")
     fun deleteAllRecipes()

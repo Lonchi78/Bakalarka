@@ -77,7 +77,7 @@
 
 	<color name="btnPrimaryRestingBackgroundColor">#d22d80</color>
 
-	<color name="btnPrimaryPressedBackgroundColor">@color/orange200</color>
+	<color name="btnPrimaryPressedBackgroundColor">@color/orange700</color>
 
 	<color name="btnPrimaryDisabledBackgroundColor">#edf2f7</color>
 
@@ -135,7 +135,7 @@
 
 	<color name="searchBarIconInactive">#868687</color>
 	<color name="searchBarStrokeInactive">#BCBDB7</color>
-	<color name="searchBarTextInactive">#868687</color>
+	<color name="searchBarTextInactive">#B6BDC5</color>
 	<color name="searchBarIconActive">#868687</color>
 	<color name="searchBarStrokeActive">#BCBDB7</color>
 	<color name="searchBarTextActive">@color/gray900</color>

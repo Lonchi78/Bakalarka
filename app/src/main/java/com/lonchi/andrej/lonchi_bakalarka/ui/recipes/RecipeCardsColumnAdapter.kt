@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -30,7 +29,7 @@ class RecipeCardsColumnAdapter(
     override fun areContentsTheSame(oldItem: RecipeItem, newItem: RecipeItem): Boolean {
         return oldItem.getId() == newItem.getId()
                 && oldItem.getCookingTime() == newItem.getCookingTime()
-                && oldItem.getIdType() == newItem.getIdType()
+                && oldItem.getRecipeIdType() == newItem.getRecipeIdType()
                 && oldItem.getImageUrl() == newItem.getImageUrl()
                 && oldItem.getName() == newItem.getName()
                 && oldItem.getNumberOfIngredients() == newItem.getNumberOfIngredients()

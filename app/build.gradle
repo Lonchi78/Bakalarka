@@ -14,7 +14,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode versionCodeFromDate()
-        versionName "0.0.1"
+        versionName "1.1"
         vectorDrawables.useSupportLibrary true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -154,15 +154,13 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-database-ktx'
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
 
     //  For some reason with this BoM dependency build failed
     //implementation 'com.google.firebase:firebase-ml-vision'
     implementation 'com.google.android.gms:play-services-vision:20.1.2'
     implementation 'com.google.firebase:firebase-ml-vision:24.1.0'
-
-    //  Emojis
-    implementation "com.android.support:support-emoji:28.0.0"
 
     //  Camera X
     def camerax_version = "1.0.0-beta11"
@@ -188,11 +186,14 @@ dependencies {
 
     //  Circular progress bar
     implementation 'com.mikhaellopez:circularprogressbar:3.0.3'
+
+    //  Custom tabs
+    implementation "androidx.browser:browser:1.3.0"
 }
 
 static def versionCodeFromDate() {
     def date = new Date()
-    def formattedDate = date.format('yyMMddHHmm')
+    def formattedDate = date.format('yyMMddHH')
     return Integer.valueOf(formattedDate)
 }
 

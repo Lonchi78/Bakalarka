@@ -3,17 +3,15 @@ package com.lonchi.andrej.lonchi_bakalarka.logic.dagger
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import android.os.Build
 import androidx.room.Room
+import com.lonchi.andrej.lonchi_bakalarka.BuildConfig
+import com.lonchi.andrej.lonchi_bakalarka.R
+import com.lonchi.andrej.lonchi_bakalarka.data.repository.*
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.database.LonchiDatabase
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.preferences.SharedPreferencesImpl
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.preferences.SharedPreferencesInterface
 import com.lonchi.andrej.lonchi_bakalarka.data.repository.rest.RestApi
-import com.lonchi.andrej.lonchi_bakalarka.data.utils.DeviceTracker
 import com.lonchi.andrej.lonchi_bakalarka.data.utils.LanguageStateTracker
-import com.lonchi.andrej.lonchi_bakalarka.BuildConfig
-import com.lonchi.andrej.lonchi_bakalarka.R
-import com.lonchi.andrej.lonchi_bakalarka.data.repository.*
 import com.lonchi.andrej.lonchi_bakalarka.logic.app_life.AppLifeTracker
 import com.lonchi.andrej.lonchi_bakalarka.logic.app_life.AppLifeTrackerImpl
 import com.lonchi.andrej.lonchi_bakalarka.logic.connection.ConnectionObserver
@@ -62,34 +60,6 @@ class AppModule(private val application: Application) {
     }
 
     @Provides
-    @Singleton
-    internal fun provideDeviceTracker(
-        languageStateTracker: LanguageStateTracker,
-        persistnterface: SharedPreferencesInterface
-    ): DeviceTracker {
-        return object : DeviceTracker {
-            val TABLET_DP_WIDTH_THRESHOLD = 600
-
-            override fun getDeviceProperties(): DeviceTracker.DeviceProperties {
-                return DeviceTracker.DeviceProperties(
-                        persistnterface.getFirebaseTokenFromSharedPreferences(),
-                        OS_TYPE,
-                        Build.VERSION.RELEASE,
-                        Build.BRAND,
-                        Build.MODEL,
-                        if (isTablet(application)) CATEGORY_TABLET else CATEGORY_PHONE,
-                        languageStateTracker.getSystemLanguage()
-                )
-            }
-
-            fun isTablet(context: Context): Boolean {
-                val displayMetrics = context.resources.displayMetrics
-                return displayMetrics.widthPixels / displayMetrics.density >= TABLET_DP_WIDTH_THRESHOLD
-            }
-        }
-    }
-
-    @Provides
     internal fun provideLanguageTracker(sharedPreferences: SharedPreferencesInterface): LanguageStateTracker {
         return object : LanguageStateTracker {
             override fun getSystemLanguage(): String = application.getString(R.string.system_language)
@@ -130,6 +100,24 @@ class AppModule(private val application: Application) {
     @Provides
     @Singleton
     internal fun provideRecipesRepository(impl: RecipesRepositoryImpl): RecipesRepository {
+        return impl
+    }
+
+    @Provides
+    @Singleton
+    internal fun provideCreateRecipeRepository(impl: CreateRecipeRepositoryImpl): CreateRecipeRepository {
+        return impl
+    }
+
+    @Provides
+    @Singleton
+    internal fun provideDiscoverByIngredientsRepository(impl: DiscoverByIngredientsRepositoryImpl): DiscoverByIngredientsRepository {
+        return impl
+    }
+
+    @Provides
+    @Singleton
+    internal fun provideMealPlanRepository(impl: MealPlanRepositoryImpl): MealPlanRepository {
         return impl
     }
 }

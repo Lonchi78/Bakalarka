@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2020. Dactyl Group
-  ~ https://www.dactylgroup.com
-  ~ All rights Reserved.
-  -->
-
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
 	<dimen name="bottom_sheet_corner_radius_top">16dp</dimen>
@@ -11,7 +6,7 @@
 
 	<dimen name="item_ingredient_expected_height">56dp</dimen>
 	<!--	5 * 56dp = 560dp	-->
-	<dimen name="recycler_found_ingredient_max_height">280dp</dimen>
+	<dimen name="recycler_found_ingredient_max_height">360dp</dimen>
 
 	<!-- - - - - - Progress Dialog - - - - - - -->
 	<dimen name="progress_dialog_corner_radius">16dp</dimen>
@@ -35,9 +30,11 @@
 	<dimen name="corner_radius_text_select">8dp</dimen>
 
 	<!-- - - - - - - Buttons - - - - - - -->
-	<dimen name="corner_radius_button_contained">12dp</dimen>
-	<dimen name="corner_radius_button_outlined">12dp</dimen>
-	<dimen name="corner_radius_button_text">12dp</dimen>
+	<dimen name="corner_radius_button_contained">24dp</dimen>
+	<dimen name="corner_radius_button_action">12dp</dimen>
+	<dimen name="corner_radius_button_fab">80dp</dimen>
+	<dimen name="corner_radius_button_outlined">32dp</dimen>
+	<dimen name="corner_radius_button_text">32dp</dimen>
 	<dimen name="inset_button_contained">0dp</dimen>
 	<dimen name="inset_button_outlined">0dp</dimen>
 	<dimen name="inset_button_text">0dp</dimen>

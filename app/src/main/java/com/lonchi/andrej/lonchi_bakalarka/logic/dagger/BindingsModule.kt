@@ -3,22 +3,36 @@ package com.lonchi.andrej.lonchi_bakalarka.logic.dagger
 import androidx.lifecycle.ViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.about.AboutViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.allergens.AllergensViewModel
-import com.lonchi.andrej.lonchi_bakalarka.ui.camera.CameraViewModel
-import com.lonchi.andrej.lonchi_bakalarka.ui.camera.bottom_sheet.FoundIngredientsViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.bottom_sheet.FoundIngredientsViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.name.CreateRecipeNameViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.CreateRecipeViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.finalize.*
+import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.ingredients.CreateRecipeAddIngredientViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.ingredients.CreateRecipeIngredientsViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.instructions.CreateRecipeAddInstructionViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.instructions.CreateRecipeInstructionsViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.photo.CreateRecipePhotoViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.createRecipe.time.CreateRecipeTimeViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.diets.DietsViewModel
-import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverListViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byQuery.DiscoverByQueryViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.discover.DiscoverViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.FilterViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.discover.byIngredients.*
 import com.lonchi.andrej.lonchi_bakalarka.ui.favourites.FavouritesViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.fragment.FragmentViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.home.HomeViewModel
-import com.lonchi.andrej.lonchi_bakalarka.ui.discoverByIngredients.DiscoverByIngredientViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.login.LoginViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.main.MainViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.MealPlannerViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.add.AddToMealPlannerViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.bottom_sheet.AddToMealPlanViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.meal_planner.bottom_sheet.RemoveFromMealPlanViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.onboarding.OnboardingViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.ownRecipes.OwnRecipesViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.profile.ProfileViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.custom.RecipeDetailCustomViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeDetailViewModel
+import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.custom.MoreCustomRecipeViewModel
 import com.lonchi.andrej.lonchi_bakalarka.ui.settings.SettingsViewModel
 import dagger.Binds
 import dagger.Module
@@ -38,14 +52,6 @@ abstract class MainModule {
 }
 
 @Module
-abstract class CameraModule {
-    @Binds
-    @IntoMap
-    @ViewModelKey(CameraViewModel::class)
-    abstract fun bindsCameraViewModel(viewModel: CameraViewModel): ViewModel
-}
-
-@Module
 abstract class LoginModule {
     @Binds
     @IntoMap
@@ -57,8 +63,8 @@ abstract class LoginModule {
 abstract class DiscoverByIngredientModule {
     @Binds
     @IntoMap
-    @ViewModelKey(DiscoverByIngredientViewModel::class)
-    abstract fun bindsDiscoverByIngredientViewModel(viewModel: DiscoverByIngredientViewModel): ViewModel
+    @ViewModelKey(DiscoverByIngredientsViewModel::class)
+    abstract fun bindsDiscoverByIngredientViewModel(viewModel: DiscoverByIngredientsViewModel): ViewModel
 }
 
 @Module
@@ -94,11 +100,35 @@ abstract class DiscoverModule {
 }
 
 @Module
+abstract class FilterModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(FilterViewModel::class)
+    abstract fun bindsFilterViewModel(viewModel: FilterViewModel): ViewModel
+}
+
+@Module
+abstract class IngredientsListModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(DiscoverByIngredientsListViewModel::class)
+    abstract fun bindsIngredientsListViewModel(viewModelDiscoverBy: DiscoverByIngredientsListViewModel): ViewModel
+}
+
+@Module
+abstract class DiscoverByIngredientsResultsModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(DiscoverByIngredientsResultsViewModel::class)
+    abstract fun bindsDiscoverByIngredientsResultsViewModel(viewModelDiscoverBy: DiscoverByIngredientsResultsViewModel): ViewModel
+}
+
+@Module
 abstract class DiscoverListModule {
     @Binds
     @IntoMap
-    @ViewModelKey(DiscoverListViewModel::class)
-    abstract fun bindsDiscoverListViewModel(viewModel: DiscoverListViewModel): ViewModel
+    @ViewModelKey(DiscoverByQueryViewModel::class)
+    abstract fun bindsDiscoverListViewModel(viewModel: DiscoverByQueryViewModel): ViewModel
 }
 
 @Module
@@ -107,6 +137,14 @@ abstract class MealPlannerModule {
     @IntoMap
     @ViewModelKey(MealPlannerViewModel::class)
     abstract fun bindsMealPlannerViewModel(viewModel: MealPlannerViewModel): ViewModel
+}
+
+@Module
+abstract class AddToMealPlannerModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(AddToMealPlannerViewModel::class)
+    abstract fun bindsAddToMealPlannerViewModel(viewModel: AddToMealPlannerViewModel): ViewModel
 }
 
 @Module
@@ -174,9 +212,161 @@ abstract class RecipeDetailModule {
 }
 
 @Module
+abstract class OnboardingModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(OnboardingViewModel::class)
+    abstract fun bindsOnboardingViewModel(viewModel: OnboardingViewModel): ViewModel
+}
+
+@Module
+abstract class RecipeDetailCustomModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(RecipeDetailCustomViewModel::class)
+    abstract fun bindsRecipeDetailCustomViewModel(viewModel: RecipeDetailCustomViewModel): ViewModel
+}
+
+@Module
 abstract class FoundIngredientsModule {
     @Binds
     @IntoMap
     @ViewModelKey(FoundIngredientsViewModel::class)
     abstract fun bindsFoundIngredientsViewModel(viewModel: FoundIngredientsViewModel): ViewModel
+}
+
+@Module
+abstract class MoreCustomRecipeModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(MoreCustomRecipeViewModel::class)
+    abstract fun bindsMoreCustomRecipeViewModel(viewModel: MoreCustomRecipeViewModel): ViewModel
+}
+
+@Module
+abstract class AddToMealPlanModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(AddToMealPlanViewModel::class)
+    abstract fun bindsAddToMealPlanViewModel(viewModel: AddToMealPlanViewModel): ViewModel
+}
+
+@Module
+abstract class RemoveFromMealPlanModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(RemoveFromMealPlanViewModel::class)
+    abstract fun bindsRemoveFromMealPlanViewModel(viewModel: RemoveFromMealPlanViewModel): ViewModel
+}
+
+@Module
+abstract class CreateRecipeNameModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(CreateRecipeNameViewModel::class)
+    abstract fun bindsCreateRecipeNameViewModel(viewModel: CreateRecipeNameViewModel): ViewModel
+}
+
+@Module
+abstract class CreateRecipeTimeModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(CreateRecipeTimeViewModel::class)
+    abstract fun bindsCreateRecipeTimeViewModel(viewModel: CreateRecipeTimeViewModel): ViewModel
+}
+
+@Module
+abstract class CreateRecipePhotoModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(CreateRecipePhotoViewModel::class)
+    abstract fun bindsCreateRecipePhotoViewModel(viewModel: CreateRecipePhotoViewModel): ViewModel
+}
+
+@Module
+abstract class CreateRecipeInstructionsModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(CreateRecipeInstructionsViewModel::class)
+    abstract fun bindsCreateRecipeInstructionsViewModel(viewModel: CreateRecipeInstructionsViewModel): ViewModel
+}
+
+@Module
+abstract class CreateRecipeIngredientsModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(CreateRecipeIngredientsViewModel::class)
+    abstract fun bindsCreateRecipeIngredientsViewModel(viewModel: CreateRecipeIngredientsViewModel): ViewModel
+}
+
+@Module
+abstract class DiscoverByIngredientsAddModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(DiscoverByIngredientsAddViewModel::class)
+    abstract fun bindsDiscoverByIngredientsAddViewModel(viewModel: DiscoverByIngredientsAddViewModel): ViewModel
+}
+
+@Module
+abstract class DiscoverByIngredientsCameraModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(DiscoverByIngredientsCameraViewModel::class)
+    abstract fun bindsDiscoverByIngredientsCameraViewModel(viewModel: DiscoverByIngredientsCameraViewModel): ViewModel
+}
+
+@Module
+abstract class CreateRecipeAddInstructionModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(CreateRecipeAddInstructionViewModel::class)
+    abstract fun bindsCreateRecipeAddInstructionViewModel(viewModel: CreateRecipeAddInstructionViewModel): ViewModel
+}
+
+@Module
+abstract class CreateRecipeAddIngredientModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(CreateRecipeAddIngredientViewModel::class)
+    abstract fun bindsCreateRecipeAddIngredientViewModel(viewModel: CreateRecipeAddIngredientViewModel): ViewModel
+}
+
+@Module
+abstract class CreateRecipeFinalizeModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(CreateRecipeFinalizeViewModel::class)
+    abstract fun bindsCreateRecipeFinalizeViewModel(viewModel: CreateRecipeFinalizeViewModel): ViewModel
+}
+
+@Module
+abstract class CreateRecipeAddDietsModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(CreateRecipeAddDietsViewModel::class)
+    abstract fun bindsCreateRecipeAddDietsViewModel(viewModel: CreateRecipeAddDietsViewModel): ViewModel
+}
+
+@Module
+abstract class CreateRecipeAddNutritionModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(CreateRecipeAddNutritionViewModel::class)
+    abstract fun bindsCreateRecipeAddNutritionViewModel(viewModel: CreateRecipeAddNutritionViewModel): ViewModel
+}
+
+@Module
+abstract class CreateRecipeAddAllergensModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(CreateRecipeAddAllergensViewModel::class)
+    abstract fun bindsCreateRecipeAddAllergensViewModel(viewModel: CreateRecipeAddAllergensViewModel): ViewModel
+}
+
+@Module
+abstract class CreateRecipeSuccessModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(CreateRecipeSuccessViewModel::class)
+    abstract fun bindsCreateRecipeSuccessViewModel(viewModel: CreateRecipeSuccessViewModel): ViewModel
 }

@@ -10,9 +10,20 @@ class ObjectMappers {
 
         fun Recipe.mapToFavouriteRecipe(moshi: Moshi): RecipeFavourite {
             val json = moshi.adapter(Recipe::class.java).toJson(this)
-            return moshi.adapter(RecipeFavourite::class.java).fromJson(json).apply {
+            val favouriteRecipe = moshi.adapter(RecipeFavourite::class.java).fromJson(json).apply {
                 this.uid = this@mapToFavouriteRecipe.idRestApi.toString()
             }
+
+            //  Remove unused nutrition
+            val tmp = listOf(
+                favouriteRecipe?.nutrition?.getCarbohydrates(),
+                favouriteRecipe?.nutrition?.getCalories(),
+                favouriteRecipe?.nutrition?.getProtein(),
+                favouriteRecipe?.nutrition?.getFat()
+            )
+            favouriteRecipe?.nutrition?.nutrients = tmp
+
+            return favouriteRecipe
         }
 
     }

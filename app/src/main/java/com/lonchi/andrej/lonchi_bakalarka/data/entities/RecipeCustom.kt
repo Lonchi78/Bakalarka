@@ -3,6 +3,7 @@ package com.lonchi.andrej.lonchi_bakalarka.data.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.lonchi.andrej.lonchi_bakalarka.ui.recipe_detail.RecipeIdTypeEnum
+import com.squareup.moshi.Json
 
 @Entity
 class RecipeCustom : RecipeItem, Recipe() {
@@ -10,13 +11,17 @@ class RecipeCustom : RecipeItem, Recipe() {
     @PrimaryKey
     var uid: String = this.idRestApi.toString()
 
+    @Json(name = "idType") var idType = RecipeIdTypeEnum.OWN_RECIPE.ordinal
+
     override fun toString(): String {
         return "Custom recipe: ${super.toString()}"
     }
 
     override fun getId(): String = this.uid
 
-    override fun getIdType(): RecipeIdTypeEnum = RecipeIdTypeEnum.OWN_RECIPE
+    override fun getRecipeIdType(): Int = RecipeIdTypeEnum.OWN_RECIPE.ordinal
+
+    override fun getRecipeType(): RecipeIdTypeEnum = RecipeIdTypeEnum.OWN_RECIPE
 
     override fun getName(): String = this.title ?: ""
 
@@ -35,6 +40,8 @@ class RecipeCustom : RecipeItem, Recipe() {
     override fun getAllInstructions(): List<Instruction>? = this.instructions?.firstOrNull()?.steps
 
     override fun getAllDiets(): List<String?>? = this.diets
+
+    override fun getAllIntolerances(): List<String?>? = this.intolerances
 
     override fun getAllCuisines(): List<String?>? = this.cuisines
 

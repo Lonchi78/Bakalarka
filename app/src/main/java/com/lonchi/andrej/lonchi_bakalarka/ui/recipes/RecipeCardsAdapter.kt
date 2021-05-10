@@ -29,7 +29,7 @@ class RecipeCardsAdapter(
     override fun areContentsTheSame(oldItem: RecipeItem, newItem: RecipeItem): Boolean {
         return oldItem.getId() == newItem.getId()
                 && oldItem.getCookingTime() == newItem.getCookingTime()
-                && oldItem.getIdType() == newItem.getIdType()
+                && oldItem.getRecipeIdType() == newItem.getRecipeIdType()
                 && oldItem.getImageUrl() == newItem.getImageUrl()
                 && oldItem.getName() == newItem.getName()
                 && oldItem.getNumberOfIngredients() == newItem.getNumberOfIngredients()

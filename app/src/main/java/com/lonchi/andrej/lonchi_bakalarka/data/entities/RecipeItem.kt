@@ -10,7 +10,9 @@ interface RecipeItem {
 
     fun getId(): String
 
-    fun getIdType(): RecipeIdTypeEnum
+    fun getRecipeIdType(): Int
+
+    fun getRecipeType(): RecipeIdTypeEnum
 
     fun getName(): String
 
@@ -31,6 +33,8 @@ interface RecipeItem {
     fun getAllDiets(): List<String?>?
 
     fun getAllCuisines(): List<String?>?
+
+    fun getAllIntolerances(): List<String?>?
 
     fun getRecipeSourceUrl(): String?
 

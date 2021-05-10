@@ -3,4 +3,21 @@
 	<integer name="screen_animation_duration">200</integer>
 	<integer name="view_animation_duration">400</integer>
 	<integer name="image_cross_fade_duration">300</integer>
+	<integer name="hide_keyboard_delay">200</integer>
+
+	<integer name="slider_values_calories_min">0</integer>
+	<integer name="slider_values_calories_max">800</integer>
+	<integer name="slider_values_calories_step">50</integer>
+
+	<integer name="slider_values_protein_min">0</integer>
+	<integer name="slider_values_protein_max">100</integer>
+	<integer name="slider_values_protein_step">10</integer>
+
+	<integer name="slider_values_fat_min">0</integer>
+	<integer name="slider_values_fat_max">100</integer>
+	<integer name="slider_values_fat_step">10</integer>
+
+	<integer name="slider_values_carbs_min">0</integer>
+	<integer name="slider_values_carbs_max">100</integer>
+	<integer name="slider_values_carbs_step">10</integer>
 </resources>

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.lonchi.andrej.lonchi_bakalarka.R
 import com.lonchi.andrej.lonchi_bakalarka.data.entities.Instruction
+import timber.log.Timber
 
 /**
  *  @author Andrej Lončík <andrejloncik@gmail.com>
@@ -25,9 +26,7 @@ class InstructionRowsAdapter(
 
     override fun areContentsTheSame(oldItem: Instruction, newItem: Instruction): Boolean {
         return oldItem.step == newItem.step
-                && oldItem.length == newItem.length
-                && oldItem.length?.number == newItem.length?.number
-                && oldItem.length?.unit == newItem.length?.unit
+                && oldItem.number == newItem.number
     }
 
 }) {
@@ -40,6 +39,8 @@ class InstructionRowsAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val instruction = getItem(position)
+        Timber.d("onBindViewHolder instruction: ${instruction}")
+        Timber.d("onBindViewHolder position: ${position}")
         holder.instructionNumber.text = (position + 1).toString()
         holder.instructionStep.text = instruction.step
     }
