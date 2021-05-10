@@ -43,6 +43,8 @@
                 android:paddingBottom="12dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="12dp"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:textColorHint="@color/searchBarTextInactive"
                 android:hint="@string/text_input_placeholder" />
 
