@@ -208,6 +208,6 @@ fun Activity.shouldShowBackgroundLocationRequest(): Boolean {
     return accessFineLocation && accessBackgroundLocation
 }
 
-fun Activity.requestAllPermissions(requestCode: Int, permissions: Array<String>) {
-    ActivityCompat.requestPermissions(this, permissions, requestCode)
+fun Fragment.requestAllPermissions(requestCode: Int, permissions: Array<String>) {
+    this.requestPermissions(permissions, requestCode)
 }

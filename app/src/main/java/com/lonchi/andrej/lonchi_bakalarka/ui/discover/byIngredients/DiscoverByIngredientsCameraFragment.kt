@@ -62,7 +62,7 @@ class DiscoverByIngredientsCameraFragment :
         binding?.iconFlash?.setOnClickListener { changeFlashMode() }
         binding?.iconCapture?.setOnClickListener { capturePhoto() }
         binding?.buttonAllowPermissions?.setOnClickListener {
-            requireActivity().requestAllPermissions(
+            requestAllPermissions(
                 REQUEST_CODE_PERMISSIONS,
                 arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
             )
@@ -110,6 +110,7 @@ class DiscoverByIngredientsCameraFragment :
         permissions: Array<String>,
         grantResults: IntArray
     ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (allPermissionsGranted()) {
                 setupCamera()
