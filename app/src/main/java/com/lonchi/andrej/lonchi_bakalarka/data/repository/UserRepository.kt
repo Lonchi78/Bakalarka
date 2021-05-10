@@ -168,6 +168,10 @@ class UserRepositoryImpl @Inject internal constructor(
 
     override fun performUserLogin(firebaseUser: FirebaseUser) {
         prefs.putUserUidToSharedPreferences(firebaseUser.uid)
+        firebaseUser.uid.let {
+            updateUserEmail(it, firebaseUser.email)
+            updateUserName(it, firebaseUser.displayName)
+        }
         db.userDao().saveUser(firebaseUser.mapToUser())
         getUserData()
     }
@@ -219,6 +223,42 @@ class UserRepositoryImpl @Inject internal constructor(
             }
         }
         database.child(DB_KEY_USERS).child(userUid).addListenerForSingleValueEvent(userListener)
+    }
+
+    private fun updateUserEmail(userUid: String, email: String?) {
+        disposable?.dispose()
+        disposable?.add(
+            Single.fromCallable {
+                database
+                    .child(DB_KEY_USERS)
+                    .child(userUid)
+                    .child(DB_USERDATA_EMAIL)
+                    .setValue(email.orEmpty())
+            }
+                .subscribe({
+                    Timber.e("updateUserEmail success")
+                }, {
+                    Timber.e("updateUserEmail err: $it")
+                })
+        )
+    }
+
+    private fun updateUserName(userUid: String, name: String?) {
+        disposable?.dispose()
+        disposable?.add(
+            Single.fromCallable {
+                database
+                    .child(DB_KEY_USERS)
+                    .child(userUid)
+                    .child(DB_USERDATA_NAME)
+                    .setValue(name.orEmpty())
+            }
+                .subscribe({
+                    Timber.e("updateUserName success")
+                }, {
+                    Timber.e("updateUserName err: $it")
+                })
+        )
     }
 
     override fun updateUserData() {

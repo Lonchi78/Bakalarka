@@ -111,7 +111,7 @@
 	<string name="profile_app_content">App content</string>
 	<string name="profile_favourites">Favourites</string>
 	<string name="profile_own_recipes">Own recipes</string>
-	<string name="profile_allergens">Allergens</string>
+	<string name="profile_intolerances">Intolerances</string>
 	<string name="profile_diets">Diets</string>
 	<string name="profile_settings">Settings</string>
 	<string name="profile_about">About</string>
