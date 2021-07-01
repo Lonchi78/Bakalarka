@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/white"
+	android:fitsSystemWindows="true">
+
+	<com.google.android.material.appbar.AppBarLayout
+		android:id="@+id/appBarLayout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/white"
+		app:layout_scrollFlags="scroll|enterAlways"
+		android:elevation="4dp"
+		app:liftOnScroll="true">
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:paddingBottom="8dp">
+
+			<TextView
+				android:id="@+id/textGreetings"
+				style="@style/TextHeadline1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="16dp"
+				android:layout_marginTop="32dp"
+				tools:text="Good afternoon"
+				android:layout_alignParentStart="true"/>
+
+			<ImageButton
+				android:id="@+id/buttonCreateRecipe"
+				style="@style/BaseImageButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="16dp"
+				android:src="@drawable/ic_add_24"
+				android:contentDescription="@null"
+				android:layout_alignParentEnd="true"
+				android:layout_alignBottom="@id/textGreetings"
+				android:layout_alignTop="@id/textGreetings"/>
+
+		</RelativeLayout>
+
+	</com.google.android.material.appbar.AppBarLayout>
+
+	<androidx.core.widget.NestedScrollView
+		android:id="@+id/scrollable"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:overScrollMode="never"
+		android:layout_below="@+id/appBarLayout"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/recyclerRandomRecipes"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:paddingStart="12dp"
+				android:paddingEnd="12dp"
+				android:orientation="horizontal"
+				android:clipToPadding="false"
+				android:overScrollMode="never"
+				app:layout_constraintTop_toTopOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				tools:itemCount="1"
+				tools:listitem="@layout/item_recipe_card" />
+
+			<TextView
+				android:id="@+id/labelFavourites"
+				style="@style/TextHeadline3"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="16dp"
+				android:layout_marginTop="20dp"
+				app:layout_constraintTop_toBottomOf="@id/recyclerRandomRecipes"
+				app:layout_constraintStart_toStartOf="parent"
+				android:text="@string/home_label_favourites"/>
+
+			<com.google.android.material.chip.Chip
+				android:id="@+id/chipCounterFavourites"
+				style="@style/ChipCounterWithCloseIcon"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="16dp"
+				android:clickable="true"
+				android:focusable="true"
+				app:layout_constraintTop_toTopOf="@id/labelFavourites"
+				app:layout_constraintBottom_toBottomOf="@id/labelFavourites"
+				app:layout_constraintEnd_toEndOf="parent"
+				tools:text="4" />
+
+			<androidx.constraintlayout.widget.ConstraintLayout
+				android:id="@+id/emptyLayoutFavouriteRecipes"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:visibility="visible"
+				app:layout_constraintTop_toBottomOf="@id/labelFavourites"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent">
+
+				<ImageView
+					android:id="@+id/imageEmptyLayoutFavouriteRecipes"
+					android:layout_width="124dp"
+					android:layout_height="wrap_content"
+					android:src="@drawable/illu_pizza"
+					android:contentDescription="@null"
+					android:adjustViewBounds="true"
+					android:layout_marginTop="16dp"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent"/>
+
+				<TextView
+					android:id="@+id/labelEmptyLayoutFavouriteRecipes"
+					style="@style/TextBodySmallRegular"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="16dp"
+					android:layout_marginBottom="16dp"
+					app:layout_constraintBottom_toBottomOf="parent"
+					android:textColor="@color/gray700"
+					app:layout_constraintTop_toBottomOf="@id/imageEmptyLayoutFavouriteRecipes"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintEnd_toEndOf="parent"
+					android:text="@string/home_favourites_empty"/>
+
+			</androidx.constraintlayout.widget.ConstraintLayout>
+
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/recyclerFavouriteRecipes"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:paddingStart="12dp"
+				android:paddingEnd="12dp"
+				android:orientation="horizontal"
+				tools:itemCount="1"
+				android:clipChildren="false"
+				android:clipToPadding="false"
+				android:overScrollMode="never"
+				tools:visibility="gone"
+				app:layout_constraintTop_toBottomOf="@id/labelFavourites"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				tools:listitem="@layout/item_recipe_card_column" />
+
+			<androidx.constraintlayout.widget.Barrier
+				android:id="@+id/barrierFavouriteRecipes"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				app:barrierDirection="bottom"
+				app:constraint_referenced_ids="recyclerFavouriteRecipes,emptyLayoutFavouriteRecipes" />
+
+			<TextView
+				android:id="@+id/labelDiscoverByIngredients"
+				style="@style/TextHeadline3"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="16dp"
+				android:layout_marginEnd="16dp"
+				android:layout_marginTop="24dp"
+				android:text="@string/home_discover_by_ingredients"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toStartOf="@id/buttonDiscoverByIngredients"
+				app:layout_constraintTop_toBottomOf="@id/barrierFavouriteRecipes" />
+
+			<ImageButton
+				android:id="@+id/buttonDiscoverByIngredients"
+				style="@style/BaseImageButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="16dp"
+				android:src="@drawable/ic_more_24"
+				android:tint="@color/green500"
+				android:contentDescription="@null"
+				android:layout_marginTop="24dp"
+				app:layout_constraintTop_toBottomOf="@id/barrierFavouriteRecipes"
+				app:layout_constraintEnd_toEndOf="parent"/>
+
+			<com.google.android.material.chip.ChipGroup
+				android:id="@+id/chipGroupIngredients"
+				style="@style/Widget.MaterialComponents.ChipGroup"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:paddingStart="16dp"
+				android:paddingEnd="16dp"
+				android:clickable="true"
+				android:focusable="true"
+				app:layout_constraintTop_toBottomOf="@id/labelDiscoverByIngredients" />
+
+			<TextView
+				android:id="@+id/labelOwnRecipes"
+				style="@style/TextHeadline3"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="16dp"
+				android:layout_marginTop="32dp"
+				app:layout_constraintTop_toBottomOf="@id/chipGroupIngredients"
+				app:layout_constraintStart_toStartOf="parent"
+				android:text="@string/home_label_own_recipes"/>
+
+			<com.google.android.material.chip.Chip
+				android:id="@+id/chipCounterOwnRecipes"
+				style="@style/ChipCounterWithCloseIcon"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="16dp"
+				app:layout_constraintTop_toTopOf="@id/labelOwnRecipes"
+				app:layout_constraintBottom_toBottomOf="@id/labelOwnRecipes"
+				app:layout_constraintEnd_toEndOf="parent"
+				tools:text="4" />
+
+			<androidx.constraintlayout.widget.ConstraintLayout
+				android:id="@+id/emptyLayoutOwnRecipes"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:visibility="visible"
+				app:layout_constraintTop_toBottomOf="@id/labelOwnRecipes"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent">
+
+				<ImageView
+					android:id="@+id/imageEmptyLayoutOwnRecipes"
+					android:contentDescription="@null"
+					android:layout_width="124dp"
+					android:layout_height="wrap_content"
+					android:src="@drawable/illu_burger"
+					android:layout_marginTop="16dp"
+					android:adjustViewBounds="true"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent"/>
+
+				<TextView
+					android:id="@+id/labelEmptyLayoutOwnRecipes"
+					style="@style/TextBodySmallRegular"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="16dp"
+					android:layout_marginBottom="16dp"
+					app:layout_constraintBottom_toBottomOf="parent"
+					android:textColor="@color/gray700"
+					app:layout_constraintTop_toBottomOf="@id/imageEmptyLayoutOwnRecipes"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintEnd_toEndOf="parent"
+					android:text="@string/home_own_recipes_empty"/>
+
+			</androidx.constraintlayout.widget.ConstraintLayout>
+
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/recyclerOwnRecipes"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:paddingStart="12dp"
+				android:paddingEnd="12dp"
+				android:orientation="horizontal"
+				tools:itemCount="1"
+				android:clipChildren="false"
+				android:clipToPadding="false"
+				android:overScrollMode="never"
+				android:visibility="gone"
+				app:layout_constraintTop_toBottomOf="@id/labelOwnRecipes"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				tools:listitem="@layout/item_recipe_card_column" />
+
+			<androidx.constraintlayout.widget.Barrier
+				android:id="@+id/barrierOwnRecipes"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				app:barrierDirection="bottom"
+				app:constraint_referenced_ids="recyclerOwnRecipes,emptyLayoutOwnRecipes" />
+
+			<TextView
+				android:id="@+id/textJoke"
+				style="@style/TextBodyLargeRegular"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="32dp"
+				android:layout_marginEnd="32dp"
+				android:paddingTop="24dp"
+				android:paddingBottom="32dp"
+				android:gravity="center"
+				android:textColor="@color/gray500"
+				android:textStyle="italic"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/barrierOwnRecipes"
+				tools:text="@string/home_joke"/>
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
+
+	</androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

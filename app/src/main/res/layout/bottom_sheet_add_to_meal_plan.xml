@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/bottomSheetHandler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_handler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelTitle"
+        style="@style/TextHeadline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/meal_planner_bottom_sheet_add_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bottomSheetHandler" />
+
+    <View
+        android:id="@+id/viewFavourites"
+        style="@style/ProfileRow"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/labelFavourites"
+        app:layout_constraintTop_toTopOf="@id/labelFavourites" />
+
+    <ImageView
+        android:id="@+id/iconFavourites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:contentDescription="@string/profile_favourites"
+        android:src="@drawable/ic_like_fill_24"
+        app:layout_constraintBottom_toBottomOf="@id/viewFavourites"
+        app:layout_constraintStart_toStartOf="@id/viewFavourites"
+        app:layout_constraintTop_toTopOf="@id/viewFavourites"
+        app:tint="@color/orange500" />
+
+    <TextView
+        android:id="@+id/labelFavourites"
+        style="@style/TextBodyLargeRegular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/meal_planner_bottom_sheet_favourites"
+        app:layout_constraintStart_toEndOf="@id/iconFavourites"
+        app:layout_constraintTop_toBottomOf="@id/labelTitle"/>
+
+    <View
+        android:id="@+id/viewOwnRecipes"
+        style="@style/ProfileRow"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/labelOwnRecipes"
+        app:layout_constraintTop_toTopOf="@id/labelOwnRecipes" />
+
+    <ImageView
+        android:id="@+id/iconOwnRecipes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:contentDescription="@string/profile_own_recipes"
+        android:src="@drawable/ic_own_recipes"
+        app:layout_constraintBottom_toBottomOf="@id/viewOwnRecipes"
+        app:layout_constraintStart_toStartOf="@id/viewOwnRecipes"
+        app:layout_constraintTop_toTopOf="@id/viewOwnRecipes"
+        app:tint="@color/orange500" />
+
+    <TextView
+        android:id="@+id/labelOwnRecipes"
+        style="@style/TextBodyLargeRegular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp"
+        android:text="@string/meal_planner_bottom_sheet_own_recipes"
+        app:layout_constraintStart_toEndOf="@id/iconOwnRecipes"
+        app:layout_constraintTop_toBottomOf="@id/labelFavourites"/>
+
+    <View
+        android:id="@+id/viewDiscover"
+        style="@style/ProfileRow"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/labelDiscover"
+        app:layout_constraintTop_toTopOf="@id/labelDiscover" />
+
+    <ImageView
+        android:id="@+id/iconDiscover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:contentDescription="@string/profile_own_recipes"
+        android:src="@drawable/ic_discover"
+        app:layout_constraintBottom_toBottomOf="@id/viewDiscover"
+        app:layout_constraintStart_toStartOf="@id/viewDiscover"
+        app:layout_constraintTop_toTopOf="@id/viewDiscover"
+        app:tint="@color/orange500" />
+
+    <TextView
+        android:id="@+id/labelDiscover"
+        style="@style/TextBodyLargeRegular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/meal_planner_bottom_sheet_discover"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iconDiscover"
+        app:layout_constraintTop_toBottomOf="@id/labelOwnRecipes"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

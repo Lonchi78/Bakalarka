@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<dimen name="bottom_sheet_corner_radius_top">16dp</dimen>
+	<dimen name="bottom_sheet_corner_radius_bottom">0dp</dimen>
+
+	<dimen name="item_ingredient_expected_height">56dp</dimen>
+	<!--	5 * 56dp = 560dp	-->
+	<dimen name="recycler_found_ingredient_max_height">360dp</dimen>
+
+	<!-- - - - - - Progress Dialog - - - - - - -->
+	<dimen name="progress_dialog_corner_radius">16dp</dimen>
+	<dimen name="progress_dialog_elevation">4dp</dimen>
+
+	<!-- - - - - - - Card View - - - - - - -->
+	<dimen name="card_corner_radius">12dp</dimen>
+	<dimen name="card_elevation">4dp</dimen>
+	<dimen name="card_stroke_width">1dp</dimen>
+	<dimen name="card_explore_height">256dp</dimen>
+
+	<!-- - - - - - Card View Mini - - - - - -->
+	<dimen name="card_mini_corner_radius_ring">360dp</dimen>
+	<dimen name="card_mini_corner_radius">8dp</dimen>
+	<dimen name="card_mini_elevation">2dp</dimen>
+	<dimen name="card_mini_stroke_width">1dp</dimen>
+	<dimen name="card_mini_explore_height">256dp</dimen>
+
+	<!-- - - - - - Text Input and Select - - - - - -->
+	<dimen name="corner_radius_text_input">8dp</dimen>
+	<dimen name="corner_radius_text_select">8dp</dimen>
+
+	<!-- - - - - - - Buttons - - - - - - -->
+	<dimen name="corner_radius_button_contained">24dp</dimen>
+	<dimen name="corner_radius_button_action">12dp</dimen>
+	<dimen name="corner_radius_button_fab">80dp</dimen>
+	<dimen name="corner_radius_button_outlined">32dp</dimen>
+	<dimen name="corner_radius_button_text">32dp</dimen>
+	<dimen name="inset_button_contained">0dp</dimen>
+	<dimen name="inset_button_outlined">0dp</dimen>
+	<dimen name="inset_button_text">0dp</dimen>
+	<dimen name="icon_size_button_icon">24dp</dimen>
+
+	<!-- - - - - - - Bottom Navigation Menu - - - - - - -->
+	<dimen name="elevation_bottom_navigation_menu">4dp</dimen>
+	<dimen name="icon_size_bottom_navigation_menu">24dp</dimen>
+
+	<!-- - - - - - - - - Navigation Bar - - - - - - - - -->
+	<dimen name="elevation_navigation_bar">4dp</dimen>
+
+	<!-- - - - - - - - - Search bar - - - - - - - - -->
+	<dimen name="corner_radius_search_bar">12dp</dimen>
+
+	<!-- - - - - - - - - - Snackbar - - - - - - - - - - -->
+	<dimen name="corner_radius_snackbar">8dp</dimen>
+	<dimen name="corne_radius_snackbar_button">8dp</dimen>
+
+	<!-- - - - - - - - - - Chip - - - - - - - - - - -->
+	<dimen name="corner_radius_chip_action">8dp</dimen>
+	<dimen name="corner_radius_chip_choice">8dp</dimen>
+	<dimen name="corner_radius_chip_filter">8dp</dimen>
+	<dimen name="stroke_width_chip_action">1dp</dimen>
+	<dimen name="stroke_width_chip_choice">1dp</dimen>
+	<dimen name="stroke_width_chip_filter">1dp</dimen>
+	<dimen name="icon_size_chip_action">20dp</dimen>
+	<dimen name="icon_size_chip_choice">20dp</dimen>
+	<dimen name="icon_size_chip_filter">20dp</dimen>
+
+	<!-- - - - - - - - - - Dialog - - - - - - - - - - -->
+	<dimen name="corner_radius_dialog_progress">8dp</dimen>
+	<dimen name="corner_radius_dialog">8dp</dimen>
+
+	<!-- - - - - - - - - - Dialog - - - - - - - - - - -->
+	<dimen name="ingredient_image_card_corner_radius">4dp</dimen>
+
+</resources>

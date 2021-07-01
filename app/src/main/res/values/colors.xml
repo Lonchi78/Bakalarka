@@ -1,6 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="colorPrimary">#6200EE</color>
-	<color name="colorPrimaryDark">#3700B3</color>
-	<color name="colorAccent">#03DAC5</color>
+	<color name="colorPrimary">@color/orange500</color>
+	<color name="colorPrimaryDark">@color/orange900</color>
+	<color name="colorAccent">@color/green500</color>
+
+	<color name="rootWhitePressed">#33C4F5AD</color>
+
+	<color name="colorNavigationIconActive">@color/colorPrimaryDark</color>
+	<color name="colorNavigationIconInactive">#A8A8A8</color>
+
+	<color name="bottomSheetHandler">#CBD5E0</color>
+
+	<color name="textDark">#000000</color>
+
+	<color name="snackbarBackgroundColor">#2d3748</color>
+
+	<color name="snackbarTextColor">#ffffff</color>
+
+	<color name="rootWhite">#ffffff</color>
+
+	<color name="rootGray100">#f7fafc</color>
+
+	<color name="rootGray200">#edf2f7</color>
+
+	<color name="rootGray300">#e2e8f0</color>
+
+	<color name="rootGray400">#cbd5e0</color>
+
+	<color name="rootGray500">#a0aec0</color>
+
+	<color name="rootGray600">#718096</color>
+
+	<color name="rootGray700">#4a5568</color>
+
+	<color name="rootGray800">#2d3748</color>
+
+	<color name="rootGray900">#1a202c</color>
+
+	<color name="rootPrimary100">#eaf3f7</color>
+
+	<color name="rootPrimary200">#c6e0eb</color>
+
+	<color name="rootPrimary300">#94c5d9</color>
+
+	<color name="rootPrimary400">#55a3c2</color>
+
+	<color name="rootPrimary500">#137faa</color>
+
+	<color name="rootPrimary600">#0f6588</color>
+
+	<color name="rootPrimary700">#0b4c66</color>
+
+	<color name="rootPrimary800">#073244</color>
+
+	<color name="rootPrimary900">#031922</color>
+
+	<color name="rootSecondary100">#fbecf4</color>
+
+	<color name="rootSecondary200">#f4cde1</color>
+
+	<color name="rootSecondary300">#eba0c6</color>
+
+	<color name="rootSecondary400">#df68a4</color>
+
+	<color name="rootSecondary500">#d22d80</color>
+
+	<color name="rootSecondary600">#a82466</color>
+
+	<color name="rootSecondary700">#7e1b4c</color>
+
+	<color name="rootSecondary800">#541233</color>
+
+	<color name="rootSecondary900">#2a0919</color>
+
+	<color name="btnPrimaryRestingTextColor">#ffffff</color>
+
+	<color name="btnPrimaryRestingBackgroundColor">#d22d80</color>
+
+	<color name="btnPrimaryPressedBackgroundColor">@color/orange700</color>
+
+	<color name="btnPrimaryDisabledBackgroundColor">#edf2f7</color>
+
+	<color name="white">#ffffff</color>
+
+	<color name="orange900">#FF5718</color>
+	<color name="orange800">#FF6A25</color>
+	<color name="orange700">#FE742C</color>
+	<color name="orange600">#FF8033</color>
+	<color name="orange500">#FF8739</color>
+	<color name="orange400">#FE9A57</color>
+	<color name="orange300">#FDAD72</color>
+	<color name="orange200">#FEC39B</color>
+	<color name="orange100">#FFDBC3</color>
+	<color name="orange50">#FEF1E9</color>
+
+	<color name="green900">#569A1B</color>
+	<color name="green800">#68A927</color>
+	<color name="green700">#74B230</color>
+	<color name="green600">#7EB938</color>
+	<color name="green500">#86BF3E</color>
+	<color name="green400">#98CA5B</color>
+	<color name="green300">#A9D279</color>
+	<color name="green200">#C2DF9F</color>
+	<color name="green100">#DBEBC4</color>
+	<color name="green50">#EFF7E8</color>
+
+	<color name="yellow900">#FDA61B</color>
+	<color name="yellow800">#FCB329</color>
+	<color name="yellow700">#FCBA32</color>
+	<color name="yellow600">#FDC23A</color>
+	<color name="yellow500">#FDC740</color>
+	<color name="yellow400">#FDD05D</color>
+	<color name="yellow300">#FFD87D</color>
+	<color name="yellow200">#FEE39D</color>
+	<color name="yellow100">#FDEEC5</color>s
+	<color name="yellow50">#FFF7EA</color>
+
+	<color name="red900">#FF3B33</color>
+	<color name="red800">#FF4C47</color>
+	<color name="red700">#FF564F</color>
+	<color name="red600">#FF605A</color>
+	<color name="red500">#FF6962</color>
+	<color name="red400">#FF807A</color>
+	<color name="red300">#FE9693</color>
+	<color name="red200">#FFB4B1</color>
+	<color name="red100">#FFD2CF</color>
+	<color name="red50">#FFEDEB</color>
+
+	<color name="gray900">#05172D</color>
+	<color name="gray700">#8A949E</color>
+	<color name="gray500">#B6BDC5</color>
+	<color name="gray200">#E5E6EA</color>
+	<color name="gray50">#F5F5F5</color>
+
+	<color name="searchBarIconInactive">#868687</color>
+	<color name="searchBarStrokeInactive">#BCBDB7</color>
+	<color name="searchBarTextInactive">#B6BDC5</color>
+	<color name="searchBarIconActive">#868687</color>
+	<color name="searchBarStrokeActive">#BCBDB7</color>
+	<color name="searchBarTextActive">@color/gray900</color>
+
+	<color name="transparent">#00000000</color>
+
+	<color name="editTextBorder">#BCBDB7</color>
+	<color name="editTextText">#868687</color>
+
+	<color name="imageButtonBackgroundDarkTransparent">#3305172D</color>
+
 </resources>
